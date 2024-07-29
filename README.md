@@ -16,7 +16,13 @@ A modern, colorful directory listing tool for the command line.
 ## 🚀 Installation
 
 ```bash
-cargo install facad
+cd facad
+cargo build --release 
+```
+
+add to defaut executable path:
+```
+sudo cp target/release/facad /usr/local/bin/
 ```
 
 ## 🛠️ Usage
