@@ -1,91 +1,30 @@
+mod file_entry;
+mod emoji_utils;
+mod display_utils;
+
 use std::env;
 use std::fs;
-use std::path::Path;
 use terminal_size::{Width, Height, terminal_size};
+use file_entry::FileEntry;
+use display_utils::display_entries;
 
+// Main function: entry point of the program
 fn main() {
+    // Get and display the current directory
     let current_dir = env::current_dir().unwrap();
     println!("\x1B[1m{}\x1B[0m", current_dir.display());
 
-    let mut entries: Vec<_> = fs::read_dir(&current_dir)
+    // Read directory contents and create FileEntry objects
+    let mut entries: Vec<FileEntry> = fs::read_dir(&current_dir)
         .unwrap()
         .filter_map(Result::ok)
-        .map(|entry| {
-            let path = entry.path();
-            let file_name = path.file_name().unwrap().to_string_lossy().into_owned();
-            let emoji = get_emoji(&path);
-            (emoji, file_name, path)
-        })
+        .map(|entry| FileEntry::new(entry.path()))
         .collect();
 
-    entries.sort_by_key(|&(_, ref name, ref path)| (get_order(path), name.clone()));
+    // Sort entries
+    entries.sort();
 
+    // Get terminal width and display entries
     let (Width(term_width), _) = terminal_size().unwrap_or((Width(80), Height(24)));
-    let term_width = term_width as usize;
-    let max_name_width = entries.iter().map(|(_, name, _)| name.len()).max().unwrap_or(0);
-    let column_width = max_name_width + 4;
-    let num_columns = (term_width / column_width).min(4).max(1);
-
-    for chunk in entries.chunks(num_columns) {
-        for (emoji, name, _) in chunk {
-            print!("{} {:<width$}", emoji, name, width = max_name_width + 1);
-        }
-        println!();
-    }
-}
-
-fn get_emoji(path: &Path) -> &'static str {
-    if path.is_symlink() {
-        return if path.is_dir() { "🔗📁" } else { "🔗" };
-    }
-    if path.is_dir() {
-        return "📁";
-    }
-    let extension = path.extension().and_then(|e| e.to_str()).unwrap_or("");
-    let file_name = path.file_name().and_then(|n| n.to_str()).unwrap_or("");
-    match extension {
-        "jpg" | "jpeg" | "png" | "gif" | "bmp" | "svg" | "webp" => "🎨",
-        "mp4" | "avi" | "mkv" | "mov" | "flv" | "wmv" | "webm" => "🎬",
-        "mp3" | "wav" | "ogg" | "flac" | "m4a" | "aac" => "🎧",
-        "zip" | "tar" | "gz" | "bz2" | "xz" | "7z" | "rar" => "📦",
-        "py" | "js" | "html" | "css" | "cpp" | "c" | "java" | "go" | "rb" | "rs" | "php" => "👨‍💻",
-        "txt" | "md" | "rst" | "log" => "📝",
-        "ttf" | "otf" | "woff" | "woff2" => "🔤",
-        "pdf" => "📚",
-        "xls" | "xlsx" | "csv" => "📊",
-        "ppt" | "pptx" => "📽️",
-        "conf" | "config" | "cfg" | "ini" | "yaml" | "yml" | "json" | "xml" => "⚙️",
-        _ => {
-            if file_name.starts_with('.') {
-                "⚙️"
-            } else if is_executable(path) {
-                "🚀"
-            } else {
-                "📰"
-            }
-        }
-    }
-}
-
-fn is_executable(path: &Path) -> bool {
-    if cfg!(unix) {
-        use std::os::unix::fs::PermissionsExt;
-        fs::metadata(path).map(|m| m.permissions().mode() & 0o111 != 0).unwrap_or(false)
-    } else {
-        path.extension().and_then(|e| e.to_str()) == Some("exe")
-    }
-}
-
-fn get_order(path: &Path) -> u8 {
-    if path.is_symlink() {
-        if path.is_dir() { 0 } else { 1 }
-    } else if path.is_dir() {
-        0
-    } else if is_executable(path) {
-        2
-    } else if path.file_name().and_then(|n| n.to_str()).map_or(false, |n| n.starts_with('.')) {
-        3
-    } else {
-        4
-    }
+    display_entries(&entries, term_width as usize);
 }
