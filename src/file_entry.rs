@@ -1,6 +1,8 @@
 use std::path::PathBuf;
 use std::cmp::Ordering;
-use crate::emoji_utils::{get_emoji, is_executable};
+//use crate::emoji_utils::{get_emoji, is_executable};
+use crate::emoji_utils::get_emoji;
+
 
 pub struct FileEntry {
     pub emoji: String,
