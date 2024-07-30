@@ -16,22 +16,24 @@ pub fn get_emoji(path: &Path) -> String {
         
     match extension {
         "txt" => "📝",
+        "md" => "📑",
         "jpg" | "jpeg" | "png" | "gif" | "bmp" | "svg" | "webp" => "📸",
         "mp4" | "avi" | "mkv" | "mov" | "flv" | "wmv" | "webm" => "🎬",
         "mp3" | "wav" | "ogg" | "flac" | "m4a" | "aac" => "🎧",
         "zip" | "tar" | "gz" | "bz2" | "xz" | "7z" | "rar" => "📦",
         "deb" | "rpm" => "📥",
         "py" | "sh" | "js" | "html" | "css" | "cpp" | "c" | "java" |
-        "go" | "rb" | "rs" | "php" => "👨<200d>💻",
-        "h" | "hpp" => "👨<200d>💻",
+        "go" | "rb" | "rs" | "php" => "💻",
+        "h" | "hpp" => "💻",
         "o" => "🧩",
         "txt" | "md" | "rst" | "log" => "📝",
         "ttf" | "otf" | "woff" | "woff2" => "🔤",
-        "pdf" | "djvu" => "📚",
+        "pdf" | "djvu" | "epub" => "📚",
         ".pem" | ".crt" | ".key" | ".pub" | ".p12" => "🔑",
         "csv" => "📊",
         "torrent" => "🌊",
         "iso" | "img" => "💽",
+        "qcow" | "qcow2" => "🐮",
         "doc" | "docx" | "odt" | "rtf" | "txt" | "pdf" | "xls" | "xlsx" |
         "ods" | "csv" | "ppt" | "pptx" | "odp" => "📄",
         "conf" | "config" | "toml" | "cfg" | "ini" | "yaml" | "yml" | "json" | "ini" => "⚙️",
