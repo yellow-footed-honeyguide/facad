@@ -23,8 +23,7 @@ pub fn get_emoji(path: &Path) -> String {
         "zip" | "tar" | "gz" | "bz2" | "xz" | "7z" | "rar" => "📦",
         "deb" | "rpm" => "📥",
         "py" | "sh" | "js" | "html" | "css" | "cpp" | "c" | "java" |
-        "go" | "rb" | "rs" | "php" => "💻",
-        "h" | "hpp" => "💻",
+        "go" | "rb" | "rs" | "php" | "h" | "hpp" => "💻",
         "o" => "🧩",
         "txt" | "md" | "rst" | "log" => "📝",
         "ttf" | "otf" | "woff" | "woff2" => "🔤",
@@ -34,6 +33,7 @@ pub fn get_emoji(path: &Path) -> String {
         "torrent" => "🌊",
         "iso" | "img" => "💽",
         "qcow" | "qcow2" => "🐮",
+        "vv" => "🕹️",
         "doc" | "docx" | "odt" | "rtf" | "txt" | "pdf" | "xls" | "xlsx" |
         "ods" | "csv" | "ppt" | "pptx" | "odp" => "📄",
         "conf" | "config" | "toml" | "cfg" | "ini" | "yaml" | "yml" | "json" | "ini" => "⚙️",
