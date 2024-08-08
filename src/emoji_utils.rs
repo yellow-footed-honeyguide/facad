@@ -11,6 +11,14 @@ pub fn get_emoji(path: &Path) -> String {
     if path.is_dir() {
         return "📁".to_string();
     }
+    
+    // Special handling for /dev directory
+    if let Some(parent) = path.parent() {
+        if parent == Path::new("/dev") {
+            return get_dev_emoji(path);
+        }
+    }
+
     let extension = path.extension().and_then(|e| e.to_str()).unwrap_or("");
     let file_name = path.file_name().and_then(|n| n.to_str()).unwrap_or("");
         
@@ -76,3 +84,19 @@ fn is_text_file(path: &Path) -> bool {
     }
     false
 }
+
+
+fn get_dev_emoji(path: &Path) -> String {
+    let file_name = path.file_name().and_then(|n| n.to_str()).unwrap_or("");
+    match file_name {
+        "null" | "zero" => "⓿".to_string(),
+        "random" | "urandom" => "🎲".to_string(),
+        s if s.starts_with("tty") => "🖥️".to_string(),
+        s if s.starts_with("sd") => "💽".to_string(),
+        s if s.starts_with("loop") => "🔁".to_string(),
+        s if s.starts_with("usb") => "🔌".to_string(),
+        _ => "🔧".to_string() // Default device emoji
+    }
+}
+
+
