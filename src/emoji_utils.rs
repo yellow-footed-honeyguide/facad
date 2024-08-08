@@ -23,7 +23,6 @@ pub fn get_emoji(path: &Path) -> String {
     let file_name = path.file_name().and_then(|n| n.to_str()).unwrap_or("");
         
     match extension {
-        "txt" => "📝",
         "md" => "📑",
         "jpg" | "jpeg" | "png" | "gif" | "bmp" | "svg" | "webp" => "📸",
         "mp4" | "avi" | "mkv" | "mov" | "flv" | "wmv" | "webm" => "🎬",
@@ -33,7 +32,7 @@ pub fn get_emoji(path: &Path) -> String {
         "py" | "sh" | "js" | "html" | "css" | "cpp" | "c" | "java" |
         "go" | "rb" | "rs" | "php" | "h" | "hpp" => "💻",
         "o" => "🧩",
-        "txt" | "md" | "rst" | "log" => "📝",
+        "txt" | "rst" | "log" => "📝",
         "ttf" | "otf" | "woff" | "woff2" => "🔤",
         "pdf" | "djvu" | "epub" => "📚",
         ".pem" | ".crt" | ".key" | ".pub" | ".p12" => "🔑",
@@ -42,9 +41,9 @@ pub fn get_emoji(path: &Path) -> String {
         "iso" | "img" => "💽",
         "qcow" | "qcow2" => "🐮",
         "vv" => "🕹️",
-        "doc" | "docx" | "odt" | "rtf" | "txt" | "pdf" | "xls" | "xlsx" |
-        "ods" | "csv" | "ppt" | "pptx" | "odp" => "📄",
-        "conf" | "config" | "toml" | "cfg" | "ini" | "yaml" | "yml" | "json" | "ini" => "⚙️",
+        "doc" | "docx" | "odt" | "rtf" | "xls" | "xlsx" |
+        "ods" | "ppt" | "pptx" | "odp" => "📄",
+        "conf" | "config" | "toml" | "cfg" | "yaml" | "yml" | "json" | "ini" => "⚙️",
         _ => {
             if file_name.starts_with('.') {
                 "⚙️"
