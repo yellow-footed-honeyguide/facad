@@ -1,74 +1,70 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <dirent.h>
-#include <string.h>
+#include <errno.h>
 #include "file_entry.h"
 #include "emoji_utils.h"
 #include "display_utils.h"
+#include "dev_utils.h"
 
 #define MAX_PATH 4096
+#define MAX_ENTRIES 1024
 
 int main() {
     char current_dir[MAX_PATH];
     struct winsize w;
     int term_width;
-    
-    // Получаем текущую директорию
+
     if (getcwd(current_dir, sizeof(current_dir)) == NULL) {
         perror("getcwd() error");
         return 1;
     }
 
-    // Выводим текущую директорию жирным шрифтом
     printf("\033[1m%s\033[0m\n", current_dir);
 
-    // Получаем ширину терминала
     ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
     term_width = w.ws_col;
 
-    // Открываем текущую директорию
-    DIR *dir = opendir(".");
-    if (dir == NULL) {
-        perror("opendir() error");
+    FileEntry *entries = malloc(MAX_ENTRIES * sizeof(FileEntry));
+    if (entries == NULL) {
+        perror("malloc() error");
         return 1;
     }
-
-    // Создаем массив для хранения записей файлов
-    FileEntry *entries = NULL;
     int num_entries = 0;
-    struct dirent *entry;
 
-    // Читаем содержимое директории
-    while ((entry = readdir(dir)) != NULL) {
-        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) {
-            continue;
-        }
-        
-        entries = realloc(entries, (num_entries + 1) * sizeof(FileEntry));
-        if (entries == NULL) {
-            perror("realloc() error");
-            closedir(dir);
+    if (is_dev_directory(current_dir)) {
+        handle_dev_directory(&entries, &num_entries, MAX_ENTRIES);
+    } else {
+        DIR *dir = opendir(".");
+        if (dir == NULL) {
+            perror("opendir() error");
+            free(entries);
             return 1;
         }
 
-        create_file_entry(&entries[num_entries], entry->d_name);
-        num_entries++;
+        struct dirent *entry;
+        while ((entry = readdir(dir)) != NULL && num_entries < MAX_ENTRIES) {
+            if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) {
+                continue;
+            }
+
+            if (create_file_entry(&entries[num_entries], entry->d_name) != 0) {
+                fprintf(stderr, "Warning: Unable to get info for %s: %s\n", entry->d_name, strerror(errno));
+                continue;
+            }
+            num_entries++;
+        }
+        closedir(dir);
     }
 
-    closedir(dir);
-
-    // Сортируем записи
     qsort(entries, num_entries, sizeof(FileEntry), compare_file_entries);
-
-    // Отображаем записи
     display_entries(entries, num_entries, term_width);
 
-    // Освобождаем память
     for (int i = 0; i < num_entries; i++) {
-        free(entries[i].name);
-        free(entries[i].emoji);
+        free_file_entry(&entries[i]);
     }
     free(entries);
 

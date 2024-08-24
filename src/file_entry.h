@@ -8,7 +8,7 @@ typedef struct {
     int is_hidden;
 } FileEntry;
 
-void create_file_entry(FileEntry* entry, const char* path);
+int create_file_entry(FileEntry* entry, const char* path);
 void free_file_entry(FileEntry* entry);
 int compare_file_entries(const void* a, const void* b);
 
