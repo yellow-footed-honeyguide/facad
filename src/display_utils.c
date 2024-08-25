@@ -8,85 +8,95 @@
 #include "file_entry.h"
 
 #define MAX_COLUMNS 4
+#define SPACING 2
 
-int get_display_width(const char* str) {
-    setlocale(LC_ALL, "");
-    wchar_t* wstr = (wchar_t*)malloc((strlen(str) + 1) * sizeof(wchar_t));
-    if (wstr == NULL) {
-        return 0;
+size_t get_utf8_char_width(const char* str) {
+    unsigned char c = (unsigned char)*str;
+    if (c < 0x80) return 1;
+    if (c < 0xE0) return 2;
+    if (c < 0xF0) return 3;
+    return 4;
+}
+
+size_t get_display_width(const char* str) {
+    size_t width = 0;
+    while (*str) {
+        size_t char_width = get_utf8_char_width(str);
+        if (char_width == 4) {
+            width += 2;  // Emoji and other wide characters
+        } else if (char_width > 1) {
+            width += 1;  // Other multi-byte characters
+        } else {
+            width += 1;  // ASCII characters
+        }
+        str += char_width;
     }
-    mbstowcs(wstr, str, strlen(str) + 1);
-    int width = wcswidth(wstr, wcslen(wstr));
-    free(wstr);
     return width;
 }
 
+void print_padded(const char* str, size_t width) {
+    size_t str_width = get_display_width(str);
+    printf("%s", str);
+    for (size_t i = str_width; i < width; i++) {
+        printf(" ");
+    }
+}
+
 void display_entries(FileEntry* entries, int num_entries, int term_width) {
-    int num_columns = 1;
-    int* column_widths = NULL;
+    setlocale(LC_ALL, "");
 
-    // Находим оптимальное количество столбцов
-    for (int cols = MAX_COLUMNS; cols >= 1; cols--) {
-        int rows = (num_entries + cols - 1) / cols;
-        column_widths = (int*)malloc(cols * sizeof(int));
-        if (column_widths == NULL) {
-            fprintf(stderr, "Memory allocation error\n");
-            return;
-        }
-
-        for (int col = 0; col < cols; col++) {
-            column_widths[col] = 0;
-            for (int row = 0; row < rows && col * rows + row < num_entries; row++) {
-                int index = col * rows + row;
-                int width = get_display_width(entries[index].emoji) + 1 + 
-                            get_display_width(entries[index].name);
-                if (width > column_widths[col]) {
-                    column_widths[col] = width;
-                }
-            }
-        }
-
-        int total_width = 0;
-        for (int col = 0; col < cols; col++) {
-            total_width += column_widths[col];
-        }
-        total_width += (cols - 1) * 2; // 2 пробела между столбцами
-
-        if (total_width <= term_width) {
-            num_columns = cols;
-            break;
-        }
-
-        free(column_widths);
-        column_widths = NULL;
+    size_t* entry_widths = malloc(num_entries * sizeof(size_t));
+    if (!entry_widths) {
+        fprintf(stderr, "Memory allocation failed\n");
+        return;
     }
 
-    if (column_widths == NULL) {
-        fprintf(stderr, "Unable to determine column layout\n");
+    size_t max_width = 0;
+    for (int i = 0; i < num_entries; i++) {
+        entry_widths[i] = get_display_width(entries[i].emoji) + 1 + get_display_width(entries[i].name);
+        if (entry_widths[i] > max_width) {
+            max_width = entry_widths[i];
+        }
+    }
+
+    int num_columns = (term_width + SPACING) / (max_width + SPACING);
+    if (num_columns > MAX_COLUMNS) num_columns = MAX_COLUMNS;
+    if (num_columns < 1) num_columns = 1;
+
+    size_t* column_widths = calloc(num_columns, sizeof(size_t));
+    if (!column_widths) {
+        fprintf(stderr, "Memory allocation failed\n");
+        free(entry_widths);
         return;
     }
 
     int rows = (num_entries + num_columns - 1) / num_columns;
 
+    for (int col = 0; col < num_columns; col++) {
+        for (int row = 0; row < rows; row++) {
+            int index = row * num_columns + col;
+            if (index < num_entries && entry_widths[index] > column_widths[col]) {
+                column_widths[col] = entry_widths[index];
+            }
+        }
+    }
+
     for (int row = 0; row < rows; row++) {
         for (int col = 0; col < num_columns; col++) {
-            int index = row + col * rows;
+            int index = row * num_columns + col;
             if (index < num_entries) {
-                int display_width = get_display_width(entries[index].emoji) + 1 + 
-                                    get_display_width(entries[index].name);
-                printf("%s %s", entries[index].emoji, entries[index].name);
+                print_padded(entries[index].emoji, get_display_width(entries[index].emoji));
+                printf(" ");
+                print_padded(entries[index].name, column_widths[col] - get_display_width(entries[index].emoji) - 1);
 
-                // Добавляем пробелы для выравнивания в пределах столбца
                 if (col < num_columns - 1) {
-                    for (int i = 0; i < column_widths[col] - display_width; i++) {
-                        printf(" ");
-                    }
-                    printf("  "); // 2 пробела между столбцами
+                    printf("%*s", SPACING, "");
                 }
             }
         }
         printf("\n");
     }
 
+    free(entry_widths);
     free(column_widths);
 }
