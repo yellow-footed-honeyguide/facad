@@ -45,6 +45,9 @@ void print_padded(const char* str, size_t width) {
 void display_entries(FileEntry* entries, int num_entries, int term_width) {
     setlocale(LC_ALL, "");
 
+    // Sort entries
+    qsort(entries, num_entries, sizeof(FileEntry), compare_file_entries);
+
     size_t* entry_widths = malloc(num_entries * sizeof(size_t));
     if (!entry_widths) {
         fprintf(stderr, "Memory allocation failed\n");
@@ -72,18 +75,16 @@ void display_entries(FileEntry* entries, int num_entries, int term_width) {
 
     int rows = (num_entries + num_columns - 1) / num_columns;
 
-    for (int col = 0; col < num_columns; col++) {
-        for (int row = 0; row < rows; row++) {
-            int index = row * num_columns + col;
-            if (index < num_entries && entry_widths[index] > column_widths[col]) {
-                column_widths[col] = entry_widths[index];
-            }
+    for (int i = 0; i < num_entries; i++) {
+        int col = i / rows;
+        if (entry_widths[i] > column_widths[col]) {
+            column_widths[col] = entry_widths[i];
         }
     }
 
     for (int row = 0; row < rows; row++) {
         for (int col = 0; col < num_columns; col++) {
-            int index = row * num_columns + col;
+            int index = col * rows + row;
             if (index < num_entries) {
                 print_padded(entries[index].emoji, get_display_width(entries[index].emoji));
                 printf(" ");
