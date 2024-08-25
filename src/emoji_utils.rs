@@ -3,8 +3,34 @@ use std::fs;
 use std::fs::File;
 use std::io::{Read, BufReader};
 
+
+#[cfg(unix)]  // Use conditional compilation for unix specific API
+// Use lifetime paramter to indicate that the `default` will be valid after it is returned
+fn get_unix_emoji_or<'a>(path: &Path, default: &'a str) -> &'a str {
+    use std::os::unix::fs::FileTypeExt;
+    let filename = path.file_name().unwrap_or_default();
+    let filename_str: &str = filename.to_str().unwrap_or_default();
+    let err_msg = format!("Failed to get metadata for path {}", filename_str);
+
+    let metadata = path.metadata().expect(&err_msg);
+    let file_type = metadata.file_type();
+    let emoji = if file_type.is_fifo() { "⏩" }
+    else if file_type.is_socket() { "󰟩" }
+    else if file_type.is_char_device() { "🔤" }
+    else if file_type.is_block_device() { "💽" }
+    else { default };
+    return emoji;
+}
+
 // Returns appropriate emoji for given file path
 pub fn get_emoji(path: &Path) -> String {
+    let common_default = "❓";
+    let default = if cfg!(unix) {
+        get_unix_emoji_or(path, common_default)
+    } else {
+        common_default
+    };
+
     if path.is_symlink() {
         return if path.is_dir() { "🔗📁".to_string() } else { "🔗".to_string() };
     }
@@ -52,7 +78,7 @@ pub fn get_emoji(path: &Path) -> String {
             } else if is_text_file(path) {
                 "📝"
             } else {
-                "❓"
+                default
             }
         } 
   }.to_string()
@@ -92,6 +118,7 @@ fn get_dev_emoji(path: &Path) -> String {
         "random" | "urandom" => "🎲".to_string(),
         s if s.starts_with("tty") => "🖥️".to_string(),
         s if s.starts_with("sd") => "💽".to_string(),
+        s if s.starts_with("nvme") => "💽".to_string(),
         s if s.starts_with("loop") => "🔁".to_string(),
         s if s.starts_with("usb") => "🔌".to_string(),
         _ => "🔧".to_string() // Default device emoji
