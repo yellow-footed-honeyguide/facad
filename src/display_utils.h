@@ -3,6 +3,6 @@
 
 #include "file_entry.h"
 
-void display_entries(FileEntry* entries, int num_entries, int term_width);
+void display_entries(FileEntry *entries, int num_entries, int term_width);
 
-#endif // DISPLAY_UTILS_H
+#endif  // DISPLAY_UTILS_H

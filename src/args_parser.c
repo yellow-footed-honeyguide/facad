@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "args_parser.h"
-#include "config.h" // Include the generated config.h
+#include "config.h"  // Include the generated config.h
 
 CommandLineArgs parse_args(int argc, char *argv[]) {
     CommandLineArgs args = {false, false};
