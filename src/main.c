@@ -9,11 +9,25 @@
 #include "emoji_utils.h"
 #include "display_utils.h"
 #include "dev_utils.h"
+#include "args_parser.h"
+#include "config.h"
 
 #define MAX_PATH 4096
 #define MAX_ENTRIES 1024
 
-int main() {
+int main(int argc, char *argv[]) {
+    CommandLineArgs args = parse_args(argc, argv);
+
+    if (args.show_version) {
+        print_version();
+        return 0;
+    }
+
+    if (args.show_help) {
+        print_help(argv[0]);
+        return 0;
+    }
+
     char current_dir[MAX_PATH];
     struct winsize w;
     int term_width;

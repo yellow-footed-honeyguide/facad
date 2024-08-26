@@ -1,5 +1,5 @@
 project('facad', 'c',
-  version : '1.0.0',
+  version : '1.1.0',
   default_options : ['warning_level=3'])
 
 cc = meson.get_compiler('c')
@@ -12,10 +12,23 @@ src_files = [
   'src/emoji_utils.c',
   'src/display_utils.c',
   'src/dev_utils.c',
+  'src/args_parser.c',
 ]
+
+version = meson.project_version()
+
+conf_data = configuration_data()
+conf_data.set_quoted('VERSION', version)
+
+configure_file(
+  output : 'config.h',
+  configuration : conf_data
+)
+
+inc = include_directories('.')
 
 executable('facad',
            src_files,
+           include_directories : inc,
            dependencies : [math_dep],
            install : true)
-
