@@ -9,7 +9,7 @@
 
 char* get_emoji(const char* path) {
     struct stat path_stat;
-    char* emoji = malloc(5 * sizeof(char)); // Максимальная длина эмодзи (4 байта) + нулевой байт
+    char* emoji = malloc(5 * sizeof(char));
     if (emoji == NULL) {
         return NULL;
     }
@@ -35,7 +35,7 @@ char* get_emoji(const char* path) {
 
     char* extension = strrchr(path, '.');
     if (extension != NULL) {
-        extension++; // Пропускаем точку
+        extension++;
     }
 
     if (extension != NULL) {
@@ -132,16 +132,16 @@ int is_text_file(const char* path) {
     fclose(file);
 
     if (bytes_read == 0) {
-        return 1; // Пустой файл считается текстовым
+        return 1;
     }
 
     for (size_t i = 0; i < bytes_read; i++) {
         if (!isprint(buffer[i]) && !isspace(buffer[i])) {
-            return 0; // Найден непечатаемый символ, вероятно, бинарный файл
+            return 0;
         }
     }
 
-    return 1; // Все символы печатаемые, вероятно, текстовый файл
+    return 1;
 }
 
 char* get_dev_emoji(const char* path) {
@@ -149,10 +149,10 @@ char* get_dev_emoji(const char* path) {
     if (filename == NULL) {
         filename = (char*)path;
     } else {
-        filename++; // Пропускаем '/'
+        filename++;
     }
 
-    char* emoji = malloc(5 * sizeof(char)); // Максимальная длина эмодзи (4 байта) + нулевой байт
+    char* emoji = malloc(5 * sizeof(char));
     if (emoji == NULL) {
         return NULL;
     }
