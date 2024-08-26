@@ -2,7 +2,8 @@
 
 A modern, colorful directory listing tool for the command line.
 
-![facad in action](path/to/screenshot.png)
+![facad in action](assets/demo_facad.jpg)
+
 
 ## ✨ Features
 
@@ -13,16 +14,19 @@ A modern, colorful directory listing tool for the command line.
 - 📏 Customizable column width
 - 🌐 Unicode-aware formatting
 
-## 🚀 Installation
+### Building from Source
 
-```bash
-cd facad
-cargo build --release 
+1. Clone the repository:
 ```
-
-add to defaut executable path:
+git clone https://github.com/yellow-footed-honeyguide/facad.git
+cd facad 
+mkdir build && cd build
+meson ..
+ninja
 ```
-sudo cp target/release/facad /usr/local/bin/
+or install facad system-wide:
+```
+sudo ninja install
 ```
 
 ## 🛠️ Usage
