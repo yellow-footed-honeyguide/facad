@@ -1,10 +1,8 @@
-//  src/args_parser.c
-
 #include <stdio.h>
 #include <string.h>
 
-#include "args_parser.h" // Header file with the definition of CommandLineArgs structure and parse_args function
-#include "config.h"      // Includes the generated config.h file with the VERSION definition
+#include "args_parser.h"
+#include "config.h" // Includes the generated config.h file with the VERSION definition
 
 /**
  * Function to parse command line arguments.

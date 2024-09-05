@@ -1,5 +1,3 @@
-// src/file_entry.c
-
 #include <stdlib.h>   // (f)malloc, (f)free
 #include <string.h>   // (f)strdup, (f)strrchr, (f)strcasecmp
 #include <sys/stat.h> // (s)struct stat, (f)lstat, (m)S_ISDIR

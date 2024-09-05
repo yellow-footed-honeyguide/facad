@@ -1,4 +1,3 @@
-// /src/main.c
 // (f)function, (t)type, (m)macros, (s)structure
 #include <dirent.h>    // DIR (t), struct dirent (s), opendir (f), readdir (f), closedir (f)
 #include <errno.h>     // errno (m)

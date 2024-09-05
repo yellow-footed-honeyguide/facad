@@ -1,5 +1,3 @@
-// src/dev_utils.c
-
 #include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
