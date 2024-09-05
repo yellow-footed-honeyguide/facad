@@ -14,14 +14,17 @@ typedef struct {
     const char *emoji;
 } EmojiMapEntry;
 
+// Safe string duplication function
 static char *safe_strdup(const char *str) {
     char *dup = strdup(str);
     if (!dup) {
         perror("strdup");
+        exit(EXIT_FAILURE);
     }
     return dup;
 }
 
+// Get emoji for /dev files
 char *get_dev_emoji(const char *path) {
     static const EmojiMapEntry exact_emoji_map[] = {
         {"loop", "🔁"},      {"null", "🕳️"},        {"zero", "🕳️"},
@@ -35,7 +38,8 @@ char *get_dev_emoji(const char *path) {
         {"ptmx", "🖥️"},      {"userfaultfd", "🚧"}, {"nvram", "🗄️"},
         {"port", "🔌"},      {"autofs", "🚗"},      {"btrfs-control", "🌳"},
         {"console", "🖥️"},   {"full", "🔒"},        {"fuse", "🔥"},
-        {"gpiochip0", "📌"}, {"cuse", "🧩"},        {"cpu_dma_latency", "⏱️"}};
+        {"gpiochip0", "📌"}, {"cuse", "🧩"},        {"cpu_dma_latency", "⏱️"}
+    };
 
     for (size_t i = 0; i < sizeof(exact_emoji_map) / sizeof(exact_emoji_map[0]); i++) {
         if (strcmp(path, exact_emoji_map[i].key) == 0) {
@@ -46,7 +50,8 @@ char *get_dev_emoji(const char *path) {
     static const EmojiMapEntry prefix_emoji_map[] = {
         {"loop", "🔁"}, {"sd", "💽"},  {"tty", "🖥️"},      {"usb", "🔌"}, {"video", "🎥"},
         {"nvme", "💽"}, {"lp", "🖨️"},  {"hidraw", "🔠"},   {"vcs", "📟"}, {"vcsa", "📟"},
-        {"ptp", "🕰️"},  {"rtc", "🕰️"}, {"watchdog", "🐕"}, {"mtd", "⚡"}};
+        {"ptp", "🕰️"},  {"rtc", "🕰️"}, {"watchdog", "🐕"}, {"mtd", "⚡"}
+    };
 
     for (size_t i = 0; i < sizeof(prefix_emoji_map) / sizeof(prefix_emoji_map[0]); i++) {
         if (strncmp(path, prefix_emoji_map[i].key, strlen(prefix_emoji_map[i].key)) == 0) {
@@ -57,6 +62,7 @@ char *get_dev_emoji(const char *path) {
     return safe_strdup("🔧");
 }
 
+// Get emoji for a file based on its characteristics
 char *get_emoji(const char *path) {
     struct stat path_stat;
     if (lstat(path, &path_stat) != 0) {
@@ -69,6 +75,23 @@ char *get_emoji(const char *path) {
 
     if (S_ISDIR(path_stat.st_mode)) {
         return safe_strdup("📁");
+    }
+
+    // Check for special cases
+    const char *filename = strrchr(path, '/');
+    filename = filename ? filename + 1 : path;
+
+    static const EmojiMapEntry special_case_map[] = {
+        {"vmlinuz", "🐧"},    // Linux kernel
+        {"grub", "🥾"},       // GRUB bootloader
+        {"shadow", "🕶️"},     // Shadow password file
+        {"fstab", "⬜"}       // Filesystem table
+    };
+
+    for (size_t i = 0; i < sizeof(special_case_map) / sizeof(special_case_map[0]); i++) {
+        if (strstr(filename, special_case_map[i].key) == filename) {
+            return safe_strdup(special_case_map[i].emoji);
+        }
     }
 
     char *extension = strrchr(path, '.');
@@ -91,7 +114,9 @@ char *get_emoji(const char *path) {
             {"qcow2", "🐮"}, {"vv", "🕹️"},      {"doc", "📄"},  {"docx", "📄"},  {"odt", "📄"},
             {"rtf", "📄"},   {"xls", "📄"},     {"xlsx", "📄"}, {"ods", "📄"},   {"ppt", "📄"},
             {"pptx", "📄"},  {"odp", "📄"},     {"conf", "⚙️"},  {"config", "⚙️"}, {"toml", "⚙️"},
-            {"cfg", "⚙️"},    {"yaml", "⚙️"},     {"yml", "⚙️"},   {"json", "⚙️"},   {"ini", "⚙️"}};
+            {"cfg", "⚙️"},    {"yaml", "⚙️"},     {"yml", "⚙️"},   {"json", "⚙️"},   {"ini", "⚙️"},
+						{"target", "🎯"}, {"service", "🚀"}, {"socket", "🔁"}
+        };
 
         for (size_t i = 0; i < sizeof(ext_map) / sizeof(ext_map[0]); i++) {
             if (strcasecmp(extension, ext_map[i].key) == 0) {
@@ -115,6 +140,7 @@ char *get_emoji(const char *path) {
     return safe_strdup("❓");
 }
 
+// Check if a file is executable
 int is_executable(const char *path) {
     struct stat st;
     if (stat(path, &st) == 0) {
@@ -123,6 +149,7 @@ int is_executable(const char *path) {
     return 0;
 }
 
+// Check if a file is a text file
 int is_text_file(const char *path) {
     FILE *file = fopen(path, "rb");
     if (!file) {
