@@ -1,13 +1,14 @@
 // src/emoji_utils.c
-
 #include <stdio.h>    // printf, fprintf
 #include <stdlib.h>   // malloc, free
 #include <string.h>   // strcpy, strcmp, strrchr
 #include <sys/stat.h> // struct stat, lstat, S_ISLNK, S_ISDIR
+#include <ctype.h>
 
 #include "emoji_utils.h" // get_emoji, is_executable, is_text_file
 
-#define MAX_PATH 4096 // Maximum path length
+
+#define MAX_PATH 4096
 
 typedef struct
 {
@@ -15,9 +16,6 @@ typedef struct
     const char *emoji;
 } EmojiMapEntry;
 
-/**
- * Safely duplicates a string, logging an error on failure.
- */
 static char *safe_strdup(const char *str)
 {
     char *dup = strdup(str);
@@ -28,22 +26,13 @@ static char *safe_strdup(const char *str)
     return dup;
 }
 
-/**
- * Determines the appropriate emoji for a device file in the /dev directory.
- *
- * @param path The file path in the /dev directory.
- * @return A string containing the corresponding emoji. The caller is responsible for freeing the returned string.
- */
 char *get_dev_emoji(const char *path)
 {
     static const EmojiMapEntry exact_emoji_map[] = {
-        {"loop", "🔁"},
-        {"null", "⓿"},
-        {"random", "🎲"},
-        {"sd", "💽"},
-        {"tty", "🖥️"},
-        {"urandom", "🎲"},
-        {"usb", "🔌"}};
+        {"loop", "🔁"}, {"null", "🕳️"}, {"zero", "🕳️"},
+        {"random", "🎲"}, {"urandom", "🎲"},
+        {"sd", "💽"}, {"tty", "🖥️"}, {"usb", "🔌"}
+    };
 
     for (size_t i = 0; i < sizeof(exact_emoji_map) / sizeof(exact_emoji_map[0]); i++)
     {
@@ -54,10 +43,8 @@ char *get_dev_emoji(const char *path)
     }
 
     static const EmojiMapEntry prefix_emoji_map[] = {
-        {"loop", "🔁"},
-        {"sd", "💽"},
-        {"tty", "🖥️"},
-        {"usb", "🔌"}};
+        {"loop", "🔁"}, {"sd", "💽"}, {"tty", "🖥️"}, {"usb", "🔌"}
+    };
 
     for (size_t i = 0; i < sizeof(prefix_emoji_map) / sizeof(prefix_emoji_map[0]); i++)
     {
@@ -70,28 +57,22 @@ char *get_dev_emoji(const char *path)
     return safe_strdup("🔧");
 }
 
-/**
- * Determines the appropriate emoji for the given file path.
- *
- * @param path The file path to analyze.
- * @return A string containing the corresponding emoji. The caller is responsible for freeing the returned string.
- */
 char *get_emoji(const char *path)
 {
     struct stat path_stat;
     if (lstat(path, &path_stat) != 0)
     {
-        return safe_strdup("❓ ");
+        return safe_strdup("❓");
     }
 
     if (S_ISLNK(path_stat.st_mode))
     {
-        return safe_strdup(S_ISDIR(path_stat.st_mode) ? "🔗📁 " : "🔗 ");
+        return safe_strdup(S_ISDIR(path_stat.st_mode) ? "🔗📁" : "🔗");
     }
 
     if (S_ISDIR(path_stat.st_mode))
     {
-        return safe_strdup("📁 ");
+        return safe_strdup("📁");
     }
 
     char *extension = strrchr(path, '.');
@@ -99,105 +80,38 @@ char *get_emoji(const char *path)
     {
         extension++; // Skip the dot
         static const EmojiMapEntry ext_map[] = {
-            {"7z", "📦 "},
-            {"aac", "🎧 "},
-            {"aiff", "🎧 "},
-            {"apk", "📱 "},
-            {"avi", "🎬 "},
-            {"bat", "⚙️  "},
-            {"bin", "💾 "},
-            {"bmp", "📸 "},
-            {"bz2", "📦 "},
-            {"c", "💻 "},
-            {"cbr", "📚 "},
-            {"cbz", "📚 "},
-            {"cer", "🔑 "},
-            {"cmd", "⚙️  "},
-            {"conf", "⚙️  "},
-            {"config", "⚙️  "},
-            {"cpp", "💻 "},
-            {"crt", "🔑 "},
-            {"csv", "📊 "},
-            {"deb", "📦 "},
-            {"dmg", "💽 "},
-            {"djvu", "📚 "},
-            {"doc", "📄 "},
-            {"docx", "📄 "},
-            {"epub", "📚 "},
-            {"exe", "🚀 "},
-            {"flac", "🎧 "},
-            {"gif", "📸 "},
-            {"go", "💻 "},
-            {"gz", "📦 "},
-            {"h", "💻 "},
-            {"hpp", "💻 "},
-            {"html", "💻 "},
-            {"ico", "🖼️ "},
-            {"img", "💽 "},
-            {"ini", "⚙️  "},
-            {"iso", "💽 "},
-            {"jar", "🔧 "},
-            {"java", "💻 "},
-            {"jpeg", "📸 "},
-            {"jpg", "📸 "},
-            {"js", "💻 "},
-            {"json", "⚙️  "},
-            {"log", "📝 "},
-            {"lzma", "📦 "},
-            {"m2ts", "🎬 "},
-            {"m4a", "🎧 "},
-            {"md", "📝 "},
-            {"mkv", "🎬 "},
-            {"mov", "🎬 "},
-            {"mp3", "🎧 "},
-            {"mp4", "🎬 "},
-            {"msi", "💽 "},
-            {"o", "🧩 "},
-            {"odt", "📄 "},
-            {"otf", "🔤 "},
-            {"pdf", "📚 "},
-            {"pem", "🔑 "},
-            {"php", "💻 "},
-            {"pkg", "📦 "},
-            {"png", "📸 "},
-            {"ppt", "📄 "},
-            {"pptx", "📄"},
-            {"psd", "🖌️ "},
-            {"pub", "🔑 "},
-            {"py", "💻 "},
-            {"qcow", "🐮 "},
-            {"qcow2", "🐮 "},
-            {"rar", "📦 "},
-            {"rst", "📝 "},
-            {"rtf", "📄 "},
-            {"sh", "⚙️  "},
-            {"sql", "🗃️ "},
-            {"svg", "📸 "},
-            {"swift", "💻 "},
-            {"tar", "📦 "},
-            {"tiff", "🖼️ "},
-            {"toml", "⚙️  "},
-            {"ts", "💻 "},
-            {"ttf", "🔤 "},
-            {"txt", "📝 "},
-            {"vb", "💻 "},
-            {"vbs", "💻 "},
-            {"wav", "🎧 "},
-            {"webm", "🎬 "},
-            {"webp", "📸 "},
-            {"woff", "🔤 "},
-            {"woff2", "🔤 "},
-            {"xls", "📄 "},
-            {"xlsx", "📄 "},
-            {"xml", "🗃️ "},
-            {"yaml", "⚙️ "},
-            {"yml", "⚙️  "},
-            {"zip", "📦 "},
-            {"zsh", "⚙️  "}};
+            {"md", "📑"}, {"jpg", "📸"}, {"jpeg", "📸"}, {"png", "📸"}, {"gif", "📸"},
+            {"bmp", "📸"}, {"svg", "📸"}, {"webp", "📸"},
+            {"mp4", "🎬"}, {"avi", "🎬"}, {"mkv", "🎬"}, {"mov", "🎬"}, {"flv", "🎬"},
+            {"wmv", "🎬"}, {"webm", "🎬"},
+            {"mp3", "🎧"}, {"wav", "🎧"}, {"ogg", "🎧"}, {"flac", "🎧"}, {"m4a", "🎧"},
+            {"aac", "🎧"},
+            {"zip", "📦"}, {"tar", "📦"}, {"gz", "📦"}, {"bz2", "📦"}, {"xz", "📦"},
+            {"7z", "📦"}, {"rar", "📦"},
+            {"deb", "📥"}, {"rpm", "📥"},
+            {"py", "💻"}, {"sh", "💻"}, {"js", "💻"}, {"html", "💻"}, {"css", "💻"},
+            {"cpp", "💻"}, {"c", "💻"}, {"java", "💻"}, {"go", "💻"}, {"rb", "💻"},
+            {"rs", "💻"}, {"php", "💻"}, {"h", "💻"}, {"hpp", "💻"},
+            {"o", "🧩"},
+            {"txt", "📝"}, {"rst", "📝"}, {"log", "📝"},
+            {"ttf", "🔤"}, {"otf", "🔤"}, {"woff", "🔤"}, {"woff2", "🔤"},
+            {"pdf", "📚"}, {"djvu", "📚"}, {"epub", "📚"},
+            {"pem", "🔑"}, {"crt", "🔑"}, {"key", "🔑"}, {"pub", "🔑"}, {"p12", "🔑"},
+            {"csv", "📊"},
+            {"torrent", "🌊"},
+            {"iso", "💽"}, {"img", "💽"},
+            {"qcow", "🐮"}, {"qcow2", "🐮"},
+            {"vv", "🕹️"},
+            {"doc", "📄"}, {"docx", "📄"}, {"odt", "📄"}, {"rtf", "📄"},
+            {"xls", "📄"}, {"xlsx", "📄"}, {"ods", "📄"},
+            {"ppt", "📄"}, {"pptx", "📄"}, {"odp", "📄"},
+            {"conf", "⚙️"}, {"config", "⚙️"}, {"toml", "⚙️"}, {"cfg", "⚙️"},
+            {"yaml", "⚙️"}, {"yml", "⚙️"}, {"json", "⚙️"}, {"ini", "⚙️"}
+        };
 
         for (size_t i = 0; i < sizeof(ext_map) / sizeof(ext_map[0]); i++)
         {
-            if (strcmp(extension, ext_map[i].key) == 0)
+            if (strcasecmp(extension, ext_map[i].key) == 0)
             {
                 return safe_strdup(ext_map[i].emoji);
             }
@@ -206,25 +120,22 @@ char *get_emoji(const char *path)
 
     if (path[0] == '.')
     {
-        return safe_strdup("⚙️  ");
+        return safe_strdup("⚙️");
     }
 
     if (is_executable(path))
     {
-        return safe_strdup("💾 ");
+        return safe_strdup("💾");
     }
 
     if (is_text_file(path))
     {
-        return safe_strdup("📝 ");
+        return safe_strdup("📝");
     }
 
-    return safe_strdup("❓ ");
+    return safe_strdup("❓");
 }
 
-/**
- * Determines if the given file path points to an executable file.
- */
 int is_executable(const char *path)
 {
     struct stat st;
@@ -235,9 +146,6 @@ int is_executable(const char *path)
     return 0;
 }
 
-/**
- * Determines if the given file path points to a text file.
- */
 int is_text_file(const char *path)
 {
     FILE *file = fopen(path, "rb");
@@ -246,13 +154,18 @@ int is_text_file(const char *path)
         return 0;
     }
 
-    unsigned char buffer[512];
+    unsigned char buffer[1024];
     size_t bytesRead = fread(buffer, 1, sizeof(buffer), file);
     fclose(file);
 
+    if (bytesRead == 0)
+    {
+        return 1; // Empty file is considered text
+    }
+
     for (size_t i = 0; i < bytesRead; i++)
     {
-        if (buffer[i] < 0x09 || (buffer[i] > 0x0D && buffer[i] < 0x20))
+        if (!isprint(buffer[i]) && !isspace(buffer[i]))
         {
             return 0;
         }
