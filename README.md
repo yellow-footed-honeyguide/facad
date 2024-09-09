@@ -45,13 +45,11 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 - Push to the Branch ( `git push origin feature/AmazingFeature` )
 - Open a Pull Request
 
+## Author
+**Sergey Veneckiy**
+- Email: s.venetsky@gmail.com
+- GitHub: [@yellow-footed-honeyguide](https://github.com/yellow-footed-honeyguide)
+
+
 ## 📜 License
-
 Distributed under the MIT License. See LICENSE for more information.
-
-## 📞 Contact
-
-Name: Sergey Veneckiy
-
-Email: s.venetsky@gmail.com
-
