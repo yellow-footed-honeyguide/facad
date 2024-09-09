@@ -4,7 +4,7 @@ A modern, colorful directory listing tool for the command line.
 
 ![facad in action](assets/demo_facad.jpg)
 
-## ✨ Features
+## Features
 
 - 🎨 Emoji-based file and directory icons
 - 📁 Sorted output with directories first
@@ -31,11 +31,11 @@ or install facad system-wide:
 sudo ninja install
 ```
 
-## 🛠️ Usage
+## Usage
 
 Simply run `facad` command.
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
@@ -45,13 +45,11 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 - Push to the Branch ( `git push origin feature/AmazingFeature` )
 - Open a Pull Request
 
-## 📜 License
+## Author
+**Sergey Veneckiy**
+- Email: s.venetsky@gmail.com
+- GitHub: [@yellow-footed-honeyguide](https://github.com/yellow-footed-honeyguide)
 
+
+## License
 Distributed under the MIT License. See LICENSE for more information.
-
-## 📞 Contact
-
-Name: Sergey Veneckiy
-
-Email: s.venetsky@gmail.com
-
