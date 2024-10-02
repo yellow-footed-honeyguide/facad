@@ -3,6 +3,7 @@
 A modern, colorful directory listing tool for the command line.
 
 ![facad in action](assets/demo_facad.jpg)
+![facad in action](assets/dir_analitics.jpg)
 
 ## Features
 
@@ -25,7 +26,7 @@ meson setup ..
 ninja
 ```
 
-or install facad system-wide:
+For system-wide installation:
 
 ```
 sudo ninja install
@@ -33,7 +34,10 @@ sudo ninja install
 
 ## Usage
 
-Simply run `facad` command.
+Run `facad` command for default grid file listing
+Run `facad -l` command for long listing output
+Run `facad -i` command for dir analytics output
+
 
 ## Contributing
 
