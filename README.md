@@ -3,7 +3,7 @@
 A modern, colorful directory listing tool for the command line.
 
 ![facad in action](assets/demo_facad.jpg)
-![facad in action](assets/dir_analitics.jpg)
+![facad in action](assets/dir_analitics_w.jpg)
 
 ## Features
 
