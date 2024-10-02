@@ -11,6 +11,7 @@
 #include "dev_utils.h"     // is_dev_directory (f), handle_dev_directory (f)
 #include "display_utils.h" // display_entries (f)
 #include "file_entry.h"    // FileEntry (s), create_file_entry (f), free_file_entry (f), compare_file_entries (f)
+#include "dirinfo.h"
 
 #define MAX_PATH 4096    // Maximum path length (m)
 #define MAX_ENTRIES 1024 // Maximum number of directory entries (m)
@@ -27,6 +28,11 @@ int main(int argc, char *argv[])
     {                        // If --help flag is set
         print_help(argv[0]); // Print help information
         return 0;            // Exit program
+    }
+
+		if (args.show_dirinfo) {
+        print_dirinfo(".");
+        return 0;
     }
 
     char current_dir[MAX_PATH]; // Buffer to store current directory path

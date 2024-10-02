@@ -1,51 +1,36 @@
-#include <stdio.h>
 #include <string.h>
-
+#include <stdio.h>
 #include "args_parser.h"
-#include "config.h" // Includes the generated config.h file with the VERSION definition
+#include "config.h"
 
-/**
- * Function to parse command line arguments.
- * @param argc The number of arguments.
- * @param argv The array of arguments.
- * @return A CommandLineArgs structure with show_version and show_help flags set.
- */
 CommandLineArgs parse_args(int argc, char *argv[])
 {
-    CommandLineArgs args = {false, false}; // Initialize the args structure with default values
+    CommandLineArgs args = {0, 0, 0};  // Initialize all fields to 0
 
-    for (int i = 1; i < argc; i++)
-    { // Iterate over command line arguments starting from the first one
-        if (strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--version") == 0)
-        {
-            args.show_version = true; // Set the version flag if the appropriate argument is passed
-        }
-        else if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0)
-        {
-            args.show_help = true; // Set the help flag if the appropriate argument is passed
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--version") == 0) {
+            args.show_version = 1;
+        } else if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
+            args.show_help = 1;
+        } else if (strcmp(argv[i], "-l") == 0 || strcmp(argv[i], "--list-info") == 0) {
+            args.show_dirinfo = 1;
         }
     }
 
-    return args; // Return the structure with the flags set
+    return args;
 }
 
-/**
- * Function to print the program version information.
- */
 void print_version(void)
 {
-    printf("facad version %s\n", VERSION); // Output the program version
+    printf("facad version %s\n", VERSION);
 }
 
-/**
- * Function to print the help information of the program.
- * @param program_name The name of the program to be displayed in the help message.
- */
 void print_help(const char *program_name)
 {
     printf("Usage: %s [OPTION]\n", program_name);
     printf("List directory contents with colorful emojis.\n\n");
     printf("Options:\n");
-    printf("  -h, --help     display this help and exit\n");
-    printf("  -v, --version  output version information and exit\n");
+    printf("  -h, --help       display this help and exit\n");
+    printf("  -v, --version    output version information and exit\n");
+    printf("  -l, --list-info  display detailed directory information\n");
 }
