@@ -110,7 +110,7 @@ void print_dirinfo(const char *path) {
         return;
     }
 
-    printf("⚑ Directory Info\n");
+    printf("📁 Directory Info\n");
     printf("  ╰─ Path      : %s\n", path);
     printf("  ╰─ Created   : %s", ctime(&st.st_ctime));
     printf("  ╰─ Modified  : %s", ctime(&st.st_mtime));
@@ -147,7 +147,7 @@ void print_dirinfo(const char *path) {
             if (st.st_size > max_size) max_size = st.st_size;
         }
 
-        if (entry->d_name[0] == '.') hidden_items++;
+				if (entry->d_name[0] == '.') hidden_items++;
         if (S_ISLNK(st.st_mode)) symlinks++;
 
         if (st.st_mtime > newest_time) {
@@ -181,16 +181,16 @@ void print_dirinfo(const char *path) {
 
     printf("  ╰─ Total Size: %s (including subdirectories)\n", format_size(total_size));
 
-    printf("♦ Content Summary\n");
+    printf("📊 Content Summary\n");
     printf("  ╰─ Total Items   : %d\n", total_items);
     printf("     ├─ Files      : %d\n", files);
     printf("     ╰─ Directories: %d\n", directories);
 
-    printf("☼ Largest File\n");
+    printf("🐘 Largest File\n");
     printf("  ╰─ Name : %s\n", largest_file);
     printf("  ╰─ Size : %s\n", format_size(largest_size));
 
-    printf("⚐ Files and Directories\n");
+    printf("🗂️ Files and Directories\n");
     dir = opendir(path);
     while ((entry = readdir(dir)) != NULL) {
         if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) continue;
