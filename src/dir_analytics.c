@@ -7,6 +7,7 @@
 #include <pwd.h>
 #include <grp.h>
 #include <limits.h>
+#include <errno.h>
 #include "dir_analytics.h"
 #include "emoji_utils.h"
 
@@ -56,12 +57,52 @@ static char *get_owner(uid_t uid, gid_t gid) {
     return owner;
 }
 
-static off_t get_dir_size(const char *path) {
+static void recursive_dir_scan(const char *path, off_t *total_size, int *total_dirs, int *total_files, off_t *min_size, off_t *max_size, time_t *newest_time, time_t *oldest_time, char *newest_file, char *oldest_file) {
     DIR *dir;
     struct dirent *entry;
     char full_path[MAX_PATH];
     struct stat st;
-    off_t total_size = 0;
+
+    dir = opendir(path);
+    if (!dir) return;
+
+    while ((entry = readdir(dir)) != NULL) {
+        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) continue;
+
+        snprintf(full_path, sizeof(full_path), "%s/%s", path, entry->d_name);
+
+        if (lstat(full_path, &st) == 0) {
+            if (S_ISDIR(st.st_mode)) {
+                (*total_dirs)++;
+                recursive_dir_scan(full_path, total_size, total_dirs, total_files, min_size, max_size, newest_time, oldest_time, newest_file, oldest_file);
+            } else {
+                (*total_files)++;
+                *total_size += st.st_size;
+
+                if (st.st_size < *min_size) *min_size = st.st_size;
+                if (st.st_size > *max_size) *max_size = st.st_size;
+
+                if (st.st_mtime > *newest_time) {
+                    *newest_time = st.st_mtime;
+                    strncpy(newest_file, full_path, MAX_PATH - 1);
+                    newest_file[MAX_PATH - 1] = '\0';
+                }
+                if (st.st_mtime < *oldest_time) {
+                    *oldest_time = st.st_mtime;
+                    strncpy(oldest_file, full_path, MAX_PATH - 1);
+                    oldest_file[MAX_PATH - 1] = '\0';
+                }
+            }
+        }
+    }
+    closedir(dir);
+}
+
+static int get_dir_depth(const char *path) {
+    DIR *dir;
+    struct dirent *entry;
+    char full_path[MAX_PATH];
+    int max_depth = 0;
 
     dir = opendir(path);
     if (!dir) return 0;
@@ -71,26 +112,31 @@ static off_t get_dir_size(const char *path) {
 
         snprintf(full_path, sizeof(full_path), "%s/%s", path, entry->d_name);
 
-        if (lstat(full_path, &st) == 0) {
-            if (S_ISDIR(st.st_mode)) {
-                total_size += get_dir_size(full_path);
-            } else {
-                total_size += st.st_size;
-            }
+        struct stat st;
+        if (lstat(full_path, &st) == 0 && S_ISDIR(st.st_mode)) {
+            int depth = get_dir_depth(full_path);
+            if (depth > max_depth) max_depth = depth;
         }
     }
     closedir(dir);
-    return total_size;
+    return max_depth + 1;
+}
+
+static char *format_time(time_t t) {
+    static char buf[20];
+    struct tm *tm_info = localtime(&t);
+    strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", tm_info);
+    return buf;
 }
 
 void print_dir_analytics(const char *path) {
     struct stat st;
     DIR *dir;
     struct dirent *entry;
-    int total_items = 0, files = 0, directories = 0;
+    int total_items = 0, files = 0, directories = 0, total_dirs = 0;
     off_t total_size = 0, largest_size = 0;
     char largest_file[MAX_PATH] = "";
-    int max_depth = 1;
+    int max_depth = 0;
     int hidden_items = 0;
     off_t min_size = LLONG_MAX, max_size = 0;
     time_t newest_time = 0, oldest_time = time(NULL);
@@ -104,7 +150,8 @@ void print_dir_analytics(const char *path) {
         return;
     }
 
-    total_size = get_dir_size(path);
+    recursive_dir_scan(path, &total_size, &total_dirs, &files, &min_size, &max_size, &newest_time, &oldest_time, newest_file, oldest_file);
+    max_depth = get_dir_depth(path);
 
     dir = opendir(path);
     if (!dir) {
@@ -120,29 +167,19 @@ void print_dir_analytics(const char *path) {
         total_items++;
 
         if (S_ISDIR(st.st_mode)) {
-            directories++;
+            if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0) {
+                directories++;
+            }
         } else {
-            files++;
             if (st.st_size > largest_size) {
                 largest_size = st.st_size;
                 strncpy(largest_file, entry->d_name, sizeof(largest_file) - 1);
             }
             if (st.st_size == 0) empty_files++;
-            if (st.st_size < min_size) min_size = st.st_size;
-            if (st.st_size > max_size) max_size = st.st_size;
         }
 
         if (entry->d_name[0] == '.') hidden_items++;
         if (S_ISLNK(st.st_mode)) symlinks++;
-
-        if (st.st_mtime > newest_time) {
-            newest_time = st.st_mtime;
-            strncpy(newest_file, entry->d_name, sizeof(newest_file) - 1);
-        }
-        if (st.st_mtime < oldest_time) {
-            oldest_time = st.st_mtime;
-            strncpy(oldest_file, entry->d_name, sizeof(oldest_file) - 1);
-        }
 
         char *ext = strrchr(entry->d_name, '.');
         if (ext != NULL) {
@@ -166,27 +203,27 @@ void print_dir_analytics(const char *path) {
     get_permissions(st.st_mode, perms);
 
     printf("🔬 Directory Analytics\n");
-    printf("  ╰─ General Info\n");
-    printf("   ├─  Path🧭       : %s\n", path);
-    printf("   ├─  Created🎂    : %s", ctime(&st.st_ctime));
-    printf("   ├─  Modified✏️    : %s", ctime(&st.st_mtime));
-    printf("   ├─  Owner👤      : %s\n", get_owner(st.st_uid, st.st_gid));
-    printf("   ├─  Perms🚦      : %s\n", perms);
-    printf("   ╰─  Total Size🧮 : %s (including subdirs)\n", format_size(total_size));
-    printf("  ╰─ Total Items    : %d\n", total_items);
-    printf("     ├─ Files🗃️     : %d\n", files);
-    printf("     ╰─ Dirs🗂️      : %d\n", directories);
-    printf("  ╰─ Depth🌳        : %d levels\n", max_depth);
-    printf("  ╰─ Hidden Items🕵️ : %d\n", hidden_items);
-    printf("  ╰─ Largers File🐘 : %s [%s]\n", format_size(largest_size), largest_file);
-    printf("  ╰─ Size Range📏   : %s - %s\n", format_size(min_size), format_size(max_size));
-    printf("  ╰─ Median Size⚖️   : %s\n", format_size((min_size + max_size) / 2));
-    printf("  ╰─ Newest File🆕  : %s [%s]", newest_file, ctime(&newest_time));
-    printf("  ╰─ Oldest File🏺  : %s [%s]", oldest_file, ctime(&oldest_time));
-    printf("  ╰─ Symlinks🌉     : %d\n", symlinks);
-    printf("  ╰─ Empty Files📭  : %d\n", empty_files);
-    printf("  ╰─ Ratio🌓        : %.1f files/1 dirs\n", (float)files / directories);
-    printf("  ╰─ Extensions🧩   : %d unique [", unique_extensions);
+    printf("  ╰─🧭 Path         : %s\n", path);
+    printf("  ╰─🎂 Created      : %s\n", format_time(st.st_ctime));
+    printf("  ╰─✏️  Modified     : %s\n", format_time(st.st_mtime));
+    printf("  ╰─👤 Owner        : %s\n", get_owner(st.st_uid, st.st_gid));
+    printf("  ╰─🚦 Perms        : %s\n", perms);
+    printf("  ╰─🧮 Total Size   : %s (including subdirs)\n", format_size(total_size));
+    printf("  ╰─🧮 Total Items  : %d\n", total_items);
+    printf("  ╰─🗃️ Files        : %d\n", files);
+    printf("  ╰─🗂️ Dirs         : %d (current directory)\n", directories);
+    printf("  ╰─🗂️ Total Dirs   : %d (including subdirs)\n", total_dirs);
+    printf("  ╰─🌳 Depth        : %d levels\n", max_depth);
+    printf("  ╰─🕵️ Hidden Items : %d\n", hidden_items);
+    printf("  ╰─🐘 Largest File : %s [%s]\n", largest_file, format_size(largest_size));
+    printf("  ╰─📏 Size Range   : %s - %s\n", format_size(min_size), format_size(max_size));
+    printf("  ╰─⚖️  Median Size  : %s\n", format_size((min_size + max_size) / 2));
+    printf("  ╰─🆕 Newest File  : %s [%s]\n", newest_file, format_time(newest_time));
+    printf("  ╰─🏺 Oldest File  : %s [%s]\n", oldest_file, format_time(oldest_time));
+    printf("  ╰─🌉 Symlinks     : %d\n", symlinks);
+    printf("  ╰─📭 Empty Files  : %d\n", empty_files);
+    printf("  ╰─🌓 Ratio        : %.1f files/1 dir\n", total_dirs > 0 ? (float)files / total_dirs : 0);
+    printf("  ╰─🧩 Extensions   : %d unique [", unique_extensions);
     for (int i = 0; i < unique_extensions; i++) {
         printf("%s%s", i > 0 ? ", " : "", extensions[i]);
     }
