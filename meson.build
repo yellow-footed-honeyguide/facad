@@ -1,5 +1,5 @@
 project('facad', 'c',
-  version : '1.5.1',
+  version : '1.6.0',
   default_options : ['warning_level=3'])
 
 cc = meson.get_compiler('c')
@@ -13,7 +13,8 @@ src_files = [
   'src/display_utils.c',
   'src/dev_utils.c',
   'src/args_parser.c',
-  'src/dirinfo.c',
+  'src/longlisting.c',
+  'src/dir_analytics.c',
 ]
 
 version = meson.project_version()

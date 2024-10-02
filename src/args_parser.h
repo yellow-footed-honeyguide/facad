@@ -13,6 +13,8 @@ typedef struct
     bool show_version; // Flag indicating whether to show version
     bool show_help;    // Flag indicating whether to show help
     int show_dirinfo;
+    int show_longlisting;
+    int show_dir_analytics;
 } CommandLineArgs;
 
 /**
