@@ -3,7 +3,7 @@
 A modern, colorful directory listing tool for the command line.
 
 ![facad in action](assets/demo_facad.jpg)
-![facad in action](assets/dir_analitics_w.jpg)
+![facad in action](assets/dir_analitics_w_a.jpg)
 
 ## Features
 
@@ -36,7 +36,7 @@ sudo ninja install
 
 Run `facad` command for default grid file listing
 Run `facad -l` command for long listing output
-Run `facad -i` command for dir analytics output
+Run `facad -a` command for dir analytics output
 
 
 ## Contributing

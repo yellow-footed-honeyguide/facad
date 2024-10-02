@@ -13,7 +13,7 @@ CommandLineArgs parse_args(int argc, char *argv[]) {
             args.show_help = 1;
         } else if (strcmp(argv[i], "-l") == 0 || strcmp(argv[i], "--long") == 0) {
             args.show_longlisting = 1;
-        } else if (strcmp(argv[i], "-i") == 0 || strcmp(argv[i], "--info") == 0) {
+        } else if (strcmp(argv[i], "-a") == 0 || strcmp(argv[i], "--analytics") == 0) {
             args.show_dir_analytics = 1;
         }
     }
@@ -29,8 +29,8 @@ void print_help(const char *program_name) {
     printf("Usage: %s [OPTION]\n", program_name);
     printf("List directory contents with colorful emojis.\n\n");
     printf("Options:\n");
-    printf("  -h, --help     display this help and exit\n");
-    printf("  -v, --version  output version information and exit\n");
-    printf("  -l, --long     display detailed directory listing\n");
-    printf("  -i, --info     display directory analytics\n");
+    printf("  -h, --help      display this help and exit\n");
+    printf("  -v, --version   output version information and exit\n");
+    printf("  -l, --long      display detailed directory listing\n");
+    printf("  -a, --analytics display directory analytics\n");
 }
