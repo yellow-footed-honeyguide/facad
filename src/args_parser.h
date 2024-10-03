@@ -1,5 +1,3 @@
-// src/args_parser.c
-
 #ifndef ARGS_PARSER_H
 #define ARGS_PARSER_H
 

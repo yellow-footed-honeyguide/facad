@@ -1,5 +1,3 @@
-// src/display_utils.h
-
 #ifndef DISPLAY_UTILS_H
 #define DISPLAY_UTILS_H
 

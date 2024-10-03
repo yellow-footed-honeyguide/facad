@@ -1,3 +1,14 @@
+/**
+ * @file main.c
+ * @brief Main entry point for the facad directory listing tool.
+ *
+ * This file contains the main function and core logic for the facad tool,
+ * which provides a colorful and feature-rich directory listing in the terminal.
+ *
+ * @author Sergey Veneckiy
+ * @date 2024
+ */
+
 #include <stdio.h>
 #include <errno.h> 
 #include <stdlib.h>
@@ -13,9 +24,20 @@
 #include "dir_analytics.h"
 #include "display_utils.h"
 
-#define MAX_PATH 4096    // Max path length
-#define MAX_ENTRIES 1024 // Max number of dir entries
+#define MAX_PATH 4096 /**< Maximum path length */ 
+#define MAX_ENTRIES 1024 /**< Maximum number of directory entries */
 
+
+/**
+ * @brief Main function of the facad tool.
+ *
+ * This function parses command-line arguments, determines the current working
+ * directory, and handles different modes of operation based on the provided flags.
+ *
+ * @param argc Number of command-line arguments.
+ * @param argv Array of command-line argument strings.
+ * @return 0 on successful execution, 1 on error.
+ */
 int main(int argc, char *argv[])
 {
     CommandLineArgs args = parse_args(argc, argv); // Parse CLI args

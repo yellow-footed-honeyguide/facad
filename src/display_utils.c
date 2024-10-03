@@ -1,3 +1,14 @@
+/**
+ * @file display_utils.c
+ * @brief Implementation of display utilities for file entries.
+ *
+ * This file contains functions for formatting and displaying file entries
+ * in a grid layout, taking into account terminal width and Unicode characters.
+ *
+ * @author Sergey Veneckiy
+ * @date 2024
+ */
+
 // Enable POSIX.1-2008 + XSI (X/Open System Interfaces Extension) features
 #define _XOPEN_SOURCE 700
 
@@ -17,7 +28,7 @@
 #define EMOJI_NAME_SPACING 1
 
 /**
- * Determines the byte width of a UTF-8 character.
+ * @brief Determines the byte width of a UTF-8 character.
  *
  * @param str Pointer to the start of a UTF-8 character.
  * @return The number of bytes used by the character (1-4).
@@ -31,7 +42,7 @@ size_t get_utf8_char_width(const char *str) {
 }
 
 /**
- * Calculates the display width of a string, accounting for multi-byte characters.
+ * @brief Calculates the display width of a string, accounting for multi-byte characters.
  *
  * @param str The string to measure.
  * @return The display width of the string.
@@ -53,7 +64,7 @@ size_t get_display_width(const char *str) {
 }
 
 /**
- * Prints a string and pads it with spaces to reach the specified width.
+ * @brief Prints a string and pads it with spaces to reach the specified width.
  *
  * @param str The string to print.
  * @param width The total width to fill, including the string and padding.
@@ -68,7 +79,10 @@ void print_padded(const char *str, size_t width) {
 }
 
 /**
- * Displays file entries in a formatted, multi-column layout.
+ * @brief Displays file entries in a formatted, multi-column layout.
+ *
+ * This function sorts the entries, calculates the appropriate layout based on
+ * terminal width, and prints the entries in a grid format.
  *
  * @param entries Array of FileCardInfo structures to display.
  * @param num_entries Number of entries in the array.

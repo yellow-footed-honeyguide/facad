@@ -1,3 +1,12 @@
+/**
+ * @file longlisting.c
+ * @brief Implements detailed directory listing functionality.
+ *
+ * This file contains functions for generating and displaying
+ * a detailed listing of directory contents, including file sizes,
+ * permissions, modification times, and other attributes.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,16 +20,25 @@
 #define MAX_PATH 4096
 #define MAX_ENTRIES 1000
 
+/**
+ * @brief Structure to hold file information for sorting and display.
+ */
 struct file_info {
-    char name[256];
-    char full_path[MAX_PATH];
-    off_t size;
-    mode_t mode;
-    time_t mtime;
-    int is_dir;
-    int subdir_count;
+    char name[256];         /**< File name */
+    char full_path[MAX_PATH]; /**< Full path to the file */
+    off_t size;             /**< File size in bytes */
+    mode_t mode;            /**< File mode (permissions) */
+    time_t mtime;           /**< Last modification time */
+    int is_dir;             /**< Flag indicating if it's a directory */
+    int subdir_count;       /**< Number of subdirectories (if it's a directory) */
 };
 
+/**
+ * @brief Formats a file size into a human-readable string.
+ *
+ * @param size The size in bytes to format.
+ * @return A static string containing the formatted size.
+ */
 static char *format_size(off_t size) {
     static char buf[64];
     const char *units[] = {"B", "K", "M", "G", "T", "P", "E", "Z", "Y"};
@@ -34,6 +52,12 @@ static char *format_size(off_t size) {
     return buf;
 }
 
+/**
+ * @brief Converts file permissions to a human-readable string with emojis.
+ *
+ * @param mode The file mode containing the permissions.
+ * @return A static string containing the formatted permissions.
+ */
 static char *get_human_readable_perms(mode_t mode) {
     static char perms[64];  // Increased buffer size
     char *p = perms;
@@ -56,6 +80,12 @@ static char *get_human_readable_perms(mode_t mode) {
     return perms;
 }
 
+/**
+ * @brief Counts the number of subdirectories in a given directory.
+ *
+ * @param path The path to the directory.
+ * @return The number of subdirectories.
+ */
 static int count_subdirs(const char *path) {
     DIR *dir;
     struct dirent *entry;
@@ -77,6 +107,17 @@ static int count_subdirs(const char *path) {
     return count;
 }
 
+/**
+ * @brief Comparison function for sorting file entries.
+ *
+ * Sorts entries based on whether they're directories, then by extension,
+ * then by size, and finally by name.
+ *
+ * @param a Pointer to the first file_info struct.
+ * @param b Pointer to the second file_info struct.
+ * @return Integer less than, equal to, or greater than zero if a is found,
+ *         respectively, to be less than, to match, or be greater than b.
+ */
 static int compare_entries(const void *a, const void *b) {
     const struct file_info *fa = (const struct file_info *)a;
     const struct file_info *fb = (const struct file_info *)b;
@@ -106,6 +147,15 @@ static int compare_entries(const void *a, const void *b) {
     return strcasecmp(fa->name, fb->name);
 }
 
+/**
+ * @brief Prints a detailed listing of the contents of a directory.
+ *
+ * This function reads the contents of the specified directory,
+ * sorts them, and prints a detailed listing including file sizes,
+ * modification times, permissions, and other attributes.
+ *
+ * @param path The path of the directory to list.
+ */
 void print_longlisting(const char *path) {
     setlocale(LC_ALL, "");  // Set locale to support UTF-8
 

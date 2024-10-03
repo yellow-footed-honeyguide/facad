@@ -1,5 +1,3 @@
-// src/emoji_utils.h
-
 #ifndef EMOJI_UTILS_H
 #define EMOJI_UTILS_H
 

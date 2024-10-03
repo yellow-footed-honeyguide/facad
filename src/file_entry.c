@@ -1,3 +1,14 @@
+/**
+ * @file file_entry.c
+ * @brief Implementation of file entry handling functions.
+ *
+ * This file contains functions for creating, freeing, and comparing file entries,
+ * as well as utility functions for working with file names and extensions.
+ *
+ * @author Sergey Veneckiy
+ * @date 2024
+ */
+
 #include <stdlib.h> 
 #include <string.h>
 #include <sys/stat.h>
@@ -5,7 +16,16 @@
 #include "emoji_utils.h"
 #include "file_entry.h"
 
-// Create a new file card info
+/**
+ * @brief Creates a new file entry based on the given path.
+ *
+ * This function initializes a FileCardInfo structure with information about the file,
+ * including its name, emoji representation, and flags for directory and hidden status.
+ *
+ * @param entry Pointer to a FileCardInfo structure to be filled.
+ * @param path Path of the file to analyze.
+ * @return 0 on success, -1 on error.
+ */
 int create_file_entry(FileCardInfo *entry, const char *path)
 {
     entry->name = strdup(path);     // Duplicate the path string
@@ -23,14 +43,29 @@ int create_file_entry(FileCardInfo *entry, const char *path)
     return 0; // Successful entry creation
 }
 
-// Free memory allocated for a file entry
+/**
+ * @brief Frees memory allocated for a file entry.
+ *
+ * This function releases the memory allocated for the name and emoji fields
+ * of a FileCardInfo structure.
+ *
+ * @param entry Pointer to the FileCardInfo structure to free.
+ */
 void free_file_entry(FileCardInfo *entry)
 {
     free(entry->name);  // Free the name string
     free(entry->emoji); // Free the emoji string
 }
 
-// Get the file extension from a filename
+/**
+ * @brief Extracts the file extension from a filename.
+ *
+ * This function finds the last occurrence of a dot in the filename and
+ * returns the substring following it as the file extension.
+ *
+ * @param name The filename to analyze.
+ * @return A pointer to the file extension, or an empty string if no extension is found.
+ */
 char *get_extension(const char *name)
 {
     char *dot = strrchr(name, '.'); // Find the last occurrence of '.'
@@ -41,7 +76,18 @@ char *get_extension(const char *name)
     return dot + 1; // Return pointer to character after the last '.'
 }
 
-// Compare two file entries for sorting
+/**
+ * @brief Compares two file entries for sorting purposes.
+ *
+ * This function implements the sorting logic for file entries. It prioritizes:
+ * 1. Directories before files
+ * 2. Hidden entries before non-hidden entries
+ * 3. Alphabetical order (case-insensitive) for entries of the same type
+ *
+ * @param a Pointer to the first FileCardInfo structure.
+ * @param b Pointer to the second FileCardInfo structure.
+ * @return Negative value if a should come before b, positive if b should come before a, 0 if equivalent.
+ */
 int compare_file_entries(const void *a, const void *b)
 {
     const FileCardInfo *entry_a = (const FileCardInfo *)a;
