@@ -1,44 +1,43 @@
-// (f)function, (t)type, (m)macros, (s)structure
-#include <dirent.h>    // DIR (t), struct dirent (s), opendir (f), readdir (f), closedir (f)
-#include <errno.h>     // errno (m)
-#include <stdio.h>     // printf (f), fprintf (f), perror (f)
-#include <stdlib.h>    // malloc (f), free (f)
-#include <string.h>    // strcmp (f), strerror (f)
-#include <sys/ioctl.h> // ioctl (f), struct winsize (s)
-#include <unistd.h>    // getcwd (f), STDOUT_FILENO (m)
+#include <stdio.h>
+#include <errno.h> 
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>  
+#include <dirent.h> 
+#include <sys/ioctl.h>
 
-#include "args_parser.h"   // CommandLineArgs (s), parse_args (f)
-#include "dev_utils.h"     // is_dev_directory (f), handle_dev_directory (f)
-#include "display_utils.h" // display_entries (f)
-#include "file_entry.h"    // FileEntry (s), create_file_entry (f), free_file_entry (f), compare_file_entries (f)
+#include "dev_utils.h"  
+#include "file_entry.h"  
+#include "args_parser.h" 
 #include "longlisting.h"
 #include "dir_analytics.h"
+#include "display_utils.h"
 
-#define MAX_PATH 4096    // Maximum path length (m)
-#define MAX_ENTRIES 1024 // Maximum number of directory entries (m)
+#define MAX_PATH 4096    // Max path length
+#define MAX_ENTRIES 1024 // Max number of dir entries
 
 int main(int argc, char *argv[])
 {
-    CommandLineArgs args = parse_args(argc, argv); // Parse command line arguments
+    CommandLineArgs args = parse_args(argc, argv); // Parse CLI args
     if (args.show_version)
     {                    // If --version flag is set
-        print_version(); // Print version information
+        print_version(); // Print version info
         return 0;        // Exit program
     }
     if (args.show_help)
     {                        // If --help flag is set
-        print_help(argv[0]); // Print help information
+        print_help(argv[0]); // Print help info
         return 0;            // Exit program
     }
 
-    if (args.show_longlisting) {
-        print_longlisting(".");
-        return 0;
+    if (args.show_longlisting) { // If -l flag is set
+        print_longlisting(".");  // Print longlisting info
+        return 0;                // Exit program
     }
 
-    if (args.show_dir_analytics) {
-        print_dir_analytics(".");
-        return 0;
+    if (args.show_dir_analytics) { // If -a flag is set
+        print_dir_analytics(".");  // Print dir analitics info
+        return 0;                  // Exit program
     }
 
     char current_dir[MAX_PATH]; // Buffer to store current directory path
@@ -57,7 +56,7 @@ int main(int argc, char *argv[])
     term_width = w.ws_col;                // Store terminal width
 
     // Allocate memory for file entries
-    FileEntry *entries = malloc(MAX_ENTRIES * sizeof(FileEntry));
+    FileCardInfo *entries = malloc(MAX_ENTRIES * sizeof(FileCardInfo));
     if (entries == NULL)
     {                             // Check if memory allocation failed
         perror("malloc() error"); // Print error message
@@ -101,7 +100,7 @@ int main(int argc, char *argv[])
     }
 
     // Sort entries
-    qsort(entries, num_entries, sizeof(FileEntry), compare_file_entries);
+    qsort(entries, num_entries, sizeof(FileCardInfo), compare_file_entries);
 
     // Display sorted entries
     display_entries(entries, num_entries, term_width);

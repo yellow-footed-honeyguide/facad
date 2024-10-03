@@ -21,13 +21,13 @@ int is_dev_directory(const char *path)
 }
 
 /**
- * Handles the contents of the /dev directory, filling an array of FileEntry structures.
+ * Handles the contents of the /dev directory, filling an array of FileCardInfo structures.
  *
- * @param entries Pointer to an array of FileEntry structures that will be filled.
+ * @param entries Pointer to an array of FileCardInfo structures that will be filled.
  * @param num_entries Pointer to the number of entries in the array.
  * @param max_entries The maximum number of entries that can be added to the array.
  */
-void handle_dev_directory(FileEntry **entries, int *num_entries, int max_entries)
+void handle_dev_directory(FileCardInfo **entries, int *num_entries, int max_entries)
 {
     DIR *dir = opendir("/dev");
     if (!dir)
@@ -52,8 +52,8 @@ void handle_dev_directory(FileEntry **entries, int *num_entries, int max_entries
 
         if (lstat(full_path, &st) == 0)
         {
-            // Allocate a new FileEntry structure and populate it
-            FileEntry *entry = &((*entries)[*num_entries]);
+            // Allocate a new FileCardInfo structure and populate it
+            FileCardInfo *entry = &((*entries)[*num_entries]);
             entry->name = strdup(d_entry->d_name);
             if (entry->name == NULL)
             {

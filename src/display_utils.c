@@ -70,16 +70,16 @@ void print_padded(const char *str, size_t width) {
 /**
  * Displays file entries in a formatted, multi-column layout.
  *
- * @param entries Array of FileEntry structures to display.
+ * @param entries Array of FileCardInfo structures to display.
  * @param num_entries Number of entries in the array.
  * @param term_width Width of the terminal in characters.
  */
-void display_entries(FileEntry *entries, int num_entries, int term_width) {
+void display_entries(FileCardInfo *entries, int num_entries, int term_width) {
     // Set the locale to the user's default for proper wide character handling
     setlocale(LC_ALL, "");
 
     // Sort the entries
-    qsort(entries, num_entries, sizeof(FileEntry), compare_file_entries);
+    qsort(entries, num_entries, sizeof(FileCardInfo), compare_file_entries);
 
     // Allocate memory for storing entry widths
     size_t *entry_widths = malloc(num_entries * sizeof(size_t));

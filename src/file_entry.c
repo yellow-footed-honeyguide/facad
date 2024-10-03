@@ -1,12 +1,12 @@
-#include <stdlib.h>   // (f)malloc, (f)free
-#include <string.h>   // (f)strdup, (f)strrchr, (f)strcasecmp
-#include <sys/stat.h> // (s)struct stat, (f)lstat, (m)S_ISDIR
+#include <stdlib.h> 
+#include <string.h>
+#include <sys/stat.h>
 
-#include "emoji_utils.h" // (f)get_emoji
-#include "file_entry.h"  // (s)FileEntry
+#include "emoji_utils.h"
+#include "file_entry.h"
 
-// Create a new file entry
-int create_file_entry(FileEntry *entry, const char *path)
+// Create a new file card info
+int create_file_entry(FileCardInfo *entry, const char *path)
 {
     entry->name = strdup(path);     // Duplicate the path string
     entry->emoji = get_emoji(path); // Get the appropriate emoji for the file
@@ -24,7 +24,7 @@ int create_file_entry(FileEntry *entry, const char *path)
 }
 
 // Free memory allocated for a file entry
-void free_file_entry(FileEntry *entry)
+void free_file_entry(FileCardInfo *entry)
 {
     free(entry->name);  // Free the name string
     free(entry->emoji); // Free the emoji string
@@ -44,8 +44,8 @@ char *get_extension(const char *name)
 // Compare two file entries for sorting
 int compare_file_entries(const void *a, const void *b)
 {
-    const FileEntry *entry_a = (const FileEntry *)a; // Cast void pointer to FileEntry
-    const FileEntry *entry_b = (const FileEntry *)b; // Cast void pointer to FileEntry
+    const FileCardInfo *entry_a = (const FileCardInfo *)a;
+    const FileCardInfo *entry_b = (const FileCardInfo *)b;
 
     // Sort directories first
     if (entry_a->is_directory && !entry_b->is_directory)
