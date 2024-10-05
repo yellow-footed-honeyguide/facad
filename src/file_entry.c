@@ -12,6 +12,7 @@
 #include <stdlib.h> 
 #include <string.h>
 #include <sys/stat.h>
+#include <ctype.h>
 
 #include "emoji_utils.h"
 #include "file_entry.h"
@@ -76,43 +77,87 @@ char *get_extension(const char *name)
     return dot + 1; // Return pointer to character after the last '.'
 }
 
+
 /**
- * @brief Compares two file entries for sorting purposes.
+ * @brief Compare two strings case-insensitively.
  *
- * This function implements the sorting logic for file entries. It prioritizes:
+ * This function provides a case-insensitive string comparison,
+ * similar to strcasecmp, but implemented for portability.
+ *
+ * @param a The first string to compare.
+ * @param b The second string to compare.
+ * @return An integer less than, equal to, or greater than zero if a is found,
+ *         respectively, to be less than, to match, or be greater than b.
+ */
+static int strcasecmp_wrapper(const char *a, const char *b) {
+    // Loop continues as long as both strings have characters
+    while (*a && *b) {
+        // Convert current characters to lowercase for case-insensitive comparison
+        int ca = tolower((unsigned char)*a);
+        int cb = tolower((unsigned char)*b);
+        
+        // If characters differ, return their difference (determines sorting order)
+        if (ca != cb) return ca - cb; 
+        
+        // Move to the next character in both strings
+        a++;
+        b++;
+    }   
+    
+    // If we've reached here, one string might be longer than the other
+    // Compare the last characters (one might be '\0' if strings are different lengths)
+    return tolower((unsigned char)*a) - tolower((unsigned char)*b);
+}
+
+/**
+ * @brief Compare two file entries for sorting.
+ *
+ * This function implements the sorting logic for file entries:
  * 1. Directories before files
- * 2. Hidden entries before non-hidden entries
- * 3. Alphabetical order (case-insensitive) for entries of the same type
+ * 2. Within directories and files, dotfiles (hidden) before non-dotfiles
+ * 3. Files sorted by extension
+ * 4. Alphabetical sorting within the same type and extension
  *
  * @param a Pointer to the first FileCardInfo structure.
  * @param b Pointer to the second FileCardInfo structure.
- * @return Negative value if a should come before b, positive if b should come before a, 0 if equivalent.
+ * @return An integer less than, equal to, or greater than zero if a is found,
+ *         respectively, to be less than, to match, or be greater than b.
  */
 int compare_file_entries(const void *a, const void *b)
 {
     const FileCardInfo *entry_a = (const FileCardInfo *)a;
     const FileCardInfo *entry_b = (const FileCardInfo *)b;
 
-    // Sort directories first
-    if (entry_a->is_directory && !entry_b->is_directory)
-    {
-        return -1; // a comes before b
-    }
-    if (!entry_a->is_directory && entry_b->is_directory)
-    {
-        return 1; // b comes before a
+    // Sort directories before files
+    if (entry_a->is_directory != entry_b->is_directory) {
+        return entry_b->is_directory - entry_a->is_directory;
     }
 
-    // Then sort hidden files and directories
-    if (entry_a->is_hidden && !entry_b->is_hidden)
-    {
-        return -1; // Hidden entries come first
-    }
-    if (!entry_a->is_hidden && entry_b->is_hidden)
-    {
-        return 1; // Non-hidden entries come after
+    // For directories, sort dotfiles first
+    if (entry_a->is_directory && entry_b->is_directory) {
+        // Check if one is a dotfile and the other isn't
+        if ((entry_a->name[0] == '.') != (entry_b->name[0] == '.')) {
+            return (entry_b->name[0] == '.') - (entry_a->name[0] == '.');
+        }
+        // Both are either dotfiles or non-dotfiles, sort alphabetically
+        return strcasecmp_wrapper(entry_a->name, entry_b->name);
     }
 
-    // Finally, sort by name (case-insensitive)
-    return strcasecmp(entry_a->name, entry_b->name);
+    // For files, sort dotfiles first
+    if ((entry_a->name[0] == '.') != (entry_b->name[0] == '.')) {
+        return (entry_b->name[0] == '.') - (entry_a->name[0] == '.');
+    }
+
+    // Sort files by extension
+    const char *ext_a = get_extension(entry_a->name);
+    const char *ext_b = get_extension(entry_b->name);
+    int ext_cmp = strcasecmp_wrapper(ext_a, ext_b);
+
+    // If extensions differ, return their comparison result
+    if (ext_cmp != 0) {
+        return ext_cmp;
+    }
+
+    // If extensions are the same, sort alphabetically by name
+    return strcasecmp_wrapper(entry_a->name, entry_b->name);
 }
