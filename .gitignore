@@ -3,4 +3,5 @@
 build/
 builddir/
 tags
+test/
 

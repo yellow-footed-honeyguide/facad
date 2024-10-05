@@ -1,5 +1,5 @@
 project('facad', 'c',
-  version : '2.1.0',
+  version : '2.2.0',
   default_options : ['warning_level=3'])
 
 cc = meson.get_compiler('c')
