@@ -129,10 +129,7 @@ char *get_emoji(const char *path) {
         {"swagger.yaml", "🧣"},
         {".git", "🐙"},
         {"Jenkinsfile", "🔴"},
-
-
- 
- 
+        {"tags", "🏷️"}
     };
 
     for (size_t i = 0; i < sizeof(special_case_map) / sizeof(special_case_map[0]); i++) {
