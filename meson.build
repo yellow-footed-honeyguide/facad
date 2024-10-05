@@ -8,7 +8,7 @@ math_dep = cc.find_library('m', required : false)
 
 src_files = [
   'src/main.c',
-  'src/file_entry.c',
+  'src/file_card.c',
   'src/emoji_utils.c',
   'src/display_utils.c',
   'src/dev_utils.c',

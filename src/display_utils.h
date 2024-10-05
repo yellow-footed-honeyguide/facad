@@ -1,7 +1,7 @@
 #ifndef DISPLAY_UTILS_H
 #define DISPLAY_UTILS_H
 
-#include "file_entry.h"
+#include "file_card.h"
 
 /**
  * Displays a list of FileCardInfo objects in a grid format.

@@ -1,6 +1,6 @@
 /**
- * @file file_entry.c
- * @brief Implementation of file entry handling functions.
+ * @file file_card.c
+ * @brief Implementation of file card handling functions.
  *
  * This file contains functions for creating, freeing, and comparing file entries,
  * as well as utility functions for working with file names and extensions.
@@ -15,10 +15,10 @@
 #include <ctype.h>
 
 #include "emoji_utils.h"
-#include "file_entry.h"
+#include "file_card.h"
 
 /**
- * @brief Creates a new file entry based on the given path.
+ * @brief Creates a new file card based on the given path.
  *
  * This function initializes a FileCardInfo structure with information about the file,
  * including its name, emoji representation, and flags for directory and hidden status.

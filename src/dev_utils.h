@@ -1,7 +1,7 @@
 #ifndef DEV_UTILS_H
 #define DEV_UTILS_H
 
-#include "file_entry.h"
+#include "file_card.h"
 
 #ifdef __cplusplus
 extern "C"

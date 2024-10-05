@@ -2,34 +2,36 @@
 
 A modern, colorful directory listing tool for the command line.
 
-![facad in action](assets/demo_facad.jpg)
-![facad in action](assets/long_listing_option.jpg)
-![facad in action](assets/analytics_option.jpg)
+![facad in action](assets/new_facad.jpg)
 
 ## Features
+> Designed for both novice users and power users,<br>
+> facad feature set aims to enhance file management experience with<br>
+> a perfect blend of functionality and simplicity.
 
-- 🎨 Emoji-based file and directory icons
-- 📁 Sorted output with directories first
-- 🔗 Supports symlinks and executable files
-- 🧩 Compact grid display
-- 📏 Customizable column width
-- 🌐 Unicode-aware formatting
+- Intuitive file type representation 
+- Sorted output with directories first
+- Four-column layout for quick directory analysis
+- Supports symlinks and executable files
+- Sort extensions
+- Unicode-aware formatting 
 
-### Building from Source
 
-Clone and Build:
+## Getting Started
+### Dependencies
+- Pure C implementation without any dependency
 
-```
+### Build 
+```bash
 git clone https://github.com/yellow-footed-honeyguide/facad.git
 cd facad
 mkdir build && cd build
-meson setup ..
-ninja
+meson setup .. && ninja
 ```
 
-For system-wide installation:
-
-```
+### Install
+For system-wide installation (may require elevated privileges like `sudo`):
+```bash
 sudo ninja install
 ```
 

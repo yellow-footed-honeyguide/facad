@@ -1,5 +1,5 @@
 /**
- * @file file_entry.h
+ * @file file_card.h
  * @brief Header file for file entry handling functions and structures.
  *
  * This file contains the definition of the FileCardInfo structure and

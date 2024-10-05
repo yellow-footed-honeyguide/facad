@@ -18,7 +18,7 @@
 #include <sys/ioctl.h>
 
 #include "dev_utils.h"  
-#include "file_entry.h"  
+#include "file_card.h"  
 #include "args_parser.h" 
 #include "longlisting.h"
 #include "dir_analytics.h"

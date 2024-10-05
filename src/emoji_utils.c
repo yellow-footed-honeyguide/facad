@@ -120,7 +120,7 @@ char *get_emoji(const char *path) {
         {".terraformignore", "🙈"}, {".prettierignore", "🙈"}, {".p4ignore", "🙈"},
 			 	{"Dockerfile", "🐳"},
         {".gitlab-ci.yml", "🦊"}, {".travis.yml", "⛑️"}, {"swagger.yaml", "🧣"},
-        {".git", "🐙"},{"Jenkinsfile", "🔴"}, {"tags", "🏷️"}, {"LICENSE", "⚖️"},
+        {"Jenkinsfile", "🔴"}, {"tags", "🏷️"}, {"LICENSE", "⚖️"},
         {".ninja_deps", "🥷"}, {".ninja_log", "🥷"}
     };
 
