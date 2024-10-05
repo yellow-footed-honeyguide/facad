@@ -112,24 +112,16 @@ char *get_emoji(const char *path) {
 
     // Check for special cases
     static const EmojiMapEntry special_case_map[] = {
-        {"vmlinuz", "🐧"},  // Linux kernel
-        {"grub", "🥾"},     // GRUB bootloader
-        {"shadow", "🕶️"},   // Shadow password file
-        {"fstab", "⬜"},     // Filesystem table
-        {"Makefile", "🧰"}, 
-        {"Makefile.am", "🏭"},
-        {"configure.ac", "🏭"},
-        {"CmakeLists.txt", "🏭"},
-        {"meson.build", "🏭"},
-        {".gitignore", "🙈"},
-        {".dockerignore", "🙈"},
-        {"Dockerfile", "🐳"},
-        {".gitlab-ci.yml", "🦊"},
-        {".travis.yml", "⛑️"},
-        {"swagger.yaml", "🧣"},
-        {".git", "🐙"},
-        {"Jenkinsfile", "🔴"},
-        {"tags", "🏷️"}
+        {"vmlinuz", "🐧"}, {"grub", "🥾"},  {"shadow", "🕶️"},
+        {"fstab", "⬜"}, {"Makefile", "🧰"}, {"Makefile.am", "🏭"},
+        {"configure.ac", "🏭"}, {"CmakeLists.txt", "🏭"}, {"meson.build", "🏭"},
+        {".gitignore", "🙈"}, {".dockerignore", "🙈"}, {".hgignore", "🙈"},
+        {".npmignore", "🙈"}, {".bzrignore", "🙈"}, {".eslintignore", "🙈"},
+        {".terraformignore", "🙈"}, {".prettierignore", "🙈"}, {".p4ignore", "🙈"},
+			 	{"Dockerfile", "🐳"},
+        {".gitlab-ci.yml", "🦊"}, {".travis.yml", "⛑️"}, {"swagger.yaml", "🧣"},
+        {".git", "🐙"},{"Jenkinsfile", "🔴"}, {"tags", "🏷️"}, {"LICENSE", "⚖️"},
+        {".ninja_deps", "🥷"}, {".ninja_log", "🥷"}
     };
 
     for (size_t i = 0; i < sizeof(special_case_map) / sizeof(special_case_map[0]); i++) {
@@ -151,7 +143,7 @@ char *get_emoji(const char *path) {
             {"xz", "📦"},     {"7z", "📦"},      {"rar", "📦"},   {"deb", "📥"},   {"rpm", "📥"},
             {"py", "🐍"},     {"sh", "💻"},      {"js", "💻"},    {"html", "💻"},  {"css", "🎨"},
             {"cpp", "🔬"},    {"c", "🔬"},       {"java", "☕"},  {"go", "🐹"},    {"rb", "💻"},
-            {"rs", "🦀"},     {"php", "🐘"},     {"h", "🧢"},     {"🧢", "💻"},    {"class", "☕"},
+            {"rs", "🦀"},     {"php", "🐘"},     {"h", "🧢"},     {"hpp", "🧢"},   {"class", "☕"},
 					  {"swift", "💻"},  {"kt", "💻"},      {"scala", "💻"}, {"ts", "💻"},    {"jsx", "💻"},
             {"tsx", "💻"},    {"vue", "🟩"},     {"dart", "🦋"},  {"lua", "💻"},   {"pl", "🐪"},
             {"r", "📈"},      {"m", "💻"},       {"mm", "💻"},    {"asm", "💻"},   {"s", "💻"},
@@ -167,16 +159,19 @@ char *get_emoji(const char *path) {
             {"qcow2", "🐮"},  {"vv", "🕹️"},      {"doc", "📄"},   {"docx", "📄"},  {"odt", "📄"},
             {"rtf", "📄"},    {"xls", "📄"},     {"xlsx", "📄"},  {"ods", "📄"},   {"ppt", "📄"},
             {"pptx", "📄"},   {"odp", "📄"},     {"conf", "⚙️"},   {"config", "⚙️"}, {"toml", "⚙️"},
-            {"cfg", "⚙️"},     {"yaml", "⚙️"},     {"yml", "⚙️"},    {"json", "🏝️"},   {"ini", "⚙️"},
+            {"cfg", "⚙️"},     {"yaml", "🅈"},    {"yml", "🅈"},    {"json", "🏝️"},   {"ini", "⚙️"},
             {"target", "🎯"}, {"service", "🚀"}, {"socket", "🔁"},{"vim", "🖖"}, {"blend", "🧈"},
             {"app", "📱"},    {"dmg", "💿"},     {"pkg", "📦"},   {"patch", "🩹"},
-						{"plist", "📋"},  {"scpt", "📜"},    {"swift", "🐦"}, {"xcodeproj", "🛠️"}, {"xib", "🖼️"}, 
+						{"plist", "📋"},  {"scpt", "📜"},    {"swift", "🐦"}, {"xcodeproj", "🛠️"},
 						{"mlmodel", "🧠"},{"arobject", "🎭"},{"cmake", "🏭"}, {"mvn", "🏹"}, {"html", "🌐"},
-						{"sks", "🎮"},    {"car", "🚗"},     {"xcassets", "🗂️"}, {"tf", "🏗️"},
-						{"ipa", "📱"},    {"dSYM", "🐛"},    {"icns", "🖼️"}, {"yml", "⚓"},
+						{"sks", "🎮"},    {"car", "🚗"},     {"xcassets", "🗂️"},               {"tf", "🏗️"},
+						{"ipa", "📱"},    {"dSYM", "🐛"},    {"icns", "🖼️"}, 
 						{"webloc", "🔗"}, {"workflow", "🔄"},{"terminal", "🖥️"}, {"apk", "📱"}, {"rc", "👟"},
-						{"bundle", "🎁"}, {"pb", "📋"},      {"sock", "🔌"}, {"tmp", "⏳"}, {"ko", "🌰"},
-						{"ccl", "🎨"},    {"scnassets", "🌟"}, {"xcassets", "🗂️"}, {"bash", "💰"}, {"fish", "🐟"}
+						{"bundle", "🎁"}, {"pb", "📋"},      {"sock", "🔌"},   {"tmp", "⏳"}, {"ko", "🌰"},
+						{"ccl", "🎨"},    {"sh", "🐚"},      {"bash", "💰"},  {"fish", "🐟"}, {"xib", "🖼️"},
+						{"ninja", "🥷"},  {"lisp", "λ"},     {"cl", "λ"},     {"lsp", "λ"},
+						{"ada", "✈️"},     {"adb", "✈️"},      {"ads", "✈️"},    {"%", "zsh"}, {"gradle", "🐘"},
+            {"lock", "🔒"}   
 				};
 
         for (size_t i = 0; i < sizeof(ext_map) / sizeof(ext_map[0]); i++) {
