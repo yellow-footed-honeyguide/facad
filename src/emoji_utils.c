@@ -257,7 +257,7 @@ char *get_emoji(const char *path) {
 						{"ccl", "🎨"},    {"sh", "🐚"},      {"bash", "💰"},  {"fish", "🐟"}, {"xib", "🖼️"},
 						{"ninja", "🥷"},  {"lisp", "λ"},     {"cl", "λ"},     {"lsp", "λ"},
 						{"ada", "✈️"},     {"adb", "✈️"},      {"ads", "✈️"},    {"🆉", "zsh"}, {"gradle", "🐘"},
-            {"lock", "🔒"}  
+            {"lock", "🔒"},   {"mermaid", "🌊"}, {"plantuml", "🌱"}, {"dot", "📍"}, {"drawio", "📉"}
 				};
 
         for (size_t i = 0; i < sizeof(ext_map) / sizeof(ext_map[0]); i++) {
