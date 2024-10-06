@@ -9,12 +9,13 @@ math_dep = cc.find_library('m', required : false)
 src_files = [
   'src/main.c',
   'src/file_card.c',
-  'src/emoji_utils.c',
-  'src/display_utils.c',
   'src/dev_utils.c',
+  'src/emoji_utils.c',
   'src/args_parser.c',
   'src/longlisting.c',
   'src/dir_analytics.c',
+  'src/display_utils.c',
+  'src/emoji_extensions.c'
 ]
 
 version = meson.project_version()
