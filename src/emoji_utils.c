@@ -79,6 +79,86 @@ char *get_dev_emoji(const char *path) {
     return safe_strdup("🔧");
 }
 
+
+static const EmojiMapEntry content_map[] = { 
+    {"#!/bin/sh", "🐚"},
+    {"#!/usr/bin/sh", "🐚"},
+    {"#!/usr/bin/env sh", "🐚"},
+    {"#!/bin/bash", "💰"},
+    {"#!/usr/bin/bash", "💰"},
+    {"#!/usr/bin/env bash", "💰"},
+    {"#!/bin/dash", "🐚"},
+    {"#!/usr/bin/dash", "🐚"},
+    {"#!/usr/bin/env dash", "🐚"},
+    {"#!/bin/zsh", "🆉"},
+    {"#!/usr/bin/zsh", "🆉"},
+    {"#!/usr/bin/env zsh", "🆉"},
+    {"#!/bin/ksh", "🐚"},
+    {"#!/usr/bin/ksh", "🐚"},
+    {"#!/usr/bin/env ksh", "🐚"},
+    {"#!/usr/bin/perl", "🐪"},
+    {"#!/usr/bin/perl5", "🐪"},
+    {"#!/usr/local/bin/perl", "🐪"},
+    {"#!/usr/bin/env perl", "🐪"},
+    {"#!/usr/bin/env perl5", "🐪"},
+    {"#!/opt/bin/perl", "🐪"},
+    {"#!/bin/ruby", "♦️"},
+    {"#!/usr/bin/ruby", "♦️"},
+    {"#!/usr/local/bin/ruby", "♦️"},
+    {"#!/usr/bin/env ruby", "♦️"},
+    {"#!/opt/local/bin/ruby", "♦️"},
+    {"#!/usr/bin/python", "🐍"},
+    {"#!/usr/bin/python2", "🐍"},
+    {"#!/usr/bin/python3", "🐍"},
+    {"#!/usr/local/bin/python", "🐍"},
+    {"#!/usr/bin/env python", "🐍"},
+    {"#!/usr/bin/env python2", "🐍"},
+    {"#!/usr/bin/env python3", "🐍"},
+    {"#!/usr/bin/lua", "🌙"},
+    {"#!/usr/local/bin/lua", "🌙"},
+    {"#!/usr/bin/env lua", "🌙"},
+    {"#!/usr/bin/tcl", "☯️"},
+    {"#!/usr/local/bin/tcl", "☯️"},
+    {"#!/usr/bin/env tcl", "☯️"},
+    {"#!/usr/bin/awk", "🐦"},
+    {"#!/usr/bin/awk -f", "🐦"},
+    {"#!/usr/local/bin/awk", "🐦"},
+    {"#!/usr/bin/env awk", "🐦"},
+    {"#!/usr/bin/gawk", "🐦"},
+    {"#!/usr/bin/env gawk", "🐦"},
+    {"#!/usr/bin/node", "💚"},
+    {"#!/usr/local/bin/node", "💚"},
+    {"#!/usr/bin/env node", "💚"},
+    {"#!/usr/bin/nodejs", "💚"},
+    {"#!/usr/bin/env nodejs", "💚"},
+    {"#!/usr/bin/php", "🐘"},
+    {"#!/usr/local/bin/php", "🐘"},
+    {"#!/usr/bin/env php", "🐘"},
+    {"#!/usr/bin/fish", "🐟"},
+    {"#!/usr/local/bin/fish", "🐟"},
+    {"#!/usr/bin/env fish", "🐟"}
+};
+
+
+static char* check_file_content(const char *path) {
+    FILE *file = fopen(path, "r");
+    if (!file) return NULL;
+
+    char buffer[256];
+    if (fgets(buffer, sizeof(buffer), file) != NULL) {
+        for (size_t i = 0; i < sizeof(content_map) / sizeof(content_map[0]); i++) {
+            if (strstr(buffer, content_map[i].key) != NULL) {
+                fclose(file);
+                return safe_strdup(content_map[i].emoji);
+            }
+        }
+    }
+
+    fclose(file);
+    return NULL;
+}
+
+
 /**
  * Determines the appropriate emoji for a given file based on its characteristics.
  *
@@ -109,6 +189,12 @@ char *get_emoji(const char *path) {
     // Extract the filename from the path
     const char *filename = strrchr(path, '/');
     filename = filename ? filename + 1 : path;
+
+
+		char *content_emoji = check_file_content(path);
+    if (content_emoji) {
+      return content_emoji;
+    }
 
     // Check for special cases
     static const EmojiMapEntry special_case_map[] = {
@@ -142,7 +228,7 @@ char *get_emoji(const char *path) {
             {"aac", "🎧"},    {"zip", "📦"},     {"tar", "📦"},   {"gz", "📦"},    {"bz2", "📦"},
             {"xz", "📦"},     {"7z", "📦"},      {"rar", "📦"},   {"deb", "📥"},   {"rpm", "📥"},
             {"py", "🐍"},     {"sh", "💻"},      {"js", "💻"},    {"html", "💻"},  {"css", "🎨"},
-            {"cpp", "🔬"},    {"c", "🔬"},       {"java", "☕"},  {"go", "🐹"},    {"rb", "💻"},
+            {"cpp", "🔬"},    {"c", "🔬"},       {"java", "☕"},  {"go", "🐹"},    {"rb", "♦️"},
             {"rs", "🦀"},     {"php", "🐘"},     {"h", "🧢"},     {"hpp", "🧢"},   {"class", "☕"},
 					  {"swift", "💻"},  {"kt", "💻"},      {"scala", "💻"}, {"ts", "💻"},    {"jsx", "💻"},
             {"tsx", "💻"},    {"vue", "🟩"},     {"dart", "🦋"},  {"lua", "💻"},   {"pl", "🐪"},
@@ -170,8 +256,8 @@ char *get_emoji(const char *path) {
 						{"bundle", "🎁"}, {"pb", "📋"},      {"sock", "🔌"},   {"tmp", "⏳"}, {"ko", "🌰"},
 						{"ccl", "🎨"},    {"sh", "🐚"},      {"bash", "💰"},  {"fish", "🐟"}, {"xib", "🖼️"},
 						{"ninja", "🥷"},  {"lisp", "λ"},     {"cl", "λ"},     {"lsp", "λ"},
-						{"ada", "✈️"},     {"adb", "✈️"},      {"ads", "✈️"},    {"%", "zsh"}, {"gradle", "🐘"},
-            {"lock", "🔒"}   
+						{"ada", "✈️"},     {"adb", "✈️"},      {"ads", "✈️"},    {"🆉", "zsh"}, {"gradle", "🐘"},
+            {"lock", "🔒"}  
 				};
 
         for (size_t i = 0; i < sizeof(ext_map) / sizeof(ext_map[0]); i++) {
