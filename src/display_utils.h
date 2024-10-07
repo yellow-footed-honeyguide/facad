@@ -31,6 +31,7 @@
  * @param entries Pointer to an array of FileCardInfo structures to be displayed
  * @param num_entries The number of entries in the array
  * @param term_width The width of the terminal in characters
+ * @param current_dir The current directory path being displayed
  *
  * @note This function assumes that the entries have already been sorted
  *       according to the desired display order.
@@ -42,8 +43,7 @@
  * @see get_display_width() for Unicode character width calculation
  * @see print_padded() for formatted output of each entry
  */
-void display_entries(FileCardInfo *entries, int num_entries, int term_width);
-
-// Additional function declarations can be added here if needed
+void display_entries(FileCardInfo *entries, int num_entries, int term_width,
+                     const char *current_dir);
 
 #endif // DISPLAY_UTILS_H

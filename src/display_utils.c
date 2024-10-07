@@ -20,6 +20,7 @@
 
 #include "display_utils.h"
 #include "file_card.h"
+#include "directory_config.h"
 
 // Constants for display formatting
 #define MAX_COLUMNS 4
@@ -88,7 +89,8 @@ void print_padded(const char *str, size_t width) {
  * @param num_entries Number of entries in the array.
  * @param term_width Width of the terminal in characters.
  */
-void display_entries(FileCardInfo *entries, int num_entries, int term_width) {
+void display_entries(FileCardInfo *entries, int num_entries, int term_width,
+                     const char *current_dir) {
     // Set the locale to the user's default for proper wide character handling
     setlocale(LC_ALL, "");
 
@@ -112,8 +114,9 @@ void display_entries(FileCardInfo *entries, int num_entries, int term_width) {
     }
 
     // Calculate the number of columns based on terminal width
-    int num_columns = (term_width + SPACING) / (max_width + SPACING);
-    if (num_columns > MAX_COLUMNS) num_columns = MAX_COLUMNS;
+     int num_columns = (term_width + SPACING) / (max_width + SPACING);
+    int max_columns = get_max_columns(current_dir);
+    if (num_columns > max_columns) num_columns = max_columns;
     if (num_columns < 1) num_columns = 1;
 
     // Allocate memory for storing column widths

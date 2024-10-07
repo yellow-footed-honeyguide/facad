@@ -10,21 +10,22 @@
  */
 
 #include <stdio.h>
-#include <errno.h> 
+#include <errno.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>  
-#include <dirent.h> 
+#include <unistd.h>
+#include <dirent.h>
 #include <sys/ioctl.h>
 
-#include "dev_utils.h"  
-#include "file_card.h"  
-#include "args_parser.h" 
+#include "dev_utils.h"
+#include "file_card.h"
+#include "args_parser.h"
 #include "longlisting.h"
 #include "dir_analytics.h"
 #include "display_utils.h"
+#include "directory_config.h"
 
-#define MAX_PATH 4096 /**< Maximum path length */ 
+#define MAX_PATH 4096 /**< Maximum path length */
 #define MAX_ENTRIES 1024 /**< Maximum number of directory entries */
 
 
@@ -125,7 +126,7 @@ int main(int argc, char *argv[])
     qsort(entries, num_entries, sizeof(FileCardInfo), compare_file_entries);
 
     // Display sorted entries
-    display_entries(entries, num_entries, term_width);
+    display_entries(entries, num_entries, term_width, current_dir);
 
     // Free each entry
     for (int i = 0; i < num_entries; i++)
