@@ -17,7 +17,7 @@
  */
 typedef struct
 {
-		char *name;       /**< Name of the file */
+    char *name;       /**< Name of the file */
     char *emoji;      /**< Emoji representation of the file type */
     int is_directory; /**< Flag indicating if the entry is a directory */
     int is_hidden;    /**< Flag indicating if the entry is hidden */

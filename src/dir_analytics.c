@@ -101,10 +101,8 @@ static char *get_owner(uid_t uid, gid_t gid) {
  * @param oldest_file Buffer to store the path of the oldest file.
  */
 static void recursive_dir_scan(const char *path, off_t *total_size, 
-								               int *total_dirs, int *total_files, 
-															 off_t *min_size, off_t *max_size, 
-															 time_t *newest_time, time_t *oldest_time, 
-															 char *newest_file, char *oldest_file) 
+    int *total_dirs, int *total_files, off_t *min_size, off_t *max_size, 
+    time_t *newest_time, time_t *oldest_time, char *newest_file, char *oldest_file) 
 {
     DIR *dir;
     struct dirent *entry;
@@ -122,10 +120,9 @@ static void recursive_dir_scan(const char *path, off_t *total_size,
         if (lstat(full_path, &st) == 0) {
             if (S_ISDIR(st.st_mode)) {
                 (*total_dirs)++;
-                recursive_dir_scan(full_path, total_size, total_dirs, 
-																   total_files, min_size, max_size, 
-																	 newest_time, oldest_time, newest_file, 
-																	 oldest_file);
+                recursive_dir_scan(full_path, total_size, total_dirs, total_files, 
+                                   min_size, max_size, newest_time, oldest_time, 
+                                   newest_file, oldest_file);
             } else {
                 (*total_files)++;
                 *total_size += st.st_size;
@@ -222,9 +219,9 @@ void print_dir_analytics(const char *path) {
         return;
     }
 
-    recursive_dir_scan(path, &total_size, &total_dirs, &files, 
-										   &min_size, &max_size, &newest_time, 
-											 &oldest_time, newest_file, oldest_file);
+    recursive_dir_scan(path, &total_size, &total_dirs, &files, &min_size,
+                       &max_size, &newest_time, &oldest_time, newest_file, 
+                       oldest_file);
     max_depth = get_dir_depth(path);
 
     dir = opendir(path);

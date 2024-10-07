@@ -1,5 +1,3 @@
-# EditorConfig is awesome: https://EditorConfig.org
-
 # top-most EditorConfig file
 root = true
 
@@ -7,21 +5,28 @@ root = true
 [*]
 end_of_line = lf
 insert_final_newline = true
-
-# Matches multiple files with brace expansion notation
-# Set default charset
-[*.{c,h}]
 charset = utf-8
+trim_trailing_whitespace = true
 
-# 4 space indentation
+# C source files
+[*.{c,h}]
 indent_style = space
 indent_size = 4
 
-# Tab indentation (no size specified)
+# Makefiles require tab indentation
 [Makefile]
 indent_style = tab
 
-# Matches the exact files either package.json or .travis.yml
-[{package.json,.travis.yml}]
+# Meson build files
+[meson.build]
+indent_style = space
+indent_size = 2
+
+# Markdown files
+[*.md]
+trim_trailing_whitespace = false
+
+# Config files
+[*.{json,yml,yaml}]
 indent_style = space
 indent_size = 2

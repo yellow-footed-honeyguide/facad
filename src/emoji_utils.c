@@ -192,7 +192,7 @@ char *get_emoji(const char *path) {
     filename = filename ? filename + 1 : path;
 
 
-		char *content_emoji = check_file_content(path);
+    char *content_emoji = check_file_content(path);
     if (content_emoji) {
       return content_emoji;
     }
@@ -205,7 +205,7 @@ char *get_emoji(const char *path) {
         {".gitignore", "🙈"}, {".dockerignore", "🙈"}, {".hgignore", "🙈"},
         {".npmignore", "🙈"}, {".bzrignore", "🙈"}, {".eslintignore", "🙈"},
         {".terraformignore", "🙈"}, {".prettierignore", "🙈"}, {".p4ignore", "🙈"},
-			 	{"Dockerfile", "🐳"},
+        {"Dockerfile", "🐳"},
         {".gitlab-ci.yml", "🦊"}, {".travis.yml", "⛑️"}, {"swagger.yaml", "🧣"},
         {"Jenkinsfile", "🔴"}, {"tags", "🏷️"}, {"LICENSE", "⚖️"},
         {".ninja_deps", "🥷"}, {".ninja_log", "🥷"}
