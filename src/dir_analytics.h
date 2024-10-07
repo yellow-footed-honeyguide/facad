@@ -1,38 +1,43 @@
 /**
  * @file dir_analytics.h
- * @brief Header file for directory analysis functionality.
+ * @brief Header file for directory analysis functionality
  *
- * This file contains the declaration of functions for analyzing
- * and displaying detailed information about the contents of a directory.
+ * This file contains the declaration of functions for generating
+ * and displaying detailed analytics about directory contents.
+ * It provides an interface for examining file sizes, counts,
+ * timestamps, and other attributes within a directory structure.
+ *
+ * @author Sergey Veneckiy
+ * @date 2024
  */
 
 #ifndef DIR_ANALYTICS_H
 #define DIR_ANALYTICS_H
 
 /**
- * @brief Prints detailed analytics about a directory.
+ * @brief Prints detailed analytics about a directory
  *
  * This function analyzes the contents of the specified directory
- * and prints various statistics such as total size, number of files,
- * directories, file sizes, modification times, etc.
- *
- * The analytics include:
- * - Path of the directory
- * - Creation and modification times
- * - Owner and permissions
+ * and prints various statistics including:
  * - Total size of all files
  * - Number of files and directories
- * - Directory tree depth
- * - Number of hidden items
- * - Largest file and size range
+ * - Depth of the directory tree
+ * - File size ranges (smallest and largest)
  * - Newest and oldest files
- * - Number of symlinks and empty files
- * - File to directory ratio
- * - Unique file extensions
+ * - File type distributions
+ * - Permissions and ownership information
  *
- * @param path The path of the directory to analyze.
+ * The analytics provide a comprehensive overview of the directory's
+ * contents, useful for storage management and content analysis.
+ *
+ * @param path The path of the directory to analyze
+ *
+ * @note This function performs a recursive analysis and may take
+ *       considerable time for large directory structures.
+ *
+ * @warning For very large directories, this function may consume
+ *          significant memory and processing resources.
  */
 void print_dir_analytics(const char *path);
 
 #endif // DIR_ANALYTICS_H
-

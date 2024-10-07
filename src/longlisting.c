@@ -1,10 +1,13 @@
 /**
  * @file longlisting.c
- * @brief Implements detailed directory listing functionality.
+ * @brief Implements detailed directory listing functionality
  *
  * This file contains functions for generating and displaying
  * a detailed listing of directory contents, including file sizes,
  * permissions, modification times, and other attributes.
+ *
+ * @author Sergey Veneckiy
+ * @date 2024
  */
 
 #include <stdio.h>
@@ -21,7 +24,7 @@
 #define MAX_ENTRIES 1000
 
 /**
- * @brief Structure to hold file information for sorting and display.
+ * @brief Structure to hold file information for sorting and display
  */
 struct file_info {
     char name[256];         /**< File name */
@@ -34,34 +37,39 @@ struct file_info {
 };
 
 /**
- * @brief Formats a file size into a human-readable string.
+ * @brief Formats a file size into a human-readable string
  *
- * @param size The size in bytes to format.
- * @return A static string containing the formatted size.
+ * @param size The size in bytes to format
+ * @return A static string containing the formatted size
  */
 static char *format_size(off_t size) {
     static char buf[64];
     const char *units[] = {"B", "K", "M", "G", "T", "P", "E", "Z", "Y"};
     int i = 0;
     double dsize = size;
+
+    // Convert size to appropriate unit
     while (dsize >= 1024 && i < 8) {
         dsize /= 1024;
         i++;
     }
+
+    // Format the size with one decimal place
     snprintf(buf, sizeof(buf), "%.1f%s", dsize, units[i]);
     return buf;
 }
 
 /**
- * @brief Converts file permissions to a human-readable string with emojis.
+ * @brief Converts file permissions to a human-readable string with emojis
  *
- * @param mode The file mode containing the permissions.
- * @return A static string containing the formatted permissions.
+ * @param mode The file mode containing the permissions
+ * @return A static string containing the formatted permissions
  */
 static char *get_human_readable_perms(mode_t mode) {
     static char perms[64];  // Increased buffer size
     char *p = perms;
 
+    // Format permissions using emojis
     p += sprintf(p, "👤 %s%s%s 👥 %s%s%s 🌍 %s%s%s",
         (mode & S_IRUSR) ? "👀" : "❌",
         (mode & S_IWUSR) ? "✏️" : "❌",
@@ -73,6 +81,7 @@ static char *get_human_readable_perms(mode_t mode) {
         (mode & S_IWOTH) ? "✏️" : "❌",
         (mode & S_IXOTH) ? "🚀" : "❌");
 
+    // Add special permission flags
     if (mode & S_ISUID) p += sprintf(p, "🔑");
     if (mode & S_ISGID) p += sprintf(p, "🔐");
     if (mode & S_ISVTX) p += sprintf(p, "🔒");
@@ -81,10 +90,10 @@ static char *get_human_readable_perms(mode_t mode) {
 }
 
 /**
- * @brief Counts the number of subdirectories in a given directory.
+ * @brief Counts the number of subdirectories in a given directory
  *
- * @param path The path to the directory.
- * @return The number of subdirectories.
+ * @param path The path to the directory
+ * @return The number of subdirectories
  */
 static int count_subdirs(const char *path) {
     DIR *dir;
@@ -95,9 +104,12 @@ static int count_subdirs(const char *path) {
     if (!dir) return 0;
 
     while ((entry = readdir(dir)) != NULL) {
+        // Skip . and .. entries
         if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) continue;
+
         char full_path[MAX_PATH];
         snprintf(full_path, sizeof(full_path), "%s/%s", path, entry->d_name);
+
         struct stat st;
         if (stat(full_path, &st) == 0 && S_ISDIR(st.st_mode)) {
             count++;
@@ -108,27 +120,30 @@ static int count_subdirs(const char *path) {
 }
 
 /**
- * @brief Comparison function for sorting file entries.
+ * @brief Comparison function for sorting file entries
  *
  * Sorts entries based on whether they're directories, then by extension,
  * then by size, and finally by name.
  *
- * @param a Pointer to the first file_info struct.
- * @param b Pointer to the second file_info struct.
+ * @param a Pointer to the first file_info struct
+ * @param b Pointer to the second file_info struct
  * @return Integer less than, equal to, or greater than zero if a is found,
- *         respectively, to be less than, to match, or be greater than b.
+ *         respectively, to be less than, to match, or be greater than b
  */
 static int compare_entries(const void *a, const void *b) {
     const struct file_info *fa = (const struct file_info *)a;
     const struct file_info *fb = (const struct file_info *)b;
 
+    // Sort directories before files
     if (fa->is_dir && !fb->is_dir) return -1;
     if (!fa->is_dir && fb->is_dir) return 1;
 
+    // For directories, sort by number of subdirectories
     if (fa->is_dir && fb->is_dir) {
         return fb->subdir_count - fa->subdir_count;
     }
 
+    // Sort by file extension
     char *ext_a = strrchr(fa->name, '.');
     char *ext_b = strrchr(fb->name, '.');
 
@@ -141,20 +156,22 @@ static int compare_entries(const void *a, const void *b) {
         return -1;
     }
 
+    // Sort by size (larger files first)
     if (fa->size < fb->size) return 1;
     if (fa->size > fb->size) return -1;
 
+    // Finally, sort alphabetically
     return strcasecmp(fa->name, fb->name);
 }
 
 /**
- * @brief Prints a detailed listing of the contents of a directory.
+ * @brief Prints a detailed listing of the contents of a directory
  *
  * This function reads the contents of the specified directory,
  * sorts them, and prints a detailed listing including file sizes,
  * modification times, permissions, and other attributes.
  *
- * @param path The path of the directory to list.
+ * @param path The path of the directory to list
  */
 void print_longlisting(const char *path) {
     setlocale(LC_ALL, "");  // Set locale to support UTF-8
@@ -170,6 +187,7 @@ void print_longlisting(const char *path) {
         return;
     }
 
+    // Read directory entries
     while ((entry = readdir(dir)) != NULL && entry_count < MAX_ENTRIES) {
         if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) continue;
 
@@ -190,8 +208,10 @@ void print_longlisting(const char *path) {
     }
     closedir(dir);
 
+    // Sort the entries
     qsort(entries, entry_count, sizeof(struct file_info), compare_entries);
 
+    // Print sorted entries
     for (int i = 0; i < entry_count; i++) {
         struct file_info *fi = &entries[i];
         char *emoji = get_emoji(fi->full_path);

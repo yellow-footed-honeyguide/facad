@@ -15,7 +15,7 @@ src_files = [
   'src/longlisting.c',
   'src/dir_analytics.c',
   'src/display_utils.c',
-  'src/emoji_extensions.c'
+  'src/emoji_mappings.c'
 ]
 
 version = meson.project_version()

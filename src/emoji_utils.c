@@ -1,3 +1,15 @@
+/**
+ * @file emoji_utils.c
+ * @brief Implementation of emoji utility functions for file representation
+ *
+ * This file contains functions for determining appropriate emojis
+ * for files based on their types, attributes, and locations. It supports
+ * both regular files and special files in the /dev directory.
+ *
+ * @author Sergey Veneckiy
+ * @date 2024
+ */
+
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -5,91 +17,67 @@
 #include <sys/stat.h>
 
 #include "emoji_utils.h"
-#include "emoji_extensions.h"
+#include "emoji_mappings.h"
 
 #define MAX_PATH 4096
 
-// Define a structure to map keys (file names or extensions) to emojis
-//typedef struct {
-//    const char *key;
-//    const char *emoji;
-//} EmojiMapEntry;
-
 /**
- * Safely duplicates a string, handling memory allocation errors.
+ * @brief Safely duplicates a string, handling memory allocation errors
  *
- * @param str The string to duplicate.
- * @return A newly allocated copy of the input string.
+ * @param str The string to duplicate
+ * @return A newly allocated copy of the input string
  */
 static char *safe_strdup(const char *str) {
     char *dup = strdup(str);
     if (!dup) {
-        perror("strdup");
-        exit(EXIT_FAILURE);
+        perror("strdup"); // Print error message if strdup fails
+        exit(EXIT_FAILURE); // Exit the program on allocation failure
     }
     return dup;
 }
 
 /**
- * Determines the appropriate emoji for files in the /dev directory.
+ * @brief Determines the appropriate emoji for files in the /dev directory
  *
- * This function uses two lookup tables:
- * 1. exact_emoji_map for exact matches
- * 2. prefix_emoji_map for prefix matches
- *
- * @param path The name of the file in the /dev directory.
- * @return A dynamically allocated string containing the emoji.
+ * @param path The name of the file in the /dev directory
+ * @return A dynamically allocated string containing the emoji
  */
 char *get_dev_emoji(const char *path) {
-    // Define a lookup table for exact matches
-    static const EmojiMapEntry exact_emoji_map[] = {
-        {"loop", "🔁"},      {"null", "🕳️"},        {"zero", "🕳️"},
-        {"random", "🎲"},    {"urandom", "🎲"},     {"tty", "🖥️"},
-        {"usb", "🔌"},       {"vga_arbiter", "🖼️"}, {"vhci", "🔌"},
-        {"vhost-net", "🌐"}, {"vhost-vsock", "💬"}, {"mcelog", "📋"},
-        {"media0", "🎬"},    {"mei0", "🧠"},        {"mem", "🗄️"},
-        {"hpet", "⏱️"},       {"hwrng", "🎲"},       {"kmsg", "📜"},
-        {"kvm", "🌰"},       {"zram", "🗜️"},        {"udmabuf", "🔄"},
-        {"uhid", "🕹️"},      {"rfkill", "📡"},      {"ppp", "🌐"},
-        {"ptmx", "🖥️"},      {"userfaultfd", "🚧"}, {"nvram", "🗄️"},
-        {"port", "🔌"},      {"autofs", "🚗"},      {"btrfs-control", "🌳"},
-        {"console", "🖥️"},   {"full", "🔒"},        {"fuse", "🔥"},
-        {"gpiochip0", "📌"}, {"cuse", "🧩"},        {"cpu_dma_latency", "⏱️"}};
-
-    // Check for exact matches
-    for (size_t i = 0; i < sizeof(exact_emoji_map) / sizeof(exact_emoji_map[0]); i++) {
-        if (strcmp(path, exact_emoji_map[i].key) == 0) {
-            return safe_strdup(exact_emoji_map[i].emoji);
+    // Check for exact matches in the dev file map
+    for (size_t i = 0; i < sizeof(emoji_exact_dev_file_map_size); i++) {
+        if (strcmp(path, emoji_exact_dev_file_map[i].key) == 0) {
+            return safe_strdup(emoji_exact_dev_file_map[i].emoji);
         }
     }
 
-    // Define a lookup table for prefix matches
-    static const EmojiMapEntry prefix_emoji_map[] = {
-        {"loop", "🔁"}, {"sd", "💽"},  {"tty", "🖥️"},      {"usb", "🔌"}, {"video", "🎥"},
-        {"nvme", "💽"}, {"lp", "🖨️"},  {"hidraw", "🔠"},   {"vcs", "📟"}, {"vcsa", "📟"},
-        {"ptp", "🕰️"},  {"rtc", "🕰️"}, {"watchdog", "🐕"}, {"mtd", "⚡"}};
-
-    // Check for prefix matches
-    for (size_t i = 0; i < sizeof(prefix_emoji_map) / sizeof(prefix_emoji_map[0]); i++) {
-        if (strncmp(path, prefix_emoji_map[i].key, strlen(prefix_emoji_map[i].key)) == 0) {
-            return safe_strdup(prefix_emoji_map[i].emoji);
+    // Check for prefix matches in the dev prefix map
+    for (size_t i = 0; i < emoji_prefix_dev_map_size; i++) {
+        if (strncmp(path, emoji_prefix_dev_map[i].key, strlen(emoji_prefix_dev_map[i].key)) == 0) {
+            return safe_strdup(emoji_prefix_dev_map[i].emoji);
         }
     }
 
-    // Default emoji for unmatched /dev files
+    // Return default emoji for unmatched /dev files
     return safe_strdup("🔧");
 }
 
+/**
+ * @brief Checks the file content for specific patterns to determine the file type
+ *
+ * @param path The path to the file
+ * @return A dynamically allocated string containing the emoji, or NULL if no match
+ */
 static char* check_file_content(const char *path) {
     FILE *file = fopen(path, "r");
     if (!file) return NULL;
 
     char buffer[256];
     if (fgets(buffer, sizeof(buffer), file) != NULL) {
-        for (size_t i = 0; i < content_map_size; i++) {
-            if (strstr(buffer, content_map[i].key) != NULL) {
+        // Check each entry in the file content map
+        for (size_t i = 0; i < emoji_file_content_map_size; i++) {
+            if (strstr(buffer, emoji_file_content_map[i].key) != NULL) {
                 fclose(file);
-                return safe_strdup(content_map[i].emoji);
+                return safe_strdup(emoji_file_content_map[i].emoji);
             }
         }
     }
@@ -98,15 +86,11 @@ static char* check_file_content(const char *path) {
     return NULL;
 }
 
-
 /**
- * Determines the appropriate emoji for a given file based on its characteristics.
+ * @brief Determines the appropriate emoji for a given file based on its characteristics
  *
- * This function checks the file type, special cases, and file extensions
- * to assign the most appropriate emoji.
- *
- * @param path The path to the file.
- * @return A dynamically allocated string containing the emoji.
+ * @param path The path to the file
+ * @return A dynamically allocated string containing the emoji
  */
 char *get_emoji(const char *path) {
     struct stat path_stat;
@@ -130,15 +114,16 @@ char *get_emoji(const char *path) {
     const char *filename = strrchr(path, '/');
     filename = filename ? filename + 1 : path;
 
-
+    // Check file content for specific patterns
     char *content_emoji = check_file_content(path);
     if (content_emoji) {
-      return content_emoji;
+        return content_emoji;
     }
 
-    for (size_t i = 0; i < special_case_map_size; i++) {
-        if (strstr(filename, special_case_map[i].key) == filename) {
-            return safe_strdup(special_case_map[i].emoji);
+    // Check for exact file name matches
+    for (size_t i = 0; i < emoji_exact_file_map_size; i++) {
+        if (strstr(filename, emoji_exact_file_map[i].key) == filename) {
+            return safe_strdup(emoji_exact_file_map[i].emoji);
         }
     }
 
@@ -146,10 +131,9 @@ char *get_emoji(const char *path) {
     char *extension = strrchr(path, '.');
     if (extension) {
         extension++;  // Skip the dot
-
-        for (size_t i = 0; i < ext_map_size; i++) {
-            if (strcasecmp(extension, ext_map[i].key) == 0) {
-                return safe_strdup(ext_map[i].emoji);
+        for (size_t i = 0; i < emoji_extension_map_size; i++) {
+            if (strcasecmp(extension, emoji_extension_map[i].key) == 0) {
+                return safe_strdup(emoji_extension_map[i].emoji);
             }
         }
     }
@@ -174,32 +158,29 @@ char *get_emoji(const char *path) {
 }
 
 /**
- * Checks if a file is executable.
+ * @brief Checks if a file is executable
  *
- * @param path The path to the file.
- * @return 1 if the file is executable, 0 otherwise.
+ * @param path The path to the file
+ * @return 1 if the file is executable, 0 otherwise
  */
 int is_executable(const char *path) {
     struct stat st;
     if (stat(path, &st) == 0) {
-        return (st.st_mode & S_IXUSR) != 0;
+        return (st.st_mode & S_IXUSR) != 0; // Check if the user execute bit is set
     }
     return 0;
 }
 
 /**
- * Checks if a file is a text file by examining its contents.
+ * @brief Checks if a file is a text file by examining its contents
  *
- * This function reads the first 1024 bytes of the file and checks
- * if all characters are printable or whitespace.
- *
- * @param path The path to the file.
- * @return 1 if the file is likely a text file, 0 otherwise.
+ * @param path The path to the file
+ * @return 1 if the file is likely a text file, 0 otherwise
  */
 int is_text_file(const char *path) {
     FILE *file = fopen(path, "rb");
     if (!file) {
-        return 0;
+        return 0; // Cannot open file, assume it's not text
     }
 
     unsigned char buffer[1024];
@@ -210,10 +191,11 @@ int is_text_file(const char *path) {
         return 1;  // Empty file is considered text
     }
 
+    // Check if all read bytes are printable or whitespace
     for (size_t i = 0; i < bytesRead; i++) {
         if (!isprint(buffer[i]) && !isspace(buffer[i])) {
-            return 0;
+            return 0; // Non-printable, non-whitespace character found
         }
     }
-    return 1;
+    return 1; // All characters are printable or whitespace
 }

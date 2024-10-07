@@ -1,9 +1,13 @@
 /**
  * @file dir_analytics.c
- * @brief Implements directory analysis functionality.
+ * @brief Implementation of directory analysis functionality
  *
  * This file contains functions for analyzing and displaying
  * detailed information about the contents of a directory.
+ * It provides statistics such as file sizes, counts, and timestamps.
+ *
+ * @author Sergey Veneckiy
+ * @date 2024
  */
 
 #include <pwd.h>
@@ -17,17 +21,18 @@
 #include <limits.h>
 #include <sys/stat.h>
 
-#include "dir_analytics.h"
 #include "emoji_utils.h"
+#include "dir_analytics.h"
 
 #define MAX_PATH 4096
 #define MAX_FILES 1024
 
+
 /**
- * @brief Formats a file size into a human-readable string.
+ * @brief Formats a file size into a human-readable string
  *
- * @param size The size in bytes to format.
- * @return A static string containing the formatted size.
+ * @param size The size in bytes to format
+ * @return A static string containing the formatted size
  */
 static char *format_size(off_t size) {
     static char buf[64];
@@ -45,10 +50,10 @@ static char *format_size(off_t size) {
 }
 
 /**
- * @brief Converts file permissions to a human-readable string.
+ * @brief Converts file permissions to a human-readable string
  *
- * @param mode The file mode containing the permissions.
- * @param perms Buffer to store the permission string.
+ * @param mode The file mode containing the permissions
+ * @param perms Buffer to store the permission string
  */
 static void get_permissions(mode_t mode, char *perms) {
     snprintf(perms, 11, "%c%c%c%c%c%c%c%c%c%c",
@@ -66,11 +71,11 @@ static void get_permissions(mode_t mode, char *perms) {
 }
 
 /**
- * @brief Gets the owner and group of a file.
+ * @brief Gets the owner and group of a file
  *
- * @param uid User ID of the file owner.
- * @param gid Group ID of the file.
- * @return A static string containing "owner:group".
+ * @param uid User ID of the file owner
+ * @param gid Group ID of the file
+ * @return A static string containing "owner:group"
  */
 static char *get_owner(uid_t uid, gid_t gid) {
     static char owner[256];
@@ -87,22 +92,25 @@ static char *get_owner(uid_t uid, gid_t gid) {
 
 
 /**
- * @brief Recursively scans a directory and collects statistics.
+ * @brief Recursively scans a directory and collects statistics
  *
- * @param path The path to scan.
- * @param total_size Pointer to the total size of all files.
- * @param total_dirs Pointer to the total number of directories.
- * @param total_files Pointer to the total number of files.
- * @param min_size Pointer to the size of the smallest file.
- * @param max_size Pointer to the size of the largest file.
- * @param newest_time Pointer to the most recent modification time.
- * @param oldest_time Pointer to the oldest modification time.
- * @param newest_file Buffer to store the path of the newest file.
- * @param oldest_file Buffer to store the path of the oldest file.
+ * This function traverses the directory tree and gathers information
+ * about file sizes, counts, and timestamps.
+ *
+ * @param path The path to scan
+ * @param total_size Pointer to the total size of all files
+ * @param total_dirs Pointer to the total number of directories
+ * @param total_files Pointer to the total number of files
+ * @param min_size Pointer to the size of the smallest file
+ * @param max_size Pointer to the size of the largest file
+ * @param newest_time Pointer to the most recent modification time
+ * @param oldest_time Pointer to the oldest modification time
+ * @param newest_file Buffer to store the path of the newest file
+ * @param oldest_file Buffer to store the path of the oldest file
  */
-static void recursive_dir_scan(const char *path, off_t *total_size, 
-    int *total_dirs, int *total_files, off_t *min_size, off_t *max_size, 
-    time_t *newest_time, time_t *oldest_time, char *newest_file, char *oldest_file) 
+static void recursive_dir_scan(const char *path, off_t *total_size,
+    int *total_dirs, int *total_files, off_t *min_size, off_t *max_size,
+    time_t *newest_time, time_t *oldest_time, char *newest_file, char *oldest_file)
 {
     DIR *dir;
     struct dirent *entry;
@@ -120,8 +128,8 @@ static void recursive_dir_scan(const char *path, off_t *total_size,
         if (lstat(full_path, &st) == 0) {
             if (S_ISDIR(st.st_mode)) {
                 (*total_dirs)++;
-                recursive_dir_scan(full_path, total_size, total_dirs, total_files, 
-                                   min_size, max_size, newest_time, oldest_time, 
+                recursive_dir_scan(full_path, total_size, total_dirs, total_files,
+                                   min_size, max_size, newest_time, oldest_time,
                                    newest_file, oldest_file);
             } else {
                 (*total_files)++;
@@ -147,10 +155,13 @@ static void recursive_dir_scan(const char *path, off_t *total_size,
 }
 
 /**
- * @brief Gets the maximum depth of a directory tree.
+ * @brief Gets the maximum depth of a directory tree
  *
- * @param path The path to start the depth calculation from.
- * @return The maximum depth of the directory tree.
+ * This function calculates the deepest level of nested directories
+ * starting from the given path.
+ *
+ * @param path The path to start the depth calculation from
+ * @return The maximum depth of the directory tree
  */
 static int get_dir_depth(const char *path) {
     DIR *dir;
@@ -177,10 +188,10 @@ static int get_dir_depth(const char *path) {
 }
 
 /**
- * @brief Formats a time_t value into a string.
+ * @brief Formats a time_t value into a string
  *
- * @param t The time_t value to format.
- * @return A static string containing the formatted time.
+ * @param t The time_t value to format
+ * @return A static string containing the formatted time
  */
 static char *format_time(time_t t) {
     static char buf[20];
@@ -190,13 +201,13 @@ static char *format_time(time_t t) {
 }
 
 /**
- * @brief Prints detailed analytics about a directory.
+ * @brief Prints detailed analytics about a directory
  *
  * This function analyzes the contents of the specified directory
  * and prints various statistics such as total size, number of files,
  * directories, file sizes, modification times, etc.
  *
- * @param path The path of the directory to analyze.
+ * @param path The path of the directory to analyze
  */
 void print_dir_analytics(const char *path) {
     struct stat st;
@@ -220,7 +231,7 @@ void print_dir_analytics(const char *path) {
     }
 
     recursive_dir_scan(path, &total_size, &total_dirs, &files, &min_size,
-                       &max_size, &newest_time, &oldest_time, newest_file, 
+                       &max_size, &newest_time, &oldest_time, newest_file,
                        oldest_file);
     max_depth = get_dir_depth(path);
 
@@ -273,7 +284,6 @@ void print_dir_analytics(const char *path) {
     char perms[11];
     get_permissions(st.st_mode, perms);
 
-    //printf("🔬 Directory Analytics\n");
     printf("╰─🧭 Path         : %s\n", path);
     printf("╰─🎂 Created      : %s\n", format_time(st.st_ctime));
     printf("╰─✏️  Modified     : %s\n", format_time(st.st_mtime));

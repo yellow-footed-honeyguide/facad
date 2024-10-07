@@ -1,6 +1,25 @@
-#include "emoji_extensions.h"
+/**
+ * @file emoji_extensions.c
+ * @brief Implementation of emoji mappings for various file types and attributes.
+ *
+ * This file contains the definitions of emoji mapping arrays for file extensions,
+ * exact file names, file content patterns, and device files. These mappings are
+ * used to assign appropriate emojis to files and directories based on their
+ * characteristics.
+ *
+ * @author Sergey Veneckiy
+ * @date 2024
+ */
 
-const EmojiMapEntry ext_map[] = {
+#include "emoji_mappings.h"
+
+/**
+ * @brief Emoji mappings for file extensions.
+ *
+ * This array maps file extensions to corresponding emojis. It is used to
+ * assign emojis based on the file type indicated by its extension.
+ */
+const EmojiMapEntry emoji_extension_map[] = {
     {"md", "📑"},
     {"jpg", "📸"},
     {"jpeg", "📸"},
@@ -194,11 +213,18 @@ const EmojiMapEntry ext_map[] = {
     {"pid", "🪪"},
     {"swap", "🔄"}
 };
-const size_t ext_map_size = sizeof(ext_map) / sizeof(ext_map[0]);
 
+/** @brief Size of the emoji_extension_map array. */
+const size_t emoji_extension_map_size = sizeof(emoji_extension_map) /
+                                        sizeof(emoji_extension_map[0]);
 
-// Check for special cases
-const EmojiMapEntry special_case_map[] = {
+/**
+ * @brief Emoji mappings for exact file names.
+ *
+ * This array maps specific file names to corresponding emojis. It is used to
+ * assign emojis based on exact matches of file names, typically for special files.
+ */
+const EmojiMapEntry emoji_exact_file_map[] = {
     {"vmlinuz", "🐧"},
     {"grub", "🥾"},
     {"shadow", "🕶️"},
@@ -227,9 +253,17 @@ const EmojiMapEntry special_case_map[] = {
     {".ninja_deps", "🥷"},
     {".ninja_log", "🥷"}
 };
-const size_t special_case_map_size = sizeof(special_case_map) / sizeof(special_case_map[0]);
+/** @brief Size of the emoji_exact_file_map array. */
+const size_t emoji_exact_file_map_size = sizeof(emoji_exact_file_map) /
+                                         sizeof(emoji_exact_file_map[0]);
 
-const EmojiMapEntry content_map[] = {
+/**
+ * @brief Emoji mappings for file content patterns.
+ *
+ * This array maps file content patterns (typically shebang lines) to corresponding emojis.
+ * It is used to assign emojis based on the content of script files.
+ */
+const EmojiMapEntry emoji_file_content_map[] = {
     {"#!/bin/sh", "🐚"},
     {"#!/usr/bin/sh", "🐚"},
     {"#!/usr/bin/env sh", "🐚"},
@@ -287,4 +321,82 @@ const EmojiMapEntry content_map[] = {
     {"#!/usr/local/bin/fish", "🐟"},
     {"#!/usr/bin/env fish", "🐟"}
 };
-const size_t content_map_size = sizeof(content_map) / sizeof(content_map[0]);
+/** @brief Size of the emoji_file_content_map array. */
+const size_t emoji_file_content_map_size = sizeof(emoji_file_content_map) /
+                                           sizeof(emoji_file_content_map[0]);
+
+
+/**
+ * @brief Emoji mappings for exact device file names in /dev.
+ *
+ * This array maps specific device file names in the /dev directory to corresponding emojis.
+ * It is used to assign emojis to known device files.
+ */
+const EmojiMapEntry emoji_exact_dev_file_map[] = {
+    {"loop", "🔁"},
+    {"null", "🕳️"},
+    {"zero", "🕳️"},
+    {"random", "🎲"},
+    {"urandom", "🎲"},
+    {"tty", "🖥️"},
+    {"usb", "🔌"},
+    {"vga_arbiter", "🖼️"},
+    {"vhci", "🔌"},
+    {"vhost-net", "🌐"},
+    {"vhost-vsock", "💬"},
+    {"mcelog", "📋"},
+    {"media0", "🎬"},
+    {"mei0", "🧠"},
+    {"mem", "🗄️"},
+    {"hpet", "⏱️"},
+    {"hwrng", "🎲"},
+    {"kmsg", "📜"},
+    {"kvm", "🌰"},
+    {"zram", "🗜️"},
+    {"udmabuf", "🔄"},
+    {"uhid", "🕹️"},
+    {"rfkill", "📡"},
+    {"ppp", "🌐"},
+    {"ptmx", "🖥️"},
+    {"userfaultfd", "🚧"},
+    {"nvram", "🗄️"},
+    {"port", "🔌"},
+    {"autofs", "🚗"},
+    {"btrfs-control", "🌳"},
+    {"console", "🖥️"},
+    {"full", "🔒"},
+    {"fuse", "🔥"},
+    {"gpiochip0", "📌"},
+    {"cuse", "🧩"},
+    {"cpu_dma_latency", "⏱️"}
+};
+/** @brief Size of the emoji_exact_dev_file_map array. */
+const size_t emoji_exact_dev_file_map_size = sizeof(emoji_exact_dev_file_map) /
+                                             sizeof(emoji_exact_dev_file_map[0]);
+
+/**
+ * @brief Emoji mappings for device file name prefixes in /dev.
+ *
+ * This array maps prefixes of device file names in the /dev directory to corresponding emojis.
+ * It is used to assign emojis to device files based on their name prefixes.
+ */
+const EmojiMapEntry emoji_prefix_dev_map[] = {
+    {"loop", "🔁"},
+    {"sd", "💽"},
+    {"tty", "🖥️"},
+    {"usb", "🔌"},
+    {"video", "🎥"},
+    {"nvme", "💽"},
+    {"lp", "🖨️"},
+    {"hidraw", "🔠"},
+    {"vcs", "📟"},
+    {"vcsa", "📟"},
+    {"ptp", "🕰️"},
+    {"rtc", "🕰️"},
+    {"watchdog", "🐕"},
+    {"mtd", "⚡"}
+};
+
+/** @brief Size of the emoji_prefix_dev_map array. */
+const size_t emoji_prefix_dev_map_size = sizeof(emoji_prefix_dev_map) /
+                                         sizeof(emoji_prefix_dev_map[0]);
