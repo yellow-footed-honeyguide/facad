@@ -47,20 +47,21 @@ int main(int argc, char *argv[])
         print_version(); // Print version info
         return 0;        // Exit program
     }
+
     if (args.show_help)
     {                        // If --help flag is set
         print_help(argv[0]); // Print help info
         return 0;            // Exit program
     }
 
-    if (args.show_longlisting) { // If -l flag is set
-        print_longlisting(".");  // Print longlisting info
-        return 0;                // Exit program
-    }
-
-    if (args.show_dir_analytics) { // If -a flag is set
-        print_dir_analytics(".");  // Print dir analitics info
-        return 0;                  // Exit program
+    if (args.directory_path) {
+        if (chdir(args.directory_path) != 0) {
+            fprintf(stderr, "Error: Unexpected argument '%s'\n", args.directory_path);
+            fprintf(stderr, "Usage: %s [OPTION] [DIRECTORY]\n", argv[0]);
+            fprintf(stderr, "Try '%s --help' for more information.\n", argv[0]);
+            exit(EXIT_FAILURE);
+            return 1;
+        }
     }
 
     char current_dir[MAX_PATH]; // Buffer to store current directory path
@@ -73,7 +74,18 @@ int main(int argc, char *argv[])
         return 1;                 // Exit with error code
     }
 
-    printf("\033[1m%s\033[0m\n", current_dir); // Print current directory in bold
+    if (args.show_longlisting) { // If -l flag is set
+        print_longlisting(".");  // Print longlisting info
+        return 0;                // Exit program
+    }
+
+    if (args.show_dir_analytics) { // If -a flag is set
+        print_dir_analytics(".");  // Print dir analitics info
+        return 0;                  // Exit program
+    }
+
+    // Print current directory in bold
+    printf("\033[1m%s\033[0m\n", current_dir);
 
     ioctl(STDOUT_FILENO, TIOCGWINSZ, &w); // Get terminal window size
     term_width = w.ws_col;                // Store terminal width

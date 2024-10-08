@@ -29,6 +29,7 @@ typedef struct
     int show_dirinfo;        /**< Flag to show directory information (reserved for future use) */
     int show_longlisting;    /**< Flag to show detailed directory listing */
     int show_dir_analytics;  /**< Flag to show directory analytics */
+    const char *directory_path;
 } CommandLineArgs;
 
 /**
