@@ -54,14 +54,22 @@ int main(int argc, char *argv[])
         return 0;            // Exit program
     }
 
-    if (args.directory_path) {
-        if (chdir(args.directory_path) != 0) {
-            fprintf(stderr, "Error: Unexpected argument '%s'\n", args.directory_path);
-            fprintf(stderr, "Usage: %s [OPTION] [DIRECTORY]\n", argv[0]);
-            fprintf(stderr, "Try '%s --help' for more information.\n", argv[0]);
+    if (args.dir_path) {
+        if (chdir(args.dir_path) != 0) {
+            if (errno == ENOENT) {
+                fprintf(stderr, "%s: cannot access '%s': No such file or directory\n",
+                        argv[0], args.dir_path);
+             }
+            else {
+                fprintf(stderr, "%s: error changing to directory '%s': %s\n",
+                        argv[0], args.dir_path, strerror(errno));
+            }
             exit(EXIT_FAILURE);
-            return 1;
         }
+    } else if (args.invalid_opt) {
+        fprintf(stderr, "%s: unrecognized option '%s'\n", argv[0], args.invalid_opt);
+        fprintf(stderr, "Try '%s --help' for more information.\n", argv[0]);
+        exit(EXIT_FAILURE);
     }
 
     char current_dir[MAX_PATH]; // Buffer to store current directory path

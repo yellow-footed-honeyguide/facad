@@ -8,11 +8,9 @@
  * @author Sergey Veneckiy
  * @date 2024
  */
-
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "config.h"
 #include "args_parser.h"
 
@@ -27,8 +25,7 @@
  * @return A CommandLineArgs structure with flags set based on the arguments
  */
 CommandLineArgs parse_args(int argc, char *argv[]) {
-    CommandLineArgs args = {0, 0, 0, 0, 0, NULL};  // Initialize all fields to 0 or NULL
-
+    CommandLineArgs args = {0, 0, 0, 0, 0, NULL, NULL};  // Initialize all fields to 0 or NULL
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--version") == 0) {
             args.show_version = 1;
@@ -38,11 +35,17 @@ CommandLineArgs parse_args(int argc, char *argv[]) {
             args.show_longlisting = 1;
         } else if (strcmp(argv[i], "-a") == 0 || strcmp(argv[i], "--analytics") == 0) {
             args.show_dir_analytics = 1;
-        } else if (args.directory_path == NULL) {
-            args.directory_path = argv[i];
+        } else if (argv[i][0] == '-') {
+            args.invalid_opt = argv[i];
+            break;  // Stop parsing further arguments
+        } else if (args.dir_path == NULL) {
+            args.dir_path = argv[i];
+        } else {
+            // If we've already set a directory path and encounter another argument
+            args.invalid_opt = argv[i];
+            break;  // Stop parsing further arguments
         }
     }
-
     return args;
 }
 
@@ -74,3 +77,4 @@ void print_help(const char *program_name) {
     printf("  -a, --analytics display directory analytics\n");
     printf("\nIf DIRECTORY is not specified, the current directory is used.\n");
 }
+

@@ -24,12 +24,13 @@
  */
 typedef struct
 {
-    bool show_version;       /**< Flag to show version information */
-    bool show_help;          /**< Flag to show help information */
-    int show_dirinfo;        /**< Flag to show directory information (reserved for future use) */
-    int show_longlisting;    /**< Flag to show detailed directory listing */
-    int show_dir_analytics;  /**< Flag to show directory analytics */
-    const char *directory_path;
+    bool show_version;          /**< Flag to show version information */
+    bool show_help;             /**< Flag to show help information */
+    int show_dirinfo;           /**< Flag to show directory information (reserved for future use) */
+    int show_longlisting;       /**< Flag to show detailed directory listing */
+    int show_dir_analytics;     /**< Flag to show directory analytics */
+    const char *dir_path;       /**< Directory path arg */
+    const char *invalid_opt;    /**< Option that not exist */
 } CommandLineArgs;
 
 /**
