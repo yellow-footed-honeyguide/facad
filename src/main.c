@@ -26,7 +26,7 @@
 #include "directory_config.h"
 
 #define MAX_PATH 4096 /**< Maximum path length */
-#define MAX_ENTRIES 1024 /**< Maximum number of directory entries */
+#define MAX_ENTRIES 8192 /**< Maximum number of directory entries */
 
 
 /**
