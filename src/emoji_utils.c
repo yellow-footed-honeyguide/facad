@@ -93,7 +93,7 @@ static char* check_file_content(const char *path) {
  * @return A dynamically allocated string containing the emoji
  */
 char *get_emoji(const char *path) {
-    struct stat path_stat;
+   struct stat path_stat;
 
     // Check if we can get file information
     if (lstat(path, &path_stat) != 0) {
@@ -114,21 +114,21 @@ char *get_emoji(const char *path) {
     const char *filename = strrchr(path, '/');
     filename = filename ? filename + 1 : path;
 
-    // Check file content for specific patterns
+    // Check for exact file name matches first (highest priority)
+    for (size_t i = 0; i < emoji_exact_file_map_size; i++) {
+        if (strcasecmp(filename, emoji_exact_file_map[i].key) == 0) {
+            return safe_strdup(emoji_exact_file_map[i].emoji);
+        }
+    }
+
+    // Check file content for specific patterns (second priority)
     char *content_emoji = check_file_content(path);
     if (content_emoji) {
         return content_emoji;
     }
 
-    // Check for exact file name matches
-    for (size_t i = 0; i < emoji_exact_file_map_size; i++) {
-        if (strstr(filename, emoji_exact_file_map[i].key) == filename) {
-            return safe_strdup(emoji_exact_file_map[i].emoji);
-        }
-    }
-
-    // Check file extensions
-    char *extension = strrchr(path, '.');
+    // Check file extensions (third priority)
+    char *extension = strrchr(filename, '.');
     if (extension) {
         extension++;  // Skip the dot
         for (size_t i = 0; i < emoji_extension_map_size; i++) {
@@ -139,7 +139,7 @@ char *get_emoji(const char *path) {
     }
 
     // Check for hidden files
-    if (path[0] == '.') {
+    if (filename[0] == '.') {
         return safe_strdup("⚙️");
     }
 
