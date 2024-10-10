@@ -211,7 +211,9 @@ const EmojiMapEntry emoji_extension_map[] = {
     {"env", "🌍"},
     {"bin", "💾"},
     {"pid", "🪪"},
-    {"swap", "🔄"}
+    {"swap", "🔄"},
+    {"list", "📋"}
+    //{"", ""},
 };
 
 /** @brief Size of the emoji_extension_map array. */
@@ -244,6 +246,7 @@ const EmojiMapEntry emoji_exact_file_map[] = {
     {".prettierignore", "🙈"},
     {".p4ignore", "🙈"},
     {"Dockerfile", "🐳"},
+    {"Dockerfile.txt", "🐳"},
     {".gitlab-ci.yml", "🦊"},
     {".travis.yml", "⛑️"},
     {"swagger.yaml", "🧣"},
@@ -251,7 +254,31 @@ const EmojiMapEntry emoji_exact_file_map[] = {
     {"tags", "🏷️"},
     {"LICENSE", "⚖️"},
     {".ninja_deps", "🥷"},
-    {".ninja_log", "🥷"}
+    {".ninja_log", "🥷"},
+    {".gitattributes", "🐙"},
+    {".gitconfig", "🐙"},
+    {".zcompdump", "🆉 "},
+    {".zprofile", "🆉 "},
+    {".zshrc", "🆉 "},
+    {".histfile", "🆉 "},
+    {".bashrc", "💰"},
+    {".bash_history", "💰"},
+    {".bash_logout", "💰"},
+    {".bash_profile", "💰"},
+    {".prettierrc", "🖌️"},
+    {".inputrc", "🖮 "},
+    {".vimrc", "🖖"},
+    {".viminfo", "🖖"},
+    {"clang-tidy", "🧹"},
+    {".clang-format", "🧹"},
+    {".babelrc", "🗼"},
+    {"manifest.txt", "📜"},
+    {"robots.txt", "🕷️"},
+    {"sitemap.txt", "🗺️"},
+    {"Pipfile.txt", "🐍"},
+    {"requirements.txt", "🧾"}
+    //{"", ""},
+    //{"", ""},
 };
 /** @brief Size of the emoji_exact_file_map array. */
 const size_t emoji_exact_file_map_size = sizeof(emoji_exact_file_map) /
@@ -273,7 +300,7 @@ const EmojiMapEntry emoji_file_content_map[] = {
     {"#!/bin/dash", "🐚"},
     {"#!/usr/bin/dash", "🐚"},
     {"#!/usr/bin/env dash", "🐚"},
-    {"#!/bin/zsh", "🆉"},
+    {"#!/bin/zsh", "🆉 "},
     {"#!/usr/bin/zsh", "🆉"},
     {"#!/usr/bin/env zsh", "🆉"},
     {"#!/bin/ksh", "🐚"},
