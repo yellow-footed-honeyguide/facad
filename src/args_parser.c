@@ -1,52 +1,43 @@
-/**
- * @file args_parser.c
- * @brief Command-line argument parsing for facad
- *
- * This file contains functions for parsing command-line arguments
- * and displaying help and version information for the facad program.
- *
- * @author Sergey Veneckiy
- * @date 2024
- */
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "config.h"
 #include "args_parser.h"
 
-/**
- * @brief Parse command-line arguments
- *
- * This function parses the command-line arguments passed to the program
- * and sets the appropriate flags in the CommandLineArgs structure.
- *
- * @param argc The number of command-line arguments
- * @param argv An array of strings containing the command-line arguments
- * @return A CommandLineArgs structure with flags set based on the arguments
- */
+bool is_glob_pattern(const char *str) {
+    return (strchr(str, '*') != NULL || strchr(str, '?') != NULL || strchr(str, '[') != NULL);
+}
+
 CommandLineArgs parse_args(int argc, char *argv[]) {
-    CommandLineArgs args = {0, 0, 0, 0, 0, NULL, NULL};  // Initialize all fields to 0 or NULL
+    CommandLineArgs args = {0};
+    args.targets = malloc(sizeof(char*) * (argc - 1));  // Allocate max possible size
+    args.target_count = 0;
+
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--version") == 0) {
-            args.show_version = 1;
+            args.show_version = true;
         } else if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
-            args.show_help = 1;
+            args.show_help = true;
         } else if (strcmp(argv[i], "-l") == 0 || strcmp(argv[i], "--long") == 0) {
-            args.show_longlisting = 1;
+            args.show_longlisting = true;
         } else if (strcmp(argv[i], "-a") == 0 || strcmp(argv[i], "--analytics") == 0) {
-            args.show_dir_analytics = 1;
+            args.show_dir_analytics = true;
         } else if (argv[i][0] == '-') {
             args.invalid_opt = argv[i];
-            break;  // Stop parsing further arguments
-        } else if (args.dir_path == NULL) {
-            args.dir_path = argv[i];
+            return args;  // Return immediately on invalid option
         } else {
-            // If we've already set a directory path and encounter another argument
-            args.invalid_opt = argv[i];
-            break;  // Stop parsing further arguments
+            args.targets[args.target_count++] = argv[i];
         }
     }
+
     return args;
+}
+
+void free_args(CommandLineArgs *args) {
+    if (args->targets) {
+        free(args->targets);
+        args->targets = NULL;
+    }
 }
 
 /**
