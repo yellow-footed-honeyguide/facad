@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <wchar.h>
+#include <glob.h>
 
 #include "display_utils.h"
 #include "file_card.h"
@@ -90,7 +91,7 @@ void print_padded(const char *str, size_t width) {
  * @param term_width Width of the terminal in characters.
  */
 void display_entries(FileCardInfo *entries, int num_entries, int term_width,
-                     const char *current_dir) {
+                     const char *current_dir, int show_path) {
     // Set the locale to the user's default for proper wide character handling
     setlocale(LC_ALL, "");
 
@@ -101,7 +102,6 @@ void display_entries(FileCardInfo *entries, int num_entries, int term_width,
     size_t *entry_widths = malloc(num_entries * sizeof(size_t));
     if (!entry_widths) {
         fprintf(stderr, "Memory allocation failed\n");
-        return;
     }
 
     // Calculate the width of each entry and find the maximum width
@@ -124,7 +124,6 @@ void display_entries(FileCardInfo *entries, int num_entries, int term_width,
     if (!column_widths) {
         fprintf(stderr, "Memory allocation failed\n");
         free(entry_widths);
-        return;
     }
 
     // Calculate the number of rows needed
@@ -136,6 +135,10 @@ void display_entries(FileCardInfo *entries, int num_entries, int term_width,
         if (entry_widths[i] > column_widths[col]) {
             column_widths[col] = entry_widths[i];
         }
+    }
+
+    if (show_path) {
+        printf("\033[1m%s\033[0m\n", current_dir);
     }
 
     // Display the entries in a grid format

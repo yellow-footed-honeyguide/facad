@@ -201,6 +201,16 @@ static int process_target(const char *target, FileCardInfo **entries, int *num_e
     return 0;
 }
 
+// Add this new function to check if we're dealing with glob patterns or specific files
+static int is_glob_or_specific_files(const char **targets, int target_count) {
+    for (int i = 0; i < target_count; i++) {
+        if (is_glob_pattern(targets[i]) || !is_directory(targets[i])) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
 int main(int argc, char *argv[]) {
     CommandLineArgs args = parse_args(argc, argv);
 
@@ -231,7 +241,11 @@ int main(int argc, char *argv[]) {
     }
 
     if (args.show_longlisting) {
-        print_longlisting(args.target_count > 0 ? args.targets[0] : ".");
+        if (args.target_count > 0 && is_glob_or_specific_files(args.targets, args.target_count)) {
+            print_longlisting_files(args.targets, args.target_count);
+        } else {
+            print_longlisting(args.target_count > 0 ? args.targets[0] : ".");
+        }
         free_args(&args);
         return EXIT_SUCCESS;
     }
@@ -242,7 +256,7 @@ int main(int argc, char *argv[]) {
         return EXIT_SUCCESS;
     }
 
-     struct winsize w;
+    struct winsize w;
     ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
     int term_width = w.ws_col;
 
@@ -253,7 +267,10 @@ int main(int argc, char *argv[]) {
     char display_path[MAX_PATH];
     strcpy(display_path, current_dir);
 
+    int show_path = 1; // По умолчанию показываем путь
+
     if (args.target_count > 0) {
+        show_path = 0; // Не показываем путь, если указаны цели
         for (int i = 0; i < args.target_count; i++) {
             char *real_path = realpath(args.targets[i], NULL);
             if (real_path != NULL) {
@@ -299,9 +316,7 @@ int main(int argc, char *argv[]) {
 
     qsort(entries, num_entries, sizeof(FileCardInfo), compare_file_entries);
 
-    printf("\033[1m%s\033[0m\n", display_path);
-
-    display_entries(entries, num_entries, term_width, display_path);
+    display_entries(entries, num_entries, term_width, display_path, show_path);
 
     for (int i = 0; i < num_entries; i++) {
         free_file_entry(&entries[i]);
@@ -311,3 +326,4 @@ int main(int argc, char *argv[]) {
 
     return EXIT_SUCCESS;
 }
+

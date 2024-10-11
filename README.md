@@ -2,7 +2,7 @@
 
 A modern, colorful directory listing tool for the command line.
 
-![facad in action](assets/new_facad.jpg)
+![facad in action](assets/facad_2_18.jpg)
 
 ## Features
 > Designed for both novice users and power users,<br>

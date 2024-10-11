@@ -21,6 +21,7 @@
 #include <locale.h>
 #include <errno.h>
 #include <unistd.h>
+#include <glob.h>
 #include "longlisting.h"
 #include "emoji_utils.h"
 
@@ -45,6 +46,16 @@ struct file_info {
     char time_ago[MAX_TIME_AGO_LEN]; /**< Human-readable time since last modification */
 };
 
+// Function prototypes
+static char *format_size(off_t size);
+static void format_time_ago(time_t file_time, char *buf, size_t buf_size);
+static void get_user_rights(mode_t mode, char *rights);
+static off_t get_dir_size(const char *path);
+static int count_subdirs(const char *path);
+static int compare_entries(const void *a, const void *b);
+static int get_file_info(const char *path, struct file_info *fi, size_t *max_owner_len, size_t *max_time_ago_len);
+static void print_sorted_entries(struct file_info *entries, int entry_count, size_t max_owner_len, size_t max_time_ago_len);
+
 /**
  * @brief Formats a file size into a human-readable string.
  *
@@ -57,13 +68,11 @@ static char *format_size(off_t size) {
     int i = 0;
     double dsize = size;
 
-    // Convert size to appropriate unit
     while (dsize >= 1024 && i < 8) {
         dsize /= 1024;
         i++;
     }
 
-    // Format the size with one decimal place
     snprintf(buf, sizeof(buf), "%.1f%s", dsize, units[i]);
     return buf;
 }
@@ -84,7 +93,6 @@ static void format_time_ago(time_t file_time, char *buf, size_t buf_size) {
     int months = days / 30;  // Approximation
     int years = days / 365;  // Approximation
 
-    // Format the time difference based on its magnitude
     if (years > 0) {
         snprintf(buf, buf_size, "%dy %dm ago", years, months % 12);
     } else if (months > 0) {
@@ -112,7 +120,6 @@ static void get_user_rights(mode_t mode, char *rights) {
     const char *exec = "\xF0\x9F\x9A\x80";   // 🚀
     const char *no = "\xE2\x9D\x8C";         // ❌
 
-    // Construct the emoji string based on file permissions
     strcpy(rights, "");
     strcat(rights, (mode & S_IRUSR) ? read : no);
     strcat(rights, (mode & S_IWUSR) ? write : no);
@@ -135,7 +142,6 @@ static off_t get_dir_size(const char *path) {
     dir = opendir(path);
     if (!dir) return 0;
 
-    // Iterate through directory entries
     while ((entry = readdir(dir)) != NULL) {
         if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) continue;
 
@@ -143,10 +149,8 @@ static off_t get_dir_size(const char *path) {
 
         if (lstat(full_path, &st) == 0) {
             if (S_ISDIR(st.st_mode)) {
-                // Recursively calculate size for subdirectories
                 total_size += get_dir_size(full_path);
             } else {
-                // Add file size
                 total_size += st.st_size;
             }
         }
@@ -169,7 +173,6 @@ static int count_subdirs(const char *path) {
     dir = opendir(path);
     if (!dir) return 0;
 
-    // Iterate through directory entries
     while ((entry = readdir(dir)) != NULL) {
         if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) continue;
 
@@ -197,12 +200,10 @@ static int compare_entries(const void *a, const void *b) {
     const struct file_info *fa = (const struct file_info *)a;
     const struct file_info *fb = (const struct file_info *)b;
 
-    // Sort directories before files
     if (fa->is_dir && !fb->is_dir) return -1;
     if (!fa->is_dir && fb->is_dir) return 1;
 
     if (fa->is_dir && fb->is_dir) {
-        // Sort directories by subdirectory count, then by size
         if (fa->subdir_count != fb->subdir_count) {
             return fb->subdir_count - fa->subdir_count;
         }
@@ -212,102 +213,74 @@ static int compare_entries(const void *a, const void *b) {
     }
 
     if (!fa->is_dir && !fb->is_dir) {
-        // Sort files by size
         if (fa->size != fb->size) {
             return (fa->size < fb->size) ? 1 : -1;
         }
     }
 
-    // If all else is equal, sort alphabetically
     return strcasecmp(fa->name, fb->name);
 }
 
 /**
- * @brief Prints a detailed listing of the contents of a directory.
+ * @brief Gets detailed information about a file.
  *
- * This function reads the contents of the specified directory,
- * sorts them, and prints a detailed listing including file size,
- * last modification time, permissions, and other attributes.
- *
- * @param path The path of the directory to list.
+ * @param path The path to the file.
+ * @param fi Pointer to a file_info structure to populate.
+ * @param max_owner_len Pointer to store the maximum owner name length.
+ * @param max_time_ago_len Pointer to store the maximum time ago string length.
+ * @return 0 on success, -1 on failure.
  */
-void print_longlisting(const char *path) {
-    setlocale(LC_ALL, "");  // Set locale for proper wide character handling
+static int get_file_info(const char *path, struct file_info *fi, size_t *max_owner_len, size_t *max_time_ago_len) {
+    struct stat st;
+    if (lstat(path, &st) != 0) return -1;
 
-    DIR *dir;
-    struct dirent *entry;
-    struct file_info entries[MAX_ENTRIES];
-    int entry_count = 0;
-    size_t max_owner_len = 0;
-    size_t max_time_ago_len = 0;
+    strncpy(fi->name, path, sizeof(fi->name) - 1);
+    fi->name[sizeof(fi->name) - 1] = '\0';
+    strncpy(fi->full_path, path, sizeof(fi->full_path) - 1);
+    fi->full_path[sizeof(fi->full_path) - 1] = '\0';
 
-    dir = opendir(path);
-    if (!dir) {
-        perror("Error opening directory");
-        return;
+    fi->mode = st.st_mode;
+    fi->mtime = st.st_mtime;
+    fi->is_dir = S_ISDIR(st.st_mode);
+    fi->size = fi->is_dir ? get_dir_size(path) : st.st_size;
+    fi->subdir_count = fi->is_dir ? count_subdirs(path) : 0;
+
+    struct passwd *pw = getpwuid(st.st_uid);
+    if (pw) {
+        strncpy(fi->owner, pw->pw_name, sizeof(fi->owner) - 1);
+    } else {
+        snprintf(fi->owner, sizeof(fi->owner), "%d", st.st_uid);
     }
 
-    // Read directory entries and populate file_info structures
-    while ((entry = readdir(dir)) != NULL && entry_count < MAX_ENTRIES) {
-        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) continue;
-
-        struct file_info *fi = &entries[entry_count];
-        strncpy(fi->name, entry->d_name, sizeof(fi->name) - 1);
-        snprintf(fi->full_path, sizeof(fi->full_path), "%s/%s", path, entry->d_name);
-
-        struct stat st;
-        if (lstat(fi->full_path, &st) != 0) continue;
-
-        fi->mode = st.st_mode;
-        fi->mtime = st.st_mtime;
-        fi->is_dir = S_ISDIR(st.st_mode);
-
-        // Calculate size and subdirectory count for directories
-        if (fi->is_dir) {
-            fi->size = get_dir_size(fi->full_path);
-            fi->subdir_count = count_subdirs(fi->full_path);
-        } else {
-            fi->size = st.st_size;
-            fi->subdir_count = 0;
-        }
-
-        // Get owner information
-        struct passwd *pw = getpwuid(st.st_uid);
-        if (pw) {
-            strncpy(fi->owner, pw->pw_name, sizeof(fi->owner) - 1);
-        } else {
-            snprintf(fi->owner, sizeof(fi->owner), "%d", st.st_uid);
-        }
-
-        // Update maximum owner name length
-        size_t owner_len = strlen(fi->owner);
-        if (owner_len > max_owner_len) {
-            max_owner_len = owner_len;
-        }
-
-        // Format time ago
-        format_time_ago(fi->mtime, fi->time_ago, sizeof(fi->time_ago));
-        size_t time_ago_len = strlen(fi->time_ago);
-        if (time_ago_len > max_time_ago_len) {
-            max_time_ago_len = time_ago_len;
-        }
-
-        // Get user rights as emojis
-        get_user_rights(fi->mode, fi->user_rights);
-
-        entry_count++;
+    size_t owner_len = strlen(fi->owner);
+    if (owner_len > *max_owner_len) {
+        *max_owner_len = owner_len;
     }
-    closedir(dir);
 
-    // Sort entries
-    qsort(entries, entry_count, sizeof(struct file_info), compare_entries);
+    format_time_ago(fi->mtime, fi->time_ago, sizeof(fi->time_ago));
+    size_t time_ago_len = strlen(fi->time_ago);
+    if (time_ago_len > *max_time_ago_len) {
+        *max_time_ago_len = time_ago_len;
+    }
 
-    // Print sorted entries
+    get_user_rights(fi->mode, fi->user_rights);
+
+    return 0;
+}
+
+/**
+ * @brief Prints sorted entries in a detailed format.
+ *
+ * @param entries Array of file_info structures.
+ * @param entry_count Number of entries in the array.
+ * @param max_owner_len Maximum length of owner names.
+ * @param max_time_ago_len Maximum length of time ago strings.
+ */
+static void print_sorted_entries(struct file_info *entries, int entry_count, size_t max_owner_len, size_t max_time_ago_len) {
     for (int i = 0; i < entry_count; i++) {
         struct file_info *fi = &entries[i];
         char *emoji = get_emoji(fi->full_path);
 
-        // Print formatted entry information
         printf("%8s  %-*s  \xF0\x9F\x91\x91: %-*s \xF0\x9F\x93\x9C: %s  %s %-17s",
                format_size(fi->size),
                (int)max_time_ago_len, fi->time_ago,
@@ -316,12 +289,80 @@ void print_longlisting(const char *path) {
                emoji,
                fi->name);
 
-        // Print subdirectory count for directories
         if (fi->is_dir) {
             printf("(%d)", fi->subdir_count);
         }
         printf("\n");
 
         free(emoji);
+    }
+}
+
+/**
+ * @brief Prints a detailed listing of the contents of a directory.
+ *
+ * @param path The path of the directory to list.
+ */
+void print_longlisting(const char *path) {
+    setlocale(LC_ALL, "");
+
+    struct file_info entries[MAX_ENTRIES];
+    int entry_count = 0;
+    size_t max_owner_len = 0;
+    size_t max_time_ago_len = 0;
+
+    DIR *dir = opendir(path);
+    if (!dir) {
+        perror("Error opening directory");
+        return;
+    }
+
+    struct dirent *entry;
+    while ((entry = readdir(dir)) != NULL && entry_count < MAX_ENTRIES) {
+        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) continue;
+
+        char full_path[MAX_PATH];
+        snprintf(full_path, sizeof(full_path), "%s/%s", path, entry->d_name);
+
+        struct file_info *fi = &entries[entry_count];
+        if (get_file_info(full_path, fi, &max_owner_len, &max_time_ago_len) == 0) {
+            entry_count++;
+        }
+    }
+    closedir(dir);
+
+    qsort(entries, entry_count, sizeof(struct file_info), compare_entries);
+    print_sorted_entries(entries, entry_count, max_owner_len, max_time_ago_len);
+}
+
+
+void print_longlisting_files(const char **patterns, int pattern_count) {
+    struct file_info entries[MAX_ENTRIES];
+    int entry_count = 0;
+    size_t max_owner_len = 0;
+    size_t max_time_ago_len = 0;
+
+    for (int i = 0; i < pattern_count; i++) {
+        glob_t globbuf;
+        int glob_result = glob(patterns[i], GLOB_TILDE, NULL, &globbuf);
+
+        if (glob_result == 0) {
+            for (size_t j = 0; j < globbuf.gl_pathc && entry_count < MAX_ENTRIES; j++) {
+                struct file_info *fi = &entries[entry_count];
+                if (get_file_info(globbuf.gl_pathv[j], fi, &max_owner_len, &max_time_ago_len) == 0) {
+                    entry_count++;
+                }
+            }
+        } else {
+            fprintf(stderr, "glob error for pattern '%s': %s\n", patterns[i], strerror(errno));
+        }
+        globfree(&globbuf);
+    }
+
+    if (entry_count > 0) {
+        qsort(entries, entry_count, sizeof(struct file_info), compare_entries);
+        print_sorted_entries(entries, entry_count, max_owner_len, max_time_ago_len);
+    } else {
+        fprintf(stderr, "No matching files found.\n");
     }
 }
