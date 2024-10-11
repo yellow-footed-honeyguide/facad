@@ -76,8 +76,8 @@ const EmojiMapEntry emoji_extension_map[] = {
     {"r", "📈"},
     {"m", "💻"},
     {"mm", "💻"},
-    {"asm", "💻"},
-    {"s", "💻"},
+    {"asm", "📟"},
+    {"s", "📟"},
     {"f", "🅵"},
     {"f90", "🅵"},
     {"lisp", "💻"},
@@ -215,6 +215,7 @@ const EmojiMapEntry emoji_extension_map[] = {
     {"list", "📋"},
     {"nim", "👑"},
     {"rkt", "🏸"},
+    {"deny", "⛔"},
     //{"", ""},
 };
 
@@ -344,6 +345,7 @@ const EmojiMapEntry emoji_exact_file_map[] = {
     {"Cargo.toml", "🚗"},
     {".eslintrc", "🧹"},
     {"tox.ini", "🧪"},
+    {"rsyncd.conf", "🔁"},
     //{"", ""},
 };
 /** @brief Size of the emoji_exact_file_map array. */
