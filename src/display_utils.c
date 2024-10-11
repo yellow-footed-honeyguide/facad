@@ -20,7 +20,7 @@
 
 #include "display_utils.h"
 #include "file_card.h"
-#include "directory_config.h"
+#include "dir_config.h"
 
 // Constants for display formatting
 #define MAX_COLUMNS 4

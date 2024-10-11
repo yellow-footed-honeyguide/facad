@@ -1,5 +1,5 @@
 /**
- * @file directory_config.c
+ * @file dir_config.c
  * @brief Implementation of directory configuration functions.
  *
  * This file contains the implementation of functions related to
@@ -10,7 +10,7 @@
  * @date 2024
  */
 
-#include "directory_config.h"
+#include "dir_config.h"
 #include <string.h>
 
 /**

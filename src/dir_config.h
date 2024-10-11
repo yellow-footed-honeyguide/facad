@@ -1,5 +1,5 @@
 /**
- * @file directory_config.h
+ * @file dir_config.h
  * @brief Header file for directory-specific configurations.
  *
  * This file declares structures and functions for managing
