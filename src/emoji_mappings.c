@@ -71,7 +71,7 @@ const EmojiMapEntry emoji_extension_map[] = {
     {"tsx", "💻"},
     {"vue", "🟩"},
     {"dart", "🦋"},
-    {"lua", "💻"},
+    {"lua", "🌙"},
     {"pl", "🐪"},
     {"r", "📈"},
     {"m", "💻"},
@@ -212,7 +212,9 @@ const EmojiMapEntry emoji_extension_map[] = {
     {"bin", "💾"},
     {"pid", "🪪"},
     {"swap", "🔄"},
-    {"list", "📋"}
+    {"list", "📋"},
+    {"nim", "👑"},
+    {"rkt", "🏸"},
     //{"", ""},
 };
 
@@ -258,6 +260,7 @@ const EmojiMapEntry emoji_exact_file_map[] = {
     {".ninja_log", "🥷"},
     {".gitattributes", "🐙"},
     {".gitconfig", "🐙"},
+    {".gitmodules", "🐙"},
     {".zcompdump", "🆉 "},
     {".zprofile", "🆉 "},
     {".zshrc", "🆉 "},
@@ -278,7 +281,7 @@ const EmojiMapEntry emoji_exact_file_map[] = {
     {"sitemap.txt", "🗺️"},
     {"Pipfile.txt", "🐍"},
     {"requirements.txt", "🧾"},
-    {".editorconfig", "🖋️"},
+    {".editorconfig", "📐"},
     {"tsconfig.json", "🔷"},
     {"tsconfig.test.json", "🧪"},
     {"jest.config.js", "🧪"},
@@ -337,6 +340,10 @@ const EmojiMapEntry emoji_exact_file_map[] = {
     {"passwd-", "🔙"},
     {"bashrc", "💰"},
     {"crontab", "📅"},
+    {"Gemfile", "💎"},
+    {"Cargo.toml", "🚗"},
+    {".eslintrc", "🧹"},
+    {"tox.ini", "🧪"},
     //{"", ""},
 };
 /** @brief Size of the emoji_exact_file_map array. */
