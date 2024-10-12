@@ -21,6 +21,12 @@ A modern, colorful directory listing tool for the command line.
 ### Dependencies
 - Pure C implementation without any dependency
 
+### I use Arch btw?
+Just use the script from AUR:
+```bash
+yay -S facad
+```
+
 ### Build 
 ```bash
 git clone https://github.com/yellow-footed-honeyguide/facad.git
