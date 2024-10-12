@@ -308,7 +308,7 @@ int main(int argc, char *argv[]) {
     }
 
     if (num_entries == 0) {
-        fprintf(stderr, "No entries found\n");
+        fprintf(stderr, "The directory is empty.\n");
         free(entries);
         free_args(&args);
         return EXIT_FAILURE;
