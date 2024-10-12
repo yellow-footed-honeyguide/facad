@@ -267,10 +267,10 @@ int main(int argc, char *argv[]) {
     char display_path[MAX_PATH];
     strcpy(display_path, current_dir);
 
-    int show_path = 1; // По умолчанию показываем путь
+    int show_path = 1;
 
     if (args.target_count > 0) {
-        show_path = 0; // Не показываем путь, если указаны цели
+        show_path = 0;
         for (int i = 0; i < args.target_count; i++) {
             char *real_path = realpath(args.targets[i], NULL);
             if (real_path != NULL) {
@@ -307,8 +307,17 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    if (num_entries == 0) {
-        fprintf(stderr, "The directory is empty.\n");
+
+    if (num_entries == 0) {          // Check if directory is empty
+        char current_dir[PATH_MAX];  // Buffer for current directory path
+        if (getcwd(current_dir, sizeof(current_dir)) != NULL) {  // Get cur work dir
+            if (strcmp(current_dir, display_path) == 0) {  // Compare current dir with target dir
+            printf("\033[1m%s\033[0m\n", current_dir);  // Print path in bold if same
+        }
+        fprintf(stderr, "🚫 No files found\n");      // Always print "no files" mess
+        } else {
+            fprintf(stderr, "🚫 No files found\n");  // Fallback if getcwd() fails
+        }
         free(entries);
         free_args(&args);
         return EXIT_FAILURE;
