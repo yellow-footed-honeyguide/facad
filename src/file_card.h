@@ -17,11 +17,13 @@
  */
 typedef struct
 {
-    char *name;       /**< Name of the file */
-    char *emoji;      /**< Emoji representation of the file type */
-    int is_directory; /**< Flag indicating if the entry is a directory */
-    int is_hidden;    /**< Flag indicating if the entry is hidden */
+    char *name;
+    char *emoji;
+    int is_directory;
+    int is_hidden;
+    char git_status[2];
 } FileCardInfo;
+
 
 /**
  * @brief Creates a file entry based on the given path.

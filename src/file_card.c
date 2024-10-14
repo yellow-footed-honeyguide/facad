@@ -9,7 +9,7 @@
  * @date 2024
  */
 
-#include <stdlib.h> 
+#include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <ctype.h>
@@ -29,19 +29,21 @@
  */
 int create_file_entry(FileCardInfo *entry, const char *path)
 {
-    entry->name = strdup(path);     // Duplicate the path string
-    entry->emoji = get_emoji(path); // Get the appropriate emoji for the file
+    entry->name = strdup(path);
+    entry->emoji = get_emoji(path);
 
-    struct stat path_stat; // Structure to hold file stats
+    struct stat path_stat;
     if (lstat(path, &path_stat) != 0)
-    {              // Get file stats, using lstat to handle symlinks
-        return -1; // Return error if unable to get file info
+    {
+        return -1;
     }
 
-    entry->is_directory = S_ISDIR(path_stat.st_mode); // Check if it's a directory
-    entry->is_hidden = (path[0] == '.');              // Check if it's a hidden file/directory
+    entry->is_directory = S_ISDIR(path_stat.st_mode);
+    entry->is_hidden = (path[0] == '.');
+    entry->git_status[0] = '\0';
+    entry->git_status[1] = '\0';
 
-    return 0; // Successful entry creation
+    return 0;
 }
 
 /**
@@ -95,15 +97,15 @@ static int strcasecmp_wrapper(const char *a, const char *b) {
         // Convert current characters to lowercase for case-insensitive comparison
         int ca = tolower((unsigned char)*a);
         int cb = tolower((unsigned char)*b);
-        
+
         // If characters differ, return their difference (determines sorting order)
-        if (ca != cb) return ca - cb; 
-        
+        if (ca != cb) return ca - cb;
+
         // Move to the next character in both strings
         a++;
         b++;
-    }   
-    
+    }
+
     // If we've reached here, one string might be longer than the other
     // Compare the last characters (one might be '\0' if strings are different lengths)
     return tolower((unsigned char)*a) - tolower((unsigned char)*b);

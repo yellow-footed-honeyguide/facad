@@ -29,6 +29,9 @@
 #include "display_utils.h"
 #include "dev_dir_utils.h"
 
+#include "git_integration.h"
+#include "git_utils.h"
+
 #define MAX_PATH 4096        // Define maximum path length
 #define INITIAL_ENTRIES 512  // Define initial number of directory entries
 
@@ -74,42 +77,41 @@ static int allocate_entries(FileCardInfo **entries, int *current_size) {
  * @return 0 on success, -1 on failure.
  */
 static int process_directory(const char *dir_path, FileCardInfo **entries, int *num_entries, int *current_size) {
-    // Open the directory
     DIR *dir = opendir(dir_path);
     if (dir == NULL) {
         perror("Error opening directory");
-        return -1;  // Return -1 to indicate failure
+        return -1;
     }
 
     struct dirent *entry;
-    // Read directory entries one by one
     while ((entry = readdir(dir)) != NULL) {
-        // Skip '.' and '..' entries
         if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) {
             continue;
         }
 
-        // Check if we need to allocate more memory
         if (*num_entries >= *current_size) {
             if (allocate_entries(entries, current_size) != 0) {
                 closedir(dir);
-                return -1;  // Return -1 if memory allocation fails
+                return -1;
             }
         }
 
-        // Create a file entry for the current directory item
+        char full_path[MAX_PATH];
+        snprintf(full_path, sizeof(full_path), "%s/%s", dir_path, entry->d_name);
+
         if (create_file_entry(&(*entries)[*num_entries], entry->d_name) != 0) {
-            fprintf(stderr, "Warning: Unable to get info for %s: %s\n", entry->d_name, strerror(errno));
-            continue;  // Skip this entry and continue with the next one
+            fprintf(stderr, "Warning: Unable to get info for %s: %s\n", full_path, strerror(errno));
+            continue;
         }
 
-        // Increment the number of entries
         (*num_entries)++;
     }
 
-    // Close the directory
     closedir(dir);
-    return 0;  // Return 0 to indicate success
+
+    integrate_git_status(entries, num_entries, dir_path);
+
+    return 0;
 }
 
 static int process_files_or_patterns(const char **patterns, int pattern_count, FileCardInfo **entries, int *num_entries, int *current_size) {
@@ -211,6 +213,7 @@ static int is_glob_or_specific_files(const char **targets, int target_count) {
     return 0;
 }
 
+
 int main(int argc, char *argv[]) {
     CommandLineArgs args = parse_args(argc, argv);
 
@@ -269,7 +272,7 @@ int main(int argc, char *argv[]) {
 
     int show_path = 1;
 
-    if (args.target_count > 0) {
+     if (args.target_count > 0) {
         show_path = 0;
         for (int i = 0; i < args.target_count; i++) {
             char *real_path = realpath(args.targets[i], NULL);
@@ -282,12 +285,7 @@ int main(int argc, char *argv[]) {
 
             if (process_target(args.targets[i], &entries, &num_entries, &current_size) != 0) {
                 fprintf(stderr, "Error processing '%s'\n", args.targets[i]);
-                free_args(&args);
-                for (int j = 0; j < num_entries; j++) {
-                    free_file_entry(&entries[j]);
-                }
-                free(entries);
-                return EXIT_FAILURE;
+                goto cleanup;
             }
         }
     } else {
@@ -295,44 +293,51 @@ int main(int argc, char *argv[]) {
             strcpy(display_path, "/dev");
             if (handle_dev_directory(&entries, &num_entries, &current_size) != 0) {
                 fprintf(stderr, "Error processing /dev directory\n");
-                free_args(&args);
-                return EXIT_FAILURE;
+                goto cleanup;
             }
         } else {
             if (process_directory(".", &entries, &num_entries, &current_size) != 0) {
                 fprintf(stderr, "Error processing current directory\n");
-                free_args(&args);
-                return EXIT_FAILURE;
+                goto cleanup;
             }
         }
     }
 
-
-    if (num_entries == 0) {          // Check if directory is empty
-        char current_dir[PATH_MAX];  // Buffer for current directory path
-        if (getcwd(current_dir, sizeof(current_dir)) != NULL) {  // Get cur work dir
-            if (strcmp(current_dir, display_path) == 0) {  // Compare current dir with target dir
-            printf("\033[1m%s\033[0m\n", current_dir);  // Print path in bold if same
-        }
-        fprintf(stderr, "🚫 No files found\n");      // Always print "no files" mess
+       if (num_entries == 0) {
+        char current_dir[PATH_MAX];
+        if (getcwd(current_dir, sizeof(current_dir)) != NULL) {
+            if (strcmp(current_dir, display_path) == 0) {
+                printf("\033[1m%s\033[0m\n", current_dir);
+            }
+            fprintf(stderr, "🚫 No files found\n");
         } else {
-            fprintf(stderr, "🚫 No files found\n");  // Fallback if getcwd() fails
+            fprintf(stderr, "🚫 No files found\n");
         }
-        free(entries);
-        free_args(&args);
-        return EXIT_FAILURE;
+    } else {
+        qsort(entries, num_entries, sizeof(FileCardInfo), compare_file_entries);
+
+        if (is_git_repository()) {
+            GitFileList git_status = get_git_status();
+            for (int i = 0; i < num_entries; i++) {
+                for (int j = 0; j < git_status.count; j++) {
+                    if (strcmp(entries[i].name, git_status.files[j].filename) == 0) {
+                        entries[i].git_status[0] = git_status.files[j].status;
+                        entries[i].git_status[1] = '\0';
+                        break;
+                    }
+                }
+            }
+        }
+
+        display_entries(entries, num_entries, term_width, display_path, show_path);
     }
 
-    qsort(entries, num_entries, sizeof(FileCardInfo), compare_file_entries);
-
-    display_entries(entries, num_entries, term_width, display_path, show_path);
-
+cleanup:
     for (int i = 0; i < num_entries; i++) {
         free_file_entry(&entries[i]);
     }
     free(entries);
     free_args(&args);
 
-    return EXIT_SUCCESS;
+    return num_entries > 0 ? EXIT_SUCCESS : EXIT_FAILURE;
 }
-
