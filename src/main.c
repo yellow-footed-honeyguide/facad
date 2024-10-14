@@ -17,10 +17,11 @@
 #include <string.h>
 #include <unistd.h>
 #include <dirent.h>
-#include <sys/ioctl.h>
 #include <fnmatch.h>
 #include <sys/stat.h>
+#include <sys/ioctl.h>
 
+#include "git_utils.h"
 #include "file_card.h"
 #include "dir_config.h"
 #include "args_parser.h"
@@ -28,9 +29,7 @@
 #include "dir_analytics.h"
 #include "display_utils.h"
 #include "dev_dir_utils.h"
-
 #include "git_integration.h"
-#include "git_utils.h"
 
 #define MAX_PATH 4096        // Maximum length for file paths
 #define INITIAL_ENTRIES 512  // Initial number of directory entries to allocate
@@ -376,7 +375,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
-       // Handle case when no entries are found
+    // Handle case when no entries are found
     if (num_entries == 0) {
         char current_dir[PATH_MAX];
         if (getcwd(current_dir, sizeof(current_dir)) != NULL) {

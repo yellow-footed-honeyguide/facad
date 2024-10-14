@@ -14,17 +14,17 @@
 // Enable POSIX.1-2008 + XSI (X/Open System Interfaces Extension) features
 #define _XOPEN_SOURCE 700
 
-#include <locale.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <wchar.h>
 #include <glob.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <string.h>
+#include <stdlib.h>
+#include <locale.h>
 
-#include "display_utils.h"
 #include "file_card.h"
-#include "dir_config.h"
 #include "git_utils.h"
+#include "dir_config.h"
+#include "display_utils.h"
 
 // Constants for display formatting
 #define MAX_COLUMNS 4
@@ -113,7 +113,8 @@ void display_entries(FileCardInfo *entries, int num_entries, int term_width,
     if (show_path) {
         char *branch = get_current_branch();
         if (branch) {
-            printf("\033[1m%s\033[0m (\033[32m%s\033[0m)\n", current_dir, branch);
+            //printf("\033[1m%s\033[0m (\033[32m%s\033[0m)\n", current_dir, branch);
+            printf("\033[1m%s\033[0m  \033[38;5;202m[%s]\033[0m\n", current_dir, branch);
             free(branch);
         } else {
             printf("\033[1m%s\033[0m\n", current_dir);
@@ -177,7 +178,8 @@ void display_entries(FileCardInfo *entries, int num_entries, int term_width,
 
                 // Print Git status if available
                 if (entries[index].git_status[0] != '\0') {
-                    printf("(\033[32m%c\033[0m)", entries[index].git_status[0]);
+                    //printf("(\033[32m%c\033[0m)", entries[index].git_status[0]);
+                    printf("\033[38;5;202m[%c]\033[0m", entries[index].git_status[0]);
                 }
 
                 // Calculate and print padding

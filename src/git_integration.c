@@ -10,11 +10,12 @@
  * @date 2024
  */
 
-#include "git_integration.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <libgen.h>
+
+#include "git_integration.h"
 
 /**
  * @brief Integrates Git status information into file entries.
