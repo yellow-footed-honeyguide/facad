@@ -3,7 +3,9 @@
  * @brief Header file for file entry handling functions and structures.
  *
  * This file contains the definition of the FileCardInfo structure and
- * declarations for functions that manipulate file entries.
+ * declarations for functions that manipulate file entries. It provides
+ * the interface for creating, freeing, and comparing file entries in
+ * the facad directory listing tool.
  *
  * @author Sergey Veneckiy
  * @date 2024
@@ -13,17 +15,21 @@
 #define FILE_ENTRY_H
 
 /**
+ * @struct FileCardInfo
  * @brief Structure representing a file entry with its properties.
+ *
+ * This structure holds all the necessary information about a file or directory
+ * entry, including its name, associated emoji, and various flags indicating
+ * its properties.
  */
 typedef struct
 {
-    char *name;
-    char *emoji;
-    int is_directory;
-    int is_hidden;
-    char git_status[2];
+    char *name;         /**< Name of the file or directory */
+    char *emoji;        /**< Emoji representation of the file type */
+    int is_directory;   /**< Flag indicating whether the entry is a directory (1) or not (0) */
+    int is_hidden;      /**< Flag indicating whether the entry is hidden (1) or not (0) */
+    char git_status[2]; /**< Git status of the file (if applicable) */
 } FileCardInfo;
-
 
 /**
  * @brief Creates a file entry based on the given path.
@@ -46,7 +52,6 @@ int create_file_entry(FileCardInfo *entry, const char *path);
  * @param entry Pointer to the FileCardInfo structure to free.
  */
 void free_file_entry(FileCardInfo *entry);
-
 
 /**
  * @brief Compares two file entries for sorting purposes.

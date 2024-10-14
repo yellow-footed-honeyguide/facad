@@ -4,6 +4,7 @@
  *
  * This file contains functions for creating, freeing, and comparing file entries,
  * as well as utility functions for working with file names and extensions.
+ * It provides the core functionality for managing file information in the facad tool.
  *
  * @author Sergey Veneckiy
  * @date 2024
@@ -29,21 +30,27 @@
  */
 int create_file_entry(FileCardInfo *entry, const char *path)
 {
+    // Duplicate the file name and store it in the entry
     entry->name = strdup(path);
+    // Get the appropriate emoji for the file
     entry->emoji = get_emoji(path);
 
     struct stat path_stat;
+    // Get file status information
     if (lstat(path, &path_stat) != 0)
     {
-        return -1;
+        return -1;  // Return -1 if unable to get file status
     }
 
+    // Set directory flag based on file type
     entry->is_directory = S_ISDIR(path_stat.st_mode);
+    // Set hidden flag if the file name starts with a dot
     entry->is_hidden = (path[0] == '.');
+    // Initialize Git status as empty
     entry->git_status[0] = '\0';
     entry->git_status[1] = '\0';
 
-    return 0;
+    return 0;  // Return 0 on success
 }
 
 /**
@@ -56,8 +63,8 @@ int create_file_entry(FileCardInfo *entry, const char *path)
  */
 void free_file_entry(FileCardInfo *entry)
 {
-    free(entry->name);  // Free the name string
-    free(entry->emoji); // Free the emoji string
+    free(entry->name);  // Free the memory allocated for the name string
+    free(entry->emoji); // Free the memory allocated for the emoji string
 }
 
 /**
@@ -78,7 +85,6 @@ char *get_extension(const char *name)
     }
     return dot + 1; // Return pointer to character after the last '.'
 }
-
 
 /**
  * @brief Compare two strings case-insensitively.
