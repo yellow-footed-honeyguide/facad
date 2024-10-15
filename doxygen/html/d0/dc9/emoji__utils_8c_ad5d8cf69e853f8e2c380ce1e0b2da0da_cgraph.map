@@ -1,5 +1,0 @@
-<map id="get_dev_emoji" name="get_dev_emoji">
-<area shape="rect" id="Node000001" title="Determines the appropriate emoji for files in the /dev directory." alt="" coords="5,5,123,33"/>
-<area shape="rect" id="Node000002" href="$d0/dc9/emoji__utils_8c.html#a515d3420e13a8688464ad3b3c89c2ffb" title="Safely duplicates a string, handling memory allocation errors." alt="" coords="171,5,268,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,17,155,17,155,22,123,22"/>
-</map>

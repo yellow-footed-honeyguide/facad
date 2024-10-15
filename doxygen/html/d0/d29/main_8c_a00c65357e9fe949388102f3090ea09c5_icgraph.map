@@ -1,7 +1,0 @@
-<map id="process_files_or_patterns" name="process_files_or_patterns">
-<area shape="rect" id="Node000001" title="Processes files or patterns and populates the entries array." alt="" coords="273,5,459,33"/>
-<area shape="rect" id="Node000002" href="$d0/d29/main_8c.html#ae7d3bb334fabeeccc7dfb05e7f968d47" title="Processes a single target (directory, file, or pattern)." alt="" coords="108,5,225,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="258,22,226,22,226,17,258,17"/>
-<area shape="rect" id="Node000003" href="$d0/d29/main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Main function of the facad program." alt="" coords="5,5,60,33"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="92,22,60,22,60,17,92,17"/>
-</map>

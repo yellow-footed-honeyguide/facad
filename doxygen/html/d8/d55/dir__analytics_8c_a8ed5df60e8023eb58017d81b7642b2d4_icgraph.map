@@ -1,8 +1,0 @@
-<map id="recursive_dir_scan" name="recursive_dir_scan">
-<area shape="rect" id="Node000001" title="Recursively scans a directory to find its maximum depth." alt="" coords="297,29,439,57"/>
-<area shape="poly" id="edge3_Node000001_Node000001" title=" " alt="" coords="400,16,389,10,368,8,349,10,338,15,335,20,340,27,335,30,330,20,334,11,347,5,368,3,391,5,403,12"/>
-<area shape="rect" id="Node000002" href="$d8/d55/dir__analytics_8c.html#ab481a931e3944eefb982e2666223d3d5" title="Prints detailed analytics about a directory." alt="" coords="108,29,249,57"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="281,46,250,46,250,41,281,41"/>
-<area shape="rect" id="Node000003" href="$d0/d29/main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Main function of the facad program." alt="" coords="5,29,60,57"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="92,46,60,46,60,41,92,41"/>
-</map>

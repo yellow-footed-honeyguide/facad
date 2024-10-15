@@ -1,9 +1,0 @@
-<map id="/home/honeyguide/Desktop/MyOpenSource/facad/src/git_integration.h" name="/home/honeyguide/Desktop/MyOpenSource/facad/src/git_integration.h">
-<area shape="rect" id="Node000001" title="Header file for Git integration functionality." alt="" coords="5,5,206,67"/>
-<area shape="rect" id="Node000002" href="$d5/d36/file__card_8h.html" title="Header file for file entry handling functions and structures." alt="" coords="7,115,95,143"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,69,69,103,64,100,85,66"/>
-<area shape="rect" id="Node000003" href="$db/d45/git__utils_8h.html" title="Header file for Git utility functions used in facad." alt="" coords="119,115,204,143"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="126,66,148,100,143,103,122,69"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="121,191,202,218"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="164,143,164,175,159,175,159,143"/>
-</map>

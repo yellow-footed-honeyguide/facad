@@ -1,5 +1,0 @@
-<map id="check_file_content" name="check_file_content">
-<area shape="rect" id="Node000001" title="Checks the file content for specific patterns to determine the file type." alt="" coords="5,5,148,33"/>
-<area shape="rect" id="Node000002" href="$d0/dc9/emoji__utils_8c.html#a515d3420e13a8688464ad3b3c89c2ffb" title="Safely duplicates a string, handling memory allocation errors." alt="" coords="196,5,293,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,17,180,17,180,22,148,22"/>
-</map>

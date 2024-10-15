@@ -1,5 +1,0 @@
-<map id="get_display_width" name="get_display_width">
-<area shape="rect" id="Node000001" title="Calculates the display width of a string, accounting for multi&#45;byte characters." alt="" coords="5,5,145,33"/>
-<area shape="rect" id="Node000002" href="$d2/dda/display__utils_8c.html#aa5f36a89eac0853279ebdf9efb3f668b" title="Determines the byte width of a UTF&#45;8 character." alt="" coords="193,5,346,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,17,177,17,177,22,145,22"/>
-</map>

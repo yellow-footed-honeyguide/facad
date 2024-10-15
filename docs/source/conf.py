@@ -38,3 +38,13 @@ todo_include_todos = True
 html_css_files = [
     'custom.css',
 ]
+
+# New
+html_baseurl = '/facad/'
+
+html_context = {
+    'display_github': True,
+    'github_user': 'yellow-footed-honeyguide', 
+    'github_repo': 'facad', 
+    'github_version': 'gh-pages/', 
+}

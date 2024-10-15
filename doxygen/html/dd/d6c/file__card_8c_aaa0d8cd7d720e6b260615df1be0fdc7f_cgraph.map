@@ -1,7 +1,0 @@
-<map id="compare_file_entries" name="compare_file_entries">
-<area shape="rect" id="Node000001" title="Compare two file entries for sorting." alt="" coords="5,32,163,60"/>
-<area shape="rect" id="Node000002" href="$dd/d6c/file__card_8c.html#a6cc6fb631e1f28a066db43ca077cdd83" title="Extracts the file extension from a filename." alt="" coords="232,5,346,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,33,217,26,217,31,163,38"/>
-<area shape="rect" id="Node000003" href="$dd/d6c/file__card_8c.html#ab53dd5e9229168ae3ea9dd6718dc2eb8" title="Compare two strings case&#45;insensitively." alt="" coords="211,57,367,85"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="163,53,195,57,195,62,163,58"/>
-</map>
