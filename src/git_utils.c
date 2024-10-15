@@ -49,8 +49,7 @@ bool is_git_repository() {
  * @return Single character representing the file's Git status.
  */
 static char parse_status(const char* status_str) {
-    if (status_str[0] == '?' && status_str[1] == '?') return 'U';  // Untracked
-    if (status_str[0] == '!' && status_str[1] == '!') return 'I';  // Ignored
+    if (status_str[0] == '?' && status_str[1] == '?') return '?';  // Untracked
     return status_str[0] != ' ' ? status_str[0] : status_str[1];   // Modified, Staged, etc.
 }
 
