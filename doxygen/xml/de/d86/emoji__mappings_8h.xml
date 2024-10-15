@@ -1,0 +1,309 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="de/d86/emoji__mappings_8h" kind="file" language="C++">
+    <compoundname>emoji_mappings.h</compoundname>
+    <includes local="no">stddef.h</includes>
+    <includedby refid="dd/db6/emoji__mappings_8c" local="yes">/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.c</includedby>
+    <includedby refid="d0/dc9/emoji__utils_8c" local="yes">/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h</label>
+        <link refid="de/d86/emoji__mappings_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.c</label>
+        <link refid="dd/db6/emoji__mappings_8c"/>
+      </node>
+      <node id="1">
+        <label>/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h</label>
+        <link refid="de/d86/emoji__mappings_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c</label>
+        <link refid="d0/dc9/emoji__utils_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="df/d93/structEmojiMapEntry" prot="public">EmojiMapEntry</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="de/d86/emoji__mappings_8h_1a717fe910a0d43495236d315dd41303f9" prot="public" static="no" extern="yes" mutable="no">
+        <type>const <ref refid="df/d93/structEmojiMapEntry" kindref="compound">EmojiMapEntry</ref></type>
+        <definition>const EmojiMapEntry emoji_extension_map[]</definition>
+        <argsstring>[]</argsstring>
+        <name>emoji_extension_map</name>
+        <briefdescription>
+<para>Array of emoji mappings for file extensions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This array contains mappings of file extensions to their corresponding emojis.</para>
+<para>Array of emoji mappings for file extensions.</para>
+<para>This array maps file extensions to corresponding emojis. It is used to assign emojis based on the file type indicated by its extension. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" line="37" column="28" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.c" bodystart="22" bodyend="220" declfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" declline="37" declcolumn="28"/>
+        <referencedby refid="d0/dc9/emoji__utils_8c_1a853b78da7b6116949e96148e040669d5" compoundref="d0/dc9/emoji__utils_8c" startline="95" endline="158">get_emoji</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/d86/emoji__mappings_8h_1a15086b0f52896bc1295506f18beefdae" prot="public" static="no" extern="yes" mutable="no">
+        <type>const size_t</type>
+        <definition>const size_t emoji_extension_map_size</definition>
+        <argsstring></argsstring>
+        <name>emoji_extension_map_size</name>
+        <briefdescription>
+<para>Size of the emoji_extension_map array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" line="42" column="21" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.c" bodystart="223" bodyend="-1" declfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" declline="42" declcolumn="21"/>
+        <referencedby refid="d0/dc9/emoji__utils_8c_1a853b78da7b6116949e96148e040669d5" compoundref="d0/dc9/emoji__utils_8c" startline="95" endline="158">get_emoji</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/d86/emoji__mappings_8h_1a44bebb1a7db81f9fcbcdc471ade99dcb" prot="public" static="no" extern="yes" mutable="no">
+        <type>const <ref refid="df/d93/structEmojiMapEntry" kindref="compound">EmojiMapEntry</ref></type>
+        <definition>const EmojiMapEntry emoji_exact_file_map[]</definition>
+        <argsstring>[]</argsstring>
+        <name>emoji_exact_file_map</name>
+        <briefdescription>
+<para>Array of emoji mappings for exact file names. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This array contains mappings of specific file names to their corresponding emojis.</para>
+<para>Array of emoji mappings for exact file names.</para>
+<para>This array maps specific file names to corresponding emojis. It is used to assign emojis based on exact matches of file names, typically for special files. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" line="49" column="28" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.c" bodystart="232" bodyend="350" declfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" declline="49" declcolumn="28"/>
+        <referencedby refid="d0/dc9/emoji__utils_8c_1a853b78da7b6116949e96148e040669d5" compoundref="d0/dc9/emoji__utils_8c" startline="95" endline="158">get_emoji</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/d86/emoji__mappings_8h_1a4559ab02a3fe5bd47e2c060553709bd2" prot="public" static="no" extern="yes" mutable="no">
+        <type>const size_t</type>
+        <definition>const size_t emoji_exact_file_map_size</definition>
+        <argsstring></argsstring>
+        <name>emoji_exact_file_map_size</name>
+        <briefdescription>
+<para>Size of the emoji_exact_file_map array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" line="54" column="21" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.c" bodystart="352" bodyend="-1" declfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" declline="54" declcolumn="21"/>
+        <referencedby refid="d0/dc9/emoji__utils_8c_1a853b78da7b6116949e96148e040669d5" compoundref="d0/dc9/emoji__utils_8c" startline="95" endline="158">get_emoji</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/d86/emoji__mappings_8h_1a0ed3aca8befc8bbd9cc15e258a6ca701" prot="public" static="no" extern="yes" mutable="no">
+        <type>const <ref refid="df/d93/structEmojiMapEntry" kindref="compound">EmojiMapEntry</ref></type>
+        <definition>const EmojiMapEntry emoji_file_content_map[]</definition>
+        <argsstring>[]</argsstring>
+        <name>emoji_file_content_map</name>
+        <briefdescription>
+<para>Array of emoji mappings for file content patterns. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This array contains mappings of file content patterns (e.g., shebangs) to their corresponding emojis.</para>
+<para>Array of emoji mappings for file content patterns.</para>
+<para>This array maps file content patterns (typically shebang lines) to corresponding emojis. It is used to assign emojis based on the content of script files. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" line="61" column="28" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.c" bodystart="361" bodyend="418" declfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" declline="61" declcolumn="28"/>
+        <referencedby refid="d0/dc9/emoji__utils_8c_1a5079b8c3657f088d68ae41fee9b299e3" compoundref="d0/dc9/emoji__utils_8c" startline="70" endline="87">check_file_content</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/d86/emoji__mappings_8h_1ab0d0a7e5ba604e644a996107bb4965e7" prot="public" static="no" extern="yes" mutable="no">
+        <type>const size_t</type>
+        <definition>const size_t emoji_file_content_map_size</definition>
+        <argsstring></argsstring>
+        <name>emoji_file_content_map_size</name>
+        <briefdescription>
+<para>Size of the emoji_file_content_map array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" line="66" column="21" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.c" bodystart="420" bodyend="-1" declfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" declline="66" declcolumn="21"/>
+        <referencedby refid="d0/dc9/emoji__utils_8c_1a5079b8c3657f088d68ae41fee9b299e3" compoundref="d0/dc9/emoji__utils_8c" startline="70" endline="87">check_file_content</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/d86/emoji__mappings_8h_1a538e1bc5eae64ecb93436ffc47560121" prot="public" static="no" extern="yes" mutable="no">
+        <type>const <ref refid="df/d93/structEmojiMapEntry" kindref="compound">EmojiMapEntry</ref></type>
+        <definition>const EmojiMapEntry emoji_exact_dev_file_map[]</definition>
+        <argsstring>[]</argsstring>
+        <name>emoji_exact_dev_file_map</name>
+        <briefdescription>
+<para>Array of emoji mappings for exact device file names in /dev. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This array contains mappings of specific device file names to their corresponding emojis.</para>
+<para>Array of emoji mappings for exact device file names in /dev.</para>
+<para>This array maps specific device file names in the /dev directory to corresponding emojis. It is used to assign emojis to known device files. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" line="73" column="28" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.c" bodystart="430" bodyend="467" declfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" declline="73" declcolumn="28"/>
+        <referencedby refid="d0/dc9/emoji__utils_8c_1ad5d8cf69e853f8e2c380ce1e0b2da0da" compoundref="d0/dc9/emoji__utils_8c" startline="45" endline="62">get_dev_emoji</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/d86/emoji__mappings_8h_1a11bba592cc1a04247a8823e523e40bd7" prot="public" static="no" extern="yes" mutable="no">
+        <type>const size_t</type>
+        <definition>const size_t emoji_exact_dev_file_map_size</definition>
+        <argsstring></argsstring>
+        <name>emoji_exact_dev_file_map_size</name>
+        <briefdescription>
+<para>Size of the emoji_exact_dev_file_map array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" line="78" column="21" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.c" bodystart="469" bodyend="-1" declfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" declline="78" declcolumn="21"/>
+        <referencedby refid="d0/dc9/emoji__utils_8c_1ad5d8cf69e853f8e2c380ce1e0b2da0da" compoundref="d0/dc9/emoji__utils_8c" startline="45" endline="62">get_dev_emoji</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/d86/emoji__mappings_8h_1ae615000bf15a8698d98421baa2a90bd1" prot="public" static="no" extern="yes" mutable="no">
+        <type>const <ref refid="df/d93/structEmojiMapEntry" kindref="compound">EmojiMapEntry</ref></type>
+        <definition>const EmojiMapEntry emoji_prefix_dev_map[]</definition>
+        <argsstring>[]</argsstring>
+        <name>emoji_prefix_dev_map</name>
+        <briefdescription>
+<para>Array of emoji mappings for device file name prefixes in /dev. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This array contains mappings of device file name prefixes to their corresponding emojis.</para>
+<para>Array of emoji mappings for device file name prefixes in /dev.</para>
+<para>This array maps prefixes of device file names in the /dev directory to corresponding emojis. It is used to assign emojis to device files based on their name prefixes. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" line="85" column="28" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.c" bodystart="478" bodyend="493" declfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" declline="85" declcolumn="28"/>
+        <referencedby refid="d0/dc9/emoji__utils_8c_1ad5d8cf69e853f8e2c380ce1e0b2da0da" compoundref="d0/dc9/emoji__utils_8c" startline="45" endline="62">get_dev_emoji</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/d86/emoji__mappings_8h_1aaf5ea0aa3fbcd68766d42569f7f2c762" prot="public" static="no" extern="yes" mutable="no">
+        <type>const size_t</type>
+        <definition>const size_t emoji_prefix_dev_map_size</definition>
+        <argsstring></argsstring>
+        <name>emoji_prefix_dev_map_size</name>
+        <briefdescription>
+<para>Size of the emoji_prefix_dev_map array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" line="90" column="21" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.c" bodystart="496" bodyend="-1" declfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" declline="90" declcolumn="21"/>
+        <referencedby refid="d0/dc9/emoji__utils_8c_1ad5d8cf69e853f8e2c380ce1e0b2da0da" compoundref="d0/dc9/emoji__utils_8c" startline="45" endline="62">get_dev_emoji</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>emoji_extensions.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Definitions<sp/>and<sp/>declarations<sp/>for<sp/>emoji<sp/>mappings.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>This<sp/>header<sp/>file<sp/>defines<sp/>the<sp/>structure<sp/>for<sp/>emoji<sp/>mappings<sp/>and<sp/>declares</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>arrays<sp/>of<sp/>mappings<sp/>for<sp/>various<sp/>file<sp/>types,<sp/>extensions,<sp/>and<sp/>special<sp/>cases.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>These<sp/>mappings<sp/>are<sp/>used<sp/>to<sp/>assign<sp/>appropriate<sp/>emojis<sp/>to<sp/>files<sp/>and<sp/>directories</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>based<sp/>on<sp/>their<sp/>characteristics.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>@author<sp/>Sergey<sp/>Veneckiy</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>@date<sp/>2024</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>EMOJI_EXTENSIONS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EMOJI_EXTENSIONS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="23"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/>@struct<sp/>EmojiMapEntry</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Structure<sp/>to<sp/>map<sp/>keys<sp/>(file<sp/>names<sp/>or<sp/>extensions)<sp/>to<sp/>emojis.</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="df/d93/structEmojiMapEntry" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="28" refid="df/d93/structEmojiMapEntry_1ac775896213ff79129e458babf3e2faea" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="df/d93/structEmojiMapEntry_1ac775896213ff79129e458babf3e2faea" kindref="member">key</ref>;<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>The<sp/>key<sp/>(file<sp/>name,<sp/>extension,<sp/>or<sp/>content<sp/>pattern)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="df/d93/structEmojiMapEntry_1aa1ac56c6bf8cc3b9676e2ca254114c0b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="df/d93/structEmojiMapEntry_1aa1ac56c6bf8cc3b9676e2ca254114c0b" kindref="member">emoji</ref>;<sp/></highlight><highlight class="comment">/**&lt;<sp/>The<sp/>corresponding<sp/>emoji<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">}<sp/><ref refid="df/d93/structEmojiMapEntry" kindref="compound">EmojiMapEntry</ref>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="32"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Array<sp/>of<sp/>emoji<sp/>mappings<sp/>for<sp/>file<sp/>extensions.</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/>This<sp/>array<sp/>contains<sp/>mappings<sp/>of<sp/>file<sp/>extensions<sp/>to<sp/>their<sp/>corresponding<sp/>emojis.</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="df/d93/structEmojiMapEntry" kindref="compound">EmojiMapEntry</ref><sp/><ref refid="de/d86/emoji__mappings_8h_1a717fe910a0d43495236d315dd41303f9" kindref="member">emoji_extension_map</ref>[];</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="39"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Size<sp/>of<sp/>the<sp/>emoji_extension_map<sp/>array.</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="de/d86/emoji__mappings_8h_1a15086b0f52896bc1295506f18beefdae" kindref="member">emoji_extension_map_size</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="44"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Array<sp/>of<sp/>emoji<sp/>mappings<sp/>for<sp/>exact<sp/>file<sp/>names.</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*<sp/>This<sp/>array<sp/>contains<sp/>mappings<sp/>of<sp/>specific<sp/>file<sp/>names<sp/>to<sp/>their<sp/>corresponding<sp/>emojis.</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="df/d93/structEmojiMapEntry" kindref="compound">EmojiMapEntry</ref><sp/><ref refid="de/d86/emoji__mappings_8h_1a44bebb1a7db81f9fcbcdc471ade99dcb" kindref="member">emoji_exact_file_map</ref>[];</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="51"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="52"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Size<sp/>of<sp/>the<sp/>emoji_exact_file_map<sp/>array.</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="de/d86/emoji__mappings_8h_1a4559ab02a3fe5bd47e2c060553709bd2" kindref="member">emoji_exact_file_map_size</ref>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="56"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Array<sp/>of<sp/>emoji<sp/>mappings<sp/>for<sp/>file<sp/>content<sp/>patterns.</highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/>*<sp/>This<sp/>array<sp/>contains<sp/>mappings<sp/>of<sp/>file<sp/>content<sp/>patterns<sp/>(e.g.,<sp/>shebangs)<sp/>to<sp/>their<sp/>corresponding<sp/>emojis.</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="df/d93/structEmojiMapEntry" kindref="compound">EmojiMapEntry</ref><sp/><ref refid="de/d86/emoji__mappings_8h_1a0ed3aca8befc8bbd9cc15e258a6ca701" kindref="member">emoji_file_content_map</ref>[];</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="63"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Size<sp/>of<sp/>the<sp/>emoji_file_content_map<sp/>array.</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="de/d86/emoji__mappings_8h_1ab0d0a7e5ba604e644a996107bb4965e7" kindref="member">emoji_file_content_map_size</ref>;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="68"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Array<sp/>of<sp/>emoji<sp/>mappings<sp/>for<sp/>exact<sp/>device<sp/>file<sp/>names<sp/>in<sp/>/dev.</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/>*<sp/>This<sp/>array<sp/>contains<sp/>mappings<sp/>of<sp/>specific<sp/>device<sp/>file<sp/>names<sp/>to<sp/>their<sp/>corresponding<sp/>emojis.</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="df/d93/structEmojiMapEntry" kindref="compound">EmojiMapEntry</ref><sp/><ref refid="de/d86/emoji__mappings_8h_1a538e1bc5eae64ecb93436ffc47560121" kindref="member">emoji_exact_dev_file_map</ref>[];</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="75"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Size<sp/>of<sp/>the<sp/>emoji_exact_dev_file_map<sp/>array.</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="de/d86/emoji__mappings_8h_1a11bba592cc1a04247a8823e523e40bd7" kindref="member">emoji_exact_dev_file_map_size</ref>;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="80"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Array<sp/>of<sp/>emoji<sp/>mappings<sp/>for<sp/>device<sp/>file<sp/>name<sp/>prefixes<sp/>in<sp/>/dev.</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="83"><highlight class="comment"><sp/>*<sp/>This<sp/>array<sp/>contains<sp/>mappings<sp/>of<sp/>device<sp/>file<sp/>name<sp/>prefixes<sp/>to<sp/>their<sp/>corresponding<sp/>emojis.</highlight></codeline>
+<codeline lineno="84"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="df/d93/structEmojiMapEntry" kindref="compound">EmojiMapEntry</ref><sp/><ref refid="de/d86/emoji__mappings_8h_1ae615000bf15a8698d98421baa2a90bd1" kindref="member">emoji_prefix_dev_map</ref>[];</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="87"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="88"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Size<sp/>of<sp/>the<sp/>emoji_prefix_dev_map<sp/>array.</highlight></codeline>
+<codeline lineno="89"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="de/d86/emoji__mappings_8h_1aaf5ea0aa3fbcd68766d42569f7f2c762" kindref="member">emoji_prefix_dev_map_size</ref>;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>EMOJI_EXTENSIONS_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h"/>
+  </compounddef>
+</doxygen>

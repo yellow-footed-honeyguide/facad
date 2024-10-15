@@ -1,0 +1,771 @@
+\doxysection{/home/honeyguide/\+Desktop/\+My\+Open\+Source/facad/src/main.c File Reference}
+\hypertarget{main_8c}{}\label{main_8c}\index{/home/honeyguide/Desktop/MyOpenSource/facad/src/main.c@{/home/honeyguide/Desktop/MyOpenSource/facad/src/main.c}}
+
+
+Main entry point for the facad directory listing tool.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
+{\ttfamily \#include $<$fnmatch.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ioctl.\+h$>$}\newline
+{\ttfamily \#include "{}git\+\_\+utils.\+h"{}}\newline
+{\ttfamily \#include "{}file\+\_\+card.\+h"{}}\newline
+{\ttfamily \#include "{}dir\+\_\+config.\+h"{}}\newline
+{\ttfamily \#include "{}args\+\_\+parser.\+h"{}}\newline
+{\ttfamily \#include "{}longlisting.\+h"{}}\newline
+{\ttfamily \#include "{}dir\+\_\+analytics.\+h"{}}\newline
+{\ttfamily \#include "{}display\+\_\+utils.\+h"{}}\newline
+{\ttfamily \#include "{}dev\+\_\+dir\+\_\+utils.\+h"{}}\newline
+{\ttfamily \#include "{}git\+\_\+integration.\+h"{}}\newline
+Include dependency graph for main.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/d10/main_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{main_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\+\_\+\+PATH}}~4096
+\item 
+\#define \mbox{\hyperlink{main_8c_a52476dd1013f4b9201ab7a3dcb0dac9d}{INITIAL\+\_\+\+ENTRIES}}~512
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{main_8c_a165f84d1d52e7a11077ff2b3ec8ba0c8}{allocate\+\_\+entries}} (\mbox{\hyperlink{structFileCardInfo}{File\+Card\+Info}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}entries, int \texorpdfstring{$\ast$}{*}current\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Dynamically allocates or reallocates memory for directory entries. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{main_8c_acc392fbd2ea6b07ebcc2b9c089aae2ca}{process\+\_\+directory}} (const char \texorpdfstring{$\ast$}{*}dir\+\_\+path, \mbox{\hyperlink{structFileCardInfo}{File\+Card\+Info}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}entries, int \texorpdfstring{$\ast$}{*}num\+\_\+entries, int \texorpdfstring{$\ast$}{*}current\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Processes directory entries and populates the entries array. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{main_8c_a00c65357e9fe949388102f3090ea09c5}{process\+\_\+files\+\_\+or\+\_\+patterns}} (const char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}patterns, int pattern\+\_\+count, \mbox{\hyperlink{structFileCardInfo}{File\+Card\+Info}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}entries, int \texorpdfstring{$\ast$}{*}num\+\_\+entries, int \texorpdfstring{$\ast$}{*}current\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Processes files or patterns and populates the entries array. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{main_8c_afd7cf5224b764819fb3a9463774482c5}{is\+\_\+directory}} (const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Checks if a given path is a directory. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{main_8c_ae7d3bb334fabeeccc7dfb05e7f968d47}{process\+\_\+target}} (const char \texorpdfstring{$\ast$}{*}target, \mbox{\hyperlink{structFileCardInfo}{File\+Card\+Info}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}entries, int \texorpdfstring{$\ast$}{*}num\+\_\+entries, int \texorpdfstring{$\ast$}{*}current\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Processes a single target (directory, file, or pattern). \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{main_8c_a116587b452eeb0a0e9f7d9602ba67ae0}{is\+\_\+glob\+\_\+or\+\_\+specific\+\_\+files}} (const char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}targets, int target\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Checks if the targets are glob patterns or specific files. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main function of the facad program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main entry point for the facad directory listing tool. 
+
+This file contains the main function and core logic for the facad tool, which provides a colorful and feature-\/rich directory listing in the terminal. It handles command-\/line arguments, processes directories or files, and displays the results using various output formats.
+
+\begin{DoxyAuthor}{Author}
+Sergey Veneckiy 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2024 
+\end{DoxyDate}
+
+
+Definition in file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{main_8c_a52476dd1013f4b9201ab7a3dcb0dac9d}\label{main_8c_a52476dd1013f4b9201ab7a3dcb0dac9d} 
+\index{main.c@{main.c}!INITIAL\_ENTRIES@{INITIAL\_ENTRIES}}
+\index{INITIAL\_ENTRIES@{INITIAL\_ENTRIES}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{INITIAL\_ENTRIES}{INITIAL\_ENTRIES}}
+{\footnotesize\ttfamily \#define INITIAL\+\_\+\+ENTRIES~512}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00035}{35}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00047}{allocate\+\_\+entries()}}.
+
+\Hypertarget{main_8c_ab99ded389af74001a6298fc9e44e74e5}\label{main_8c_ab99ded389af74001a6298fc9e44e74e5} 
+\index{main.c@{main.c}!MAX\_PATH@{MAX\_PATH}}
+\index{MAX\_PATH@{MAX\_PATH}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_PATH}{MAX\_PATH}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+PATH~4096}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00034}{34}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00275}{main()}}, \mbox{\hyperlink{main_8c_source_l00078}{process\+\_\+directory()}}, \mbox{\hyperlink{main_8c_source_l00134}{process\+\_\+files\+\_\+or\+\_\+patterns()}}, and \mbox{\hyperlink{main_8c_source_l00204}{process\+\_\+target()}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8c_a165f84d1d52e7a11077ff2b3ec8ba0c8}\label{main_8c_a165f84d1d52e7a11077ff2b3ec8ba0c8} 
+\index{main.c@{main.c}!allocate\_entries@{allocate\_entries}}
+\index{allocate\_entries@{allocate\_entries}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{allocate\_entries()}{allocate\_entries()}}
+{\footnotesize\ttfamily static int allocate\+\_\+entries (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFileCardInfo}{File\+Card\+Info}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{entries,  }\item[{int \texorpdfstring{$\ast$}{*}}]{current\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Dynamically allocates or reallocates memory for directory entries. 
+
+This function manages the memory for the array of \doxylink{structFileCardInfo}{File\+Card\+Info} structures. It starts with INITIAL\+\_\+\+ENTRIES and doubles the size when more space is needed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em entries} & Pointer to the array of \doxylink{structFileCardInfo}{File\+Card\+Info} structures. \\
+\hline
+{\em current\+\_\+size} & Pointer to the current size of the array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on failure. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00047}{47}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ Calculate\ new\ size\ (double\ the\ current\ size\ or\ use\ initial\ size\ if\ NULL)}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{int}\ new\_size\ =\ (*entries\ ==\ NULL)\ ?\ \mbox{\hyperlink{main_8c_a52476dd1013f4b9201ab7a3dcb0dac9d}{INITIAL\_ENTRIES}}\ :\ (*current\_size\ *\ 2);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ Attempt\ to\ reallocate\ memory\ for\ entries}}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{structFileCardInfo}{FileCardInfo}}\ *new\_entries\ =\ realloc(*entries,\ new\_size\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structFileCardInfo}{FileCardInfo}}));}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ reallocation\ was\ successful}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{if}\ (new\_entries\ ==\ NULL)\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}Failed\ to\ allocate\ memory\ for\ entries"{}});\ \textcolor{comment}{//\ Print\ error\ message}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;\ \ \textcolor{comment}{//\ Return\ -\/1\ to\ indicate\ failure}}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ Update\ entries\ pointer\ and\ current\ size}}
+\DoxyCodeLine{00061\ \ \ \ \ *entries\ =\ new\_entries;}
+\DoxyCodeLine{00062\ \ \ \ \ *current\_size\ =\ new\_size;}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;\ \ \textcolor{comment}{//\ Return\ 0\ to\ indicate\ success}}
+\DoxyCodeLine{00064\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{main_8c_source_l00035}{INITIAL\+\_\+\+ENTRIES}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00078}{process\+\_\+directory()}}, \mbox{\hyperlink{main_8c_source_l00134}{process\+\_\+files\+\_\+or\+\_\+patterns()}}, and \mbox{\hyperlink{main_8c_source_l00204}{process\+\_\+target()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d29/main_8c_a165f84d1d52e7a11077ff2b3ec8ba0c8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{main_8c_afd7cf5224b764819fb3a9463774482c5}\label{main_8c_afd7cf5224b764819fb3a9463774482c5} 
+\index{main.c@{main.c}!is\_directory@{is\_directory}}
+\index{is\_directory@{is\_directory}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{is\_directory()}{is\_directory()}}
+{\footnotesize\ttfamily static int is\+\_\+directory (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Checks if a given path is a directory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the path is a directory, 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00185}{185}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{struct\ }stat\ statbuf;}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordflow}{if}\ (stat(path,\ \&statbuf)\ !=\ 0)\ \textcolor{comment}{//\ Get\ file\ status}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;\ \textcolor{comment}{//\ Return\ 0\ if\ stat\ fails}}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{return}\ S\_ISDIR(statbuf.st\_mode);\ \textcolor{comment}{//\ Return\ 1\ if\ it's\ a\ directory,\ 0\ otherwise}}
+\DoxyCodeLine{00190\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00255}{is\+\_\+glob\+\_\+or\+\_\+specific\+\_\+files()}}, and \mbox{\hyperlink{main_8c_source_l00204}{process\+\_\+target()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d29/main_8c_afd7cf5224b764819fb3a9463774482c5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{main_8c_a116587b452eeb0a0e9f7d9602ba67ae0}\label{main_8c_a116587b452eeb0a0e9f7d9602ba67ae0} 
+\index{main.c@{main.c}!is\_glob\_or\_specific\_files@{is\_glob\_or\_specific\_files}}
+\index{is\_glob\_or\_specific\_files@{is\_glob\_or\_specific\_files}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{is\_glob\_or\_specific\_files()}{is\_glob\_or\_specific\_files()}}
+{\footnotesize\ttfamily static int is\+\_\+glob\+\_\+or\+\_\+specific\+\_\+files (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{targets,  }\item[{int}]{target\+\_\+count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Checks if the targets are glob patterns or specific files. 
+
+This function determines whether the given targets include glob patterns or specific files, as opposed to just directories.
+
+
+\begin{DoxyParams}{Parameters}
+{\em targets} & Array of target strings. \\
+\hline
+{\em target\+\_\+count} & Number of targets in the array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if glob patterns or specific files are present, 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00255}{255}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ target\_count;\ i++)\ \{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{args__parser_8c_ac7b851d3c3ad6d7a78c3e0aabb176d15}{is\_glob\_pattern}}(targets[i])\ ||\ !\mbox{\hyperlink{main_8c_afd7cf5224b764819fb3a9463774482c5}{is\_directory}}(targets[i]))\ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;\ \textcolor{comment}{//\ Return\ 1\ if\ a\ glob\ pattern\ or\ non-\/directory\ is\ found}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00260\ \ \ \ \ \}}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;\ \textcolor{comment}{//\ Return\ 0\ if\ all\ targets\ are\ directories}}
+\DoxyCodeLine{00262\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{main_8c_source_l00185}{is\+\_\+directory()}}, and \mbox{\hyperlink{args__parser_8c_source_l00028}{is\+\_\+glob\+\_\+pattern()}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00275}{main()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{d0/d29/main_8c_a116587b452eeb0a0e9f7d9602ba67ae0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{d0/d29/main_8c_a116587b452eeb0a0e9f7d9602ba67ae0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{main_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{main_8c_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Main function of the facad program. 
+
+This function serves as the entry point for the facad directory listing tool. It parses command-\/line arguments, processes directories or files based on the input, and displays the results using the appropriate format (standard, long listing, or analytics).
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of command-\/line arguments. \\
+\hline
+{\em argv} & Array of command-\/line argument strings. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+EXIT\+\_\+\+SUCCESS on successful execution, EXIT\+\_\+\+FAILURE on error. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00275}{275}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \mbox{\hyperlink{structCommandLineArgs}{CommandLineArgs}}\ args\ =\ \mbox{\hyperlink{args__parser_8c_ae69db95445b885f269cab7f4dc062307}{parse\_args}}(argc,\ argv);\ \textcolor{comment}{//\ Parse\ command-\/line\ arguments}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{comment}{//\ Handle\ version\ display\ request}}
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordflow}{if}\ (args.\mbox{\hyperlink{structCommandLineArgs_a518fe65eec71814dec37b3fb872fa8a0}{show\_version}})\ \{}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{args__parser_8c_ac6230d495fc909bb61195c45f703d492}{print\_version}}();}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{args__parser_8c_a1e124c87a6ba6ffa680d9297fbc17d43}{free\_args}}(\&args);}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_SUCCESS;}
+\DoxyCodeLine{00283\ \ \ \ \ \}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{comment}{//\ Handle\ help\ display\ request}}
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keywordflow}{if}\ (args.\mbox{\hyperlink{structCommandLineArgs_a210deb76b4bf3d30f0bb09e16ba7fbe4}{show\_help}})\ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{args__parser_8c_ae5d62d86e562ee295d1566f9ad74b73c}{print\_help}}(argv[0]);}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{args__parser_8c_a1e124c87a6ba6ffa680d9297fbc17d43}{free\_args}}(\&args);}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_SUCCESS;}
+\DoxyCodeLine{00290\ \ \ \ \ \}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{comment}{//\ Handle\ invalid\ options}}
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keywordflow}{if}\ (args.\mbox{\hyperlink{structCommandLineArgs_a279e4f9d5bd585e348c74ab980bc6ad0}{invalid\_opt}})\ \{}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}\%s:\ unrecognized\ option\ '\%s'\(\backslash\)n"{}},\ argv[0],\ args.\mbox{\hyperlink{structCommandLineArgs_a279e4f9d5bd585e348c74ab980bc6ad0}{invalid\_opt}});}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Try\ '\%s\ -\/-\/help'\ for\ more\ information.\(\backslash\)n"{}},\ argv[0]);}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{args__parser_8c_a1e124c87a6ba6ffa680d9297fbc17d43}{free\_args}}(\&args);}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{00298\ \ \ \ \ \}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{comment}{//\ Get\ current\ working\ directory}}
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keywordtype}{char}\ current\_dir[\mbox{\hyperlink{main_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}];}
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keywordflow}{if}\ (getcwd(current\_dir,\ \textcolor{keyword}{sizeof}(current\_dir))\ ==\ NULL)\ \{}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}getcwd()\ error"{}});}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{args__parser_8c_a1e124c87a6ba6ffa680d9297fbc17d43}{free\_args}}(\&args);}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_FAILURE;}
+\DoxyCodeLine{00306\ \ \ \ \ \}}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{comment}{//\ Handle\ long\ listing\ request}}
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keywordflow}{if}\ (args.\mbox{\hyperlink{structCommandLineArgs_ab86308b944cadea1ed5fb0b48661a355}{show\_longlisting}})\ \{}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (args.\mbox{\hyperlink{structCommandLineArgs_a5185c801bf6373761724b96d20f05aeb}{target\_count}}\ >\ 0\ \&\&\ \mbox{\hyperlink{main_8c_a116587b452eeb0a0e9f7d9602ba67ae0}{is\_glob\_or\_specific\_files}}(args.\mbox{\hyperlink{structCommandLineArgs_a24eadec0753883664957eb8322579c25}{targets}},\ args.\mbox{\hyperlink{structCommandLineArgs_a5185c801bf6373761724b96d20f05aeb}{target\_count}}))\ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{longlisting_8c_a1af2c63d6b774640dcf8f6b3127dfa47}{print\_longlisting\_files}}(args.\mbox{\hyperlink{structCommandLineArgs_a24eadec0753883664957eb8322579c25}{targets}},\ args.\mbox{\hyperlink{structCommandLineArgs_a5185c801bf6373761724b96d20f05aeb}{target\_count}});}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{longlisting_8c_a9aa67dc0ec987dacbfbc8dfe5745c5be}{print\_longlisting}}(args.\mbox{\hyperlink{structCommandLineArgs_a5185c801bf6373761724b96d20f05aeb}{target\_count}}\ >\ 0\ ?\ args.\mbox{\hyperlink{structCommandLineArgs_a24eadec0753883664957eb8322579c25}{targets}}[0]\ :\ \textcolor{stringliteral}{"{}."{}});}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{args__parser_8c_a1e124c87a6ba6ffa680d9297fbc17d43}{free\_args}}(\&args);}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_SUCCESS;}
+\DoxyCodeLine{00317\ \ \ \ \ \}}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \textcolor{comment}{//\ Handle\ directory\ analytics\ request}}
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keywordflow}{if}\ (args.\mbox{\hyperlink{structCommandLineArgs_ab399696f534705c62ec3d5ba045eed09}{show\_dir\_analytics}})\ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dir__analytics_8c_ab481a931e3944eefb982e2666223d3d5}{print\_dir\_analytics}}(args.\mbox{\hyperlink{structCommandLineArgs_a5185c801bf6373761724b96d20f05aeb}{target\_count}}\ >\ 0\ ?\ args.\mbox{\hyperlink{structCommandLineArgs_a24eadec0753883664957eb8322579c25}{targets}}[0]\ :\ \textcolor{stringliteral}{"{}."{}});}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{args__parser_8c_a1e124c87a6ba6ffa680d9297fbc17d43}{free\_args}}(\&args);}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ EXIT\_SUCCESS;}
+\DoxyCodeLine{00324\ \ \ \ \ \}}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{comment}{//\ Get\ terminal\ width\ for\ display\ formatting}}
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keyword}{struct\ }winsize\ w;}
+\DoxyCodeLine{00328\ \ \ \ \ ioctl(STDOUT\_FILENO,\ TIOCGWINSZ,\ \&w);}
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keywordtype}{int}\ term\_width\ =\ w.ws\_col;}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{comment}{//\ Initialize\ variables\ for\ storing\ file\ entries}}
+\DoxyCodeLine{00332\ \ \ \ \ \mbox{\hyperlink{structFileCardInfo}{FileCardInfo}}\ *entries\ =\ NULL;}
+\DoxyCodeLine{00333\ \ \ \ \ \textcolor{keywordtype}{int}\ num\_entries\ =\ 0;}
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keywordtype}{int}\ current\_size\ =\ 0;}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \ \ \ \ \textcolor{comment}{//\ Set\ up\ display\ path}}
+\DoxyCodeLine{00337\ \ \ \ \ \textcolor{keywordtype}{char}\ display\_path[\mbox{\hyperlink{main_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}];}
+\DoxyCodeLine{00338\ \ \ \ \ strcpy(display\_path,\ current\_dir);}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ \ \ \textcolor{keywordtype}{int}\ show\_path\ =\ 1;\ \textcolor{comment}{//\ Flag\ to\ determine\ if\ path\ should\ be\ displayed}}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{comment}{//\ Process\ targets\ if\ provided,\ otherwise\ process\ current\ directory}}
+\DoxyCodeLine{00343\ \ \ \ \ \textcolor{keywordflow}{if}\ (args.\mbox{\hyperlink{structCommandLineArgs_a5185c801bf6373761724b96d20f05aeb}{target\_count}}\ >\ 0)\ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ show\_path\ =\ 0;\ \textcolor{comment}{//\ Don't\ show\ path\ for\ specific\ targets}}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ args.\mbox{\hyperlink{structCommandLineArgs_a5185c801bf6373761724b96d20f05aeb}{target\_count}};\ i++)\ \{}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ real\ path\ if\ possible}}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *real\_path\ =\ realpath(args.\mbox{\hyperlink{structCommandLineArgs_a24eadec0753883664957eb8322579c25}{targets}}[i],\ NULL);}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (real\_path\ !=\ NULL)\ \{}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(display\_path,\ real\_path);}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ free(real\_path);}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(display\_path,\ args.\mbox{\hyperlink{structCommandLineArgs_a24eadec0753883664957eb8322579c25}{targets}}[i]);}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process\ the\ target}}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{main_8c_ae7d3bb334fabeeccc7dfb05e7f968d47}{process\_target}}(args.\mbox{\hyperlink{structCommandLineArgs_a24eadec0753883664957eb8322579c25}{targets}}[i],\ \&entries,\ \&num\_entries,\ \&current\_size)\ !=\ 0)\ \{}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Error\ processing\ '\%s'\(\backslash\)n"{}},\ args.\mbox{\hyperlink{structCommandLineArgs_a24eadec0753883664957eb8322579c25}{targets}}[i]);}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ cleanup;\ \textcolor{comment}{//\ Jump\ to\ cleanup\ if\ there's\ an\ error}}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00361\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ current\ directory\ is\ /dev\ and\ handle\ accordingly}}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dev__dir__utils_8c_ae2390692f6e5134692701461dca8cd84}{is\_dev\_directory}}(current\_dir))\ \{}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(display\_path,\ \textcolor{stringliteral}{"{}/dev"{}});}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{dev__dir__utils_8c_acf9fb4da0ced0c99e368f3cd1ef91547}{handle\_dev\_directory}}(\&entries,\ \&num\_entries,\ \&current\_size)\ !=\ 0)\ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Error\ processing\ /dev\ directory\(\backslash\)n"{}});}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ cleanup;}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process\ current\ directory}}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{main_8c_acc392fbd2ea6b07ebcc2b9c089aae2ca}{process\_directory}}(\textcolor{stringliteral}{"{}."{}},\ \&entries,\ \&num\_entries,\ \&current\_size)\ !=\ 0)\ \{}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Error\ processing\ current\ directory\(\backslash\)n"{}});}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ cleanup;}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00376\ \ \ \ \ \}}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \ \ \ \ \textcolor{comment}{//\ Handle\ case\ when\ no\ entries\ are\ found}}
+\DoxyCodeLine{00379\ \ \ \ \ \textcolor{keywordflow}{if}\ (num\_entries\ ==\ 0)\ \{}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ current\_dir[PATH\_MAX];}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (getcwd(current\_dir,\ \textcolor{keyword}{sizeof}(current\_dir))\ !=\ NULL)\ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Display\ current\ directory\ if\ it\ matches\ the\ display\ path}}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(current\_dir,\ display\_path)\ ==\ 0)\ \{}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)033[1m\%s\(\backslash\)033[0m\(\backslash\)n"{}},\ current\_dir);}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}🚫\ No\ files\ found\(\backslash\)n"{}});}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}🚫\ No\ files\ found\(\backslash\)n"{}});}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00390\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sort\ the\ entries\ alphabetically}}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ qsort(entries,\ num\_entries,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structFileCardInfo}{FileCardInfo}}),\ \mbox{\hyperlink{file__card_8c_aaa0d8cd7d720e6b260615df1be0fdc7f}{compare\_file\_entries}});}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ in\ a\ Git\ repository,\ integrate\ Git\ status\ information}}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{git__utils_8c_a51ae0134feff92edfd5cf268cd0b1acf}{is\_git\_repository}}())\ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structGitFileList}{GitFileList}}\ git\_status\ =\ \mbox{\hyperlink{git__utils_8c_a1af8df0b83d4e26524cdb4371b7bd7a6}{get\_git\_status}}();}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_entries;\ i++)\ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ git\_status.\mbox{\hyperlink{structGitFileList_a8a2892f47d399a67ce95ecdf0ab4a79f}{count}};\ j++)\ \{}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Match\ file\ names\ and\ set\ Git\ status}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(entries[i].name,\ git\_status.\mbox{\hyperlink{structGitFileList_a66fb028701c6d829b9a0720baa4adb76}{files}}[j].\mbox{\hyperlink{structGitFile_a822b94e2dcbcc4086c35387aef4f4a57}{filename}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ entries[i].\mbox{\hyperlink{structFileCardInfo_a194c96b36719d8cfefd81e58c527668c}{git\_status}}[0]\ =\ git\_status.\mbox{\hyperlink{structGitFileList_a66fb028701c6d829b9a0720baa4adb76}{files}}[j].\mbox{\hyperlink{structGitFile_ac3e25bcf3aad47f8c13f3a98f250b874}{status}};}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ entries[i].\mbox{\hyperlink{structFileCardInfo_a194c96b36719d8cfefd81e58c527668c}{git\_status}}[1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Display\ the\ entries\ using\ the\ appropriate\ format}}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{display__utils_8c_a8b38e99d9128bf4a4badc21df13d442b}{display\_entries}}(entries,\ num\_entries,\ term\_width,\ display\_path,\ show\_path);}
+\DoxyCodeLine{00411\ \ \ \ \ \}}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ cleanup:}
+\DoxyCodeLine{00414\ \ \ \ \ \textcolor{comment}{//\ Free\ allocated\ memory\ for\ each\ entry}}
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_entries;\ i++)\ \{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{file__card_8c_af25b4091089527258ab9a8cb5ebff9e7}{free\_file\_entry}}(\&entries[i]);}
+\DoxyCodeLine{00417\ \ \ \ \ \}}
+\DoxyCodeLine{00418\ \ \ \ \ free(entries);\ \textcolor{comment}{//\ Free\ the\ main\ entries\ array}}
+\DoxyCodeLine{00419\ \ \ \ \ \mbox{\hyperlink{args__parser_8c_a1e124c87a6ba6ffa680d9297fbc17d43}{free\_args}}(\&args);\ \textcolor{comment}{//\ Free\ command-\/line\ arguments}}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \ \ \ \ \textcolor{comment}{//\ Return\ success\ if\ entries\ were\ found,\ failure\ otherwise}}
+\DoxyCodeLine{00422\ \ \ \ \ \textcolor{keywordflow}{return}\ num\_entries\ >\ 0\ ?\ EXIT\_SUCCESS\ :\ EXIT\_FAILURE;}
+\DoxyCodeLine{00423\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{file__card_8c_source_l00134}{compare\+\_\+file\+\_\+entries()}}, \mbox{\hyperlink{git__utils_8h_source_l00036}{Git\+File\+List\+::count}}, \mbox{\hyperlink{display__utils_8c_source_l00108}{display\+\_\+entries()}}, \mbox{\hyperlink{git__utils_8h_source_l00026}{Git\+File\+::filename}}, \mbox{\hyperlink{git__utils_8h_source_l00035}{Git\+File\+List\+::files}}, \mbox{\hyperlink{args__parser_8c_source_l00077}{free\+\_\+args()}}, \mbox{\hyperlink{file__card_8c_source_l00064}{free\+\_\+file\+\_\+entry()}}, \mbox{\hyperlink{git__utils_8c_source_l00065}{get\+\_\+git\+\_\+status()}}, \mbox{\hyperlink{file__card_8h_source_l00031}{File\+Card\+Info\+::git\+\_\+status}}, \mbox{\hyperlink{dev__dir__utils_8c_source_l00048}{handle\+\_\+dev\+\_\+directory()}}, \mbox{\hyperlink{args__parser_8h_source_l00031}{Command\+Line\+Args\+::invalid\+\_\+opt}}, \mbox{\hyperlink{dev__dir__utils_8c_source_l00031}{is\+\_\+dev\+\_\+directory()}}, \mbox{\hyperlink{git__utils_8c_source_l00028}{is\+\_\+git\+\_\+repository()}}, \mbox{\hyperlink{main_8c_source_l00255}{is\+\_\+glob\+\_\+or\+\_\+specific\+\_\+files()}}, \mbox{\hyperlink{main_8c_source_l00034}{MAX\+\_\+\+PATH}}, \mbox{\hyperlink{args__parser_8c_source_l00043}{parse\+\_\+args()}}, \mbox{\hyperlink{dir__analytics_8c_source_l00211}{print\+\_\+dir\+\_\+analytics()}}, \mbox{\hyperlink{args__parser_8c_source_l00102}{print\+\_\+help()}}, \mbox{\hyperlink{longlisting_8c_source_l00306}{print\+\_\+longlisting()}}, \mbox{\hyperlink{longlisting_8c_source_l00339}{print\+\_\+longlisting\+\_\+files()}}, \mbox{\hyperlink{args__parser_8c_source_l00090}{print\+\_\+version()}}, \mbox{\hyperlink{main_8c_source_l00078}{process\+\_\+directory()}}, \mbox{\hyperlink{main_8c_source_l00204}{process\+\_\+target()}}, \mbox{\hyperlink{args__parser_8h_source_l00030}{Command\+Line\+Args\+::show\+\_\+dir\+\_\+analytics}}, \mbox{\hyperlink{args__parser_8h_source_l00028}{Command\+Line\+Args\+::show\+\_\+help}}, \mbox{\hyperlink{args__parser_8h_source_l00029}{Command\+Line\+Args\+::show\+\_\+longlisting}}, \mbox{\hyperlink{args__parser_8h_source_l00027}{Command\+Line\+Args\+::show\+\_\+version}}, \mbox{\hyperlink{git__utils_8h_source_l00027}{Git\+File\+::status}}, \mbox{\hyperlink{args__parser_8h_source_l00033}{Command\+Line\+Args\+::target\+\_\+count}}, and \mbox{\hyperlink{args__parser_8h_source_l00032}{Command\+Line\+Args\+::targets}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d29/main_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{main_8c_acc392fbd2ea6b07ebcc2b9c089aae2ca}\label{main_8c_acc392fbd2ea6b07ebcc2b9c089aae2ca} 
+\index{main.c@{main.c}!process\_directory@{process\_directory}}
+\index{process\_directory@{process\_directory}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{process\_directory()}{process\_directory()}}
+{\footnotesize\ttfamily static int process\+\_\+directory (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{dir\+\_\+path,  }\item[{\mbox{\hyperlink{structFileCardInfo}{File\+Card\+Info}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{entries,  }\item[{int \texorpdfstring{$\ast$}{*}}]{num\+\_\+entries,  }\item[{int \texorpdfstring{$\ast$}{*}}]{current\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Processes directory entries and populates the entries array. 
+
+This function reads directory contents, creates \doxylink{structFileCardInfo}{File\+Card\+Info} structures for each entry, and dynamically allocates memory as needed. It also integrates Git status information.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir\+\_\+path} & Path to the directory to process. \\
+\hline
+{\em entries} & Pointer to the array of \doxylink{structFileCardInfo}{File\+Card\+Info} structures. \\
+\hline
+{\em num\+\_\+entries} & Pointer to the number of entries processed. \\
+\hline
+{\em current\+\_\+size} & Pointer to the current size of the entries array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on failure. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00078}{78}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ DIR\ *dir\ =\ opendir(dir\_path);\ \textcolor{comment}{//\ Open\ the\ directory}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir\ ==\ NULL)\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}Error\ opening\ directory"{}});\ \textcolor{comment}{//\ Print\ error\ message\ if\ directory\ can't\ be\ opened}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{struct\ }dirent\ *entry;}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{while}\ ((entry\ =\ readdir(dir))\ !=\ NULL)\ \{\ \textcolor{comment}{//\ Loop\ through\ each\ entry\ in\ the\ directory}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Skip\ '.'\ and\ '..'\ entries}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(entry-\/>d\_name,\ \textcolor{stringliteral}{"{}."{}})\ ==\ 0\ ||\ strcmp(entry-\/>d\_name,\ \textcolor{stringliteral}{"{}.."{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we\ need\ to\ allocate\ more\ memory}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (*num\_entries\ >=\ *current\_size)\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{main_8c_a165f84d1d52e7a11077ff2b3ec8ba0c8}{allocate\_entries}}(entries,\ current\_size)\ !=\ 0)\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closedir(dir);\ \textcolor{comment}{//\ Close\ the\ directory\ before\ returning}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ full\ path\ for\ the\ current\ entry}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ full\_path[\mbox{\hyperlink{main_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}];}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ snprintf(full\_path,\ \textcolor{keyword}{sizeof}(full\_path),\ \textcolor{stringliteral}{"{}\%s/\%s"{}},\ dir\_path,\ entry-\/>d\_name);}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ a\ file\ entry\ and\ add\ it\ to\ the\ array}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{file__card_8c_a8ac3f1a318ebad42a9d465b92e4aa598}{create\_file\_entry}}(\&(*entries)[*num\_entries],\ entry-\/>d\_name)\ !=\ 0)\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Warning:\ Unable\ to\ get\ info\ for\ \%s:\ \%s\(\backslash\)n"{}},\ full\_path,\ strerror(errno));}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ (*num\_entries)++;\ \textcolor{comment}{//\ Increment\ the\ number\ of\ entries}}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ closedir(dir);\ \textcolor{comment}{//\ Close\ the\ directory}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{comment}{//\ Integrate\ Git\ status\ information\ for\ the\ entries}}
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{git__integration_8c_ac8420e6fdcd1a0373f840ecbe95a220a}{integrate\_git\_status}}(entries,\ num\_entries,\ dir\_path);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;\ \textcolor{comment}{//\ Return\ 0\ to\ indicate\ success}}
+\DoxyCodeLine{00119\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{main_8c_source_l00047}{allocate\+\_\+entries()}}, \mbox{\hyperlink{file__card_8c_source_l00031}{create\+\_\+file\+\_\+entry()}}, \mbox{\hyperlink{git__integration_8c_source_l00030}{integrate\+\_\+git\+\_\+status()}}, and \mbox{\hyperlink{main_8c_source_l00034}{MAX\+\_\+\+PATH}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00275}{main()}}, and \mbox{\hyperlink{main_8c_source_l00204}{process\+\_\+target()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d29/main_8c_acc392fbd2ea6b07ebcc2b9c089aae2ca_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d29/main_8c_acc392fbd2ea6b07ebcc2b9c089aae2ca_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{main_8c_a00c65357e9fe949388102f3090ea09c5}\label{main_8c_a00c65357e9fe949388102f3090ea09c5} 
+\index{main.c@{main.c}!process\_files\_or\_patterns@{process\_files\_or\_patterns}}
+\index{process\_files\_or\_patterns@{process\_files\_or\_patterns}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{process\_files\_or\_patterns()}{process\_files\_or\_patterns()}}
+{\footnotesize\ttfamily static int process\+\_\+files\+\_\+or\+\_\+patterns (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{patterns,  }\item[{int}]{pattern\+\_\+count,  }\item[{\mbox{\hyperlink{structFileCardInfo}{File\+Card\+Info}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{entries,  }\item[{int \texorpdfstring{$\ast$}{*}}]{num\+\_\+entries,  }\item[{int \texorpdfstring{$\ast$}{*}}]{current\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Processes files or patterns and populates the entries array. 
+
+This function handles file patterns (including globs) and individual files, creating \doxylink{structFileCardInfo}{File\+Card\+Info} structures for matching entries.
+
+
+\begin{DoxyParams}{Parameters}
+{\em patterns} & Array of file patterns or names to process. \\
+\hline
+{\em pattern\+\_\+count} & Number of patterns in the array. \\
+\hline
+{\em entries} & Pointer to the array of \doxylink{structFileCardInfo}{File\+Card\+Info} structures. \\
+\hline
+{\em num\+\_\+entries} & Pointer to the number of entries processed. \\
+\hline
+{\em current\+\_\+size} & Pointer to the current size of the entries array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on failure. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00134}{134}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ DIR\ *dir;}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{struct\ }dirent\ *entry;}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{char}\ full\_path[\mbox{\hyperlink{main_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}];}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ dir\ =\ opendir(\textcolor{stringliteral}{"{}."{}});\ \textcolor{comment}{//\ Open\ the\ current\ directory}}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordflow}{if}\ (dir\ ==\ NULL)\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}Error\ opening\ current\ directory"{}});\ \textcolor{comment}{//\ Print\ error\ message\ if\ directory\ can't\ be\ opened}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{while}\ ((entry\ =\ readdir(dir))\ !=\ NULL)\ \{\ \textcolor{comment}{//\ Loop\ through\ each\ entry\ in\ the\ directory}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ match\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ entry\ matches\ any\ of\ the\ provided\ patterns}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ pattern\_count;\ i++)\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fnmatch(patterns[i],\ entry-\/>d\_name,\ 0)\ ==\ 0)\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ match\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (match)\ \{\ \textcolor{comment}{//\ If\ the\ entry\ matches\ a\ pattern}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we\ need\ to\ allocate\ more\ memory}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (*num\_entries\ >=\ *current\_size)\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{main_8c_a165f84d1d52e7a11077ff2b3ec8ba0c8}{allocate\_entries}}(entries,\ current\_size)\ !=\ 0)\ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closedir(dir);\ \textcolor{comment}{//\ Close\ the\ directory\ before\ returning}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ a\ file\ entry\ for\ the\ matching\ file}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ snprintf(full\_path,\ \textcolor{keyword}{sizeof}(full\_path),\ \textcolor{stringliteral}{"{}\%s"{}},\ entry-\/>d\_name);}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{file__card_8c_a8ac3f1a318ebad42a9d465b92e4aa598}{create\_file\_entry}}(\&(*entries)[*num\_entries],\ full\_path)\ !=\ 0)\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Warning:\ Unable\ to\ get\ info\ for\ \%s:\ \%s\(\backslash\)n"{}},\ full\_path,\ strerror(errno));}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ (*num\_entries)++;\ \textcolor{comment}{//\ Increment\ the\ number\ of\ entries}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ closedir(dir);\ \textcolor{comment}{//\ Close\ the\ directory}}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordflow}{return}\ *num\_entries\ >\ 0\ ?\ 0\ :\ -\/1;\ \textcolor{comment}{//\ Return\ 0\ if\ entries\ were\ found,\ -\/1\ otherwise}}
+\DoxyCodeLine{00177\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{main_8c_source_l00047}{allocate\+\_\+entries()}}, \mbox{\hyperlink{file__card_8c_source_l00031}{create\+\_\+file\+\_\+entry()}}, and \mbox{\hyperlink{main_8c_source_l00034}{MAX\+\_\+\+PATH}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00204}{process\+\_\+target()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d29/main_8c_a00c65357e9fe949388102f3090ea09c5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d29/main_8c_a00c65357e9fe949388102f3090ea09c5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{main_8c_ae7d3bb334fabeeccc7dfb05e7f968d47}\label{main_8c_ae7d3bb334fabeeccc7dfb05e7f968d47} 
+\index{main.c@{main.c}!process\_target@{process\_target}}
+\index{process\_target@{process\_target}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{process\_target()}{process\_target()}}
+{\footnotesize\ttfamily static int process\+\_\+target (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{target,  }\item[{\mbox{\hyperlink{structFileCardInfo}{File\+Card\+Info}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{entries,  }\item[{int \texorpdfstring{$\ast$}{*}}]{num\+\_\+entries,  }\item[{int \texorpdfstring{$\ast$}{*}}]{current\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Processes a single target (directory, file, or pattern). 
+
+This function handles different types of targets\+: directories, glob patterns, and individual files. It populates the entries array accordingly.
+
+
+\begin{DoxyParams}{Parameters}
+{\em target} & The target to process (directory path, file path, or pattern). \\
+\hline
+{\em entries} & Pointer to the array of \doxylink{structFileCardInfo}{File\+Card\+Info} structures. \\
+\hline
+{\em num\+\_\+entries} & Pointer to the number of entries processed. \\
+\hline
+{\em current\+\_\+size} & Pointer to the current size of the entries array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on failure. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00204}{204}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{main_8c_afd7cf5224b764819fb3a9463774482c5}{is\_directory}}(target))\ \{\ \textcolor{comment}{//\ If\ the\ target\ is\ a\ directory}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ previous\_dir[\mbox{\hyperlink{main_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}];}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (getcwd(previous\_dir,\ \textcolor{keyword}{sizeof}(previous\_dir))\ ==\ NULL)\ \{\ \textcolor{comment}{//\ Get\ current\ working\ directory}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}getcwd()\ error"{}});}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (chdir(target)\ !=\ 0)\ \{\ \textcolor{comment}{//\ Change\ to\ the\ target\ directory}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Error\ changing\ to\ directory\ '\%s':\ \%s\(\backslash\)n"{}},\ target,\ strerror(errno));}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result\ =\ \mbox{\hyperlink{main_8c_acc392fbd2ea6b07ebcc2b9c089aae2ca}{process\_directory}}(\textcolor{stringliteral}{"{}."{}},\ entries,\ num\_entries,\ current\_size);\ \textcolor{comment}{//\ Process\ the\ directory}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Change\ back\ to\ the\ previous\ directory}}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (chdir(previous\_dir)\ !=\ 0)\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Error\ changing\ back\ to\ previous\ directory:\ \%s\(\backslash\)n"{}},\ strerror(errno));}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00226\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{args__parser_8c_ac7b851d3c3ad6d7a78c3e0aabb176d15}{is\_glob\_pattern}}(target))\ \{\ \textcolor{comment}{//\ If\ the\ target\ is\ a\ glob\ pattern}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{main_8c_a00c65357e9fe949388102f3090ea09c5}{process\_files\_or\_patterns}}(\&target,\ 1,\ entries,\ num\_entries,\ current\_size);}
+\DoxyCodeLine{00228\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{\ \textcolor{comment}{//\ Assume\ it's\ a\ single\ file}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we\ need\ to\ allocate\ more\ memory}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (*num\_entries\ >=\ *current\_size)\ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{main_8c_a165f84d1d52e7a11077ff2b3ec8ba0c8}{allocate\_entries}}(entries,\ current\_size)\ !=\ 0)\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ a\ file\ entry\ for\ the\ single\ file}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{file__card_8c_a8ac3f1a318ebad42a9d465b92e4aa598}{create\_file\_entry}}(\&(*entries)[*num\_entries],\ target)\ !=\ 0)\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Unable\ to\ get\ info\ for\ \%s:\ \%s\(\backslash\)n"{}},\ target,\ strerror(errno));}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ (*num\_entries)++;\ \textcolor{comment}{//\ Increment\ the\ number\ of\ entries}}
+\DoxyCodeLine{00241\ \ \ \ \ \}}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;\ \textcolor{comment}{//\ Return\ 0\ to\ indicate\ success}}
+\DoxyCodeLine{00243\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{main_8c_source_l00047}{allocate\+\_\+entries()}}, \mbox{\hyperlink{file__card_8c_source_l00031}{create\+\_\+file\+\_\+entry()}}, \mbox{\hyperlink{main_8c_source_l00185}{is\+\_\+directory()}}, \mbox{\hyperlink{args__parser_8c_source_l00028}{is\+\_\+glob\+\_\+pattern()}}, \mbox{\hyperlink{main_8c_source_l00034}{MAX\+\_\+\+PATH}}, \mbox{\hyperlink{main_8c_source_l00078}{process\+\_\+directory()}}, and \mbox{\hyperlink{main_8c_source_l00134}{process\+\_\+files\+\_\+or\+\_\+patterns()}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00275}{main()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d29/main_8c_ae7d3bb334fabeeccc7dfb05e7f968d47_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{d0/d29/main_8c_ae7d3bb334fabeeccc7dfb05e7f968d47_icgraph}
+\end{center}
+\end{figure}

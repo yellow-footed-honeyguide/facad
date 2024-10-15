@@ -1,0 +1,24 @@
+<map id="get_emoji" name="get_emoji">
+<area shape="rect" id="Node000001" title="Determines the appropriate emoji for a given file based on its characteristics." alt="" coords="729,107,815,134"/>
+<area shape="rect" id="Node000002" href="$dd/d6c/file__card_8c.html#a8ac3f1a318ebad42a9d465b92e4aa598" title="Creates a new file card based on the given path." alt="" coords="550,81,681,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="713,114,681,108,681,103,714,108"/>
+<area shape="rect" id="Node000007" href="$d6/d95/longlisting_8c.html#a33c3f39ac9dd42760160e6cf451aed2a" title="Prints sorted entries in a detailed format." alt="" coords="334,159,485,186"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="714,131,486,164,485,159,713,126"/>
+<area shape="rect" id="Node000003" href="$d0/d29/main_8c.html#acc392fbd2ea6b07ebcc2b9c089aae2ca" title="Processes directory entries and populates the entries array." alt="" coords="341,5,477,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="563,78,501,54,452,36,454,31,503,49,565,73"/>
+<area shape="rect" id="Node000005" href="$d0/d29/main_8c.html#ae7d3bb334fabeeccc7dfb05e7f968d47" title="Processes a single target (directory, file, or pattern)." alt="" coords="129,56,247,84"/>
+<area shape="poly" id="edge8_Node000002_Node000005" title=" " alt="" coords="535,93,247,76,247,71,535,88"/>
+<area shape="rect" id="Node000006" href="$d0/d29/main_8c.html#a00c65357e9fe949388102f3090ea09c5" title="Processes files or patterns and populates the entries array." alt="" coords="316,107,502,134"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="535,108,503,112,502,106,534,102"/>
+<area shape="rect" id="Node000004" href="$d0/d29/main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Main function of the facad program." alt="" coords="5,83,60,110"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="326,17,220,22,163,32,109,47,76,64,50,84,47,80,74,60,107,42,162,26,220,17,325,12"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="332,40,247,59,246,54,331,34"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="115,85,61,95,60,89,114,80"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="331,105,246,86,247,81,332,100"/>
+<area shape="rect" id="Node000008" href="$d6/d95/longlisting_8c.html#a9aa67dc0ec987dacbfbc8dfe5745c5be" title="Prints a detailed listing of the contents of a directory." alt="" coords="125,108,251,136"/>
+<area shape="poly" id="edge10_Node000007_Node000008" title=" " alt="" coords="330,157,251,139,252,134,331,152"/>
+<area shape="rect" id="Node000009" href="$d6/d95/longlisting_8c.html#a1af2c63d6b774640dcf8f6b3127dfa47" title=" " alt="" coords="108,160,268,188"/>
+<area shape="poly" id="edge12_Node000007_Node000009" title=" " alt="" coords="318,176,268,176,268,171,318,170"/>
+<area shape="poly" id="edge11_Node000008_Node000004" title=" " alt="" coords="109,112,60,103,61,98,110,106"/>
+<area shape="poly" id="edge13_Node000009_Node000004" title=" " alt="" coords="122,156,106,150,50,113,53,109,109,145,124,152"/>
+</map>

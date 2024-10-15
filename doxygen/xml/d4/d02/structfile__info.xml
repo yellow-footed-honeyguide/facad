@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="d4/d02/structfile__info" kind="struct" language="C++" prot="public">
+    <compoundname>file_info</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d4/d02/structfile__info_1af4358e531f11044f1e5a041537676d33" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char file_info::name[256]</definition>
+        <argsstring>[256]</argsstring>
+        <name>name</name>
+        <qualifiedname>file_info::name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Name of the file or directory </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" line="37" column="10" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" bodystart="37" bodyend="-1"/>
+        <referencedby refid="d6/d95/longlisting_8c_1a18cb88825df7452df9b5ce2309c887cf" compoundref="d6/d95/longlisting_8c" startline="199" endline="222">compare_entries</referencedby>
+        <referencedby refid="d6/d95/longlisting_8c_1a58ed2be9f460ed564cbd43d32e1ce658" compoundref="d6/d95/longlisting_8c" startline="233" endline="269">get_file_info</referencedby>
+        <referencedby refid="d6/d95/longlisting_8c_1a33c3f39ac9dd42760160e6cf451aed2a" compoundref="d6/d95/longlisting_8c" startline="279" endline="299">print_sorted_entries</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d4/d02/structfile__info_1a605808d3db7b33b36b4cce172ca71eb0" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char file_info::full_path[MAX_PATH]</definition>
+        <argsstring>[MAX_PATH]</argsstring>
+        <name>full_path</name>
+        <qualifiedname>file_info::full_path</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Full path to the file or directory </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" line="38" column="10" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" bodystart="38" bodyend="-1"/>
+        <referencedby refid="d6/d95/longlisting_8c_1a58ed2be9f460ed564cbd43d32e1ce658" compoundref="d6/d95/longlisting_8c" startline="233" endline="269">get_file_info</referencedby>
+        <referencedby refid="d6/d95/longlisting_8c_1a9aa67dc0ec987dacbfbc8dfe5745c5be" compoundref="d6/d95/longlisting_8c" startline="306" endline="336">print_longlisting</referencedby>
+        <referencedby refid="d6/d95/longlisting_8c_1a33c3f39ac9dd42760160e6cf451aed2a" compoundref="d6/d95/longlisting_8c" startline="279" endline="299">print_sorted_entries</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d4/d02/structfile__info_1a6e48876c051acfc4d2c0af2840515cd9" prot="public" static="no" mutable="no">
+        <type>off_t</type>
+        <definition>off_t file_info::size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <qualifiedname>file_info::size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Size of the file or directory </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" line="39" column="11" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" bodystart="39" bodyend="-1"/>
+        <referencedby refid="d6/d95/longlisting_8c_1a18cb88825df7452df9b5ce2309c887cf" compoundref="d6/d95/longlisting_8c" startline="199" endline="222">compare_entries</referencedby>
+        <referencedby refid="d6/d95/longlisting_8c_1a58ed2be9f460ed564cbd43d32e1ce658" compoundref="d6/d95/longlisting_8c" startline="233" endline="269">get_file_info</referencedby>
+        <referencedby refid="d6/d95/longlisting_8c_1a33c3f39ac9dd42760160e6cf451aed2a" compoundref="d6/d95/longlisting_8c" startline="279" endline="299">print_sorted_entries</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d4/d02/structfile__info_1a0df946c901068e5d66df47dc8d922f43" prot="public" static="no" mutable="no">
+        <type>mode_t</type>
+        <definition>mode_t file_info::mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <qualifiedname>file_info::mode</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>File mode (permissions) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" line="40" column="12" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" bodystart="40" bodyend="-1"/>
+        <referencedby refid="d6/d95/longlisting_8c_1a58ed2be9f460ed564cbd43d32e1ce658" compoundref="d6/d95/longlisting_8c" startline="233" endline="269">get_file_info</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d4/d02/structfile__info_1ae8d2e03538d68731843ce28ae6264882" prot="public" static="no" mutable="no">
+        <type>time_t</type>
+        <definition>time_t file_info::mtime</definition>
+        <argsstring></argsstring>
+        <name>mtime</name>
+        <qualifiedname>file_info::mtime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Last modification time </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" line="41" column="12" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" bodystart="41" bodyend="-1"/>
+        <referencedby refid="d6/d95/longlisting_8c_1a58ed2be9f460ed564cbd43d32e1ce658" compoundref="d6/d95/longlisting_8c" startline="233" endline="269">get_file_info</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d4/d02/structfile__info_1a75dece3e86707e5f1b28430b78e98d08" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int file_info::is_dir</definition>
+        <argsstring></argsstring>
+        <name>is_dir</name>
+        <qualifiedname>file_info::is_dir</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Flag indicating if it&apos;s a directory </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" line="42" column="9" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" bodystart="42" bodyend="-1"/>
+        <referencedby refid="d6/d95/longlisting_8c_1a18cb88825df7452df9b5ce2309c887cf" compoundref="d6/d95/longlisting_8c" startline="199" endline="222">compare_entries</referencedby>
+        <referencedby refid="d6/d95/longlisting_8c_1a58ed2be9f460ed564cbd43d32e1ce658" compoundref="d6/d95/longlisting_8c" startline="233" endline="269">get_file_info</referencedby>
+        <referencedby refid="d6/d95/longlisting_8c_1a33c3f39ac9dd42760160e6cf451aed2a" compoundref="d6/d95/longlisting_8c" startline="279" endline="299">print_sorted_entries</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d4/d02/structfile__info_1a8a9009da21212dba3a7b8369471ed05e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int file_info::subdir_count</definition>
+        <argsstring></argsstring>
+        <name>subdir_count</name>
+        <qualifiedname>file_info::subdir_count</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Number of subdirectories (for directories) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" line="43" column="9" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" bodystart="43" bodyend="-1"/>
+        <referencedby refid="d6/d95/longlisting_8c_1a18cb88825df7452df9b5ce2309c887cf" compoundref="d6/d95/longlisting_8c" startline="199" endline="222">compare_entries</referencedby>
+        <referencedby refid="d6/d95/longlisting_8c_1a58ed2be9f460ed564cbd43d32e1ce658" compoundref="d6/d95/longlisting_8c" startline="233" endline="269">get_file_info</referencedby>
+        <referencedby refid="d6/d95/longlisting_8c_1a33c3f39ac9dd42760160e6cf451aed2a" compoundref="d6/d95/longlisting_8c" startline="279" endline="299">print_sorted_entries</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d4/d02/structfile__info_1a8313d9a4b0297566dbf509513e6eda34" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char file_info::owner[256]</definition>
+        <argsstring>[256]</argsstring>
+        <name>owner</name>
+        <qualifiedname>file_info::owner</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Owner of the file or directory </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" line="44" column="10" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" bodystart="44" bodyend="-1"/>
+        <referencedby refid="d6/d95/longlisting_8c_1a58ed2be9f460ed564cbd43d32e1ce658" compoundref="d6/d95/longlisting_8c" startline="233" endline="269">get_file_info</referencedby>
+        <referencedby refid="d6/d95/longlisting_8c_1a33c3f39ac9dd42760160e6cf451aed2a" compoundref="d6/d95/longlisting_8c" startline="279" endline="299">print_sorted_entries</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d4/d02/structfile__info_1a0bba7f65248bd234563e548f19b9051b" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char file_info::user_rights[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>user_rights</name>
+        <qualifiedname>file_info::user_rights</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>User rights represented as emojis </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" line="45" column="10" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" bodystart="45" bodyend="-1"/>
+        <referencedby refid="d6/d95/longlisting_8c_1a58ed2be9f460ed564cbd43d32e1ce658" compoundref="d6/d95/longlisting_8c" startline="233" endline="269">get_file_info</referencedby>
+        <referencedby refid="d6/d95/longlisting_8c_1a33c3f39ac9dd42760160e6cf451aed2a" compoundref="d6/d95/longlisting_8c" startline="279" endline="299">print_sorted_entries</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d4/d02/structfile__info_1ad0bb2c46351f70095588257823a5ccfd" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char file_info::time_ago[MAX_TIME_AGO_LEN]</definition>
+        <argsstring>[MAX_TIME_AGO_LEN]</argsstring>
+        <name>time_ago</name>
+        <qualifiedname>file_info::time_ago</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Human-readable time since last modification </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" line="46" column="10" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" bodystart="46" bodyend="-1"/>
+        <referencedby refid="d6/d95/longlisting_8c_1a58ed2be9f460ed564cbd43d32e1ce658" compoundref="d6/d95/longlisting_8c" startline="233" endline="269">get_file_info</referencedby>
+        <referencedby refid="d6/d95/longlisting_8c_1a33c3f39ac9dd42760160e6cf451aed2a" compoundref="d6/d95/longlisting_8c" startline="279" endline="299">print_sorted_entries</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Structure to hold detailed information about a file or directory. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>file_info</label>
+        <link refid="d4/d02/structfile__info"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" line="36" column="1" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c" bodystart="36" bodyend="47"/>
+    <listofallmembers>
+      <member refid="d4/d02/structfile__info_1a605808d3db7b33b36b4cce172ca71eb0" prot="public" virt="non-virtual"><scope>file_info</scope><name>full_path</name></member>
+      <member refid="d4/d02/structfile__info_1a75dece3e86707e5f1b28430b78e98d08" prot="public" virt="non-virtual"><scope>file_info</scope><name>is_dir</name></member>
+      <member refid="d4/d02/structfile__info_1a0df946c901068e5d66df47dc8d922f43" prot="public" virt="non-virtual"><scope>file_info</scope><name>mode</name></member>
+      <member refid="d4/d02/structfile__info_1ae8d2e03538d68731843ce28ae6264882" prot="public" virt="non-virtual"><scope>file_info</scope><name>mtime</name></member>
+      <member refid="d4/d02/structfile__info_1af4358e531f11044f1e5a041537676d33" prot="public" virt="non-virtual"><scope>file_info</scope><name>name</name></member>
+      <member refid="d4/d02/structfile__info_1a8313d9a4b0297566dbf509513e6eda34" prot="public" virt="non-virtual"><scope>file_info</scope><name>owner</name></member>
+      <member refid="d4/d02/structfile__info_1a6e48876c051acfc4d2c0af2840515cd9" prot="public" virt="non-virtual"><scope>file_info</scope><name>size</name></member>
+      <member refid="d4/d02/structfile__info_1a8a9009da21212dba3a7b8369471ed05e" prot="public" virt="non-virtual"><scope>file_info</scope><name>subdir_count</name></member>
+      <member refid="d4/d02/structfile__info_1ad0bb2c46351f70095588257823a5ccfd" prot="public" virt="non-virtual"><scope>file_info</scope><name>time_ago</name></member>
+      <member refid="d4/d02/structfile__info_1a0bba7f65248bd234563e548f19b9051b" prot="public" virt="non-virtual"><scope>file_info</scope><name>user_rights</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

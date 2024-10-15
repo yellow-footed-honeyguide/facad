@@ -1,0 +1,123 @@
+\doxysection{git\+\_\+utils.\+c}
+\hypertarget{git__utils_8c_source}{}\label{git__utils_8c_source}\index{/home/honeyguide/Desktop/MyOpenSource/facad/src/git\_utils.c@{/home/honeyguide/Desktop/MyOpenSource/facad/src/git\_utils.c}}
+\mbox{\hyperlink{git__utils_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ git\_utils.c}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Implementation\ of\ Git\ utility\ functions\ for\ facad.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00005}00005\ \textcolor{comment}{\ *\ This\ file\ contains\ utility\ functions\ for\ interacting\ with\ Git\ repositories.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00006}00006\ \textcolor{comment}{\ *\ It\ provides\ functionality\ to\ check\ if\ the\ current\ directory\ is\ a\ Git\ repository,}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00007}00007\ \textcolor{comment}{\ *\ retrieve\ Git\ status\ information,\ and\ get\ the\ current\ branch\ name.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00008}00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00009}00009\ \textcolor{comment}{\ *\ @author\ Sergey\ Veneckiy}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00010}00010\ \textcolor{comment}{\ *\ @date\ 2024}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00011}00011\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{git__utils_8h}{git\_utils.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00019}00019\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00020}00020\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00021}00021\ \textcolor{comment}{\ *\ @brief\ Checks\ if\ the\ current\ directory\ is\ part\ of\ a\ Git\ repository.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00022}00022\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00023}00023\ \textcolor{comment}{\ *\ This\ function\ executes\ the\ 'git\ rev-\/parse'\ command\ to\ determine}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00024}00024\ \textcolor{comment}{\ *\ if\ the\ current\ working\ directory\ is\ within\ a\ Git\ repository.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00025}00025\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00026}00026\ \textcolor{comment}{\ *\ @return\ true\ if\ the\ current\ directory\ is\ in\ a\ Git\ repository,\ false\ otherwise.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00027}00027\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00028}\mbox{\hyperlink{git__utils_8c_a51ae0134feff92edfd5cf268cd0b1acf}{00028}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{git__utils_8c_a51ae0134feff92edfd5cf268cd0b1acf}{is\_git\_repository}}()\ \{}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00029}00029\ \ \ \ \ \textcolor{comment}{//\ Execute\ 'git\ rev-\/parse'\ command\ and\ redirect\ output\ to\ /dev/null}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00030}00030\ \ \ \ \ FILE*\ fp\ =\ popen(\textcolor{stringliteral}{"{}git\ rev-\/parse\ -\/-\/is-\/inside-\/work-\/tree\ 2>/dev/null"{}},\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00031}00031\ \ \ \ \ \textcolor{keywordflow}{if}\ (fp\ ==\ NULL)\ \{}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \ \textcolor{comment}{//\ Return\ false\ if\ command\ execution\ failed}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00033}00033\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00035}00035\ \ \ \ \ \textcolor{keywordtype}{char}\ buffer[128];\ \ \textcolor{comment}{//\ Buffer\ to\ store\ command\ output}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00036}00036\ \ \ \ \ \textcolor{comment}{//\ Read\ command\ output\ and\ check\ if\ it's\ "{}true"{}}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00037}00037\ \ \ \ \ \textcolor{keywordtype}{bool}\ result\ =\ fgets(buffer,\ \textcolor{keyword}{sizeof}(buffer),\ fp)\ !=\ NULL\ \&\&\ strcmp(buffer,\ \textcolor{stringliteral}{"{}true\(\backslash\)n"{}})\ ==\ 0;}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00038}00038\ \ \ \ \ pclose(fp);\ \ \textcolor{comment}{//\ Close\ the\ command\ pipe}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00039}00039\ \ \ \ \ \textcolor{keywordflow}{return}\ result;\ \ \textcolor{comment}{//\ Return\ the\ result}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00040}00040\ \}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00041}00041\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00042}00042\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00043}00043\ \textcolor{comment}{\ *\ @brief\ Parses\ a\ Git\ status\ string\ and\ returns\ a\ single\ character\ status\ code.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00044}00044\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00045}00045\ \textcolor{comment}{\ *\ This\ function\ interprets\ the\ two-\/character\ Git\ status\ string\ and}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00046}00046\ \textcolor{comment}{\ *\ returns\ a\ single\ character\ representing\ the\ file's\ status.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00047}00047\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00048}00048\ \textcolor{comment}{\ *\ @param\ status\_str\ Two-\/character\ Git\ status\ string.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00049}00049\ \textcolor{comment}{\ *\ @return\ Single\ character\ representing\ the\ file's\ Git\ status.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00050}00050\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00051}\mbox{\hyperlink{git__utils_8c_aa639b9b3bbea0da0a09fbad3ca69aa5d}{00051}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{git__utils_8c_aa639b9b3bbea0da0a09fbad3ca69aa5d}{parse\_status}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ status\_str)\ \{}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00052}00052\ \ \ \ \ \textcolor{keywordflow}{if}\ (status\_str[0]\ ==\ \textcolor{charliteral}{'?'}\ \&\&\ status\_str[1]\ ==\ \textcolor{charliteral}{'?'})\ \textcolor{keywordflow}{return}\ \textcolor{charliteral}{'U'};\ \ \textcolor{comment}{//\ Untracked}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00053}00053\ \ \ \ \ \textcolor{keywordflow}{if}\ (status\_str[0]\ ==\ \textcolor{charliteral}{'!'}\ \&\&\ status\_str[1]\ ==\ \textcolor{charliteral}{'!'})\ \textcolor{keywordflow}{return}\ \textcolor{charliteral}{'I'};\ \ \textcolor{comment}{//\ Ignored}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00054}00054\ \ \ \ \ \textcolor{keywordflow}{return}\ status\_str[0]\ !=\ \textcolor{charliteral}{'\ '}\ ?\ status\_str[0]\ :\ status\_str[1];\ \ \ \textcolor{comment}{//\ Modified,\ Staged,\ etc.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00055}00055\ \}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00056}00056\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00057}00057\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00058}00058\ \textcolor{comment}{\ *\ @brief\ Retrieves\ the\ Git\ status\ for\ all\ files\ in\ the\ current\ repository.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00059}00059\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00060}00060\ \textcolor{comment}{\ *\ This\ function\ executes\ 'git\ status'\ command\ and\ parses\ its\ output\ to\ create}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00061}00061\ \textcolor{comment}{\ *\ a\ list\ of\ files\ with\ their\ corresponding\ Git\ status.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00062}00062\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00063}00063\ \textcolor{comment}{\ *\ @return\ GitFileList\ structure\ containing\ the\ status\ of\ all\ files\ in\ the\ repository.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00064}00064\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00065}\mbox{\hyperlink{git__utils_8c_a1af8df0b83d4e26524cdb4371b7bd7a6}{00065}}\ \mbox{\hyperlink{structGitFileList}{GitFileList}}\ \mbox{\hyperlink{git__utils_8c_a1af8df0b83d4e26524cdb4371b7bd7a6}{get\_git\_status}}()\ \{}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00066}00066\ \ \ \ \ \mbox{\hyperlink{structGitFileList}{GitFileList}}\ list\ =\ \{0\};\ \ \textcolor{comment}{//\ Initialize\ an\ empty\ GitFileList}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00068}00068\ \ \ \ \ \textcolor{comment}{//\ Execute\ 'git\ status'\ command}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00069}00069\ \ \ \ \ FILE*\ fp\ =\ popen(\textcolor{stringliteral}{"{}git\ status\ -\/s"{}},\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00070}00070\ \ \ \ \ \textcolor{keywordflow}{if}\ (fp\ ==\ NULL)\ \{}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ list;\ \ \textcolor{comment}{//\ Return\ empty\ list\ if\ command\ execution\ failed}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00072}00072\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00074}00074\ \ \ \ \ \textcolor{keywordtype}{char}\ line[\mbox{\hyperlink{git__utils_8h_abe0ec333b60117063f9b9fd9f849cb08}{MAX\_FILENAME}}\ +\ 3];\ \ \textcolor{comment}{//\ Buffer\ to\ store\ each\ line\ of\ output}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00075}00075\ \ \ \ \ \textcolor{comment}{//\ Read\ each\ line\ of\ the\ command\ output}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00076}00076\ \ \ \ \ \textcolor{keywordflow}{while}\ (fgets(line,\ \textcolor{keyword}{sizeof}(line),\ fp)\ !=\ NULL\ \&\&\ list.\mbox{\hyperlink{structGitFileList_a8a2892f47d399a67ce95ecdf0ab4a79f}{count}}\ <\ \mbox{\hyperlink{dir__analytics_8c_a2c5eecb22513a88c24ae5831a3265e54}{MAX\_FILES}})\ \{}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strlen(line)\ >\ 3)\ \{\ \ \textcolor{comment}{//\ Ensure\ the\ line\ has\ enough\ characters}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structGitFile}{GitFile}}\ file;}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ file.\mbox{\hyperlink{structGitFile_ac3e25bcf3aad47f8c13f3a98f250b874}{status}}\ =\ \mbox{\hyperlink{git__utils_8c_aa639b9b3bbea0da0a09fbad3ca69aa5d}{parse\_status}}(line);\ \ \textcolor{comment}{//\ Parse\ the\ status}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Copy\ the\ filename,\ skipping\ the\ first\ 3\ characters\ (status\ and\ space)}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(file.\mbox{\hyperlink{structGitFile_a822b94e2dcbcc4086c35387aef4f4a57}{filename}},\ line\ +\ 3,\ \mbox{\hyperlink{git__utils_8h_abe0ec333b60117063f9b9fd9f849cb08}{MAX\_FILENAME}}\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ file.\mbox{\hyperlink{structGitFile_a822b94e2dcbcc4086c35387aef4f4a57}{filename}}[strcspn(file.\mbox{\hyperlink{structGitFile_a822b94e2dcbcc4086c35387aef4f4a57}{filename}},\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}})]\ =\ 0;\ \ \textcolor{comment}{//\ Remove\ newline}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ list.\mbox{\hyperlink{structGitFileList_a66fb028701c6d829b9a0720baa4adb76}{files}}[list.\mbox{\hyperlink{structGitFileList_a8a2892f47d399a67ce95ecdf0ab4a79f}{count}}++]\ =\ file;\ \ \textcolor{comment}{//\ Add\ file\ to\ the\ list}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00084}00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00085}00085\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00087}00087\ \ \ \ \ pclose(fp);\ \ \textcolor{comment}{//\ Close\ the\ command\ pipe}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00088}00088\ \ \ \ \ \textcolor{keywordflow}{return}\ list;\ \ \textcolor{comment}{//\ Return\ the\ populated\ list}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00089}00089\ \}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00090}00090\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00091}00091\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00092}00092\ \textcolor{comment}{\ *\ @brief\ Retrieves\ the\ name\ of\ the\ current\ Git\ branch.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00093}00093\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00094}00094\ \textcolor{comment}{\ *\ This\ function\ executes\ 'git\ rev-\/parse'\ command\ to\ get\ the\ name\ of\ the}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00095}00095\ \textcolor{comment}{\ *\ current\ Git\ branch.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00096}00096\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00097}00097\ \textcolor{comment}{\ *\ @return\ Dynamically\ allocated\ string\ containing\ the\ branch\ name,\ or\ NULL\ if\ an\ error\ occurred.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00098}00098\ \textcolor{comment}{\ *\ @note\ The\ caller\ is\ responsible\ for\ freeing\ the\ returned\ string.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00099}00099\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00100}\mbox{\hyperlink{git__utils_8c_a2ef1d42e63a1b1ab2270c1d82157a384}{00100}}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{git__utils_8c_a2ef1d42e63a1b1ab2270c1d82157a384}{get\_current\_branch}}()\ \{}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00101}00101\ \ \ \ \ \textcolor{comment}{//\ Execute\ 'git\ rev-\/parse'\ command\ to\ get\ the\ branch\ name}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00102}00102\ \ \ \ \ FILE*\ fp\ =\ popen(\textcolor{stringliteral}{"{}git\ rev-\/parse\ -\/-\/abbrev-\/ref\ HEAD\ 2>/dev/null"{}},\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00103}00103\ \ \ \ \ \textcolor{keywordflow}{if}\ (fp\ ==\ NULL)\ \{}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00104}00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;\ \ \textcolor{comment}{//\ Return\ NULL\ if\ command\ execution\ failed}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00105}00105\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00107}00107\ \ \ \ \ \textcolor{keywordtype}{char}*\ branch\ =\ malloc(256);\ \ \textcolor{comment}{//\ Allocate\ memory\ for\ the\ branch\ name}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00108}00108\ \ \ \ \ \textcolor{keywordflow}{if}\ (fgets(branch,\ 256,\ fp)\ ==\ NULL)\ \{\ \ \textcolor{comment}{//\ Read\ the\ branch\ name}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00109}00109\ \ \ \ \ \ \ \ \ free(branch);\ \ \textcolor{comment}{//\ Free\ allocated\ memory\ if\ read\ failed}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00110}00110\ \ \ \ \ \ \ \ \ pclose(fp);\ \ \ \ \textcolor{comment}{//\ Close\ the\ command\ pipe}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;\ \ \ \textcolor{comment}{//\ Return\ NULL\ to\ indicate\ failure}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00112}00112\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00114}00114\ \ \ \ \ pclose(fp);\ \ \textcolor{comment}{//\ Close\ the\ command\ pipe}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00115}00115\ \ \ \ \ branch[strcspn(branch,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}})]\ =\ 0;\ \ \textcolor{comment}{//\ Remove\ newline\ character}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00116}00116\ \ \ \ \ \textcolor{keywordflow}{return}\ branch;\ \ \textcolor{comment}{//\ Return\ the\ branch\ name}}
+\DoxyCodeLine{\Hypertarget{git__utils_8c_source_l00117}00117\ \}}
+
+\end{DoxyCode}

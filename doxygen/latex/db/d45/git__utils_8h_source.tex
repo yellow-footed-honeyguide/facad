@@ -1,0 +1,75 @@
+\doxysection{git\+\_\+utils.\+h}
+\hypertarget{git__utils_8h_source}{}\label{git__utils_8h_source}\index{/home/honeyguide/Desktop/MyOpenSource/facad/src/git\_utils.h@{/home/honeyguide/Desktop/MyOpenSource/facad/src/git\_utils.h}}
+\mbox{\hyperlink{git__utils_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ git\_utils.h}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Header\ file\ for\ Git\ utility\ functions\ used\ in\ facad.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00005}00005\ \textcolor{comment}{\ *\ This\ file\ declares\ structures\ and\ functions\ for\ interacting\ with\ Git\ repositories.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00006}00006\ \textcolor{comment}{\ *\ It\ provides\ functionality\ to\ check\ if\ a\ directory\ is\ a\ Git\ repository,}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00007}00007\ \textcolor{comment}{\ *\ retrieve\ Git\ status\ information,\ and\ get\ the\ current\ branch\ name.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00008}00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00009}00009\ \textcolor{comment}{\ *\ @author\ Sergey\ Veneckiy}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00010}00010\ \textcolor{comment}{\ *\ @date\ 2024}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00011}00011\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00013}00013\ \textcolor{preprocessor}{\#ifndef\ GIT\_UTILS\_H}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00014}00014\ \textcolor{preprocessor}{\#define\ GIT\_UTILS\_H}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <stdbool.h>}\ \ \textcolor{comment}{//\ Include\ for\ boolean\ type}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00018}\mbox{\hyperlink{git__utils_8h_abe0ec333b60117063f9b9fd9f849cb08}{00018}}\ \textcolor{preprocessor}{\#define\ MAX\_FILENAME\ 1024\ \ }\textcolor{comment}{//\ Maximum\ length\ for\ filenames}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00019}\mbox{\hyperlink{git__utils_8h_a2c5eecb22513a88c24ae5831a3265e54}{00019}}\ \textcolor{preprocessor}{\#define\ MAX\_FILES\ 1000\ \ \ \ \ }\textcolor{comment}{//\ Maximum\ number\ of\ files\ to\ track}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00020}00020\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00021}00021\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00022}00022\ \textcolor{comment}{\ *\ @struct\ GitFile}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00023}00023\ \textcolor{comment}{\ *\ @brief\ Structure\ to\ hold\ information\ about\ a\ single\ file's\ Git\ status.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00024}00024\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00025}\mbox{\hyperlink{structGitFile}{00025}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00026}\mbox{\hyperlink{structGitFile_a822b94e2dcbcc4086c35387aef4f4a57}{00026}}\ \ \ \ \ \textcolor{keywordtype}{char}\ filename[\mbox{\hyperlink{git__utils_8h_abe0ec333b60117063f9b9fd9f849cb08}{MAX\_FILENAME}}];\ \ \textcolor{comment}{//\ Name\ of\ the\ file}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00027}\mbox{\hyperlink{structGitFile_ac3e25bcf3aad47f8c13f3a98f250b874}{00027}}\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structGitFile_ac3e25bcf3aad47f8c13f3a98f250b874}{status}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Single\ character\ representing\ Git\ status}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00028}00028\ \}\ \mbox{\hyperlink{structGitFile}{GitFile}};}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00029}00029\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00030}00030\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00031}00031\ \textcolor{comment}{\ *\ @struct\ GitFileList}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00032}00032\ \textcolor{comment}{\ *\ @brief\ Structure\ to\ hold\ Git\ status\ information\ for\ multiple\ files.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00033}00033\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00034}\mbox{\hyperlink{structGitFileList}{00034}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00035}\mbox{\hyperlink{structGitFileList_a66fb028701c6d829b9a0720baa4adb76}{00035}}\ \ \ \ \ \mbox{\hyperlink{structGitFile}{GitFile}}\ files[\mbox{\hyperlink{git__utils_8h_a2c5eecb22513a88c24ae5831a3265e54}{MAX\_FILES}}];\ \ \textcolor{comment}{//\ Array\ of\ GitFile\ structures}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00036}\mbox{\hyperlink{structGitFileList_a8a2892f47d399a67ce95ecdf0ab4a79f}{00036}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structGitFileList_a8a2892f47d399a67ce95ecdf0ab4a79f}{count}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Number\ of\ files\ in\ the\ list}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00037}00037\ \}\ \mbox{\hyperlink{structGitFileList}{GitFileList}};}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00038}00038\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00039}00039\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00040}00040\ \textcolor{comment}{\ *\ @brief\ Checks\ if\ the\ current\ directory\ is\ part\ of\ a\ Git\ repository.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00041}00041\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00042}00042\ \textcolor{comment}{\ *\ This\ function\ determines\ whether\ the\ current\ working\ directory}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00043}00043\ \textcolor{comment}{\ *\ is\ within\ a\ Git\ repository.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00044}00044\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00045}00045\ \textcolor{comment}{\ *\ @return\ true\ if\ the\ current\ directory\ is\ in\ a\ Git\ repository,\ false\ otherwise.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00046}00046\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00047}00047\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{git__utils_8h_ab59b5067f41c72180a081769679d524d}{is\_git\_repository}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00048}00048\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00049}00049\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00050}00050\ \textcolor{comment}{\ *\ @brief\ Retrieves\ the\ Git\ status\ for\ all\ files\ in\ the\ current\ repository.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00051}00051\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00052}00052\ \textcolor{comment}{\ *\ This\ function\ gets\ the\ status\ of\ all\ files\ in\ the\ current\ Git\ repository,}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00053}00053\ \textcolor{comment}{\ *\ including\ untracked,\ modified,\ and\ staged\ files.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00054}00054\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00055}00055\ \textcolor{comment}{\ *\ @return\ GitFileList\ structure\ containing\ the\ status\ of\ all\ files\ in\ the\ repository.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00056}00056\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00057}00057\ \mbox{\hyperlink{structGitFileList}{GitFileList}}\ \mbox{\hyperlink{git__utils_8h_a3d9263e3ac5e7c5af45a994cc1d7d559}{get\_git\_status}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00058}00058\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00059}00059\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00060}00060\ \textcolor{comment}{\ *\ @brief\ Retrieves\ the\ name\ of\ the\ current\ Git\ branch.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00061}00061\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00062}00062\ \textcolor{comment}{\ *\ This\ function\ gets\ the\ name\ of\ the\ current\ Git\ branch\ in\ the\ repository.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00063}00063\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00064}00064\ \textcolor{comment}{\ *\ @return\ Dynamically\ allocated\ string\ containing\ the\ branch\ name,\ or\ NULL\ if\ an\ error\ occurred.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00065}00065\ \textcolor{comment}{\ *\ @note\ The\ caller\ is\ responsible\ for\ freeing\ the\ returned\ string.}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00066}00066\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00067}00067\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{git__utils_8h_ad929b0cd0d22aee7938780406e8e584b}{get\_current\_branch}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{git__utils_8h_source_l00069}00069\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GIT\_UTILS\_H}}
+
+\end{DoxyCode}

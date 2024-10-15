@@ -1,0 +1,194 @@
+\doxysection{/home/honeyguide/\+Desktop/\+My\+Open\+Source/facad/src/dir\+\_\+config.h File Reference}
+\hypertarget{dir__config_8h}{}\label{dir__config_8h}\index{/home/honeyguide/Desktop/MyOpenSource/facad/src/dir\_config.h@{/home/honeyguide/Desktop/MyOpenSource/facad/src/dir\_config.h}}
+
+
+Header file for directory-\/specific configurations.  
+
+
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/dad/dir__config_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDirectoryConfig}{Directory\+Config}}
+\begin{DoxyCompactList}\small\item\em Structure to hold directory-\/specific configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{dir__config_8h_a725922f92e91f817030e1b22bf59ea0c}{DEFAULT\+\_\+\+MAX\+\_\+\+COLUMNS}}~4
+\begin{DoxyCompactList}\small\item\em Default maximum number of columns for directory listings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{dir__config_8h_a4ce38149e564150cef6b9f182913ac7a}{get\+\_\+max\+\_\+columns}} (const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Get the maximum number of columns for a given directory path. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structDirectoryConfig}{Directory\+Config}} \mbox{\hyperlink{dir__config_8h_a5b61bc3f96349f2f163e77751eb7678c}{directory\+\_\+configs}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Array of directory configurations. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{dir__config_8h_a5f44c956161f8b853917f85edd24f28d}{num\+\_\+directory\+\_\+configs}}
+\begin{DoxyCompactList}\small\item\em Number of entries in the directory\+\_\+configs array. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for directory-\/specific configurations. 
+
+This file declares structures and functions for managing directory-\/specific configurations, particularly for customizing the display of directory listings.
+
+\begin{DoxyAuthor}{Author}
+Sergey Veneckiy 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2024 
+\end{DoxyDate}
+
+
+Definition in file \mbox{\hyperlink{dir__config_8h_source}{dir\+\_\+config.\+h}}.
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{dir__config_8h_a725922f92e91f817030e1b22bf59ea0c}\label{dir__config_8h_a725922f92e91f817030e1b22bf59ea0c} 
+\index{dir\_config.h@{dir\_config.h}!DEFAULT\_MAX\_COLUMNS@{DEFAULT\_MAX\_COLUMNS}}
+\index{DEFAULT\_MAX\_COLUMNS@{DEFAULT\_MAX\_COLUMNS}!dir\_config.h@{dir\_config.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_MAX\_COLUMNS}{DEFAULT\_MAX\_COLUMNS}}
+{\footnotesize\ttfamily \#define DEFAULT\+\_\+\+MAX\+\_\+\+COLUMNS~4}
+
+
+
+Default maximum number of columns for directory listings. 
+
+This value is used when no specific configuration is found for a directory. 
+
+Definition at line \mbox{\hyperlink{dir__config_8h_source_l00021}{21}} of file \mbox{\hyperlink{dir__config_8h_source}{dir\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{dir__config_8c_source_l00042}{get\+\_\+max\+\_\+columns()}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{dir__config_8h_a4ce38149e564150cef6b9f182913ac7a}\label{dir__config_8h_a4ce38149e564150cef6b9f182913ac7a} 
+\index{dir\_config.h@{dir\_config.h}!get\_max\_columns@{get\_max\_columns}}
+\index{get\_max\_columns@{get\_max\_columns}!dir\_config.h@{dir\_config.h}}
+\doxysubsubsection{\texorpdfstring{get\_max\_columns()}{get\_max\_columns()}}
+{\footnotesize\ttfamily int get\+\_\+max\+\_\+columns (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path }\end{DoxyParamCaption})}
+
+
+
+Get the maximum number of columns for a given directory path. 
+
+This function determines the maximum number of columns to use when displaying the contents of the specified directory. It checks for custom configurations and returns the default if none is found.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path of the directory to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum number of columns for the directory listing.
+\end{DoxyReturn}
+This function checks if the given path matches any of the specially configured directories and returns the corresponding maximum number of columns. If no match is found, it returns the default value.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The directory path to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum number of columns for the directory listing. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{dir__config_8c_source_l00042}{42}} of file \mbox{\hyperlink{dir__config_8c_source}{dir\+\_\+config.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ Iterate\ through\ the\ directory\ configurations}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{dir__config_8c_a5f44c956161f8b853917f85edd24f28d}{num\_directory\_configs}};\ i++)\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ path\ matches\ a\ configured\ directory}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(path,\ \mbox{\hyperlink{dir__config_8c_a5b61bc3f96349f2f163e77751eb7678c}{directory\_configs}}[i].path)\ ==\ 0)\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ the\ custom\ max\ columns\ for\ the\ matched\ directory}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{dir__config_8c_a5b61bc3f96349f2f163e77751eb7678c}{directory\_configs}}[i].\mbox{\hyperlink{structDirectoryConfig_a7237bb65b27aa0db178a896685e829bf}{max\_columns}};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ If\ no\ match\ found,\ return\ the\ default\ maximum\ columns}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{dir__config_8h_a725922f92e91f817030e1b22bf59ea0c}{DEFAULT\_MAX\_COLUMNS}};}
+\DoxyCodeLine{00054\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{dir__config_8h_source_l00021}{DEFAULT\+\_\+\+MAX\+\_\+\+COLUMNS}}, \mbox{\hyperlink{dir__config_8c_source_l00022}{directory\+\_\+configs}}, \mbox{\hyperlink{dir__config_8h_source_l00032}{Directory\+Config\+::max\+\_\+columns}}, and \mbox{\hyperlink{dir__config_8c_source_l00030}{num\+\_\+directory\+\_\+configs}}.
+
+
+
+Referenced by \mbox{\hyperlink{display__utils_8c_source_l00108}{display\+\_\+entries()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/d6f/dir__config_8h_a4ce38149e564150cef6b9f182913ac7a_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{dir__config_8h_a5b61bc3f96349f2f163e77751eb7678c}\label{dir__config_8h_a5b61bc3f96349f2f163e77751eb7678c} 
+\index{dir\_config.h@{dir\_config.h}!directory\_configs@{directory\_configs}}
+\index{directory\_configs@{directory\_configs}!dir\_config.h@{dir\_config.h}}
+\doxysubsubsection{\texorpdfstring{directory\_configs}{directory\_configs}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structDirectoryConfig}{Directory\+Config}} directory\+\_\+configs\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Array of directory configurations. 
+
+This extern declaration makes the array of \doxylink{structDirectoryConfig}{Directory\+Config} structures available to other source files that include this header.
+
+This array defines special configurations for specific directories, setting a custom maximum number of columns for their listings. 
+
+Definition at line \mbox{\hyperlink{dir__config_8c_source_l00022}{22}} of file \mbox{\hyperlink{dir__config_8c_source}{dir\+\_\+config.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \{\textcolor{stringliteral}{"{}/dev"{}},\ 6\},\ \ \textcolor{comment}{//\ Set\ 6\ columns\ for\ /dev\ directory}}
+\DoxyCodeLine{00024\ \ \ \ \ \{\textcolor{stringliteral}{"{}/proc"{}},\ 5\},\ \textcolor{comment}{//\ Set\ 5\ columns\ for\ /proc\ directory}}
+\DoxyCodeLine{00025\ \};}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{dir__config_8c_source_l00042}{get\+\_\+max\+\_\+columns()}}.
+
+\Hypertarget{dir__config_8h_a5f44c956161f8b853917f85edd24f28d}\label{dir__config_8h_a5f44c956161f8b853917f85edd24f28d} 
+\index{dir\_config.h@{dir\_config.h}!num\_directory\_configs@{num\_directory\_configs}}
+\index{num\_directory\_configs@{num\_directory\_configs}!dir\_config.h@{dir\_config.h}}
+\doxysubsubsection{\texorpdfstring{num\_directory\_configs}{num\_directory\_configs}}
+{\footnotesize\ttfamily const int num\+\_\+directory\+\_\+configs\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Number of entries in the directory\+\_\+configs array. 
+
+This extern declaration makes the count of directory configurations available to other source files that include this header. 
+
+Definition at line \mbox{\hyperlink{dir__config_8c_source_l00030}{30}} of file \mbox{\hyperlink{dir__config_8c_source}{dir\+\_\+config.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{dir__config_8c_source_l00042}{get\+\_\+max\+\_\+columns()}}.
+

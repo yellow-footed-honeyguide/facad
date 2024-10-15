@@ -1,0 +1,727 @@
+\doxysection{/home/honeyguide/\+Desktop/\+My\+Open\+Source/facad/src/emoji\+\_\+mappings.c File Reference}
+\hypertarget{emoji__mappings_8c}{}\label{emoji__mappings_8c}\index{/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji\_mappings.c@{/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji\_mappings.c}}
+{\ttfamily \#include "{}emoji\+\_\+mappings.\+h"{}}\newline
+Include dependency graph for emoji\+\_\+mappings.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{d7/de9/emoji__mappings_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structEmojiMapEntry}{Emoji\+Map\+Entry}} \mbox{\hyperlink{emoji__mappings_8c_a717fe910a0d43495236d315dd41303f9}{emoji\+\_\+extension\+\_\+map}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Emoji mappings for file extensions. \end{DoxyCompactList}\item 
+const size\+\_\+t \mbox{\hyperlink{emoji__mappings_8c_a15086b0f52896bc1295506f18beefdae}{emoji\+\_\+extension\+\_\+map\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em Size of the emoji\+\_\+extension\+\_\+map array. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structEmojiMapEntry}{Emoji\+Map\+Entry}} \mbox{\hyperlink{emoji__mappings_8c_a44bebb1a7db81f9fcbcdc471ade99dcb}{emoji\+\_\+exact\+\_\+file\+\_\+map}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Emoji mappings for exact file names. \end{DoxyCompactList}\item 
+const size\+\_\+t \mbox{\hyperlink{emoji__mappings_8c_a4559ab02a3fe5bd47e2c060553709bd2}{emoji\+\_\+exact\+\_\+file\+\_\+map\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em Size of the emoji\+\_\+exact\+\_\+file\+\_\+map array. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structEmojiMapEntry}{Emoji\+Map\+Entry}} \mbox{\hyperlink{emoji__mappings_8c_a0ed3aca8befc8bbd9cc15e258a6ca701}{emoji\+\_\+file\+\_\+content\+\_\+map}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Emoji mappings for file content patterns. \end{DoxyCompactList}\item 
+const size\+\_\+t \mbox{\hyperlink{emoji__mappings_8c_ab0d0a7e5ba604e644a996107bb4965e7}{emoji\+\_\+file\+\_\+content\+\_\+map\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em Size of the emoji\+\_\+file\+\_\+content\+\_\+map array. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structEmojiMapEntry}{Emoji\+Map\+Entry}} \mbox{\hyperlink{emoji__mappings_8c_a538e1bc5eae64ecb93436ffc47560121}{emoji\+\_\+exact\+\_\+dev\+\_\+file\+\_\+map}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Emoji mappings for exact device file names in /dev. \end{DoxyCompactList}\item 
+const size\+\_\+t \mbox{\hyperlink{emoji__mappings_8c_a11bba592cc1a04247a8823e523e40bd7}{emoji\+\_\+exact\+\_\+dev\+\_\+file\+\_\+map\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em Size of the emoji\+\_\+exact\+\_\+dev\+\_\+file\+\_\+map array. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structEmojiMapEntry}{Emoji\+Map\+Entry}} \mbox{\hyperlink{emoji__mappings_8c_ae615000bf15a8698d98421baa2a90bd1}{emoji\+\_\+prefix\+\_\+dev\+\_\+map}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Emoji mappings for device file name prefixes in /dev. \end{DoxyCompactList}\item 
+const size\+\_\+t \mbox{\hyperlink{emoji__mappings_8c_aaf5ea0aa3fbcd68766d42569f7f2c762}{emoji\+\_\+prefix\+\_\+dev\+\_\+map\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em Size of the emoji\+\_\+prefix\+\_\+dev\+\_\+map array. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{emoji__mappings_8c_a538e1bc5eae64ecb93436ffc47560121}\label{emoji__mappings_8c_a538e1bc5eae64ecb93436ffc47560121} 
+\index{emoji\_mappings.c@{emoji\_mappings.c}!emoji\_exact\_dev\_file\_map@{emoji\_exact\_dev\_file\_map}}
+\index{emoji\_exact\_dev\_file\_map@{emoji\_exact\_dev\_file\_map}!emoji\_mappings.c@{emoji\_mappings.c}}
+\doxysubsubsection{\texorpdfstring{emoji\_exact\_dev\_file\_map}{emoji\_exact\_dev\_file\_map}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structEmojiMapEntry}{Emoji\+Map\+Entry}} emoji\+\_\+exact\+\_\+dev\+\_\+file\+\_\+map\mbox{[}$\,$\mbox{]}}
+
+
+
+Emoji mappings for exact device file names in /dev. 
+
+Array of emoji mappings for exact device file names in /dev.
+
+This array maps specific device file names in the /dev directory to corresponding emojis. It is used to assign emojis to known device files. 
+
+Definition at line \mbox{\hyperlink{emoji__mappings_8c_source_l00430}{430}} of file \mbox{\hyperlink{emoji__mappings_8c_source}{emoji\+\_\+mappings.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00431\ \ \ \ \ \{\textcolor{stringliteral}{"{}loop"{}},\ \textcolor{stringliteral}{"{}🔁"{}}\},}
+\DoxyCodeLine{00432\ \ \ \ \ \{\textcolor{stringliteral}{"{}null"{}},\ \textcolor{stringliteral}{"{}🕳️"{}}\},}
+\DoxyCodeLine{00433\ \ \ \ \ \{\textcolor{stringliteral}{"{}zero"{}},\ \textcolor{stringliteral}{"{}🕳️"{}}\},}
+\DoxyCodeLine{00434\ \ \ \ \ \{\textcolor{stringliteral}{"{}random"{}},\ \textcolor{stringliteral}{"{}🎲"{}}\},}
+\DoxyCodeLine{00435\ \ \ \ \ \{\textcolor{stringliteral}{"{}urandom"{}},\ \textcolor{stringliteral}{"{}🎲"{}}\},}
+\DoxyCodeLine{00436\ \ \ \ \ \{\textcolor{stringliteral}{"{}tty"{}},\ \textcolor{stringliteral}{"{}🖥️"{}}\},}
+\DoxyCodeLine{00437\ \ \ \ \ \{\textcolor{stringliteral}{"{}usb"{}},\ \textcolor{stringliteral}{"{}🔌"{}}\},}
+\DoxyCodeLine{00438\ \ \ \ \ \{\textcolor{stringliteral}{"{}vga\_arbiter"{}},\ \textcolor{stringliteral}{"{}🖼️"{}}\},}
+\DoxyCodeLine{00439\ \ \ \ \ \{\textcolor{stringliteral}{"{}vhci"{}},\ \textcolor{stringliteral}{"{}🔌"{}}\},}
+\DoxyCodeLine{00440\ \ \ \ \ \{\textcolor{stringliteral}{"{}vhost-\/net"{}},\ \textcolor{stringliteral}{"{}🌐"{}}\},}
+\DoxyCodeLine{00441\ \ \ \ \ \{\textcolor{stringliteral}{"{}vhost-\/vsock"{}},\ \textcolor{stringliteral}{"{}💬"{}}\},}
+\DoxyCodeLine{00442\ \ \ \ \ \{\textcolor{stringliteral}{"{}mcelog"{}},\ \textcolor{stringliteral}{"{}📋"{}}\},}
+\DoxyCodeLine{00443\ \ \ \ \ \{\textcolor{stringliteral}{"{}media0"{}},\ \textcolor{stringliteral}{"{}🎬"{}}\},}
+\DoxyCodeLine{00444\ \ \ \ \ \{\textcolor{stringliteral}{"{}mei0"{}},\ \textcolor{stringliteral}{"{}🧠"{}}\},}
+\DoxyCodeLine{00445\ \ \ \ \ \{\textcolor{stringliteral}{"{}mem"{}},\ \textcolor{stringliteral}{"{}🗄️"{}}\},}
+\DoxyCodeLine{00446\ \ \ \ \ \{\textcolor{stringliteral}{"{}hpet"{}},\ \textcolor{stringliteral}{"{}⏱️"{}}\},}
+\DoxyCodeLine{00447\ \ \ \ \ \{\textcolor{stringliteral}{"{}hwrng"{}},\ \textcolor{stringliteral}{"{}🎲"{}}\},}
+\DoxyCodeLine{00448\ \ \ \ \ \{\textcolor{stringliteral}{"{}kmsg"{}},\ \textcolor{stringliteral}{"{}📜"{}}\},}
+\DoxyCodeLine{00449\ \ \ \ \ \{\textcolor{stringliteral}{"{}kvm"{}},\ \textcolor{stringliteral}{"{}🌰"{}}\},}
+\DoxyCodeLine{00450\ \ \ \ \ \{\textcolor{stringliteral}{"{}zram"{}},\ \textcolor{stringliteral}{"{}🗜️"{}}\},}
+\DoxyCodeLine{00451\ \ \ \ \ \{\textcolor{stringliteral}{"{}udmabuf"{}},\ \textcolor{stringliteral}{"{}🔄"{}}\},}
+\DoxyCodeLine{00452\ \ \ \ \ \{\textcolor{stringliteral}{"{}uhid"{}},\ \textcolor{stringliteral}{"{}🕹️"{}}\},}
+\DoxyCodeLine{00453\ \ \ \ \ \{\textcolor{stringliteral}{"{}rfkill"{}},\ \textcolor{stringliteral}{"{}📡"{}}\},}
+\DoxyCodeLine{00454\ \ \ \ \ \{\textcolor{stringliteral}{"{}ppp"{}},\ \textcolor{stringliteral}{"{}🌐"{}}\},}
+\DoxyCodeLine{00455\ \ \ \ \ \{\textcolor{stringliteral}{"{}ptmx"{}},\ \textcolor{stringliteral}{"{}🖥️"{}}\},}
+\DoxyCodeLine{00456\ \ \ \ \ \{\textcolor{stringliteral}{"{}userfaultfd"{}},\ \textcolor{stringliteral}{"{}🚧"{}}\},}
+\DoxyCodeLine{00457\ \ \ \ \ \{\textcolor{stringliteral}{"{}nvram"{}},\ \textcolor{stringliteral}{"{}🗄️"{}}\},}
+\DoxyCodeLine{00458\ \ \ \ \ \{\textcolor{stringliteral}{"{}port"{}},\ \textcolor{stringliteral}{"{}🔌"{}}\},}
+\DoxyCodeLine{00459\ \ \ \ \ \{\textcolor{stringliteral}{"{}autofs"{}},\ \textcolor{stringliteral}{"{}🚗"{}}\},}
+\DoxyCodeLine{00460\ \ \ \ \ \{\textcolor{stringliteral}{"{}btrfs-\/control"{}},\ \textcolor{stringliteral}{"{}🌳"{}}\},}
+\DoxyCodeLine{00461\ \ \ \ \ \{\textcolor{stringliteral}{"{}console"{}},\ \textcolor{stringliteral}{"{}🖥️"{}}\},}
+\DoxyCodeLine{00462\ \ \ \ \ \{\textcolor{stringliteral}{"{}full"{}},\ \textcolor{stringliteral}{"{}🔒"{}}\},}
+\DoxyCodeLine{00463\ \ \ \ \ \{\textcolor{stringliteral}{"{}fuse"{}},\ \textcolor{stringliteral}{"{}🔥"{}}\},}
+\DoxyCodeLine{00464\ \ \ \ \ \{\textcolor{stringliteral}{"{}gpiochip0"{}},\ \textcolor{stringliteral}{"{}📌"{}}\},}
+\DoxyCodeLine{00465\ \ \ \ \ \{\textcolor{stringliteral}{"{}cuse"{}},\ \textcolor{stringliteral}{"{}🧩"{}}\},}
+\DoxyCodeLine{00466\ \ \ \ \ \{\textcolor{stringliteral}{"{}cpu\_dma\_latency"{}},\ \textcolor{stringliteral}{"{}⏱️"{}}\}}
+\DoxyCodeLine{00467\ \};}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{emoji__utils_8c_source_l00045}{get\+\_\+dev\+\_\+emoji()}}.
+
+\Hypertarget{emoji__mappings_8c_a11bba592cc1a04247a8823e523e40bd7}\label{emoji__mappings_8c_a11bba592cc1a04247a8823e523e40bd7} 
+\index{emoji\_mappings.c@{emoji\_mappings.c}!emoji\_exact\_dev\_file\_map\_size@{emoji\_exact\_dev\_file\_map\_size}}
+\index{emoji\_exact\_dev\_file\_map\_size@{emoji\_exact\_dev\_file\_map\_size}!emoji\_mappings.c@{emoji\_mappings.c}}
+\doxysubsubsection{\texorpdfstring{emoji\_exact\_dev\_file\_map\_size}{emoji\_exact\_dev\_file\_map\_size}}
+{\footnotesize\ttfamily const size\+\_\+t emoji\+\_\+exact\+\_\+dev\+\_\+file\+\_\+map\+\_\+size}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{emoji__mappings_8c_a538e1bc5eae64ecb93436ffc47560121}{emoji\_exact\_dev\_file\_map}})\ /}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{emoji__mappings_8c_a538e1bc5eae64ecb93436ffc47560121}{emoji\_exact\_dev\_file\_map}}[0])}
+
+\end{DoxyCode}
+
+
+Size of the emoji\+\_\+exact\+\_\+dev\+\_\+file\+\_\+map array. 
+
+
+
+Definition at line \mbox{\hyperlink{emoji__mappings_8c_source_l00469}{469}} of file \mbox{\hyperlink{emoji__mappings_8c_source}{emoji\+\_\+mappings.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{emoji__utils_8c_source_l00045}{get\+\_\+dev\+\_\+emoji()}}.
+
+\Hypertarget{emoji__mappings_8c_a44bebb1a7db81f9fcbcdc471ade99dcb}\label{emoji__mappings_8c_a44bebb1a7db81f9fcbcdc471ade99dcb} 
+\index{emoji\_mappings.c@{emoji\_mappings.c}!emoji\_exact\_file\_map@{emoji\_exact\_file\_map}}
+\index{emoji\_exact\_file\_map@{emoji\_exact\_file\_map}!emoji\_mappings.c@{emoji\_mappings.c}}
+\doxysubsubsection{\texorpdfstring{emoji\_exact\_file\_map}{emoji\_exact\_file\_map}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structEmojiMapEntry}{Emoji\+Map\+Entry}} emoji\+\_\+exact\+\_\+file\+\_\+map\mbox{[}$\,$\mbox{]}}
+
+
+
+Emoji mappings for exact file names. 
+
+Array of emoji mappings for exact file names.
+
+This array maps specific file names to corresponding emojis. It is used to assign emojis based on exact matches of file names, typically for special files. 
+
+Definition at line \mbox{\hyperlink{emoji__mappings_8c_source_l00232}{232}} of file \mbox{\hyperlink{emoji__mappings_8c_source}{emoji\+\_\+mappings.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \{\textcolor{stringliteral}{"{}vmlinuz"{}},\ \textcolor{stringliteral}{"{}🐧"{}}\},}
+\DoxyCodeLine{00234\ \ \ \ \ \{\textcolor{stringliteral}{"{}grub"{}},\ \textcolor{stringliteral}{"{}🥾"{}}\},}
+\DoxyCodeLine{00235\ \ \ \ \ \{\textcolor{stringliteral}{"{}shadow"{}},\ \textcolor{stringliteral}{"{}🕶️"{}}\},}
+\DoxyCodeLine{00236\ \ \ \ \ \{\textcolor{stringliteral}{"{}shadow-\/"{}},\ \textcolor{stringliteral}{"{}🔙"{}}\},}
+\DoxyCodeLine{00237\ \ \ \ \ \{\textcolor{stringliteral}{"{}fstab"{}},\ \textcolor{stringliteral}{"{}⬜"{}}\},}
+\DoxyCodeLine{00238\ \ \ \ \ \{\textcolor{stringliteral}{"{}Makefile"{}},\ \textcolor{stringliteral}{"{}🧰"{}}\},}
+\DoxyCodeLine{00239\ \ \ \ \ \{\textcolor{stringliteral}{"{}Makefile.am"{}},\ \textcolor{stringliteral}{"{}🏭"{}}\},}
+\DoxyCodeLine{00240\ \ \ \ \ \{\textcolor{stringliteral}{"{}configure.ac"{}},\ \textcolor{stringliteral}{"{}🏭"{}}\},}
+\DoxyCodeLine{00241\ \ \ \ \ \{\textcolor{stringliteral}{"{}CmakeLists.txt"{}},\ \textcolor{stringliteral}{"{}🏭"{}}\},}
+\DoxyCodeLine{00242\ \ \ \ \ \{\textcolor{stringliteral}{"{}meson.build"{}},\ \textcolor{stringliteral}{"{}🏭"{}}\},}
+\DoxyCodeLine{00243\ \ \ \ \ \{\textcolor{stringliteral}{"{}.gitignore"{}},\ \textcolor{stringliteral}{"{}🙈"{}}\},}
+\DoxyCodeLine{00244\ \ \ \ \ \{\textcolor{stringliteral}{"{}.dockerignore"{}},\ \textcolor{stringliteral}{"{}🙈"{}}\},}
+\DoxyCodeLine{00245\ \ \ \ \ \{\textcolor{stringliteral}{"{}.hgignore"{}},\ \textcolor{stringliteral}{"{}🙈"{}}\},}
+\DoxyCodeLine{00246\ \ \ \ \ \{\textcolor{stringliteral}{"{}.npmignore"{}},\ \textcolor{stringliteral}{"{}🙈"{}}\},}
+\DoxyCodeLine{00247\ \ \ \ \ \{\textcolor{stringliteral}{"{}.bzrignore"{}},\ \textcolor{stringliteral}{"{}🙈"{}}\},}
+\DoxyCodeLine{00248\ \ \ \ \ \{\textcolor{stringliteral}{"{}.eslintignore"{}},\ \textcolor{stringliteral}{"{}🙈"{}}\},}
+\DoxyCodeLine{00249\ \ \ \ \ \{\textcolor{stringliteral}{"{}.terraformignore"{}},\ \textcolor{stringliteral}{"{}🙈"{}}\},}
+\DoxyCodeLine{00250\ \ \ \ \ \{\textcolor{stringliteral}{"{}.prettierignore"{}},\ \textcolor{stringliteral}{"{}🙈"{}}\},}
+\DoxyCodeLine{00251\ \ \ \ \ \{\textcolor{stringliteral}{"{}.p4ignore"{}},\ \textcolor{stringliteral}{"{}🙈"{}}\},}
+\DoxyCodeLine{00252\ \ \ \ \ \{\textcolor{stringliteral}{"{}Dockerfile"{}},\ \textcolor{stringliteral}{"{}🐳"{}}\},}
+\DoxyCodeLine{00253\ \ \ \ \ \{\textcolor{stringliteral}{"{}Dockerfile.txt"{}},\ \textcolor{stringliteral}{"{}🐳"{}}\},}
+\DoxyCodeLine{00254\ \ \ \ \ \{\textcolor{stringliteral}{"{}.gitlab-\/ci.yml"{}},\ \textcolor{stringliteral}{"{}🦊"{}}\},}
+\DoxyCodeLine{00255\ \ \ \ \ \{\textcolor{stringliteral}{"{}.travis.yml"{}},\ \textcolor{stringliteral}{"{}⛑️"{}}\},}
+\DoxyCodeLine{00256\ \ \ \ \ \{\textcolor{stringliteral}{"{}swagger.yaml"{}},\ \textcolor{stringliteral}{"{}🧣"{}}\},}
+\DoxyCodeLine{00257\ \ \ \ \ \{\textcolor{stringliteral}{"{}Jenkinsfile"{}},\ \textcolor{stringliteral}{"{}🔴"{}}\},}
+\DoxyCodeLine{00258\ \ \ \ \ \{\textcolor{stringliteral}{"{}tags"{}},\ \textcolor{stringliteral}{"{}🏷️"{}}\},}
+\DoxyCodeLine{00259\ \ \ \ \ \{\textcolor{stringliteral}{"{}LICENSE"{}},\ \textcolor{stringliteral}{"{}⚖️"{}}\},}
+\DoxyCodeLine{00260\ \ \ \ \ \{\textcolor{stringliteral}{"{}.ninja\_deps"{}},\ \textcolor{stringliteral}{"{}🥷"{}}\},}
+\DoxyCodeLine{00261\ \ \ \ \ \{\textcolor{stringliteral}{"{}.ninja\_log"{}},\ \textcolor{stringliteral}{"{}🥷"{}}\},}
+\DoxyCodeLine{00262\ \ \ \ \ \{\textcolor{stringliteral}{"{}.gitattributes"{}},\ \textcolor{stringliteral}{"{}🐙"{}}\},}
+\DoxyCodeLine{00263\ \ \ \ \ \{\textcolor{stringliteral}{"{}.gitconfig"{}},\ \textcolor{stringliteral}{"{}🐙"{}}\},}
+\DoxyCodeLine{00264\ \ \ \ \ \{\textcolor{stringliteral}{"{}.gitmodules"{}},\ \textcolor{stringliteral}{"{}🐙"{}}\},}
+\DoxyCodeLine{00265\ \ \ \ \ \{\textcolor{stringliteral}{"{}.zcompdump"{}},\ \textcolor{stringliteral}{"{}🆉\ "{}}\},}
+\DoxyCodeLine{00266\ \ \ \ \ \{\textcolor{stringliteral}{"{}.zprofile"{}},\ \textcolor{stringliteral}{"{}🆉\ "{}}\},}
+\DoxyCodeLine{00267\ \ \ \ \ \{\textcolor{stringliteral}{"{}.zshrc"{}},\ \textcolor{stringliteral}{"{}🆉\ "{}}\},}
+\DoxyCodeLine{00268\ \ \ \ \ \{\textcolor{stringliteral}{"{}.histfile"{}},\ \textcolor{stringliteral}{"{}🆉\ "{}}\},}
+\DoxyCodeLine{00269\ \ \ \ \ \{\textcolor{stringliteral}{"{}.bashrc"{}},\ \textcolor{stringliteral}{"{}💰"{}}\},}
+\DoxyCodeLine{00270\ \ \ \ \ \{\textcolor{stringliteral}{"{}.bash\_history"{}},\ \textcolor{stringliteral}{"{}💰"{}}\},}
+\DoxyCodeLine{00271\ \ \ \ \ \{\textcolor{stringliteral}{"{}.bash\_logout"{}},\ \textcolor{stringliteral}{"{}💰"{}}\},}
+\DoxyCodeLine{00272\ \ \ \ \ \{\textcolor{stringliteral}{"{}.bash\_profile"{}},\ \textcolor{stringliteral}{"{}💰"{}}\},}
+\DoxyCodeLine{00273\ \ \ \ \ \{\textcolor{stringliteral}{"{}.prettierrc"{}},\ \textcolor{stringliteral}{"{}🖌️"{}}\},}
+\DoxyCodeLine{00274\ \ \ \ \ \{\textcolor{stringliteral}{"{}.inputrc"{}},\ \textcolor{stringliteral}{"{}🖮\ "{}}\},}
+\DoxyCodeLine{00275\ \ \ \ \ \{\textcolor{stringliteral}{"{}.vimrc"{}},\ \textcolor{stringliteral}{"{}🖖"{}}\},}
+\DoxyCodeLine{00276\ \ \ \ \ \{\textcolor{stringliteral}{"{}.viminfo"{}},\ \textcolor{stringliteral}{"{}🖖"{}}\},}
+\DoxyCodeLine{00277\ \ \ \ \ \{\textcolor{stringliteral}{"{}clang-\/tidy"{}},\ \textcolor{stringliteral}{"{}🧹"{}}\},}
+\DoxyCodeLine{00278\ \ \ \ \ \{\textcolor{stringliteral}{"{}.clang-\/format"{}},\ \textcolor{stringliteral}{"{}🧹"{}}\},}
+\DoxyCodeLine{00279\ \ \ \ \ \{\textcolor{stringliteral}{"{}.babelrc"{}},\ \textcolor{stringliteral}{"{}🗼"{}}\},}
+\DoxyCodeLine{00280\ \ \ \ \ \{\textcolor{stringliteral}{"{}manifest.txt"{}},\ \textcolor{stringliteral}{"{}📜"{}}\},}
+\DoxyCodeLine{00281\ \ \ \ \ \{\textcolor{stringliteral}{"{}robots.txt"{}},\ \textcolor{stringliteral}{"{}🕷️"{}}\},}
+\DoxyCodeLine{00282\ \ \ \ \ \{\textcolor{stringliteral}{"{}sitemap.txt"{}},\ \textcolor{stringliteral}{"{}🗺️"{}}\},}
+\DoxyCodeLine{00283\ \ \ \ \ \{\textcolor{stringliteral}{"{}Pipfile.txt"{}},\ \textcolor{stringliteral}{"{}🐍"{}}\},}
+\DoxyCodeLine{00284\ \ \ \ \ \{\textcolor{stringliteral}{"{}requirements.txt"{}},\ \textcolor{stringliteral}{"{}🧾"{}}\},}
+\DoxyCodeLine{00285\ \ \ \ \ \{\textcolor{stringliteral}{"{}.editorconfig"{}},\ \textcolor{stringliteral}{"{}📐"{}}\},}
+\DoxyCodeLine{00286\ \ \ \ \ \{\textcolor{stringliteral}{"{}tsconfig.json"{}},\ \textcolor{stringliteral}{"{}🔷"{}}\},}
+\DoxyCodeLine{00287\ \ \ \ \ \{\textcolor{stringliteral}{"{}tsconfig.test.json"{}},\ \textcolor{stringliteral}{"{}🧪"{}}\},}
+\DoxyCodeLine{00288\ \ \ \ \ \{\textcolor{stringliteral}{"{}jest.config.js"{}},\ \textcolor{stringliteral}{"{}🧪"{}}\},}
+\DoxyCodeLine{00289\ \ \ \ \ \{\textcolor{stringliteral}{"{}php.ini"{}},\ \textcolor{stringliteral}{"{}🐘"{}}\},}
+\DoxyCodeLine{00290\ \ \ \ \ \{\textcolor{stringliteral}{"{}dnsmasq.conf"{}},\ \textcolor{stringliteral}{"{}🌐"{}}\},}
+\DoxyCodeLine{00291\ \ \ \ \ \{\textcolor{stringliteral}{"{}vimrc"{}},\ \textcolor{stringliteral}{"{}🖖"{}}\},}
+\DoxyCodeLine{00292\ \ \ \ \ \{\textcolor{stringliteral}{"{}virc"{}},\ \textcolor{stringliteral}{"{}🖖"{}}\},}
+\DoxyCodeLine{00293\ \ \ \ \ \{\textcolor{stringliteral}{"{}profile"{}},\ \textcolor{stringliteral}{"{}🚪"{}}\},}
+\DoxyCodeLine{00294\ \ \ \ \ \{\textcolor{stringliteral}{"{}libuser.conf"{}},\ \textcolor{stringliteral}{"{}👤"{}}\},}
+\DoxyCodeLine{00295\ \ \ \ \ \{\textcolor{stringliteral}{"{}subuid"{}},\ \textcolor{stringliteral}{"{}👤"{}}\},}
+\DoxyCodeLine{00296\ \ \ \ \ \{\textcolor{stringliteral}{"{}subuid-\/"{}},\ \textcolor{stringliteral}{"{}🔙"{}}\},}
+\DoxyCodeLine{00297\ \ \ \ \ \{\textcolor{stringliteral}{"{}pinforc"{}},\ \textcolor{stringliteral}{"{}📌"{}}\},}
+\DoxyCodeLine{00298\ \ \ \ \ \{\textcolor{stringliteral}{"{}sudoers"{}},\ \textcolor{stringliteral}{"{}👑"{}}\},}
+\DoxyCodeLine{00299\ \ \ \ \ \{\textcolor{stringliteral}{"{}sudo.conf"{}},\ \textcolor{stringliteral}{"{}👑"{}}\},}
+\DoxyCodeLine{00300\ \ \ \ \ \{\textcolor{stringliteral}{"{}man\_db.conf"{}},\ \textcolor{stringliteral}{"{}📖"{}}\},}
+\DoxyCodeLine{00301\ \ \ \ \ \{\textcolor{stringliteral}{"{}chrony.conf"{}},\ \textcolor{stringliteral}{"{}⏰"{}}\},}
+\DoxyCodeLine{00302\ \ \ \ \ \{\textcolor{stringliteral}{"{}group"{}},\ \textcolor{stringliteral}{"{}👥"{}}\},}
+\DoxyCodeLine{00303\ \ \ \ \ \{\textcolor{stringliteral}{"{}group-\/"{}},\ \textcolor{stringliteral}{"{}🔙"{}}\},}
+\DoxyCodeLine{00304\ \ \ \ \ \{\textcolor{stringliteral}{"{}zshenv"{}},\ \textcolor{stringliteral}{"{}🆉\ "{}}\},}
+\DoxyCodeLine{00305\ \ \ \ \ \{\textcolor{stringliteral}{"{}zlogin"{}},\ \textcolor{stringliteral}{"{}🆉\ "{}}\},}
+\DoxyCodeLine{00306\ \ \ \ \ \{\textcolor{stringliteral}{"{}zlogout"{}},\ \textcolor{stringliteral}{"{}🆉\ "{}}\},}
+\DoxyCodeLine{00307\ \ \ \ \ \{\textcolor{stringliteral}{"{}zshrc"{}},\ \textcolor{stringliteral}{"{}🆉\ "{}}\},}
+\DoxyCodeLine{00308\ \ \ \ \ \{\textcolor{stringliteral}{"{}zprofile"{}},\ \textcolor{stringliteral}{"{}🆉\ "{}}\},}
+\DoxyCodeLine{00309\ \ \ \ \ \{\textcolor{stringliteral}{"{}inittab"{}},\ \textcolor{stringliteral}{"{}🚀"{}}\},}
+\DoxyCodeLine{00310\ \ \ \ \ \{\textcolor{stringliteral}{"{}netconfig"{}},\ \textcolor{stringliteral}{"{}🌐"{}}\},}
+\DoxyCodeLine{00311\ \ \ \ \ \{\textcolor{stringliteral}{"{}hosts"{}},\ \textcolor{stringliteral}{"{}🏠"{}}\},}
+\DoxyCodeLine{00312\ \ \ \ \ \{\textcolor{stringliteral}{"{}login.defs"{}},\ \textcolor{stringliteral}{"{}🪵"{}}\},}
+\DoxyCodeLine{00313\ \ \ \ \ \{\textcolor{stringliteral}{"{}logrotate.conf"{}},\ \textcolor{stringliteral}{"{}🪵"{}}\},}
+\DoxyCodeLine{00314\ \ \ \ \ \{\textcolor{stringliteral}{"{}rsyslog.conf"{}},\ \textcolor{stringliteral}{"{}🪵"{}}\},}
+\DoxyCodeLine{00315\ \ \ \ \ \{\textcolor{stringliteral}{"{}aliases"{}},\ \textcolor{stringliteral}{"{}🔀"{}}\},}
+\DoxyCodeLine{00316\ \ \ \ \ \{\textcolor{stringliteral}{"{}dnsmasq.conf"{}},\ \textcolor{stringliteral}{"{}🎭"{}}\},}
+\DoxyCodeLine{00317\ \ \ \ \ \{\textcolor{stringliteral}{"{}kdump.conf"{}},\ \textcolor{stringliteral}{"{}🚛"{}}\},}
+\DoxyCodeLine{00318\ \ \ \ \ \{\textcolor{stringliteral}{"{}makedumpfile.conf.sample"{}},\ \textcolor{stringliteral}{"{}🚛"{}}\},}
+\DoxyCodeLine{00319\ \ \ \ \ \{\textcolor{stringliteral}{"{}subgid"{}},\ \textcolor{stringliteral}{"{}👥"{}}\},}
+\DoxyCodeLine{00320\ \ \ \ \ \{\textcolor{stringliteral}{"{}subgid-\/"{}},\ \textcolor{stringliteral}{"{}🔙"{}}\},}
+\DoxyCodeLine{00321\ \ \ \ \ \{\textcolor{stringliteral}{"{}ts.conf"{}},\ \textcolor{stringliteral}{"{}👆"{}}\},}
+\DoxyCodeLine{00322\ \ \ \ \ \{\textcolor{stringliteral}{"{}krb5.conf"{}},\ \textcolor{stringliteral}{"{}🎟️"{}}\},}
+\DoxyCodeLine{00323\ \ \ \ \ \{\textcolor{stringliteral}{"{}xattr.conf"{}},\ \textcolor{stringliteral}{"{}🏷️"{}}\},}
+\DoxyCodeLine{00324\ \ \ \ \ \{\textcolor{stringliteral}{"{}mke2fs.conf"{}},\ \textcolor{stringliteral}{"{}🌱"{}}\},}
+\DoxyCodeLine{00325\ \ \ \ \ \{\textcolor{stringliteral}{"{}sysctl.conf"{}},\ \textcolor{stringliteral}{"{}🎛️"{}}\},}
+\DoxyCodeLine{00326\ \ \ \ \ \{\textcolor{stringliteral}{"{}opensc.conf"{}},\ \textcolor{stringliteral}{"{}💳"{}}\},}
+\DoxyCodeLine{00327\ \ \ \ \ \{\textcolor{stringliteral}{"{}whois.conf"{}},\ \textcolor{stringliteral}{"{}🕵️"{}}\},}
+\DoxyCodeLine{00328\ \ \ \ \ \{\textcolor{stringliteral}{"{}sddm.conf"{}},\ \textcolor{stringliteral}{"{}🖥️"{}}\},}
+\DoxyCodeLine{00329\ \ \ \ \ \{\textcolor{stringliteral}{"{}asound.conf"{}},\ \textcolor{stringliteral}{"{}🔊"{}}\},}
+\DoxyCodeLine{00330\ \ \ \ \ \{\textcolor{stringliteral}{"{}passim.conf"{}},\ \textcolor{stringliteral}{"{}📡"{}}\},}
+\DoxyCodeLine{00331\ \ \ \ \ \{\textcolor{stringliteral}{"{}vdpau\_wrapper.cfg"{}},\ \textcolor{stringliteral}{"{}🎞️"{}}\},}
+\DoxyCodeLine{00332\ \ \ \ \ \{\textcolor{stringliteral}{"{}Trolltech.conf"{}},\ \textcolor{stringliteral}{"{}🧰"{}}\},}
+\DoxyCodeLine{00333\ \ \ \ \ \{\textcolor{stringliteral}{"{}npmrc"{}},\ \textcolor{stringliteral}{"{}📦"{}}\},}
+\DoxyCodeLine{00334\ \ \ \ \ \{\textcolor{stringliteral}{"{}nilfs\_cleanerd.conf"{}},\ \textcolor{stringliteral}{"{}🧹"{}}\},}
+\DoxyCodeLine{00335\ \ \ \ \ \{\textcolor{stringliteral}{"{}sensors3.conf"{}},\ \textcolor{stringliteral}{"{}🌡️"{}}\},}
+\DoxyCodeLine{00336\ \ \ \ \ \{\textcolor{stringliteral}{"{}brltty.conf"{}},\ \textcolor{stringliteral}{"{}👓"{}}\},}
+\DoxyCodeLine{00337\ \ \ \ \ \{\textcolor{stringliteral}{"{}magic"{}},\ \textcolor{stringliteral}{"{}🎩"{}}\},}
+\DoxyCodeLine{00338\ \ \ \ \ \{\textcolor{stringliteral}{"{}swtpm-\/localca.options"{}},\ \textcolor{stringliteral}{"{}🔐"{}}\},}
+\DoxyCodeLine{00339\ \ \ \ \ \{\textcolor{stringliteral}{"{}filesystems"{}},\ \textcolor{stringliteral}{"{}🌳"{}}\},}
+\DoxyCodeLine{00340\ \ \ \ \ \{\textcolor{stringliteral}{"{}passwd"{}},\ \textcolor{stringliteral}{"{}🛡️"{}}\},}
+\DoxyCodeLine{00341\ \ \ \ \ \{\textcolor{stringliteral}{"{}passwd-\/"{}},\ \textcolor{stringliteral}{"{}🔙"{}}\},}
+\DoxyCodeLine{00342\ \ \ \ \ \{\textcolor{stringliteral}{"{}bashrc"{}},\ \textcolor{stringliteral}{"{}💰"{}}\},}
+\DoxyCodeLine{00343\ \ \ \ \ \{\textcolor{stringliteral}{"{}crontab"{}},\ \textcolor{stringliteral}{"{}📅"{}}\},}
+\DoxyCodeLine{00344\ \ \ \ \ \{\textcolor{stringliteral}{"{}Gemfile"{}},\ \textcolor{stringliteral}{"{}💎"{}}\},}
+\DoxyCodeLine{00345\ \ \ \ \ \{\textcolor{stringliteral}{"{}Cargo.toml"{}},\ \textcolor{stringliteral}{"{}🚗"{}}\},}
+\DoxyCodeLine{00346\ \ \ \ \ \{\textcolor{stringliteral}{"{}.eslintrc"{}},\ \textcolor{stringliteral}{"{}🧹"{}}\},}
+\DoxyCodeLine{00347\ \ \ \ \ \{\textcolor{stringliteral}{"{}tox.ini"{}},\ \textcolor{stringliteral}{"{}🧪"{}}\},}
+\DoxyCodeLine{00348\ \ \ \ \ \{\textcolor{stringliteral}{"{}rsyncd.conf"{}},\ \textcolor{stringliteral}{"{}🔁"{}}\},}
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{comment}{//\{"{}"{},\ "{}"{}\},}}
+\DoxyCodeLine{00350\ \};}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{emoji__utils_8c_source_l00095}{get\+\_\+emoji()}}.
+
+\Hypertarget{emoji__mappings_8c_a4559ab02a3fe5bd47e2c060553709bd2}\label{emoji__mappings_8c_a4559ab02a3fe5bd47e2c060553709bd2} 
+\index{emoji\_mappings.c@{emoji\_mappings.c}!emoji\_exact\_file\_map\_size@{emoji\_exact\_file\_map\_size}}
+\index{emoji\_exact\_file\_map\_size@{emoji\_exact\_file\_map\_size}!emoji\_mappings.c@{emoji\_mappings.c}}
+\doxysubsubsection{\texorpdfstring{emoji\_exact\_file\_map\_size}{emoji\_exact\_file\_map\_size}}
+{\footnotesize\ttfamily const size\+\_\+t emoji\+\_\+exact\+\_\+file\+\_\+map\+\_\+size}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{emoji__mappings_8c_a44bebb1a7db81f9fcbcdc471ade99dcb}{emoji\_exact\_file\_map}})\ /}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{emoji__mappings_8c_a44bebb1a7db81f9fcbcdc471ade99dcb}{emoji\_exact\_file\_map}}[0])}
+
+\end{DoxyCode}
+
+
+Size of the emoji\+\_\+exact\+\_\+file\+\_\+map array. 
+
+
+
+Definition at line \mbox{\hyperlink{emoji__mappings_8c_source_l00352}{352}} of file \mbox{\hyperlink{emoji__mappings_8c_source}{emoji\+\_\+mappings.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{emoji__utils_8c_source_l00095}{get\+\_\+emoji()}}.
+
+\Hypertarget{emoji__mappings_8c_a717fe910a0d43495236d315dd41303f9}\label{emoji__mappings_8c_a717fe910a0d43495236d315dd41303f9} 
+\index{emoji\_mappings.c@{emoji\_mappings.c}!emoji\_extension\_map@{emoji\_extension\_map}}
+\index{emoji\_extension\_map@{emoji\_extension\_map}!emoji\_mappings.c@{emoji\_mappings.c}}
+\doxysubsubsection{\texorpdfstring{emoji\_extension\_map}{emoji\_extension\_map}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structEmojiMapEntry}{Emoji\+Map\+Entry}} emoji\+\_\+extension\+\_\+map\mbox{[}$\,$\mbox{]}}
+
+
+
+Emoji mappings for file extensions. 
+
+Array of emoji mappings for file extensions.
+
+This array maps file extensions to corresponding emojis. It is used to assign emojis based on the file type indicated by its extension. 
+
+Definition at line \mbox{\hyperlink{emoji__mappings_8c_source_l00022}{22}} of file \mbox{\hyperlink{emoji__mappings_8c_source}{emoji\+\_\+mappings.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \{\textcolor{stringliteral}{"{}md"{}},\ \textcolor{stringliteral}{"{}📑"{}}\},}
+\DoxyCodeLine{00024\ \ \ \ \ \{\textcolor{stringliteral}{"{}jpg"{}},\ \textcolor{stringliteral}{"{}📸"{}}\},}
+\DoxyCodeLine{00025\ \ \ \ \ \{\textcolor{stringliteral}{"{}jpeg"{}},\ \textcolor{stringliteral}{"{}📸"{}}\},}
+\DoxyCodeLine{00026\ \ \ \ \ \{\textcolor{stringliteral}{"{}png"{}},\ \textcolor{stringliteral}{"{}📸"{}}\},}
+\DoxyCodeLine{00027\ \ \ \ \ \{\textcolor{stringliteral}{"{}gif"{}},\ \textcolor{stringliteral}{"{}📸"{}}\},}
+\DoxyCodeLine{00028\ \ \ \ \ \{\textcolor{stringliteral}{"{}bmp"{}},\ \textcolor{stringliteral}{"{}📸"{}}\},}
+\DoxyCodeLine{00029\ \ \ \ \ \{\textcolor{stringliteral}{"{}svg"{}},\ \textcolor{stringliteral}{"{}📸"{}}\},}
+\DoxyCodeLine{00030\ \ \ \ \ \{\textcolor{stringliteral}{"{}webp"{}},\ \textcolor{stringliteral}{"{}📸"{}}\},}
+\DoxyCodeLine{00031\ \ \ \ \ \{\textcolor{stringliteral}{"{}mp4"{}},\ \textcolor{stringliteral}{"{}🎬"{}}\},}
+\DoxyCodeLine{00032\ \ \ \ \ \{\textcolor{stringliteral}{"{}avi"{}},\ \textcolor{stringliteral}{"{}🎬"{}}\},}
+\DoxyCodeLine{00033\ \ \ \ \ \{\textcolor{stringliteral}{"{}mkv"{}},\ \textcolor{stringliteral}{"{}🎬"{}}\},}
+\DoxyCodeLine{00034\ \ \ \ \ \{\textcolor{stringliteral}{"{}mov"{}},\ \textcolor{stringliteral}{"{}🎬"{}}\},}
+\DoxyCodeLine{00035\ \ \ \ \ \{\textcolor{stringliteral}{"{}flv"{}},\ \textcolor{stringliteral}{"{}🎬"{}}\},}
+\DoxyCodeLine{00036\ \ \ \ \ \{\textcolor{stringliteral}{"{}wmv"{}},\ \textcolor{stringliteral}{"{}🎬"{}}\},}
+\DoxyCodeLine{00037\ \ \ \ \ \{\textcolor{stringliteral}{"{}webm"{}},\ \textcolor{stringliteral}{"{}🎬"{}}\},}
+\DoxyCodeLine{00038\ \ \ \ \ \{\textcolor{stringliteral}{"{}mp3"{}},\ \textcolor{stringliteral}{"{}🎧"{}}\},}
+\DoxyCodeLine{00039\ \ \ \ \ \{\textcolor{stringliteral}{"{}wav"{}},\ \textcolor{stringliteral}{"{}🎧"{}}\},}
+\DoxyCodeLine{00040\ \ \ \ \ \{\textcolor{stringliteral}{"{}ogg"{}},\ \textcolor{stringliteral}{"{}🎧"{}}\},}
+\DoxyCodeLine{00041\ \ \ \ \ \{\textcolor{stringliteral}{"{}flac"{}},\ \textcolor{stringliteral}{"{}🎧"{}}\},}
+\DoxyCodeLine{00042\ \ \ \ \ \{\textcolor{stringliteral}{"{}m4a"{}},\ \textcolor{stringliteral}{"{}🎧"{}}\},}
+\DoxyCodeLine{00043\ \ \ \ \ \{\textcolor{stringliteral}{"{}aac"{}},\ \textcolor{stringliteral}{"{}🎧"{}}\},}
+\DoxyCodeLine{00044\ \ \ \ \ \{\textcolor{stringliteral}{"{}zip"{}},\ \textcolor{stringliteral}{"{}📦"{}}\},}
+\DoxyCodeLine{00045\ \ \ \ \ \{\textcolor{stringliteral}{"{}tar"{}},\ \textcolor{stringliteral}{"{}📦"{}}\},}
+\DoxyCodeLine{00046\ \ \ \ \ \{\textcolor{stringliteral}{"{}gz"{}},\ \textcolor{stringliteral}{"{}📦"{}}\},}
+\DoxyCodeLine{00047\ \ \ \ \ \{\textcolor{stringliteral}{"{}bz2"{}},\ \textcolor{stringliteral}{"{}📦"{}}\},}
+\DoxyCodeLine{00048\ \ \ \ \ \{\textcolor{stringliteral}{"{}xz"{}},\ \textcolor{stringliteral}{"{}📦"{}}\},}
+\DoxyCodeLine{00049\ \ \ \ \ \{\textcolor{stringliteral}{"{}7z"{}},\ \textcolor{stringliteral}{"{}📦"{}}\},}
+\DoxyCodeLine{00050\ \ \ \ \ \{\textcolor{stringliteral}{"{}rar"{}},\ \textcolor{stringliteral}{"{}📦"{}}\},}
+\DoxyCodeLine{00051\ \ \ \ \ \{\textcolor{stringliteral}{"{}deb"{}},\ \textcolor{stringliteral}{"{}📥"{}}\},}
+\DoxyCodeLine{00052\ \ \ \ \ \{\textcolor{stringliteral}{"{}rpm"{}},\ \textcolor{stringliteral}{"{}📥"{}}\},}
+\DoxyCodeLine{00053\ \ \ \ \ \{\textcolor{stringliteral}{"{}py"{}},\ \textcolor{stringliteral}{"{}🐍"{}}\},}
+\DoxyCodeLine{00054\ \ \ \ \ \{\textcolor{stringliteral}{"{}sh"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00055\ \ \ \ \ \{\textcolor{stringliteral}{"{}js"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00056\ \ \ \ \ \{\textcolor{stringliteral}{"{}css"{}},\ \textcolor{stringliteral}{"{}🎨"{}}\},}
+\DoxyCodeLine{00057\ \ \ \ \ \{\textcolor{stringliteral}{"{}cpp"{}},\ \textcolor{stringliteral}{"{}🔬"{}}\},}
+\DoxyCodeLine{00058\ \ \ \ \ \{\textcolor{stringliteral}{"{}c"{}},\ \textcolor{stringliteral}{"{}🔬"{}}\},}
+\DoxyCodeLine{00059\ \ \ \ \ \{\textcolor{stringliteral}{"{}java"{}},\ \textcolor{stringliteral}{"{}☕"{}}\},}
+\DoxyCodeLine{00060\ \ \ \ \ \{\textcolor{stringliteral}{"{}go"{}},\ \textcolor{stringliteral}{"{}🐹"{}}\},}
+\DoxyCodeLine{00061\ \ \ \ \ \{\textcolor{stringliteral}{"{}rb"{}},\ \textcolor{stringliteral}{"{}♦️"{}}\},}
+\DoxyCodeLine{00062\ \ \ \ \ \{\textcolor{stringliteral}{"{}rs"{}},\ \textcolor{stringliteral}{"{}🦀"{}}\},}
+\DoxyCodeLine{00063\ \ \ \ \ \{\textcolor{stringliteral}{"{}php"{}},\ \textcolor{stringliteral}{"{}🐘"{}}\},}
+\DoxyCodeLine{00064\ \ \ \ \ \{\textcolor{stringliteral}{"{}h"{}},\ \textcolor{stringliteral}{"{}🧢"{}}\},}
+\DoxyCodeLine{00065\ \ \ \ \ \{\textcolor{stringliteral}{"{}hpp"{}},\ \textcolor{stringliteral}{"{}🧢"{}}\},}
+\DoxyCodeLine{00066\ \ \ \ \ \{\textcolor{stringliteral}{"{}class"{}},\ \textcolor{stringliteral}{"{}☕"{}}\},}
+\DoxyCodeLine{00067\ \ \ \ \ \{\textcolor{stringliteral}{"{}kt"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00068\ \ \ \ \ \{\textcolor{stringliteral}{"{}scala"{}},\ \textcolor{stringliteral}{"{}📐"{}}\},}
+\DoxyCodeLine{00069\ \ \ \ \ \{\textcolor{stringliteral}{"{}jsx"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00070\ \ \ \ \ \{\textcolor{stringliteral}{"{}tf"{}},\ \textcolor{stringliteral}{"{}🏗️"{}}\},}
+\DoxyCodeLine{00071\ \ \ \ \ \{\textcolor{stringliteral}{"{}tsx"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00072\ \ \ \ \ \{\textcolor{stringliteral}{"{}vue"{}},\ \textcolor{stringliteral}{"{}🟩"{}}\},}
+\DoxyCodeLine{00073\ \ \ \ \ \{\textcolor{stringliteral}{"{}dart"{}},\ \textcolor{stringliteral}{"{}🦋"{}}\},}
+\DoxyCodeLine{00074\ \ \ \ \ \{\textcolor{stringliteral}{"{}lua"{}},\ \textcolor{stringliteral}{"{}🌙"{}}\},}
+\DoxyCodeLine{00075\ \ \ \ \ \{\textcolor{stringliteral}{"{}pl"{}},\ \textcolor{stringliteral}{"{}🐪"{}}\},}
+\DoxyCodeLine{00076\ \ \ \ \ \{\textcolor{stringliteral}{"{}r"{}},\ \textcolor{stringliteral}{"{}📈"{}}\},}
+\DoxyCodeLine{00077\ \ \ \ \ \{\textcolor{stringliteral}{"{}m"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00078\ \ \ \ \ \{\textcolor{stringliteral}{"{}mm"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00079\ \ \ \ \ \{\textcolor{stringliteral}{"{}asm"{}},\ \textcolor{stringliteral}{"{}📟"{}}\},}
+\DoxyCodeLine{00080\ \ \ \ \ \{\textcolor{stringliteral}{"{}s"{}},\ \textcolor{stringliteral}{"{}📟"{}}\},}
+\DoxyCodeLine{00081\ \ \ \ \ \{\textcolor{stringliteral}{"{}f"{}},\ \textcolor{stringliteral}{"{}🅵"{}}\},}
+\DoxyCodeLine{00082\ \ \ \ \ \{\textcolor{stringliteral}{"{}f90"{}},\ \textcolor{stringliteral}{"{}🅵"{}}\},}
+\DoxyCodeLine{00083\ \ \ \ \ \{\textcolor{stringliteral}{"{}lisp"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00084\ \ \ \ \ \{\textcolor{stringliteral}{"{}hs"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00085\ \ \ \ \ \{\textcolor{stringliteral}{"{}ml"{}},\ \textcolor{stringliteral}{"{}Ⓜ️"{}}\},}
+\DoxyCodeLine{00086\ \ \ \ \ \{\textcolor{stringliteral}{"{}clj"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00087\ \ \ \ \ \{\textcolor{stringliteral}{"{}groovy"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00088\ \ \ \ \ \{\textcolor{stringliteral}{"{}jl"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00089\ \ \ \ \ \{\textcolor{stringliteral}{"{}ex"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00090\ \ \ \ \ \{\textcolor{stringliteral}{"{}exs"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00091\ \ \ \ \ \{\textcolor{stringliteral}{"{}elm"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00092\ \ \ \ \ \{\textcolor{stringliteral}{"{}coffee"{}},\ \textcolor{stringliteral}{"{}☕"{}}\},}
+\DoxyCodeLine{00093\ \ \ \ \ \{\textcolor{stringliteral}{"{}ts"{}},\ \textcolor{stringliteral}{"{}🔷"{}}\},}
+\DoxyCodeLine{00094\ \ \ \ \ \{\textcolor{stringliteral}{"{}d"{}},\ \textcolor{stringliteral}{"{}🅳\ "{}}\},}
+\DoxyCodeLine{00095\ \ \ \ \ \{\textcolor{stringliteral}{"{}cs"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00096\ \ \ \ \ \{\textcolor{stringliteral}{"{}vb"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00097\ \ \ \ \ \{\textcolor{stringliteral}{"{}fs"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00098\ \ \ \ \ \{\textcolor{stringliteral}{"{}sql"{}},\ \textcolor{stringliteral}{"{}🗄️"{}}\},}
+\DoxyCodeLine{00099\ \ \ \ \ \{\textcolor{stringliteral}{"{}pas"{}},\ \textcolor{stringliteral}{"{}🏫"{}}\},}
+\DoxyCodeLine{00100\ \ \ \ \ \{\textcolor{stringliteral}{"{}lhs"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00101\ \ \ \ \ \{\textcolor{stringliteral}{"{}cob"{}},\ \textcolor{stringliteral}{"{}💻"{}}\},}
+\DoxyCodeLine{00102\ \ \ \ \ \{\textcolor{stringliteral}{"{}o"{}},\ \textcolor{stringliteral}{"{}🧩"{}}\},}
+\DoxyCodeLine{00103\ \ \ \ \ \{\textcolor{stringliteral}{"{}db"{}},\ \textcolor{stringliteral}{"{}🗄️"{}}\},}
+\DoxyCodeLine{00104\ \ \ \ \ \{\textcolor{stringliteral}{"{}mod"{}},\ \textcolor{stringliteral}{"{}🐹"{}}\},}
+\DoxyCodeLine{00105\ \ \ \ \ \{\textcolor{stringliteral}{"{}gem"{}},\ \textcolor{stringliteral}{"{}💎"{}}\},}
+\DoxyCodeLine{00106\ \ \ \ \ \{\textcolor{stringliteral}{"{}txt"{}},\ \textcolor{stringliteral}{"{}📝"{}}\},}
+\DoxyCodeLine{00107\ \ \ \ \ \{\textcolor{stringliteral}{"{}rst"{}},\ \textcolor{stringliteral}{"{}📝"{}}\},}
+\DoxyCodeLine{00108\ \ \ \ \ \{\textcolor{stringliteral}{"{}log"{}},\ \textcolor{stringliteral}{"{}🪵"{}}\},}
+\DoxyCodeLine{00109\ \ \ \ \ \{\textcolor{stringliteral}{"{}ttf"{}},\ \textcolor{stringliteral}{"{}🔤"{}}\},}
+\DoxyCodeLine{00110\ \ \ \ \ \{\textcolor{stringliteral}{"{}otf"{}},\ \textcolor{stringliteral}{"{}🔤"{}}\},}
+\DoxyCodeLine{00111\ \ \ \ \ \{\textcolor{stringliteral}{"{}woff"{}},\ \textcolor{stringliteral}{"{}🔤"{}}\},}
+\DoxyCodeLine{00112\ \ \ \ \ \{\textcolor{stringliteral}{"{}woff2"{}},\ \textcolor{stringliteral}{"{}🔤"{}}\},}
+\DoxyCodeLine{00113\ \ \ \ \ \{\textcolor{stringliteral}{"{}pdf"{}},\ \textcolor{stringliteral}{"{}📚"{}}\},}
+\DoxyCodeLine{00114\ \ \ \ \ \{\textcolor{stringliteral}{"{}djvu"{}},\ \textcolor{stringliteral}{"{}📚"{}}\},}
+\DoxyCodeLine{00115\ \ \ \ \ \{\textcolor{stringliteral}{"{}epub"{}},\ \textcolor{stringliteral}{"{}📚"{}}\},}
+\DoxyCodeLine{00116\ \ \ \ \ \{\textcolor{stringliteral}{"{}pem"{}},\ \textcolor{stringliteral}{"{}🔑"{}}\},}
+\DoxyCodeLine{00117\ \ \ \ \ \{\textcolor{stringliteral}{"{}crt"{}},\ \textcolor{stringliteral}{"{}🔑"{}}\},}
+\DoxyCodeLine{00118\ \ \ \ \ \{\textcolor{stringliteral}{"{}key"{}},\ \textcolor{stringliteral}{"{}🔑"{}}\},}
+\DoxyCodeLine{00119\ \ \ \ \ \{\textcolor{stringliteral}{"{}pub"{}},\ \textcolor{stringliteral}{"{}🔑"{}}\},}
+\DoxyCodeLine{00120\ \ \ \ \ \{\textcolor{stringliteral}{"{}p12"{}},\ \textcolor{stringliteral}{"{}🔑"{}}\},}
+\DoxyCodeLine{00121\ \ \ \ \ \{\textcolor{stringliteral}{"{}csv"{}},\ \textcolor{stringliteral}{"{}📊"{}}\},}
+\DoxyCodeLine{00122\ \ \ \ \ \{\textcolor{stringliteral}{"{}torrent"{}},\ \textcolor{stringliteral}{"{}🌊"{}}\},}
+\DoxyCodeLine{00123\ \ \ \ \ \{\textcolor{stringliteral}{"{}iso"{}},\ \textcolor{stringliteral}{"{}💽"{}}\},}
+\DoxyCodeLine{00124\ \ \ \ \ \{\textcolor{stringliteral}{"{}img"{}},\ \textcolor{stringliteral}{"{}💽"{}}\},}
+\DoxyCodeLine{00125\ \ \ \ \ \{\textcolor{stringliteral}{"{}qcow"{}},\ \textcolor{stringliteral}{"{}🐮"{}}\},}
+\DoxyCodeLine{00126\ \ \ \ \ \{\textcolor{stringliteral}{"{}qcow2"{}},\ \textcolor{stringliteral}{"{}🐮"{}}\},}
+\DoxyCodeLine{00127\ \ \ \ \ \{\textcolor{stringliteral}{"{}vv"{}},\ \textcolor{stringliteral}{"{}🕹️"{}}\},}
+\DoxyCodeLine{00128\ \ \ \ \ \{\textcolor{stringliteral}{"{}doc"{}},\ \textcolor{stringliteral}{"{}📄"{}}\},}
+\DoxyCodeLine{00129\ \ \ \ \ \{\textcolor{stringliteral}{"{}docx"{}},\ \textcolor{stringliteral}{"{}📄"{}}\},}
+\DoxyCodeLine{00130\ \ \ \ \ \{\textcolor{stringliteral}{"{}odt"{}},\ \textcolor{stringliteral}{"{}📄"{}}\},}
+\DoxyCodeLine{00131\ \ \ \ \ \{\textcolor{stringliteral}{"{}rtf"{}},\ \textcolor{stringliteral}{"{}📄"{}}\},}
+\DoxyCodeLine{00132\ \ \ \ \ \{\textcolor{stringliteral}{"{}xls"{}},\ \textcolor{stringliteral}{"{}📄"{}}\},}
+\DoxyCodeLine{00133\ \ \ \ \ \{\textcolor{stringliteral}{"{}xlsx"{}},\ \textcolor{stringliteral}{"{}📄"{}}\},}
+\DoxyCodeLine{00134\ \ \ \ \ \{\textcolor{stringliteral}{"{}ods"{}},\ \textcolor{stringliteral}{"{}📄"{}}\},}
+\DoxyCodeLine{00135\ \ \ \ \ \{\textcolor{stringliteral}{"{}ppt"{}},\ \textcolor{stringliteral}{"{}📄"{}}\},}
+\DoxyCodeLine{00136\ \ \ \ \ \{\textcolor{stringliteral}{"{}pptx"{}},\ \textcolor{stringliteral}{"{}📄"{}}\},}
+\DoxyCodeLine{00137\ \ \ \ \ \{\textcolor{stringliteral}{"{}odp"{}},\ \textcolor{stringliteral}{"{}📄"{}}\},}
+\DoxyCodeLine{00138\ \ \ \ \ \{\textcolor{stringliteral}{"{}conf"{}},\ \textcolor{stringliteral}{"{}⚙️"{}}\},}
+\DoxyCodeLine{00139\ \ \ \ \ \{\textcolor{stringliteral}{"{}config"{}},\ \textcolor{stringliteral}{"{}⚙️"{}}\},}
+\DoxyCodeLine{00140\ \ \ \ \ \{\textcolor{stringliteral}{"{}toml"{}},\ \textcolor{stringliteral}{"{}⚙️"{}}\},}
+\DoxyCodeLine{00141\ \ \ \ \ \{\textcolor{stringliteral}{"{}cfg"{}},\ \textcolor{stringliteral}{"{}⚙️"{}}\},}
+\DoxyCodeLine{00142\ \ \ \ \ \{\textcolor{stringliteral}{"{}yaml"{}},\ \textcolor{stringliteral}{"{}🅈\ "{}}\},}
+\DoxyCodeLine{00143\ \ \ \ \ \{\textcolor{stringliteral}{"{}yml"{}},\ \textcolor{stringliteral}{"{}🅈\ "{}}\},}
+\DoxyCodeLine{00144\ \ \ \ \ \{\textcolor{stringliteral}{"{}json"{}},\ \textcolor{stringliteral}{"{}🏝️"{}}\},}
+\DoxyCodeLine{00145\ \ \ \ \ \{\textcolor{stringliteral}{"{}ini"{}},\ \textcolor{stringliteral}{"{}⚙️"{}}\},}
+\DoxyCodeLine{00146\ \ \ \ \ \{\textcolor{stringliteral}{"{}target"{}},\ \textcolor{stringliteral}{"{}🎯"{}}\},}
+\DoxyCodeLine{00147\ \ \ \ \ \{\textcolor{stringliteral}{"{}service"{}},\ \textcolor{stringliteral}{"{}🚀"{}}\},}
+\DoxyCodeLine{00148\ \ \ \ \ \{\textcolor{stringliteral}{"{}socket"{}},\ \textcolor{stringliteral}{"{}🔌"{}}\},}
+\DoxyCodeLine{00149\ \ \ \ \ \{\textcolor{stringliteral}{"{}vim"{}},\ \textcolor{stringliteral}{"{}🖖"{}}\},}
+\DoxyCodeLine{00150\ \ \ \ \ \{\textcolor{stringliteral}{"{}blend"{}},\ \textcolor{stringliteral}{"{}🧈"{}}\},}
+\DoxyCodeLine{00151\ \ \ \ \ \{\textcolor{stringliteral}{"{}app"{}},\ \textcolor{stringliteral}{"{}📱"{}}\},}
+\DoxyCodeLine{00152\ \ \ \ \ \{\textcolor{stringliteral}{"{}dmg"{}},\ \textcolor{stringliteral}{"{}💿"{}}\},}
+\DoxyCodeLine{00153\ \ \ \ \ \{\textcolor{stringliteral}{"{}pkg"{}},\ \textcolor{stringliteral}{"{}📦"{}}\},}
+\DoxyCodeLine{00154\ \ \ \ \ \{\textcolor{stringliteral}{"{}patch"{}},\ \textcolor{stringliteral}{"{}🩹"{}}\},}
+\DoxyCodeLine{00155\ \ \ \ \ \{\textcolor{stringliteral}{"{}plist"{}},\ \textcolor{stringliteral}{"{}📋"{}}\},}
+\DoxyCodeLine{00156\ \ \ \ \ \{\textcolor{stringliteral}{"{}scpt"{}},\ \textcolor{stringliteral}{"{}📜"{}}\},}
+\DoxyCodeLine{00157\ \ \ \ \ \{\textcolor{stringliteral}{"{}swift"{}},\ \textcolor{stringliteral}{"{}🐦"{}}\},}
+\DoxyCodeLine{00158\ \ \ \ \ \{\textcolor{stringliteral}{"{}xcodeproj"{}},\ \textcolor{stringliteral}{"{}🛠️"{}}\},}
+\DoxyCodeLine{00159\ \ \ \ \ \{\textcolor{stringliteral}{"{}mlmodel"{}},\ \textcolor{stringliteral}{"{}🧠"{}}\},}
+\DoxyCodeLine{00160\ \ \ \ \ \{\textcolor{stringliteral}{"{}arobject"{}},\ \textcolor{stringliteral}{"{}🎭"{}}\},}
+\DoxyCodeLine{00161\ \ \ \ \ \{\textcolor{stringliteral}{"{}cmake"{}},\ \textcolor{stringliteral}{"{}🏭"{}}\},}
+\DoxyCodeLine{00162\ \ \ \ \ \{\textcolor{stringliteral}{"{}mvn"{}},\ \textcolor{stringliteral}{"{}🏹"{}}\},}
+\DoxyCodeLine{00163\ \ \ \ \ \{\textcolor{stringliteral}{"{}html"{}},\ \textcolor{stringliteral}{"{}🌐"{}}\},}
+\DoxyCodeLine{00164\ \ \ \ \ \{\textcolor{stringliteral}{"{}sks"{}},\ \textcolor{stringliteral}{"{}🎮"{}}\},}
+\DoxyCodeLine{00165\ \ \ \ \ \{\textcolor{stringliteral}{"{}car"{}},\ \textcolor{stringliteral}{"{}🚗"{}}\},}
+\DoxyCodeLine{00166\ \ \ \ \ \{\textcolor{stringliteral}{"{}xcassets"{}},\ \textcolor{stringliteral}{"{}🗂️"{}}\},}
+\DoxyCodeLine{00167\ \ \ \ \ \{\textcolor{stringliteral}{"{}dSYM"{}},\ \textcolor{stringliteral}{"{}🐛"{}}\},}
+\DoxyCodeLine{00168\ \ \ \ \ \{\textcolor{stringliteral}{"{}terminal"{}},\ \textcolor{stringliteral}{"{}🖥️"{}}\},}
+\DoxyCodeLine{00169\ \ \ \ \ \{\textcolor{stringliteral}{"{}lock"{}},\ \textcolor{stringliteral}{"{}🔒"{}}\},}
+\DoxyCodeLine{00170\ \ \ \ \ \{\textcolor{stringliteral}{"{}webloc"{}},\ \textcolor{stringliteral}{"{}🔗"{}}\},}
+\DoxyCodeLine{00171\ \ \ \ \ \{\textcolor{stringliteral}{"{}workflow"{}},\ \textcolor{stringliteral}{"{}🔄"{}}\},}
+\DoxyCodeLine{00172\ \ \ \ \ \{\textcolor{stringliteral}{"{}apk"{}},\ \textcolor{stringliteral}{"{}📱"{}}\},}
+\DoxyCodeLine{00173\ \ \ \ \ \{\textcolor{stringliteral}{"{}rc"{}},\ \textcolor{stringliteral}{"{}👟"{}}\},}
+\DoxyCodeLine{00174\ \ \ \ \ \{\textcolor{stringliteral}{"{}bundle"{}},\ \textcolor{stringliteral}{"{}🎁"{}}\},}
+\DoxyCodeLine{00175\ \ \ \ \ \{\textcolor{stringliteral}{"{}pb"{}},\ \textcolor{stringliteral}{"{}📋"{}}\},}
+\DoxyCodeLine{00176\ \ \ \ \ \{\textcolor{stringliteral}{"{}sock"{}},\ \textcolor{stringliteral}{"{}🧦"{}}\},}
+\DoxyCodeLine{00177\ \ \ \ \ \{\textcolor{stringliteral}{"{}tmp"{}},\ \textcolor{stringliteral}{"{}⏳"{}}\},}
+\DoxyCodeLine{00178\ \ \ \ \ \{\textcolor{stringliteral}{"{}ko"{}},\ \textcolor{stringliteral}{"{}🌰"{}}\},}
+\DoxyCodeLine{00179\ \ \ \ \ \{\textcolor{stringliteral}{"{}ccl"{}},\ \textcolor{stringliteral}{"{}🎨"{}}\},}
+\DoxyCodeLine{00180\ \ \ \ \ \{\textcolor{stringliteral}{"{}sh"{}},\ \textcolor{stringliteral}{"{}🐚"{}}\},}
+\DoxyCodeLine{00181\ \ \ \ \ \{\textcolor{stringliteral}{"{}bash"{}},\ \textcolor{stringliteral}{"{}💰"{}}\},}
+\DoxyCodeLine{00182\ \ \ \ \ \{\textcolor{stringliteral}{"{}fish"{}},\ \textcolor{stringliteral}{"{}🐟"{}}\},}
+\DoxyCodeLine{00183\ \ \ \ \ \{\textcolor{stringliteral}{"{}xib"{}},\ \textcolor{stringliteral}{"{}🖼️"{}}\},}
+\DoxyCodeLine{00184\ \ \ \ \ \{\textcolor{stringliteral}{"{}ninja"{}},\ \textcolor{stringliteral}{"{}🥷"{}}\},}
+\DoxyCodeLine{00185\ \ \ \ \ \{\textcolor{stringliteral}{"{}lisp"{}},\ \textcolor{stringliteral}{"{}λ"{}}\},}
+\DoxyCodeLine{00186\ \ \ \ \ \{\textcolor{stringliteral}{"{}cl"{}},\ \textcolor{stringliteral}{"{}λ"{}}\},}
+\DoxyCodeLine{00187\ \ \ \ \ \{\textcolor{stringliteral}{"{}lsp"{}},\ \textcolor{stringliteral}{"{}λ"{}}\},}
+\DoxyCodeLine{00188\ \ \ \ \ \{\textcolor{stringliteral}{"{}ada"{}},\ \textcolor{stringliteral}{"{}✈️"{}}\},}
+\DoxyCodeLine{00189\ \ \ \ \ \{\textcolor{stringliteral}{"{}adb"{}},\ \textcolor{stringliteral}{"{}✈️"{}}\},}
+\DoxyCodeLine{00190\ \ \ \ \ \{\textcolor{stringliteral}{"{}ads"{}},\ \textcolor{stringliteral}{"{}✈️"{}}\},}
+\DoxyCodeLine{00191\ \ \ \ \ \{\textcolor{stringliteral}{"{}zsh"{}},\ \textcolor{stringliteral}{"{}🆉\ "{}}\},}
+\DoxyCodeLine{00192\ \ \ \ \ \{\textcolor{stringliteral}{"{}gradle"{}},\ \textcolor{stringliteral}{"{}🐘"{}}\},}
+\DoxyCodeLine{00193\ \ \ \ \ \{\textcolor{stringliteral}{"{}lock"{}},\ \textcolor{stringliteral}{"{}🔒"{}}\},}
+\DoxyCodeLine{00194\ \ \ \ \ \{\textcolor{stringliteral}{"{}mermaid"{}},\ \textcolor{stringliteral}{"{}🌊"{}}\},}
+\DoxyCodeLine{00195\ \ \ \ \ \{\textcolor{stringliteral}{"{}plantuml"{}},\ \textcolor{stringliteral}{"{}🌱"{}}\},}
+\DoxyCodeLine{00196\ \ \ \ \ \{\textcolor{stringliteral}{"{}dot"{}},\ \textcolor{stringliteral}{"{}📍"{}}\},}
+\DoxyCodeLine{00197\ \ \ \ \ \{\textcolor{stringliteral}{"{}drawio"{}},\ \textcolor{stringliteral}{"{}📉"{}}\},}
+\DoxyCodeLine{00198\ \ \ \ \ \{\textcolor{stringliteral}{"{}ipa"{}},\ \textcolor{stringliteral}{"{}📲"{}}\},}
+\DoxyCodeLine{00199\ \ \ \ \ \{\textcolor{stringliteral}{"{}xcodeproj"{}},\ \textcolor{stringliteral}{"{}🛠️"{}}\},}
+\DoxyCodeLine{00200\ \ \ \ \ \{\textcolor{stringliteral}{"{}mlmodel"{}},\ \textcolor{stringliteral}{"{}🤖"{}}\},}
+\DoxyCodeLine{00201\ \ \ \ \ \{\textcolor{stringliteral}{"{}icns"{}},\ \textcolor{stringliteral}{"{}🖼️"{}}\},}
+\DoxyCodeLine{00202\ \ \ \ \ \{\textcolor{stringliteral}{"{}framework"{}},\ \textcolor{stringliteral}{"{}🏗️"{}}\},}
+\DoxyCodeLine{00203\ \ \ \ \ \{\textcolor{stringliteral}{"{}xcassets"{}},\ \textcolor{stringliteral}{"{}🗂️"{}}\},}
+\DoxyCodeLine{00204\ \ \ \ \ \{\textcolor{stringliteral}{"{}playground"{}},\ \textcolor{stringliteral}{"{}🎠"{}}\},}
+\DoxyCodeLine{00205\ \ \ \ \ \{\textcolor{stringliteral}{"{}part"{}},\ \textcolor{stringliteral}{"{}🧩"{}}\},}
+\DoxyCodeLine{00206\ \ \ \ \ \{\textcolor{stringliteral}{"{}diff"{}},\ \textcolor{stringliteral}{"{}🆚"{}}\},}
+\DoxyCodeLine{00207\ \ \ \ \ \{\textcolor{stringliteral}{"{}bak"{}},\ \textcolor{stringliteral}{"{}🔙"{}}\},}
+\DoxyCodeLine{00208\ \ \ \ \ \{\textcolor{stringliteral}{"{}cache"{}},\ \textcolor{stringliteral}{"{}⏱️"{}}\},}
+\DoxyCodeLine{00209\ \ \ \ \ \{\textcolor{stringliteral}{"{}desktop"{}},\ \textcolor{stringliteral}{"{}🖥️"{}}\},}
+\DoxyCodeLine{00210\ \ \ \ \ \{\textcolor{stringliteral}{"{}cron"{}},\ \textcolor{stringliteral}{"{}📅"{}}\},}
+\DoxyCodeLine{00211\ \ \ \ \ \{\textcolor{stringliteral}{"{}env"{}},\ \textcolor{stringliteral}{"{}🌍"{}}\},}
+\DoxyCodeLine{00212\ \ \ \ \ \{\textcolor{stringliteral}{"{}bin"{}},\ \textcolor{stringliteral}{"{}💾"{}}\},}
+\DoxyCodeLine{00213\ \ \ \ \ \{\textcolor{stringliteral}{"{}pid"{}},\ \textcolor{stringliteral}{"{}🪪"{}}\},}
+\DoxyCodeLine{00214\ \ \ \ \ \{\textcolor{stringliteral}{"{}swap"{}},\ \textcolor{stringliteral}{"{}🔄"{}}\},}
+\DoxyCodeLine{00215\ \ \ \ \ \{\textcolor{stringliteral}{"{}list"{}},\ \textcolor{stringliteral}{"{}📋"{}}\},}
+\DoxyCodeLine{00216\ \ \ \ \ \{\textcolor{stringliteral}{"{}nim"{}},\ \textcolor{stringliteral}{"{}👑"{}}\},}
+\DoxyCodeLine{00217\ \ \ \ \ \{\textcolor{stringliteral}{"{}rkt"{}},\ \textcolor{stringliteral}{"{}🏸"{}}\},}
+\DoxyCodeLine{00218\ \ \ \ \ \{\textcolor{stringliteral}{"{}deny"{}},\ \textcolor{stringliteral}{"{}⛔"{}}\},}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{comment}{//\{"{}"{},\ "{}"{}\},}}
+\DoxyCodeLine{00220\ \};}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{emoji__utils_8c_source_l00095}{get\+\_\+emoji()}}.
+
+\Hypertarget{emoji__mappings_8c_a15086b0f52896bc1295506f18beefdae}\label{emoji__mappings_8c_a15086b0f52896bc1295506f18beefdae} 
+\index{emoji\_mappings.c@{emoji\_mappings.c}!emoji\_extension\_map\_size@{emoji\_extension\_map\_size}}
+\index{emoji\_extension\_map\_size@{emoji\_extension\_map\_size}!emoji\_mappings.c@{emoji\_mappings.c}}
+\doxysubsubsection{\texorpdfstring{emoji\_extension\_map\_size}{emoji\_extension\_map\_size}}
+{\footnotesize\ttfamily const size\+\_\+t emoji\+\_\+extension\+\_\+map\+\_\+size}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{emoji__mappings_8c_a717fe910a0d43495236d315dd41303f9}{emoji\_extension\_map}})\ /}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{emoji__mappings_8c_a717fe910a0d43495236d315dd41303f9}{emoji\_extension\_map}}[0])}
+
+\end{DoxyCode}
+
+
+Size of the emoji\+\_\+extension\+\_\+map array. 
+
+
+
+Definition at line \mbox{\hyperlink{emoji__mappings_8c_source_l00223}{223}} of file \mbox{\hyperlink{emoji__mappings_8c_source}{emoji\+\_\+mappings.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{emoji__utils_8c_source_l00095}{get\+\_\+emoji()}}.
+
+\Hypertarget{emoji__mappings_8c_a0ed3aca8befc8bbd9cc15e258a6ca701}\label{emoji__mappings_8c_a0ed3aca8befc8bbd9cc15e258a6ca701} 
+\index{emoji\_mappings.c@{emoji\_mappings.c}!emoji\_file\_content\_map@{emoji\_file\_content\_map}}
+\index{emoji\_file\_content\_map@{emoji\_file\_content\_map}!emoji\_mappings.c@{emoji\_mappings.c}}
+\doxysubsubsection{\texorpdfstring{emoji\_file\_content\_map}{emoji\_file\_content\_map}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structEmojiMapEntry}{Emoji\+Map\+Entry}} emoji\+\_\+file\+\_\+content\+\_\+map\mbox{[}$\,$\mbox{]}}
+
+
+
+Emoji mappings for file content patterns. 
+
+Array of emoji mappings for file content patterns.
+
+This array maps file content patterns (typically shebang lines) to corresponding emojis. It is used to assign emojis based on the content of script files. 
+
+Definition at line \mbox{\hyperlink{emoji__mappings_8c_source_l00361}{361}} of file \mbox{\hyperlink{emoji__mappings_8c_source}{emoji\+\_\+mappings.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00362\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/bin/sh"{}},\ \textcolor{stringliteral}{"{}🐚"{}}\},}
+\DoxyCodeLine{00363\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/sh"{}},\ \textcolor{stringliteral}{"{}🐚"{}}\},}
+\DoxyCodeLine{00364\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/env\ sh"{}},\ \textcolor{stringliteral}{"{}🐚"{}}\},}
+\DoxyCodeLine{00365\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/bin/bash"{}},\ \textcolor{stringliteral}{"{}💰"{}}\},}
+\DoxyCodeLine{00366\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/bash"{}},\ \textcolor{stringliteral}{"{}💰"{}}\},}
+\DoxyCodeLine{00367\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/env\ bash"{}},\ \textcolor{stringliteral}{"{}💰"{}}\},}
+\DoxyCodeLine{00368\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/bin/dash"{}},\ \textcolor{stringliteral}{"{}🐚"{}}\},}
+\DoxyCodeLine{00369\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/dash"{}},\ \textcolor{stringliteral}{"{}🐚"{}}\},}
+\DoxyCodeLine{00370\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/env\ dash"{}},\ \textcolor{stringliteral}{"{}🐚"{}}\},}
+\DoxyCodeLine{00371\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/bin/zsh"{}},\ \textcolor{stringliteral}{"{}🆉\ "{}}\},}
+\DoxyCodeLine{00372\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/zsh"{}},\ \textcolor{stringliteral}{"{}🆉"{}}\},}
+\DoxyCodeLine{00373\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/env\ zsh"{}},\ \textcolor{stringliteral}{"{}🆉"{}}\},}
+\DoxyCodeLine{00374\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/bin/ksh"{}},\ \textcolor{stringliteral}{"{}🐚"{}}\},}
+\DoxyCodeLine{00375\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/ksh"{}},\ \textcolor{stringliteral}{"{}🐚"{}}\},}
+\DoxyCodeLine{00376\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/env\ ksh"{}},\ \textcolor{stringliteral}{"{}🐚"{}}\},}
+\DoxyCodeLine{00377\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/perl"{}},\ \textcolor{stringliteral}{"{}🐪"{}}\},}
+\DoxyCodeLine{00378\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/perl5"{}},\ \textcolor{stringliteral}{"{}🐪"{}}\},}
+\DoxyCodeLine{00379\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/local/bin/perl"{}},\ \textcolor{stringliteral}{"{}🐪"{}}\},}
+\DoxyCodeLine{00380\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/env\ perl"{}},\ \textcolor{stringliteral}{"{}🐪"{}}\},}
+\DoxyCodeLine{00381\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/env\ perl5"{}},\ \textcolor{stringliteral}{"{}🐪"{}}\},}
+\DoxyCodeLine{00382\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/opt/bin/perl"{}},\ \textcolor{stringliteral}{"{}🐪"{}}\},}
+\DoxyCodeLine{00383\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/bin/ruby"{}},\ \textcolor{stringliteral}{"{}♦️"{}}\},}
+\DoxyCodeLine{00384\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/ruby"{}},\ \textcolor{stringliteral}{"{}♦️"{}}\},}
+\DoxyCodeLine{00385\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/local/bin/ruby"{}},\ \textcolor{stringliteral}{"{}♦️"{}}\},}
+\DoxyCodeLine{00386\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/env\ ruby"{}},\ \textcolor{stringliteral}{"{}♦️"{}}\},}
+\DoxyCodeLine{00387\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/opt/local/bin/ruby"{}},\ \textcolor{stringliteral}{"{}♦️"{}}\},}
+\DoxyCodeLine{00388\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/python"{}},\ \textcolor{stringliteral}{"{}🐍"{}}\},}
+\DoxyCodeLine{00389\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/python2"{}},\ \textcolor{stringliteral}{"{}🐍"{}}\},}
+\DoxyCodeLine{00390\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/python3"{}},\ \textcolor{stringliteral}{"{}🐍"{}}\},}
+\DoxyCodeLine{00391\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/local/bin/python"{}},\ \textcolor{stringliteral}{"{}🐍"{}}\},}
+\DoxyCodeLine{00392\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/env\ python"{}},\ \textcolor{stringliteral}{"{}🐍"{}}\},}
+\DoxyCodeLine{00393\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/env\ python2"{}},\ \textcolor{stringliteral}{"{}🐍"{}}\},}
+\DoxyCodeLine{00394\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/env\ python3"{}},\ \textcolor{stringliteral}{"{}🐍"{}}\},}
+\DoxyCodeLine{00395\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/lua"{}},\ \textcolor{stringliteral}{"{}🌙"{}}\},}
+\DoxyCodeLine{00396\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/local/bin/lua"{}},\ \textcolor{stringliteral}{"{}🌙"{}}\},}
+\DoxyCodeLine{00397\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/env\ lua"{}},\ \textcolor{stringliteral}{"{}🌙"{}}\},}
+\DoxyCodeLine{00398\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/tcl"{}},\ \textcolor{stringliteral}{"{}☯️"{}}\},}
+\DoxyCodeLine{00399\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/local/bin/tcl"{}},\ \textcolor{stringliteral}{"{}☯️"{}}\},}
+\DoxyCodeLine{00400\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/env\ tcl"{}},\ \textcolor{stringliteral}{"{}☯️"{}}\},}
+\DoxyCodeLine{00401\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/awk"{}},\ \textcolor{stringliteral}{"{}🐦"{}}\},}
+\DoxyCodeLine{00402\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/awk\ -\/f"{}},\ \textcolor{stringliteral}{"{}🐦"{}}\},}
+\DoxyCodeLine{00403\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/local/bin/awk"{}},\ \textcolor{stringliteral}{"{}🐦"{}}\},}
+\DoxyCodeLine{00404\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/env\ awk"{}},\ \textcolor{stringliteral}{"{}🐦"{}}\},}
+\DoxyCodeLine{00405\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/gawk"{}},\ \textcolor{stringliteral}{"{}🐦"{}}\},}
+\DoxyCodeLine{00406\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/env\ gawk"{}},\ \textcolor{stringliteral}{"{}🐦"{}}\},}
+\DoxyCodeLine{00407\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/node"{}},\ \textcolor{stringliteral}{"{}💚"{}}\},}
+\DoxyCodeLine{00408\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/local/bin/node"{}},\ \textcolor{stringliteral}{"{}💚"{}}\},}
+\DoxyCodeLine{00409\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/env\ node"{}},\ \textcolor{stringliteral}{"{}💚"{}}\},}
+\DoxyCodeLine{00410\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/nodejs"{}},\ \textcolor{stringliteral}{"{}💚"{}}\},}
+\DoxyCodeLine{00411\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/env\ nodejs"{}},\ \textcolor{stringliteral}{"{}💚"{}}\},}
+\DoxyCodeLine{00412\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/php"{}},\ \textcolor{stringliteral}{"{}🐘"{}}\},}
+\DoxyCodeLine{00413\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/local/bin/php"{}},\ \textcolor{stringliteral}{"{}🐘"{}}\},}
+\DoxyCodeLine{00414\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/env\ php"{}},\ \textcolor{stringliteral}{"{}🐘"{}}\},}
+\DoxyCodeLine{00415\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/fish"{}},\ \textcolor{stringliteral}{"{}🐟"{}}\},}
+\DoxyCodeLine{00416\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/local/bin/fish"{}},\ \textcolor{stringliteral}{"{}🐟"{}}\},}
+\DoxyCodeLine{00417\ \ \ \ \ \{\textcolor{stringliteral}{"{}\#!/usr/bin/env\ fish"{}},\ \textcolor{stringliteral}{"{}🐟"{}}\}}
+\DoxyCodeLine{00418\ \};}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{emoji__utils_8c_source_l00070}{check\+\_\+file\+\_\+content()}}.
+
+\Hypertarget{emoji__mappings_8c_ab0d0a7e5ba604e644a996107bb4965e7}\label{emoji__mappings_8c_ab0d0a7e5ba604e644a996107bb4965e7} 
+\index{emoji\_mappings.c@{emoji\_mappings.c}!emoji\_file\_content\_map\_size@{emoji\_file\_content\_map\_size}}
+\index{emoji\_file\_content\_map\_size@{emoji\_file\_content\_map\_size}!emoji\_mappings.c@{emoji\_mappings.c}}
+\doxysubsubsection{\texorpdfstring{emoji\_file\_content\_map\_size}{emoji\_file\_content\_map\_size}}
+{\footnotesize\ttfamily const size\+\_\+t emoji\+\_\+file\+\_\+content\+\_\+map\+\_\+size}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{emoji__mappings_8c_a0ed3aca8befc8bbd9cc15e258a6ca701}{emoji\_file\_content\_map}})\ /}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{emoji__mappings_8c_a0ed3aca8befc8bbd9cc15e258a6ca701}{emoji\_file\_content\_map}}[0])}
+
+\end{DoxyCode}
+
+
+Size of the emoji\+\_\+file\+\_\+content\+\_\+map array. 
+
+
+
+Definition at line \mbox{\hyperlink{emoji__mappings_8c_source_l00420}{420}} of file \mbox{\hyperlink{emoji__mappings_8c_source}{emoji\+\_\+mappings.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{emoji__utils_8c_source_l00070}{check\+\_\+file\+\_\+content()}}.
+
+\Hypertarget{emoji__mappings_8c_ae615000bf15a8698d98421baa2a90bd1}\label{emoji__mappings_8c_ae615000bf15a8698d98421baa2a90bd1} 
+\index{emoji\_mappings.c@{emoji\_mappings.c}!emoji\_prefix\_dev\_map@{emoji\_prefix\_dev\_map}}
+\index{emoji\_prefix\_dev\_map@{emoji\_prefix\_dev\_map}!emoji\_mappings.c@{emoji\_mappings.c}}
+\doxysubsubsection{\texorpdfstring{emoji\_prefix\_dev\_map}{emoji\_prefix\_dev\_map}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structEmojiMapEntry}{Emoji\+Map\+Entry}} emoji\+\_\+prefix\+\_\+dev\+\_\+map\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}loop"{}},\ \textcolor{stringliteral}{"{}🔁"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}sd"{}},\ \textcolor{stringliteral}{"{}💽"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}tty"{}},\ \textcolor{stringliteral}{"{}🖥️"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}usb"{}},\ \textcolor{stringliteral}{"{}🔌"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}video"{}},\ \textcolor{stringliteral}{"{}🎥"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}nvme"{}},\ \textcolor{stringliteral}{"{}💽"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}lp"{}},\ \textcolor{stringliteral}{"{}🖨️"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}hidraw"{}},\ \textcolor{stringliteral}{"{}🔠"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}vcs"{}},\ \textcolor{stringliteral}{"{}📟"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}vcsa"{}},\ \textcolor{stringliteral}{"{}📟"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}ptp"{}},\ \textcolor{stringliteral}{"{}🕰️"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}rtc"{}},\ \textcolor{stringliteral}{"{}🕰️"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}watchdog"{}},\ \textcolor{stringliteral}{"{}🐕"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}mtd"{}},\ \textcolor{stringliteral}{"{}⚡"{}}\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Emoji mappings for device file name prefixes in /dev. 
+
+Array of emoji mappings for device file name prefixes in /dev.
+
+This array maps prefixes of device file names in the /dev directory to corresponding emojis. It is used to assign emojis to device files based on their name prefixes. 
+
+Definition at line \mbox{\hyperlink{emoji__mappings_8c_source_l00478}{478}} of file \mbox{\hyperlink{emoji__mappings_8c_source}{emoji\+\_\+mappings.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \{\textcolor{stringliteral}{"{}loop"{}},\ \textcolor{stringliteral}{"{}🔁"{}}\},}
+\DoxyCodeLine{00480\ \ \ \ \ \{\textcolor{stringliteral}{"{}sd"{}},\ \textcolor{stringliteral}{"{}💽"{}}\},}
+\DoxyCodeLine{00481\ \ \ \ \ \{\textcolor{stringliteral}{"{}tty"{}},\ \textcolor{stringliteral}{"{}🖥️"{}}\},}
+\DoxyCodeLine{00482\ \ \ \ \ \{\textcolor{stringliteral}{"{}usb"{}},\ \textcolor{stringliteral}{"{}🔌"{}}\},}
+\DoxyCodeLine{00483\ \ \ \ \ \{\textcolor{stringliteral}{"{}video"{}},\ \textcolor{stringliteral}{"{}🎥"{}}\},}
+\DoxyCodeLine{00484\ \ \ \ \ \{\textcolor{stringliteral}{"{}nvme"{}},\ \textcolor{stringliteral}{"{}💽"{}}\},}
+\DoxyCodeLine{00485\ \ \ \ \ \{\textcolor{stringliteral}{"{}lp"{}},\ \textcolor{stringliteral}{"{}🖨️"{}}\},}
+\DoxyCodeLine{00486\ \ \ \ \ \{\textcolor{stringliteral}{"{}hidraw"{}},\ \textcolor{stringliteral}{"{}🔠"{}}\},}
+\DoxyCodeLine{00487\ \ \ \ \ \{\textcolor{stringliteral}{"{}vcs"{}},\ \textcolor{stringliteral}{"{}📟"{}}\},}
+\DoxyCodeLine{00488\ \ \ \ \ \{\textcolor{stringliteral}{"{}vcsa"{}},\ \textcolor{stringliteral}{"{}📟"{}}\},}
+\DoxyCodeLine{00489\ \ \ \ \ \{\textcolor{stringliteral}{"{}ptp"{}},\ \textcolor{stringliteral}{"{}🕰️"{}}\},}
+\DoxyCodeLine{00490\ \ \ \ \ \{\textcolor{stringliteral}{"{}rtc"{}},\ \textcolor{stringliteral}{"{}🕰️"{}}\},}
+\DoxyCodeLine{00491\ \ \ \ \ \{\textcolor{stringliteral}{"{}watchdog"{}},\ \textcolor{stringliteral}{"{}🐕"{}}\},}
+\DoxyCodeLine{00492\ \ \ \ \ \{\textcolor{stringliteral}{"{}mtd"{}},\ \textcolor{stringliteral}{"{}⚡"{}}\}}
+\DoxyCodeLine{00493\ \};}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{emoji__utils_8c_source_l00045}{get\+\_\+dev\+\_\+emoji()}}.
+
+\Hypertarget{emoji__mappings_8c_aaf5ea0aa3fbcd68766d42569f7f2c762}\label{emoji__mappings_8c_aaf5ea0aa3fbcd68766d42569f7f2c762} 
+\index{emoji\_mappings.c@{emoji\_mappings.c}!emoji\_prefix\_dev\_map\_size@{emoji\_prefix\_dev\_map\_size}}
+\index{emoji\_prefix\_dev\_map\_size@{emoji\_prefix\_dev\_map\_size}!emoji\_mappings.c@{emoji\_mappings.c}}
+\doxysubsubsection{\texorpdfstring{emoji\_prefix\_dev\_map\_size}{emoji\_prefix\_dev\_map\_size}}
+{\footnotesize\ttfamily const size\+\_\+t emoji\+\_\+prefix\+\_\+dev\+\_\+map\+\_\+size}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{emoji__mappings_8c_ae615000bf15a8698d98421baa2a90bd1}{emoji\_prefix\_dev\_map}})\ /}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{emoji__mappings_8c_ae615000bf15a8698d98421baa2a90bd1}{emoji\_prefix\_dev\_map}}[0])}
+
+\end{DoxyCode}
+
+
+Size of the emoji\+\_\+prefix\+\_\+dev\+\_\+map array. 
+
+
+
+Definition at line \mbox{\hyperlink{emoji__mappings_8c_source_l00496}{496}} of file \mbox{\hyperlink{emoji__mappings_8c_source}{emoji\+\_\+mappings.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{emoji__utils_8c_source_l00045}{get\+\_\+dev\+\_\+emoji()}}.
+

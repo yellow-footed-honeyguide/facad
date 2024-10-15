@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="de/d26/structCommandLineArgs" kind="struct" language="C++" prot="public">
+    <compoundname>CommandLineArgs</compoundname>
+    <includes refid="da/d7e/args__parser_8h" local="no">args_parser.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="de/d26/structCommandLineArgs_1a518fe65eec71814dec37b3fb872fa8a0" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CommandLineArgs::show_version</definition>
+        <argsstring></argsstring>
+        <name>show_version</name>
+        <qualifiedname>CommandLineArgs::show_version</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/args_parser.h" line="27" column="10" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/args_parser.h" bodystart="27" bodyend="-1"/>
+        <referencedby refid="d0/d29/main_8c_1a0ddf1224851353fc92bfbff6f499fa97" compoundref="d0/d29/main_8c" startline="275" endline="423">main</referencedby>
+        <referencedby refid="df/dad/args__parser_8c_1ae69db95445b885f269cab7f4dc062307" compoundref="df/dad/args__parser_8c" startline="43" endline="67">parse_args</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/d26/structCommandLineArgs_1a210deb76b4bf3d30f0bb09e16ba7fbe4" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CommandLineArgs::show_help</definition>
+        <argsstring></argsstring>
+        <name>show_help</name>
+        <qualifiedname>CommandLineArgs::show_help</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/args_parser.h" line="28" column="10" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/args_parser.h" bodystart="28" bodyend="-1"/>
+        <referencedby refid="d0/d29/main_8c_1a0ddf1224851353fc92bfbff6f499fa97" compoundref="d0/d29/main_8c" startline="275" endline="423">main</referencedby>
+        <referencedby refid="df/dad/args__parser_8c_1ae69db95445b885f269cab7f4dc062307" compoundref="df/dad/args__parser_8c" startline="43" endline="67">parse_args</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/d26/structCommandLineArgs_1ab86308b944cadea1ed5fb0b48661a355" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CommandLineArgs::show_longlisting</definition>
+        <argsstring></argsstring>
+        <name>show_longlisting</name>
+        <qualifiedname>CommandLineArgs::show_longlisting</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/args_parser.h" line="29" column="10" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/args_parser.h" bodystart="29" bodyend="-1"/>
+        <referencedby refid="d0/d29/main_8c_1a0ddf1224851353fc92bfbff6f499fa97" compoundref="d0/d29/main_8c" startline="275" endline="423">main</referencedby>
+        <referencedby refid="df/dad/args__parser_8c_1ae69db95445b885f269cab7f4dc062307" compoundref="df/dad/args__parser_8c" startline="43" endline="67">parse_args</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/d26/structCommandLineArgs_1ab399696f534705c62ec3d5ba045eed09" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CommandLineArgs::show_dir_analytics</definition>
+        <argsstring></argsstring>
+        <name>show_dir_analytics</name>
+        <qualifiedname>CommandLineArgs::show_dir_analytics</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/args_parser.h" line="30" column="10" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/args_parser.h" bodystart="30" bodyend="-1"/>
+        <referencedby refid="d0/d29/main_8c_1a0ddf1224851353fc92bfbff6f499fa97" compoundref="d0/d29/main_8c" startline="275" endline="423">main</referencedby>
+        <referencedby refid="df/dad/args__parser_8c_1ae69db95445b885f269cab7f4dc062307" compoundref="df/dad/args__parser_8c" startline="43" endline="67">parse_args</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/d26/structCommandLineArgs_1a279e4f9d5bd585e348c74ab980bc6ad0" prot="public" static="no" mutable="no">
+        <type>const char *</type>
+        <definition>const char* CommandLineArgs::invalid_opt</definition>
+        <argsstring></argsstring>
+        <name>invalid_opt</name>
+        <qualifiedname>CommandLineArgs::invalid_opt</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/args_parser.h" line="31" column="16" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/args_parser.h" bodystart="31" bodyend="-1"/>
+        <referencedby refid="d0/d29/main_8c_1a0ddf1224851353fc92bfbff6f499fa97" compoundref="d0/d29/main_8c" startline="275" endline="423">main</referencedby>
+        <referencedby refid="df/dad/args__parser_8c_1ae69db95445b885f269cab7f4dc062307" compoundref="df/dad/args__parser_8c" startline="43" endline="67">parse_args</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/d26/structCommandLineArgs_1a24eadec0753883664957eb8322579c25" prot="public" static="no" mutable="no">
+        <type>const char **</type>
+        <definition>const char** CommandLineArgs::targets</definition>
+        <argsstring></argsstring>
+        <name>targets</name>
+        <qualifiedname>CommandLineArgs::targets</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/args_parser.h" line="32" column="16" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/args_parser.h" bodystart="32" bodyend="-1"/>
+        <referencedby refid="df/dad/args__parser_8c_1a1e124c87a6ba6ffa680d9297fbc17d43" compoundref="df/dad/args__parser_8c" startline="77" endline="82">free_args</referencedby>
+        <referencedby refid="d0/d29/main_8c_1a0ddf1224851353fc92bfbff6f499fa97" compoundref="d0/d29/main_8c" startline="275" endline="423">main</referencedby>
+        <referencedby refid="df/dad/args__parser_8c_1ae69db95445b885f269cab7f4dc062307" compoundref="df/dad/args__parser_8c" startline="43" endline="67">parse_args</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/d26/structCommandLineArgs_1a5185c801bf6373761724b96d20f05aeb" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CommandLineArgs::target_count</definition>
+        <argsstring></argsstring>
+        <name>target_count</name>
+        <qualifiedname>CommandLineArgs::target_count</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/args_parser.h" line="33" column="9" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/args_parser.h" bodystart="33" bodyend="-1"/>
+        <referencedby refid="d0/d29/main_8c_1a0ddf1224851353fc92bfbff6f499fa97" compoundref="d0/d29/main_8c" startline="275" endline="423">main</referencedby>
+        <referencedby refid="df/dad/args__parser_8c_1ae69db95445b885f269cab7f4dc062307" compoundref="df/dad/args__parser_8c" startline="43" endline="67">parse_args</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Structure to hold parsed command-line arguments. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This structure stores flags for various options and an array of target directories or files specified in the command line. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>CommandLineArgs</label>
+        <link refid="de/d26/structCommandLineArgs"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/args_parser.h" line="25" column="1" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/args_parser.h" bodystart="26" bodyend="34"/>
+    <listofallmembers>
+      <member refid="de/d26/structCommandLineArgs_1a279e4f9d5bd585e348c74ab980bc6ad0" prot="public" virt="non-virtual"><scope>CommandLineArgs</scope><name>invalid_opt</name></member>
+      <member refid="de/d26/structCommandLineArgs_1ab399696f534705c62ec3d5ba045eed09" prot="public" virt="non-virtual"><scope>CommandLineArgs</scope><name>show_dir_analytics</name></member>
+      <member refid="de/d26/structCommandLineArgs_1a210deb76b4bf3d30f0bb09e16ba7fbe4" prot="public" virt="non-virtual"><scope>CommandLineArgs</scope><name>show_help</name></member>
+      <member refid="de/d26/structCommandLineArgs_1ab86308b944cadea1ed5fb0b48661a355" prot="public" virt="non-virtual"><scope>CommandLineArgs</scope><name>show_longlisting</name></member>
+      <member refid="de/d26/structCommandLineArgs_1a518fe65eec71814dec37b3fb872fa8a0" prot="public" virt="non-virtual"><scope>CommandLineArgs</scope><name>show_version</name></member>
+      <member refid="de/d26/structCommandLineArgs_1a5185c801bf6373761724b96d20f05aeb" prot="public" virt="non-virtual"><scope>CommandLineArgs</scope><name>target_count</name></member>
+      <member refid="de/d26/structCommandLineArgs_1a24eadec0753883664957eb8322579c25" prot="public" virt="non-virtual"><scope>CommandLineArgs</scope><name>targets</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

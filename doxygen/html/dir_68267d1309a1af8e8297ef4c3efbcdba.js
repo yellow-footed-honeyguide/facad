@@ -1,0 +1,26 @@
+var dir_68267d1309a1af8e8297ef4c3efbcdba =
+[
+    [ "args_parser.c", "df/dad/args__parser_8c.html", "df/dad/args__parser_8c" ],
+    [ "args_parser.h", "da/d7e/args__parser_8h.html", "da/d7e/args__parser_8h" ],
+    [ "dev_dir_utils.c", "de/db5/dev__dir__utils_8c.html", "de/db5/dev__dir__utils_8c" ],
+    [ "dev_dir_utils.h", "db/d03/dev__dir__utils_8h.html", "db/d03/dev__dir__utils_8h" ],
+    [ "dir_analytics.c", "d8/d55/dir__analytics_8c.html", "d8/d55/dir__analytics_8c" ],
+    [ "dir_analytics.h", "da/dca/dir__analytics_8h.html", "da/dca/dir__analytics_8h" ],
+    [ "dir_config.c", "dc/daf/dir__config_8c.html", "dc/daf/dir__config_8c" ],
+    [ "dir_config.h", "d4/d6f/dir__config_8h.html", "d4/d6f/dir__config_8h" ],
+    [ "display_utils.c", "d2/dda/display__utils_8c.html", "d2/dda/display__utils_8c" ],
+    [ "display_utils.h", "d3/df8/display__utils_8h.html", "d3/df8/display__utils_8h" ],
+    [ "emoji_mappings.c", "dd/db6/emoji__mappings_8c.html", "dd/db6/emoji__mappings_8c" ],
+    [ "emoji_mappings.h", "de/d86/emoji__mappings_8h.html", "de/d86/emoji__mappings_8h" ],
+    [ "emoji_utils.c", "d0/dc9/emoji__utils_8c.html", "d0/dc9/emoji__utils_8c" ],
+    [ "emoji_utils.h", "d7/d97/emoji__utils_8h.html", "d7/d97/emoji__utils_8h" ],
+    [ "file_card.c", "dd/d6c/file__card_8c.html", "dd/d6c/file__card_8c" ],
+    [ "file_card.h", "d5/d36/file__card_8h.html", "d5/d36/file__card_8h" ],
+    [ "git_integration.c", "df/d77/git__integration_8c.html", "df/d77/git__integration_8c" ],
+    [ "git_integration.h", "d1/dc4/git__integration_8h.html", "d1/dc4/git__integration_8h" ],
+    [ "git_utils.c", "d1/db9/git__utils_8c.html", "d1/db9/git__utils_8c" ],
+    [ "git_utils.h", "db/d45/git__utils_8h.html", "db/d45/git__utils_8h" ],
+    [ "longlisting.c", "d6/d95/longlisting_8c.html", "d6/d95/longlisting_8c" ],
+    [ "longlisting.h", "d9/d9a/longlisting_8h.html", "d9/d9a/longlisting_8h" ],
+    [ "main.c", "d0/d29/main_8c.html", "d0/d29/main_8c" ]
+];

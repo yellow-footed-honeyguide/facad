@@ -1,0 +1,13 @@
+<map id="is_git_repository" name="is_git_repository">
+<area shape="rect" id="Node000001" title="Checks if the current directory is part of a Git repository." alt="" coords="657,48,786,76"/>
+<area shape="rect" id="Node000002" href="$df/d77/git__integration_8c.html#ac8420e6fdcd1a0373f840ecbe95a220a" title="Integrates Git status information into file entries." alt="" coords="457,23,609,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="641,54,609,49,610,44,641,48"/>
+<area shape="rect" id="Node000004" href="$d0/d29/main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Main function of the facad program." alt="" coords="5,23,60,50"/>
+<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="641,73,535,80,402,84,254,80,180,74,107,64,60,50,61,45,108,59,180,69,255,75,402,79,535,75,641,67"/>
+<area shape="rect" id="Node000003" href="$d0/d29/main_8c.html#acc392fbd2ea6b07ebcc2b9c089aae2ca" title="Processes directory entries and populates the entries array." alt="" coords="273,23,409,50"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="442,39,410,39,410,34,442,34"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="271,21,225,14,166,8,108,14,61,27,60,22,107,8,166,3,225,8,272,16"/>
+<area shape="rect" id="Node000005" href="$d0/d29/main_8c.html#ae7d3bb334fabeeccc7dfb05e7f968d47" title="Processes a single target (directory, file, or pattern)." alt="" coords="108,23,225,50"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="258,39,225,39,225,34,258,34"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="92,39,60,39,60,34,92,34"/>
+</map>

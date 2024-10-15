@@ -1,0 +1,207 @@
+\doxysection{emoji\+\_\+utils.\+c}
+\hypertarget{emoji__utils_8c_source}{}\label{emoji__utils_8c_source}\index{/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji\_utils.c@{/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji\_utils.c}}
+\mbox{\hyperlink{emoji__utils_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ emoji\_utils.c}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Implementation\ of\ emoji\ utility\ functions\ for\ file\ representation}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00005}00005\ \textcolor{comment}{\ *\ This\ file\ contains\ functions\ for\ determining\ appropriate\ emojis}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00006}00006\ \textcolor{comment}{\ *\ for\ files\ based\ on\ their\ types,\ attributes,\ and\ locations.\ It\ supports}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00007}00007\ \textcolor{comment}{\ *\ both\ regular\ files\ and\ special\ files\ in\ the\ /dev\ directory.}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00008}00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00009}00009\ \textcolor{comment}{\ *\ @author\ Sergey\ Veneckiy}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00010}00010\ \textcolor{comment}{\ *\ @date\ 2024}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00011}00011\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <ctype.h>}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <sys/stat.h>}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00019}00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{emoji__utils_8h}{emoji\_utils.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{emoji__mappings_8h}{emoji\_mappings.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00022}\mbox{\hyperlink{emoji__utils_8c_ab99ded389af74001a6298fc9e44e74e5}{00022}}\ \textcolor{preprocessor}{\#define\ MAX\_PATH\ 4096}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00023}00023\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00024}00024\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00025}00025\ \textcolor{comment}{\ *\ @brief\ Safely\ duplicates\ a\ string,\ handling\ memory\ allocation\ errors}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00026}00026\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00027}00027\ \textcolor{comment}{\ *\ @param\ str\ The\ string\ to\ duplicate}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00028}00028\ \textcolor{comment}{\ *\ @return\ A\ newly\ allocated\ copy\ of\ the\ input\ string}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00029}00029\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00030}\mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{00030}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00031}00031\ \ \ \ \ \textcolor{keywordtype}{char}\ *dup\ =\ strdup(str);}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00032}00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (!dup)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00033}00033\ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}strdup"{}});\ \textcolor{comment}{//\ Print\ error\ message\ if\ strdup\ fails}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00034}00034\ \ \ \ \ \ \ \ \ exit(EXIT\_FAILURE);\ \textcolor{comment}{//\ Exit\ the\ program\ on\ allocation\ failure}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00035}00035\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{return}\ dup;}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00037}00037\ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00038}00038\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00039}00039\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00040}00040\ \textcolor{comment}{\ *\ @brief\ Determines\ the\ appropriate\ emoji\ for\ files\ in\ the\ /dev\ directory}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00041}00041\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00042}00042\ \textcolor{comment}{\ *\ @param\ path\ The\ name\ of\ the\ file\ in\ the\ /dev\ directory}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00043}00043\ \textcolor{comment}{\ *\ @return\ A\ dynamically\ allocated\ string\ containing\ the\ emoji}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00044}00044\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00045}\mbox{\hyperlink{emoji__utils_8c_ad5d8cf69e853f8e2c380ce1e0b2da0da}{00045}}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{emoji__utils_8c_ad5d8cf69e853f8e2c380ce1e0b2da0da}{get\_dev\_emoji}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00046}00046\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ exact\ matches\ in\ the\ dev\ file\ map}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{emoji__mappings_8c_a11bba592cc1a04247a8823e523e40bd7}{emoji\_exact\_dev\_file\_map\_size}});\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(path,\ \mbox{\hyperlink{emoji__mappings_8c_a538e1bc5eae64ecb93436ffc47560121}{emoji\_exact\_dev\_file\_map}}[i].key)\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\mbox{\hyperlink{emoji__mappings_8c_a538e1bc5eae64ecb93436ffc47560121}{emoji\_exact\_dev\_file\_map}}[i].emoji);}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00050}00050\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00051}00051\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00053}00053\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ prefix\ matches\ in\ the\ dev\ prefix\ map}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00054}00054\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{emoji__mappings_8c_aaf5ea0aa3fbcd68766d42569f7f2c762}{emoji\_prefix\_dev\_map\_size}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strncmp(path,\ \mbox{\hyperlink{emoji__mappings_8c_ae615000bf15a8698d98421baa2a90bd1}{emoji\_prefix\_dev\_map}}[i].key,\ strlen(\mbox{\hyperlink{emoji__mappings_8c_ae615000bf15a8698d98421baa2a90bd1}{emoji\_prefix\_dev\_map}}[i].key))\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\mbox{\hyperlink{emoji__mappings_8c_ae615000bf15a8698d98421baa2a90bd1}{emoji\_prefix\_dev\_map}}[i].emoji);}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00057}00057\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00058}00058\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00060}00060\ \ \ \ \ \textcolor{comment}{//\ Return\ default\ emoji\ for\ unmatched\ /dev\ files}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00061}00061\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\textcolor{stringliteral}{"{}🔧"{}});}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00062}00062\ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00063}00063\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00064}00064\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00065}00065\ \textcolor{comment}{\ *\ @brief\ Checks\ the\ file\ content\ for\ specific\ patterns\ to\ determine\ the\ file\ type}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00066}00066\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00067}00067\ \textcolor{comment}{\ *\ @param\ path\ The\ path\ to\ the\ file}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00068}00068\ \textcolor{comment}{\ *\ @return\ A\ dynamically\ allocated\ string\ containing\ the\ emoji,\ or\ NULL\ if\ no\ match}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00069}00069\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00070}\mbox{\hyperlink{emoji__utils_8c_a5079b8c3657f088d68ae41fee9b299e3}{00070}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{emoji__utils_8c_a5079b8c3657f088d68ae41fee9b299e3}{check\_file\_content}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00071}00071\ \ \ \ \ FILE\ *file\ =\ fopen(path,\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00072}00072\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file)\ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00074}00074\ \ \ \ \ \textcolor{keywordtype}{char}\ buffer[256];}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00075}00075\ \ \ \ \ \textcolor{keywordflow}{if}\ (fgets(buffer,\ \textcolor{keyword}{sizeof}(buffer),\ file)\ !=\ NULL)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ each\ entry\ in\ the\ file\ content\ map}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{emoji__mappings_8c_ab0d0a7e5ba604e644a996107bb4965e7}{emoji\_file\_content\_map\_size}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strstr(buffer,\ \mbox{\hyperlink{emoji__mappings_8c_a0ed3aca8befc8bbd9cc15e258a6ca701}{emoji\_file\_content\_map}}[i].key)\ !=\ NULL)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fclose(file);}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\mbox{\hyperlink{emoji__mappings_8c_a0ed3aca8befc8bbd9cc15e258a6ca701}{emoji\_file\_content\_map}}[i].emoji);}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00082}00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00083}00083\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00085}00085\ \ \ \ \ fclose(file);}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00086}00086\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00087}00087\ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00088}00088\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00089}00089\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00090}00090\ \textcolor{comment}{\ *\ @brief\ Determines\ the\ appropriate\ emoji\ for\ a\ given\ file\ based\ on\ its\ characteristics}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00091}00091\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00092}00092\ \textcolor{comment}{\ *\ @param\ path\ The\ path\ to\ the\ file}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00093}00093\ \textcolor{comment}{\ *\ @return\ A\ dynamically\ allocated\ string\ containing\ the\ emoji}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00094}00094\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00095}\mbox{\hyperlink{emoji__utils_8c_a853b78da7b6116949e96148e040669d5}{00095}}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{emoji__utils_8c_a853b78da7b6116949e96148e040669d5}{get\_emoji}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00096}00096\ \ \ \ \textcolor{keyword}{struct\ }stat\ path\_stat;}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00098}00098\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we\ can\ get\ file\ information}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00099}00099\ \ \ \ \ \textcolor{keywordflow}{if}\ (lstat(path,\ \&path\_stat)\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\textcolor{stringliteral}{"{}❓"{}});\ \ \textcolor{comment}{//\ Unknown\ file\ type}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00101}00101\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00103}00103\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ symbolic\ links}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00104}00104\ \ \ \ \ \textcolor{keywordflow}{if}\ (S\_ISLNK(path\_stat.st\_mode))\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00105}00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(S\_ISDIR(path\_stat.st\_mode)\ ?\ \textcolor{stringliteral}{"{}🔗📁"{}}\ :\ \textcolor{stringliteral}{"{}🔗"{}});}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00106}00106\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00108}00108\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ directories}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00109}00109\ \ \ \ \ \textcolor{keywordflow}{if}\ (S\_ISDIR(path\_stat.st\_mode))\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\textcolor{stringliteral}{"{}📁"{}});}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00111}00111\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00113}00113\ \ \ \ \ \textcolor{comment}{//\ Extract\ the\ filename\ from\ the\ path}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00114}00114\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *filename\ =\ strrchr(path,\ \textcolor{charliteral}{'/'});}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00115}00115\ \ \ \ \ filename\ =\ filename\ ?\ filename\ +\ 1\ :\ path;}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00117}00117\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ exact\ file\ name\ matches\ first\ (highest\ priority)}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00118}00118\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{emoji__mappings_8c_a4559ab02a3fe5bd47e2c060553709bd2}{emoji\_exact\_file\_map\_size}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00119}00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcasecmp(filename,\ \mbox{\hyperlink{emoji__mappings_8c_a44bebb1a7db81f9fcbcdc471ade99dcb}{emoji\_exact\_file\_map}}[i].key)\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\mbox{\hyperlink{emoji__mappings_8c_a44bebb1a7db81f9fcbcdc471ade99dcb}{emoji\_exact\_file\_map}}[i].emoji);}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00121}00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00122}00122\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00124}00124\ \ \ \ \ \textcolor{comment}{//\ Check\ file\ content\ for\ specific\ patterns\ (second\ priority)}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00125}00125\ \ \ \ \ \textcolor{keywordtype}{char}\ *content\_emoji\ =\ \mbox{\hyperlink{emoji__utils_8c_a5079b8c3657f088d68ae41fee9b299e3}{check\_file\_content}}(path);}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00126}00126\ \ \ \ \ \textcolor{keywordflow}{if}\ (content\_emoji)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00127}00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ content\_emoji;}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00128}00128\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00130}00130\ \ \ \ \ \textcolor{comment}{//\ Check\ file\ extensions\ (third\ priority)}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00131}00131\ \ \ \ \ \textcolor{keywordtype}{char}\ *extension\ =\ strrchr(filename,\ \textcolor{charliteral}{'.'});}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00132}00132\ \ \ \ \ \textcolor{keywordflow}{if}\ (extension)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00133}00133\ \ \ \ \ \ \ \ \ extension++;\ \ \textcolor{comment}{//\ Skip\ the\ dot}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{emoji__mappings_8c_a15086b0f52896bc1295506f18beefdae}{emoji\_extension\_map\_size}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcasecmp(extension,\ \mbox{\hyperlink{emoji__mappings_8c_a717fe910a0d43495236d315dd41303f9}{emoji\_extension\_map}}[i].key)\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\mbox{\hyperlink{emoji__mappings_8c_a717fe910a0d43495236d315dd41303f9}{emoji\_extension\_map}}[i].emoji);}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00138}00138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00139}00139\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00141}00141\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ hidden\ files}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00142}00142\ \ \ \ \ \textcolor{keywordflow}{if}\ (filename[0]\ ==\ \textcolor{charliteral}{'.'})\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\textcolor{stringliteral}{"{}⚙️"{}});}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00144}00144\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00146}00146\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ executable\ files}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00147}00147\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{emoji__utils_8c_adcfc0049feddf60eec27fe2572291a2e}{is\_executable}}(path))\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00148}00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\textcolor{stringliteral}{"{}💾"{}});}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00149}00149\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00151}00151\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ text\ files}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00152}00152\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{emoji__utils_8c_a3bfec7595ef6d300266b38d3a17b039e}{is\_text\_file}}(path))\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00153}00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\textcolor{stringliteral}{"{}📝"{}});}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00154}00154\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00156}00156\ \ \ \ \ \textcolor{comment}{//\ Default\ emoji\ for\ unclassified\ files}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00157}00157\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\textcolor{stringliteral}{"{}❓"{}});}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00158}00158\ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00159}00159\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00160}00160\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00161}00161\ \textcolor{comment}{\ *\ @brief\ Checks\ if\ a\ file\ is\ executable}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00162}00162\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00163}00163\ \textcolor{comment}{\ *\ @param\ path\ The\ path\ to\ the\ file}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00164}00164\ \textcolor{comment}{\ *\ @return\ 1\ if\ the\ file\ is\ executable,\ 0\ otherwise}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00165}00165\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00166}\mbox{\hyperlink{emoji__utils_8c_adcfc0049feddf60eec27fe2572291a2e}{00166}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{emoji__utils_8c_adcfc0049feddf60eec27fe2572291a2e}{is\_executable}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00167}00167\ \ \ \ \ \textcolor{keyword}{struct\ }stat\ st;}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00168}00168\ \ \ \ \ \textcolor{keywordflow}{if}\ (stat(path,\ \&st)\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00169}00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (st.st\_mode\ \&\ S\_IXUSR)\ !=\ 0;\ \textcolor{comment}{//\ Check\ if\ the\ user\ execute\ bit\ is\ set}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00170}00170\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00171}00171\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00172}00172\ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00173}00173\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00174}00174\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00175}00175\ \textcolor{comment}{\ *\ @brief\ Checks\ if\ a\ file\ is\ a\ text\ file\ by\ examining\ its\ contents}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00176}00176\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00177}00177\ \textcolor{comment}{\ *\ @param\ path\ The\ path\ to\ the\ file}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00178}00178\ \textcolor{comment}{\ *\ @return\ 1\ if\ the\ file\ is\ likely\ a\ text\ file,\ 0\ otherwise}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00179}00179\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00180}\mbox{\hyperlink{emoji__utils_8c_a3bfec7595ef6d300266b38d3a17b039e}{00180}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{emoji__utils_8c_a3bfec7595ef6d300266b38d3a17b039e}{is\_text\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00181}00181\ \ \ \ \ FILE\ *file\ =\ fopen(path,\ \textcolor{stringliteral}{"{}rb"{}});}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00182}00182\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00183}00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;\ \textcolor{comment}{//\ Cannot\ open\ file,\ assume\ it's\ not\ text}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00184}00184\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00186}00186\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ buffer[1024];}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00187}00187\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ bytesRead\ =\ fread(buffer,\ 1,\ \textcolor{keyword}{sizeof}(buffer),\ file);}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00188}00188\ \ \ \ \ fclose(file);}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00190}00190\ \ \ \ \ \textcolor{keywordflow}{if}\ (bytesRead\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00191}00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;\ \ \textcolor{comment}{//\ Empty\ file\ is\ considered\ text}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00192}00192\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00194}00194\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ all\ read\ bytes\ are\ printable\ or\ whitespace}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00195}00195\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ bytesRead;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00196}00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isprint(buffer[i])\ \&\&\ !isspace(buffer[i]))\ \{}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;\ \textcolor{comment}{//\ Non-\/printable,\ non-\/whitespace\ character\ found}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00198}00198\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00199}00199\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00200}00200\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;\ \textcolor{comment}{//\ All\ characters\ are\ printable\ or\ whitespace}}
+\DoxyCodeLine{\Hypertarget{emoji__utils_8c_source_l00201}00201\ \}}
+
+\end{DoxyCode}

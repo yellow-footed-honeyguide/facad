@@ -1,0 +1,78 @@
+\doxysection{file\+\_\+card.\+h}
+\hypertarget{file__card_8h_source}{}\label{file__card_8h_source}\index{/home/honeyguide/Desktop/MyOpenSource/facad/src/file\_card.h@{/home/honeyguide/Desktop/MyOpenSource/facad/src/file\_card.h}}
+\mbox{\hyperlink{file__card_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ file\_card.h}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Header\ file\ for\ file\ entry\ handling\ functions\ and\ structures.}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00005}00005\ \textcolor{comment}{\ *\ This\ file\ contains\ the\ definition\ of\ the\ FileCardInfo\ structure\ and}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00006}00006\ \textcolor{comment}{\ *\ declarations\ for\ functions\ that\ manipulate\ file\ entries.\ It\ provides}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00007}00007\ \textcolor{comment}{\ *\ the\ interface\ for\ creating,\ freeing,\ and\ comparing\ file\ entries\ in}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00008}00008\ \textcolor{comment}{\ *\ the\ facad\ directory\ listing\ tool.}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00009}00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00010}00010\ \textcolor{comment}{\ *\ @author\ Sergey\ Veneckiy}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00011}00011\ \textcolor{comment}{\ *\ @date\ 2024}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00012}00012\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00014}00014\ \textcolor{preprocessor}{\#ifndef\ FILE\_ENTRY\_H}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00015}00015\ \textcolor{preprocessor}{\#define\ FILE\_ENTRY\_H}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00016}00016\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00017}00017\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00018}00018\ \textcolor{comment}{\ *\ @struct\ FileCardInfo}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00019}00019\ \textcolor{comment}{\ *\ @brief\ Structure\ representing\ a\ file\ entry\ with\ its\ properties.}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00020}00020\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00021}00021\ \textcolor{comment}{\ *\ This\ structure\ holds\ all\ the\ necessary\ information\ about\ a\ file\ or\ directory}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00022}00022\ \textcolor{comment}{\ *\ entry,\ including\ its\ name,\ associated\ emoji,\ and\ various\ flags\ indicating}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00023}00023\ \textcolor{comment}{\ *\ its\ properties.}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00024}00024\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00025}\mbox{\hyperlink{structFileCardInfo}{00025}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00026}00026\ \{}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00027}\mbox{\hyperlink{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}{00027}}\ \ \ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}{name}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Name\ of\ the\ file\ or\ directory\ */}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00028}\mbox{\hyperlink{structFileCardInfo_a7f0da0b8251b0c10f77a559d80eb567c}{00028}}\ \ \ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structFileCardInfo_a7f0da0b8251b0c10f77a559d80eb567c}{emoji}};\ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Emoji\ representation\ of\ the\ file\ type\ */}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00029}\mbox{\hyperlink{structFileCardInfo_aa328a53a5e7138dbeb6992f00d6b89ad}{00029}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structFileCardInfo_aa328a53a5e7138dbeb6992f00d6b89ad}{is\_directory}};\ \ \ \textcolor{comment}{/**<\ Flag\ indicating\ whether\ the\ entry\ is\ a\ directory\ (1)\ or\ not\ (0)\ */}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00030}\mbox{\hyperlink{structFileCardInfo_a0976436903b23e6cdd4deb1052b8e6ab}{00030}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structFileCardInfo_a0976436903b23e6cdd4deb1052b8e6ab}{is\_hidden}};\ \ \ \ \ \ \textcolor{comment}{/**<\ Flag\ indicating\ whether\ the\ entry\ is\ hidden\ (1)\ or\ not\ (0)\ */}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00031}\mbox{\hyperlink{structFileCardInfo_a194c96b36719d8cfefd81e58c527668c}{00031}}\ \ \ \ \ \textcolor{keywordtype}{char}\ git\_status[2];\ \textcolor{comment}{/**<\ Git\ status\ of\ the\ file\ (if\ applicable)\ */}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00032}00032\ \}\ \mbox{\hyperlink{structFileCardInfo}{FileCardInfo}};}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00033}00033\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00034}00034\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00035}00035\ \textcolor{comment}{\ *\ @brief\ Creates\ a\ file\ entry\ based\ on\ the\ given\ path.}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00036}00036\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00037}00037\ \textcolor{comment}{\ *\ This\ function\ initializes\ a\ FileCardInfo\ structure\ with\ information\ about\ the\ file,}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00038}00038\ \textcolor{comment}{\ *\ including\ its\ name,\ emoji\ representation,\ and\ flags\ for\ directory\ and\ hidden\ status.}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00039}00039\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00040}00040\ \textcolor{comment}{\ *\ @param\ entry\ Pointer\ to\ a\ FileCardInfo\ structure\ to\ be\ filled.}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00041}00041\ \textcolor{comment}{\ *\ @param\ path\ Path\ of\ the\ file\ to\ analyze.}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00042}00042\ \textcolor{comment}{\ *\ @return\ 0\ on\ success,\ non-\/zero\ on\ error.}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00043}00043\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00044}00044\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__card_8h_a8ac3f1a318ebad42a9d465b92e4aa598}{create\_file\_entry}}(\mbox{\hyperlink{structFileCardInfo}{FileCardInfo}}\ *entry,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path);}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00045}00045\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00046}00046\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00047}00047\ \textcolor{comment}{\ *\ @brief\ Frees\ the\ memory\ allocated\ for\ a\ file\ entry.}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00048}00048\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00049}00049\ \textcolor{comment}{\ *\ This\ function\ releases\ the\ memory\ allocated\ for\ the\ name\ and\ emoji\ fields}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00050}00050\ \textcolor{comment}{\ *\ of\ a\ FileCardInfo\ structure.}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00051}00051\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00052}00052\ \textcolor{comment}{\ *\ @param\ entry\ Pointer\ to\ the\ FileCardInfo\ structure\ to\ free.}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00053}00053\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00054}00054\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{file__card_8h_af25b4091089527258ab9a8cb5ebff9e7}{free\_file\_entry}}(\mbox{\hyperlink{structFileCardInfo}{FileCardInfo}}\ *entry);}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00055}00055\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00056}00056\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00057}00057\ \textcolor{comment}{\ *\ @brief\ Compares\ two\ file\ entries\ for\ sorting\ purposes.}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00058}00058\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00059}00059\ \textcolor{comment}{\ *\ This\ function\ implements\ the\ sorting\ logic\ for\ file\ entries.\ It\ prioritizes:}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00060}00060\ \textcolor{comment}{\ *\ 1.\ Directories\ before\ files}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00061}00061\ \textcolor{comment}{\ *\ 2.\ Hidden\ entries\ before\ non-\/hidden\ entries}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00062}00062\ \textcolor{comment}{\ *\ 3.\ Alphabetical\ order\ (case-\/insensitive)\ for\ entries\ of\ the\ same\ type}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00063}00063\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00064}00064\ \textcolor{comment}{\ *\ @param\ a\ Pointer\ to\ the\ first\ FileCardInfo\ structure.}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00065}00065\ \textcolor{comment}{\ *\ @param\ b\ Pointer\ to\ the\ second\ FileCardInfo\ structure.}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00066}00066\ \textcolor{comment}{\ *\ @return\ A\ negative\ value\ if\ a\ should\ come\ before\ b,}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00067}00067\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ a\ positive\ value\ if\ b\ should\ come\ before\ a,}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00068}00068\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ or\ 0\ if\ they\ are\ equivalent.}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00069}00069\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00070}00070\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__card_8h_aaa0d8cd7d720e6b260615df1be0fdc7f}{compare\_file\_entries}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *b);}
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{file__card_8h_source_l00072}00072\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ FILE\_ENTRY\_H}}
+
+\end{DoxyCode}

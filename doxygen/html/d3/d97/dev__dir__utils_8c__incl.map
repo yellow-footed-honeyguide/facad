@@ -1,0 +1,21 @@
+<map id="/home/honeyguide/Desktop/MyOpenSource/facad/src/dev_dir_utils.c" name="/home/honeyguide/Desktop/MyOpenSource/facad/src/dev_dir_utils.c">
+<area shape="rect" id="Node000001" title="Utility functions for handling the /dev directory." alt="" coords="269,5,469,67"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,115,77,143"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="269,68,92,116,91,111,268,63"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="100,115,166,143"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="291,70,181,112,179,107,289,65"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="190,115,260,143"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="322,70,260,109,257,104,320,65"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="283,115,354,143"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="354,69,335,103,331,100,350,66"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="378,115,462,143"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="388,66,407,100,403,103,384,69"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="486,115,553,143"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="421,65,486,104,483,109,418,70"/>
+<area shape="rect" id="Node000008" href="$db/d03/dev__dir__utils_8h.html" title="Utility functions for handling the /dev directory." alt="" coords="578,115,694,143"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="459,65,583,107,582,112,457,70"/>
+<area shape="rect" id="Node000010" href="$d7/d97/emoji__utils_8h.html" title="Utility functions for assigning emojis to files and directories." alt="" coords="718,115,823,143"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="470,57,703,110,702,115,469,63"/>
+<area shape="rect" id="Node000009" href="$d5/d36/file__card_8h.html" title="Header file for file entry handling functions and structures." alt="" coords="592,191,680,218"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="638,143,638,175,633,175,633,143"/>
+</map>

@@ -1,0 +1,272 @@
+\doxysection{/home/honeyguide/\+Desktop/\+My\+Open\+Source/facad/src/git\+\_\+utils.c File Reference}
+\hypertarget{git__utils_8c}{}\label{git__utils_8c}\index{/home/honeyguide/Desktop/MyOpenSource/facad/src/git\_utils.c@{/home/honeyguide/Desktop/MyOpenSource/facad/src/git\_utils.c}}
+
+
+Implementation of Git utility functions for facad.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include "{}git\+\_\+utils.\+h"{}}\newline
+Include dependency graph for git\+\_\+utils.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/d71/git__utils_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{git__utils_8c_a51ae0134feff92edfd5cf268cd0b1acf}{is\+\_\+git\+\_\+repository}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the current directory is part of a Git repository. \end{DoxyCompactList}\item 
+static char \mbox{\hyperlink{git__utils_8c_aa639b9b3bbea0da0a09fbad3ca69aa5d}{parse\+\_\+status}} (const char \texorpdfstring{$\ast$}{*}status\+\_\+str)
+\begin{DoxyCompactList}\small\item\em Parses a Git status string and returns a single character status code. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structGitFileList}{Git\+File\+List}} \mbox{\hyperlink{git__utils_8c_a1af8df0b83d4e26524cdb4371b7bd7a6}{get\+\_\+git\+\_\+status}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the Git status for all files in the current repository. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{git__utils_8c_a2ef1d42e63a1b1ab2270c1d82157a384}{get\+\_\+current\+\_\+branch}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the name of the current Git branch. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of Git utility functions for facad. 
+
+This file contains utility functions for interacting with Git repositories. It provides functionality to check if the current directory is a Git repository, retrieve Git status information, and get the current branch name.
+
+\begin{DoxyAuthor}{Author}
+Sergey Veneckiy 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2024 
+\end{DoxyDate}
+
+
+Definition in file \mbox{\hyperlink{git__utils_8c_source}{git\+\_\+utils.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{git__utils_8c_a2ef1d42e63a1b1ab2270c1d82157a384}\label{git__utils_8c_a2ef1d42e63a1b1ab2270c1d82157a384} 
+\index{git\_utils.c@{git\_utils.c}!get\_current\_branch@{get\_current\_branch}}
+\index{get\_current\_branch@{get\_current\_branch}!git\_utils.c@{git\_utils.c}}
+\doxysubsubsection{\texorpdfstring{get\_current\_branch()}{get\_current\_branch()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} get\+\_\+current\+\_\+branch (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the name of the current Git branch. 
+
+This function executes \textquotesingle{}git rev-\/parse\textquotesingle{} command to get the name of the current Git branch.
+
+\begin{DoxyReturn}{Returns}
+Dynamically allocated string containing the branch name, or NULL if an error occurred. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The caller is responsible for freeing the returned string. 
+\end{DoxyNote}
+
+
+Definition at line \mbox{\hyperlink{git__utils_8c_source_l00100}{100}} of file \mbox{\hyperlink{git__utils_8c_source}{git\+\_\+utils.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//\ Execute\ 'git\ rev-\/parse'\ command\ to\ get\ the\ branch\ name}}
+\DoxyCodeLine{00102\ \ \ \ \ FILE*\ fp\ =\ popen(\textcolor{stringliteral}{"{}git\ rev-\/parse\ -\/-\/abbrev-\/ref\ HEAD\ 2>/dev/null"{}},\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{if}\ (fp\ ==\ NULL)\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;\ \ \textcolor{comment}{//\ Return\ NULL\ if\ command\ execution\ failed}}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{char}*\ branch\ =\ malloc(256);\ \ \textcolor{comment}{//\ Allocate\ memory\ for\ the\ branch\ name}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{if}\ (fgets(branch,\ 256,\ fp)\ ==\ NULL)\ \{\ \ \textcolor{comment}{//\ Read\ the\ branch\ name}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ free(branch);\ \ \textcolor{comment}{//\ Free\ allocated\ memory\ if\ read\ failed}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ pclose(fp);\ \ \ \ \textcolor{comment}{//\ Close\ the\ command\ pipe}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;\ \ \ \textcolor{comment}{//\ Return\ NULL\ to\ indicate\ failure}}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ pclose(fp);\ \ \textcolor{comment}{//\ Close\ the\ command\ pipe}}
+\DoxyCodeLine{00115\ \ \ \ \ branch[strcspn(branch,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}})]\ =\ 0;\ \ \textcolor{comment}{//\ Remove\ newline\ character}}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{return}\ branch;\ \ \textcolor{comment}{//\ Return\ the\ branch\ name}}
+\DoxyCodeLine{00117\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{display__utils_8c_source_l00108}{display\+\_\+entries()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/db9/git__utils_8c_a2ef1d42e63a1b1ab2270c1d82157a384_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{git__utils_8c_a1af8df0b83d4e26524cdb4371b7bd7a6}\label{git__utils_8c_a1af8df0b83d4e26524cdb4371b7bd7a6} 
+\index{git\_utils.c@{git\_utils.c}!get\_git\_status@{get\_git\_status}}
+\index{get\_git\_status@{get\_git\_status}!git\_utils.c@{git\_utils.c}}
+\doxysubsubsection{\texorpdfstring{get\_git\_status()}{get\_git\_status()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structGitFileList}{Git\+File\+List}} get\+\_\+git\+\_\+status (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the Git status for all files in the current repository. 
+
+This function executes \textquotesingle{}git status\textquotesingle{} command and parses its output to create a list of files with their corresponding Git status.
+
+\begin{DoxyReturn}{Returns}
+\doxylink{structGitFileList}{Git\+File\+List} structure containing the status of all files in the repository. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{git__utils_8c_source_l00065}{65}} of file \mbox{\hyperlink{git__utils_8c_source}{git\+\_\+utils.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{structGitFileList}{GitFileList}}\ list\ =\ \{0\};\ \ \textcolor{comment}{//\ Initialize\ an\ empty\ GitFileList}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ Execute\ 'git\ status'\ command}}
+\DoxyCodeLine{00069\ \ \ \ \ FILE*\ fp\ =\ popen(\textcolor{stringliteral}{"{}git\ status\ -\/s"{}},\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{if}\ (fp\ ==\ NULL)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ list;\ \ \textcolor{comment}{//\ Return\ empty\ list\ if\ command\ execution\ failed}}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{char}\ line[\mbox{\hyperlink{git__utils_8h_abe0ec333b60117063f9b9fd9f849cb08}{MAX\_FILENAME}}\ +\ 3];\ \ \textcolor{comment}{//\ Buffer\ to\ store\ each\ line\ of\ output}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ Read\ each\ line\ of\ the\ command\ output}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{while}\ (fgets(line,\ \textcolor{keyword}{sizeof}(line),\ fp)\ !=\ NULL\ \&\&\ list.\mbox{\hyperlink{structGitFileList_a8a2892f47d399a67ce95ecdf0ab4a79f}{count}}\ <\ \mbox{\hyperlink{dir__analytics_8c_a2c5eecb22513a88c24ae5831a3265e54}{MAX\_FILES}})\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strlen(line)\ >\ 3)\ \{\ \ \textcolor{comment}{//\ Ensure\ the\ line\ has\ enough\ characters}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structGitFile}{GitFile}}\ file;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ file.\mbox{\hyperlink{structGitFile_ac3e25bcf3aad47f8c13f3a98f250b874}{status}}\ =\ \mbox{\hyperlink{git__utils_8c_aa639b9b3bbea0da0a09fbad3ca69aa5d}{parse\_status}}(line);\ \ \textcolor{comment}{//\ Parse\ the\ status}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Copy\ the\ filename,\ skipping\ the\ first\ 3\ characters\ (status\ and\ space)}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(file.\mbox{\hyperlink{structGitFile_a822b94e2dcbcc4086c35387aef4f4a57}{filename}},\ line\ +\ 3,\ \mbox{\hyperlink{git__utils_8h_abe0ec333b60117063f9b9fd9f849cb08}{MAX\_FILENAME}}\ -\/\ 1);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ file.\mbox{\hyperlink{structGitFile_a822b94e2dcbcc4086c35387aef4f4a57}{filename}}[strcspn(file.\mbox{\hyperlink{structGitFile_a822b94e2dcbcc4086c35387aef4f4a57}{filename}},\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}})]\ =\ 0;\ \ \textcolor{comment}{//\ Remove\ newline}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ list.\mbox{\hyperlink{structGitFileList_a66fb028701c6d829b9a0720baa4adb76}{files}}[list.\mbox{\hyperlink{structGitFileList_a8a2892f47d399a67ce95ecdf0ab4a79f}{count}}++]\ =\ file;\ \ \textcolor{comment}{//\ Add\ file\ to\ the\ list}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ pclose(fp);\ \ \textcolor{comment}{//\ Close\ the\ command\ pipe}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{return}\ list;\ \ \textcolor{comment}{//\ Return\ the\ populated\ list}}
+\DoxyCodeLine{00089\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{git__utils_8h_source_l00036}{Git\+File\+List\+::count}}, \mbox{\hyperlink{git__utils_8h_source_l00026}{Git\+File\+::filename}}, \mbox{\hyperlink{git__utils_8h_source_l00035}{Git\+File\+List\+::files}}, \mbox{\hyperlink{git__utils_8h_source_l00018}{MAX\+\_\+\+FILENAME}}, \mbox{\hyperlink{dir__analytics_8c_source_l00029}{MAX\+\_\+\+FILES}}, \mbox{\hyperlink{git__utils_8c_source_l00051}{parse\+\_\+status()}}, and \mbox{\hyperlink{git__utils_8h_source_l00027}{Git\+File\+::status}}.
+
+
+
+Referenced by \mbox{\hyperlink{git__integration_8c_source_l00030}{integrate\+\_\+git\+\_\+status()}}, and \mbox{\hyperlink{main_8c_source_l00275}{main()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=279pt]{d1/db9/git__utils_8c_a1af8df0b83d4e26524cdb4371b7bd7a6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/db9/git__utils_8c_a1af8df0b83d4e26524cdb4371b7bd7a6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{git__utils_8c_a51ae0134feff92edfd5cf268cd0b1acf}\label{git__utils_8c_a51ae0134feff92edfd5cf268cd0b1acf} 
+\index{git\_utils.c@{git\_utils.c}!is\_git\_repository@{is\_git\_repository}}
+\index{is\_git\_repository@{is\_git\_repository}!git\_utils.c@{git\_utils.c}}
+\doxysubsubsection{\texorpdfstring{is\_git\_repository()}{is\_git\_repository()}}
+{\footnotesize\ttfamily bool is\+\_\+git\+\_\+repository (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Checks if the current directory is part of a Git repository. 
+
+This function executes the \textquotesingle{}git rev-\/parse\textquotesingle{} command to determine if the current working directory is within a Git repository.
+
+\begin{DoxyReturn}{Returns}
+true if the current directory is in a Git repository, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{git__utils_8c_source_l00028}{28}} of file \mbox{\hyperlink{git__utils_8c_source}{git\+\_\+utils.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ Execute\ 'git\ rev-\/parse'\ command\ and\ redirect\ output\ to\ /dev/null}}
+\DoxyCodeLine{00030\ \ \ \ \ FILE*\ fp\ =\ popen(\textcolor{stringliteral}{"{}git\ rev-\/parse\ -\/-\/is-\/inside-\/work-\/tree\ 2>/dev/null"{}},\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{if}\ (fp\ ==\ NULL)\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \ \textcolor{comment}{//\ Return\ false\ if\ command\ execution\ failed}}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{char}\ buffer[128];\ \ \textcolor{comment}{//\ Buffer\ to\ store\ command\ output}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ Read\ command\ output\ and\ check\ if\ it's\ "{}true"{}}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{bool}\ result\ =\ fgets(buffer,\ \textcolor{keyword}{sizeof}(buffer),\ fp)\ !=\ NULL\ \&\&\ strcmp(buffer,\ \textcolor{stringliteral}{"{}true\(\backslash\)n"{}})\ ==\ 0;}
+\DoxyCodeLine{00038\ \ \ \ \ pclose(fp);\ \ \textcolor{comment}{//\ Close\ the\ command\ pipe}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{return}\ result;\ \ \textcolor{comment}{//\ Return\ the\ result}}
+\DoxyCodeLine{00040\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{git__integration_8c_source_l00030}{integrate\+\_\+git\+\_\+status()}}, and \mbox{\hyperlink{main_8c_source_l00275}{main()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/db9/git__utils_8c_a51ae0134feff92edfd5cf268cd0b1acf_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{git__utils_8c_aa639b9b3bbea0da0a09fbad3ca69aa5d}\label{git__utils_8c_aa639b9b3bbea0da0a09fbad3ca69aa5d} 
+\index{git\_utils.c@{git\_utils.c}!parse\_status@{parse\_status}}
+\index{parse\_status@{parse\_status}!git\_utils.c@{git\_utils.c}}
+\doxysubsubsection{\texorpdfstring{parse\_status()}{parse\_status()}}
+{\footnotesize\ttfamily static char parse\+\_\+status (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{status\+\_\+str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Parses a Git status string and returns a single character status code. 
+
+This function interprets the two-\/character Git status string and returns a single character representing the file\textquotesingle{}s status.
+
+
+\begin{DoxyParams}{Parameters}
+{\em status\+\_\+str} & Two-\/character Git status string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Single character representing the file\textquotesingle{}s Git status. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{git__utils_8c_source_l00051}{51}} of file \mbox{\hyperlink{git__utils_8c_source}{git\+\_\+utils.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{if}\ (status\_str[0]\ ==\ \textcolor{charliteral}{'?'}\ \&\&\ status\_str[1]\ ==\ \textcolor{charliteral}{'?'})\ \textcolor{keywordflow}{return}\ \textcolor{charliteral}{'U'};\ \ \textcolor{comment}{//\ Untracked}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{if}\ (status\_str[0]\ ==\ \textcolor{charliteral}{'!'}\ \&\&\ status\_str[1]\ ==\ \textcolor{charliteral}{'!'})\ \textcolor{keywordflow}{return}\ \textcolor{charliteral}{'I'};\ \ \textcolor{comment}{//\ Ignored}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{return}\ status\_str[0]\ !=\ \textcolor{charliteral}{'\ '}\ ?\ status\_str[0]\ :\ status\_str[1];\ \ \ \textcolor{comment}{//\ Modified,\ Staged,\ etc.}}
+\DoxyCodeLine{00055\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{git__utils_8c_source_l00065}{get\+\_\+git\+\_\+status()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/db9/git__utils_8c_aa639b9b3bbea0da0a09fbad3ca69aa5d_icgraph}
+\end{center}
+\end{figure}

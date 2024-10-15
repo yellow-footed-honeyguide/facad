@@ -1,0 +1,306 @@
+\doxysection{dir\+\_\+analytics.\+c}
+\hypertarget{dir__analytics_8c_source}{}\label{dir__analytics_8c_source}\index{/home/honeyguide/Desktop/MyOpenSource/facad/src/dir\_analytics.c@{/home/honeyguide/Desktop/MyOpenSource/facad/src/dir\_analytics.c}}
+\mbox{\hyperlink{dir__analytics_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ dir\_analytics.c}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Implementation\ of\ directory\ analytics\ functionality.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00005}00005\ \textcolor{comment}{\ *\ This\ file\ contains\ functions\ for\ analyzing\ directory\ contents,}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00006}00006\ \textcolor{comment}{\ *\ including\ calculation\ of\ total\ size,\ file\ counts,\ depth\ analysis,}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00007}00007\ \textcolor{comment}{\ *\ and\ identification\ of\ largest\ and\ newest\ files.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00008}00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00009}00009\ \textcolor{comment}{\ *\ @author\ Sergey\ Veneckiy}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00010}00010\ \textcolor{comment}{\ *\ @date\ 2024}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00011}00011\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <pwd.h>}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <grp.h>}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <dirent.h>}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <sys/stat.h>}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <errno.h>}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <fcntl.h>}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00025}00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{emoji__utils_8h}{emoji\_utils.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00026}00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dir__analytics_8h}{dir\_analytics.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00028}\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{00028}}\ \textcolor{preprocessor}{\#define\ MAX\_PATH\ 4096}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00029}\mbox{\hyperlink{dir__analytics_8c_a2c5eecb22513a88c24ae5831a3265e54}{00029}}\ \textcolor{preprocessor}{\#define\ MAX\_FILES\ 1024}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00031}00031\ \textcolor{comment}{//\ ANSI\ escape\ codes\ for\ text\ formatting}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00032}\mbox{\hyperlink{dir__analytics_8c_a46587b83544b8e9be045bb93f644ac82}{00032}}\ \textcolor{preprocessor}{\#define\ ANSI\_BOLD\ "{}\(\backslash\)033[1m"{}}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00033}\mbox{\hyperlink{dir__analytics_8c_af77a445894f2f750d43cf2182cd29e55}{00033}}\ \textcolor{preprocessor}{\#define\ ANSI\_RESET\ "{}\(\backslash\)033[0m"{}}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00034}00034\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00035}00035\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00036}00036\ \textcolor{comment}{\ *\ @brief\ Formats\ a\ file\ size\ into\ a\ human-\/readable\ string.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00037}00037\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00038}00038\ \textcolor{comment}{\ *\ @param\ size\ The\ size\ in\ bytes\ to\ format.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00039}00039\ \textcolor{comment}{\ *\ @return\ A\ pointer\ to\ a\ static\ buffer\ containing\ the\ formatted\ size\ string.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00040}00040\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00041}\mbox{\hyperlink{dir__analytics_8c_a33a98d6f57285ecc9ccbd6c2f2b4fd9d}{00041}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{dir__analytics_8c_a33a98d6f57285ecc9ccbd6c2f2b4fd9d}{format\_size}}(off\_t\ size)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00042}00042\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ buf[64];}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00043}00043\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ units[]\ =\ \{\textcolor{stringliteral}{"{}B"{}},\ \textcolor{stringliteral}{"{}K"{}},\ \textcolor{stringliteral}{"{}M"{}},\ \textcolor{stringliteral}{"{}G"{}},\ \textcolor{stringliteral}{"{}T"{}},\ \textcolor{stringliteral}{"{}P"{}},\ \textcolor{stringliteral}{"{}E"{}},\ \textcolor{stringliteral}{"{}Z"{}},\ \textcolor{stringliteral}{"{}Y"{}}\};}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00044}00044\ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00045}00045\ \ \ \ \ \textcolor{keywordtype}{double}\ dsize\ =\ size;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00047}00047\ \ \ \ \ \textcolor{comment}{//\ Convert\ size\ to\ appropriate\ unit}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00048}00048\ \ \ \ \ \textcolor{keywordflow}{while}\ (dsize\ >=\ 1024\ \&\&\ i\ <\ 8)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00049}00049\ \ \ \ \ \ \ \ \ dsize\ /=\ 1024;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00050}00050\ \ \ \ \ \ \ \ \ i++;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00051}00051\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00053}00053\ \ \ \ \ \textcolor{comment}{//\ Format\ the\ size\ with\ one\ decimal\ place}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00054}00054\ \ \ \ \ snprintf(buf,\ \textcolor{keyword}{sizeof}(buf),\ \textcolor{stringliteral}{"{}\%.1f\%s"{}},\ dsize,\ units[i]);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00055}00055\ \ \ \ \ \textcolor{keywordflow}{return}\ buf;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00056}00056\ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00057}00057\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00058}00058\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00059}00059\ \textcolor{comment}{\ *\ @brief\ Formats\ a\ time\_t\ value\ into\ a\ human-\/readable\ string.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00060}00060\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00061}00061\ \textcolor{comment}{\ *\ @param\ t\ The\ time\_t\ value\ to\ format.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00062}00062\ \textcolor{comment}{\ *\ @return\ A\ pointer\ to\ a\ static\ buffer\ containing\ the\ formatted\ time\ string.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00063}00063\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00064}\mbox{\hyperlink{dir__analytics_8c_af2d4fbcabe2bb660a865a1a3beb3ee18}{00064}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{dir__analytics_8c_af2d4fbcabe2bb660a865a1a3beb3ee18}{format\_time}}(time\_t\ t)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00065}00065\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ buf[20];}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00066}00066\ \ \ \ \ \textcolor{keyword}{struct\ }tm*\ tm\_info\ =\ localtime(\&t);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00067}00067\ \ \ \ \ strftime(buf,\ \textcolor{keyword}{sizeof}(buf),\ \textcolor{stringliteral}{"{}\%Y-\/\%m-\/\%d\ \%H:\%M:\%S"{}},\ tm\_info);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00068}00068\ \ \ \ \ \textcolor{keywordflow}{return}\ buf;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00069}00069\ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00070}00070\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00071}00071\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00072}00072\ \textcolor{comment}{\ *\ @brief\ Recursively\ scans\ a\ directory\ to\ find\ its\ maximum\ depth.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00073}00073\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00074}00074\ \textcolor{comment}{\ *\ @param\ path\ The\ path\ of\ the\ directory\ to\ scan.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00075}00075\ \textcolor{comment}{\ *\ @param\ max\_depth\ Pointer\ to\ the\ current\ maximum\ depth.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00076}00076\ \textcolor{comment}{\ *\ @param\ current\_depth\ The\ current\ depth\ in\ the\ recursion.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00077}00077\ \textcolor{comment}{\ *\ @param\ deepest\_dir\ Buffer\ to\ store\ the\ path\ of\ the\ deepest\ directory.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00078}00078\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00079}\mbox{\hyperlink{dir__analytics_8c_a8ed5df60e8023eb58017d81b7642b2d4}{00079}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dir__analytics_8c_a8ed5df60e8023eb58017d81b7642b2d4}{recursive\_dir\_scan}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path,\ \textcolor{keywordtype}{int}*\ max\_depth,\ \textcolor{keywordtype}{int}\ current\_depth,\ \textcolor{keywordtype}{char}*\ deepest\_dir)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00080}00080\ \ \ \ \ DIR*\ dir;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00081}00081\ \ \ \ \ \textcolor{keyword}{struct\ }dirent*\ entry;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00082}00082\ \ \ \ \ \textcolor{keywordtype}{char}\ full\_path[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}];}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00084}00084\ \ \ \ \ dir\ =\ opendir(path);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00085}00085\ \ \ \ \ \textcolor{keywordflow}{if}\ (!dir)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00087}00087\ \ \ \ \ \textcolor{keywordflow}{while}\ ((entry\ =\ readdir(dir))\ !=\ NULL)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Skip\ .\ and\ ..\ entries}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(entry-\/>d\_name,\ \textcolor{stringliteral}{"{}."{}})\ ==\ 0\ ||\ strcmp(entry-\/>d\_name,\ \textcolor{stringliteral}{"{}.."{}})\ ==\ 0)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00091}00091\ \ \ \ \ \ \ \ \ snprintf(full\_path,\ \textcolor{keyword}{sizeof}(full\_path),\ \textcolor{stringliteral}{"{}\%s/\%s"{}},\ path,\ entry-\/>d\_name);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }stat\ st;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lstat(full\_path,\ \&st)\ ==\ 0\ \&\&\ S\_ISDIR(st.st\_mode))\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ new\_depth\ =\ current\_depth\ +\ 1;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ max\_depth\ and\ deepest\_dir\ if\ a\ new\ maximum\ is\ found}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (new\_depth\ >\ *max\_depth)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *max\_depth\ =\ new\_depth;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(deepest\_dir,\ full\_path,\ \mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deepest\_dir[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Recursively\ scan\ subdirectory}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dir__analytics_8c_a8ed5df60e8023eb58017d81b7642b2d4}{recursive\_dir\_scan}}(full\_path,\ max\_depth,\ new\_depth,\ deepest\_dir);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00104}00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00105}00105\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00106}00106\ \ \ \ \ closedir(dir);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00107}00107\ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00108}00108\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00109}00109\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00110}00110\ \textcolor{comment}{\ *\ @brief\ Calculates\ the\ total\ size\ of\ a\ directory\ and\ its\ contents.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00111}00111\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00112}00112\ \textcolor{comment}{\ *\ @param\ path\ The\ path\ of\ the\ directory\ to\ analyze.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00113}00113\ \textcolor{comment}{\ *\ @return\ The\ total\ size\ of\ the\ directory\ in\ bytes.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00114}00114\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00115}\mbox{\hyperlink{dir__analytics_8c_a247c94a71c4183e613d8a5329615c165}{00115}}\ \textcolor{keyword}{static}\ off\_t\ \mbox{\hyperlink{dir__analytics_8c_a247c94a71c4183e613d8a5329615c165}{calculate\_total\_size}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00116}00116\ \ \ \ \ DIR*\ dir;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00117}00117\ \ \ \ \ \textcolor{keyword}{struct\ }dirent*\ entry;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00118}00118\ \ \ \ \ \textcolor{keyword}{struct\ }stat\ st;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00119}00119\ \ \ \ \ off\_t\ total\_size\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00120}00120\ \ \ \ \ \textcolor{keywordtype}{char}\ full\_path[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}];}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00121}00121\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{long}\ block\_size\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00123}00123\ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ filesystem\ block\ size}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00124}00124\ \ \ \ \ \textcolor{keywordflow}{if}\ (block\_size\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00125}00125\ \ \ \ \ \ \ \ \ block\_size\ =\ 512;\ \textcolor{comment}{//\ Default\ value}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00126}00126\ \textcolor{preprocessor}{\#ifdef\ ST\_BLKSIZE}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00127}00127\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }statvfs\ buf;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (statvfs(path,\ \&buf)\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ block\_size\ =\ buf.f\_frsize;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00130}00130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00131}00131\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00132}00132\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00134}00134\ \ \ \ \ dir\ =\ opendir(path);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00135}00135\ \ \ \ \ \textcolor{keywordflow}{if}\ (!dir)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00136}00136\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Error\ opening\ directory\ \%s:\ \%s\(\backslash\)n"{}},\ path,\ strerror(errno));}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00138}00138\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00140}00140\ \ \ \ \ \textcolor{keywordflow}{while}\ ((entry\ =\ readdir(dir))\ !=\ NULL)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(entry-\/>d\_name,\ \textcolor{stringliteral}{"{}."{}})\ ==\ 0\ ||\ strcmp(entry-\/>d\_name,\ \textcolor{stringliteral}{"{}.."{}})\ ==\ 0)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00143}00143\ \ \ \ \ \ \ \ \ snprintf(full\_path,\ \textcolor{keyword}{sizeof}(full\_path),\ \textcolor{stringliteral}{"{}\%s/\%s"{}},\ path,\ entry-\/>d\_name);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lstat(full\_path,\ \&st)\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (S\_ISDIR(st.st\_mode))\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Recursively\ calculate\ size\ for\ subdirectories}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ total\_size\ +=\ \mbox{\hyperlink{dir__analytics_8c_a247c94a71c4183e613d8a5329615c165}{calculate\_total\_size}}(full\_path);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (S\_ISREG(st.st\_mode))\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ file\ size,\ rounded\ up\ to\ the\ nearest\ block}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ total\_size\ +=\ (st.st\_blocks\ *\ 512\ +\ block\_size\ -\/\ 1)\ /\ block\_size\ *\ block\_size;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ignore\ symbolic\ links\ and\ other\ special\ files}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00154}00154\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Error\ stating\ \%s:\ \%s\(\backslash\)n"{}},\ full\_path,\ strerror(errno));}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00156}00156\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00157}00157\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00158}00158\ \ \ \ \ closedir(dir);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00159}00159\ \ \ \ \ \textcolor{keywordflow}{return}\ total\_size;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00160}00160\ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00161}00161\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00162}00162\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00163}00163\ \textcolor{comment}{\ *\ @brief\ Recursively\ finds\ the\ largest\ file\ in\ a\ directory\ and\ its\ subdirectories.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00164}00164\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00165}00165\ \textcolor{comment}{\ *\ @param\ path\ The\ path\ of\ the\ directory\ to\ scan.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00166}00166\ \textcolor{comment}{\ *\ @param\ largest\_size\ Pointer\ to\ store\ the\ size\ of\ the\ largest\ file\ found.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00167}00167\ \textcolor{comment}{\ *\ @param\ largest\_file\ Buffer\ to\ store\ the\ path\ of\ the\ largest\ file.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00168}00168\ \textcolor{comment}{\ *\ @param\ largest\_file\_size\ Size\ of\ the\ largest\_file\ buffer.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00169}00169\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00170}\mbox{\hyperlink{dir__analytics_8c_a65261c711a51d2667c1726615395d524}{00170}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dir__analytics_8c_a65261c711a51d2667c1726615395d524}{find\_largest\_file}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path,\ off\_t*\ largest\_size,\ \textcolor{keywordtype}{char}*\ largest\_file,\ \textcolor{keywordtype}{size\_t}\ largest\_file\_size)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00171}00171\ \ \ \ \ DIR*\ dir;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00172}00172\ \ \ \ \ \textcolor{keyword}{struct\ }dirent*\ entry;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00173}00173\ \ \ \ \ \textcolor{keywordtype}{char}\ full\_path[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}];}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00175}00175\ \ \ \ \ dir\ =\ opendir(path);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00176}00176\ \ \ \ \ \textcolor{keywordflow}{if}\ (!dir)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00178}00178\ \ \ \ \ \textcolor{keywordflow}{while}\ ((entry\ =\ readdir(dir))\ !=\ NULL)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00179}00179\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(entry-\/>d\_name,\ \textcolor{stringliteral}{"{}."{}})\ ==\ 0\ ||\ strcmp(entry-\/>d\_name,\ \textcolor{stringliteral}{"{}.."{}})\ ==\ 0)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00181}00181\ \ \ \ \ \ \ \ \ snprintf(full\_path,\ \textcolor{keyword}{sizeof}(full\_path),\ \textcolor{stringliteral}{"{}\%s/\%s"{}},\ path,\ entry-\/>d\_name);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00183}00183\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }stat\ st;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00184}00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lstat(full\_path,\ \&st)\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (S\_ISDIR(st.st\_mode))\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Recursively\ scan\ subdirectories}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dir__analytics_8c_a65261c711a51d2667c1726615395d524}{find\_largest\_file}}(full\_path,\ largest\_size,\ largest\_file,\ largest\_file\_size);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (S\_ISREG(st.st\_mode))\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ this\ file\ is\ larger\ than\ the\ current\ largest}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (st.st\_size\ >\ *largest\_size)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *largest\_size\ =\ st.st\_size;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(largest\_file,\ full\_path,\ largest\_file\_size\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ largest\_file[largest\_file\_size\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00196}00196\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00197}00197\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00198}00198\ \ \ \ \ closedir(dir);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00199}00199\ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00201}00201\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00202}00202\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00203}00203\ \textcolor{comment}{\ *\ @brief\ Prints\ detailed\ analytics\ about\ a\ directory.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00204}00204\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00205}00205\ \textcolor{comment}{\ *\ This\ function\ analyzes\ the\ contents\ of\ the\ specified\ directory}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00206}00206\ \textcolor{comment}{\ *\ and\ prints\ various\ statistics\ including\ total\ size,\ file\ counts,}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00207}00207\ \textcolor{comment}{\ *\ directory\ depth,\ and\ information\ about\ largest\ and\ newest\ files.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00208}00208\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00209}00209\ \textcolor{comment}{\ *\ @param\ path\ The\ path\ of\ the\ directory\ to\ analyze.}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00210}00210\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00211}\mbox{\hyperlink{dir__analytics_8c_ab481a931e3944eefb982e2666223d3d5}{00211}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dir__analytics_8c_ab481a931e3944eefb982e2666223d3d5}{print\_dir\_analytics}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00212}00212\ \ \ \ \ DIR*\ dir;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00213}00213\ \ \ \ \ \textcolor{keyword}{struct\ }dirent*\ entry;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00214}00214\ \ \ \ \ \textcolor{keyword}{struct\ }stat\ st;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00215}00215\ \ \ \ \ off\_t\ largest\_size\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00216}00216\ \ \ \ \ \textcolor{keywordtype}{int}\ total\_files\ =\ 0,\ total\_dirs\ =\ 0,\ empty\_files\ =\ 0,\ max\_depth\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00217}00217\ \ \ \ \ time\_t\ newest\_time\ =\ 0,\ oldest\_time\ =\ time(NULL);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00218}00218\ \ \ \ \ \textcolor{keywordtype}{char}\ largest\_file[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}]\ =\ \textcolor{stringliteral}{"{}"{}},\ newest\_file[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}]\ =\ \textcolor{stringliteral}{"{}"{}},\ oldest\_file[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00219}00219\ \ \ \ \ \textcolor{keywordtype}{char}\ empty\_file\_names[\mbox{\hyperlink{dir__analytics_8c_a2c5eecb22513a88c24ae5831a3265e54}{MAX\_FILES}}][256];}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00220}00220\ \ \ \ \ \textcolor{keywordtype}{char}\ deepest\_dir[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00222}00222\ \ \ \ \ dir\ =\ opendir(path);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00223}00223\ \ \ \ \ \textcolor{keywordflow}{if}\ (!dir)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00224}00224\ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}Error\ opening\ directory"{}});}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00225}00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00226}00226\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00227}00227\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00228}00228\ \ \ \ \ \textcolor{comment}{//\ Find\ the\ largest\ file\ recursively}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00229}00229\ \ \ \ \ \mbox{\hyperlink{dir__analytics_8c_a65261c711a51d2667c1726615395d524}{find\_largest\_file}}(path,\ \&largest\_size,\ largest\_file,\ \textcolor{keyword}{sizeof}(largest\_file));}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00231}00231\ \ \ \ \ \textcolor{comment}{//\ Calculate\ total\ size\ recursively}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00232}00232\ \ \ \ \ off\_t\ total\_size\ =\ \mbox{\hyperlink{dir__analytics_8c_a247c94a71c4183e613d8a5329615c165}{calculate\_total\_size}}(path);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00233}00233\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00234}00234\ \ \ \ \ \textcolor{keywordflow}{while}\ ((entry\ =\ readdir(dir))\ !=\ NULL)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00235}00235\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ full\_path[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}];}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00236}00236\ \ \ \ \ \ \ \ \ snprintf(full\_path,\ \textcolor{keyword}{sizeof}(full\_path),\ \textcolor{stringliteral}{"{}\%s/\%s"{}},\ path,\ entry-\/>d\_name);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00237}00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lstat(full\_path,\ \&st)\ !=\ 0)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00238}00238\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00239}00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(entry-\/>d\_name,\ \textcolor{stringliteral}{"{}."{}})\ ==\ 0\ ||\ strcmp(entry-\/>d\_name,\ \textcolor{stringliteral}{"{}.."{}})\ ==\ 0)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00241}00241\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (S\_ISDIR(st.st\_mode))\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ total\_dirs++;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00243}00243\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (S\_ISREG(st.st\_mode))\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ total\_files++;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00245}00245\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ for\ largest\ file}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (st.st\_size\ >\ largest\_size)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ largest\_size\ =\ st.st\_size;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(largest\_file,\ entry-\/>d\_name,\ \textcolor{keyword}{sizeof}(largest\_file)\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00251}00251\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ for\ newest\ file}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (st.st\_mtime\ >\ newest\_time)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ newest\_time\ =\ st.st\_mtime;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(newest\_file,\ entry-\/>d\_name,\ \textcolor{keyword}{sizeof}(newest\_file)\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00257}00257\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ for\ oldest\ file}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (st.st\_mtime\ <\ oldest\_time)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ oldest\_time\ =\ st.st\_mtime;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(oldest\_file,\ entry-\/>d\_name,\ \textcolor{keyword}{sizeof}(oldest\_file)\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00263}00263\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ for\ empty\ files}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (st.st\_size\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(empty\_file\_names[empty\_files],\ entry-\/>d\_name,\ 255);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ empty\_file\_names[empty\_files][255]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ empty\_files++;}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00270}00270\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00271}00271\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00272}00272\ \ \ \ \ closedir(dir);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00273}00273\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00274}00274\ \ \ \ \ \textcolor{comment}{//\ Calculate\ max\ depth\ and\ find\ deepest\ directory}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00275}00275\ \ \ \ \ \mbox{\hyperlink{dir__analytics_8c_a8ed5df60e8023eb58017d81b7642b2d4}{recursive\_dir\_scan}}(path,\ \&max\_depth,\ 0,\ deepest\_dir);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00276}00276\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00277}00277\ \ \ \ \ \textcolor{keywordtype}{char}\ cwd[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}];}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00278}00278\ \ \ \ \ \textcolor{keywordflow}{if}\ (getcwd(cwd,\ \textcolor{keyword}{sizeof}(cwd))\ ==\ NULL)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00279}00279\ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}getcwd()\ error"{}});}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00280}00280\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00281}00281\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00282}00282\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00283}00283\ \ \ \ \ \textcolor{comment}{//\ Print\ analytics}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00284}00284\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s\%s\%s\(\backslash\)n"{}},\ \mbox{\hyperlink{dir__analytics_8c_a46587b83544b8e9be045bb93f644ac82}{ANSI\_BOLD}},\ cwd,\ \mbox{\hyperlink{dir__analytics_8c_af77a445894f2f750d43cf2182cd29e55}{ANSI\_RESET}});}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00285}00285\ \ \ \ \ printf(\textcolor{stringliteral}{"{}🧮\ Total\ Size\ \ \ \ :\ \%s\(\backslash\)n"{}},\ \mbox{\hyperlink{dir__analytics_8c_a33a98d6f57285ecc9ccbd6c2f2b4fd9d}{format\_size}}(total\_size));}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00286}00286\ \ \ \ \ printf(\textcolor{stringliteral}{"{}🗂️\ Directories\ \ \ :\ \%d\(\backslash\)n"{}},\ total\_dirs);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00287}00287\ \ \ \ \ printf(\textcolor{stringliteral}{"{}🌳\ Max\ Depth\ \ \ \ \ :\ \%d\ levels\(\backslash\)n"{}},\ max\_depth);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00288}00288\ \ \ \ \ printf(\textcolor{stringliteral}{"{}📁\ Deepest\ Dir\ \ \ :\ \%s\(\backslash\)n"{}},\ deepest\_dir);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00289}00289\ \ \ \ \ printf(\textcolor{stringliteral}{"{}🗃️\ Files\ \ \ \ \ \ \ \ \ :\ \%d\(\backslash\)n"{}},\ total\_files);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00290}00290\ \ \ \ \ printf(\textcolor{stringliteral}{"{}🐘\ Largest\ File\ \ :\ \%s\ [\%s]\(\backslash\)n"{}},\ largest\_file,\ \mbox{\hyperlink{dir__analytics_8c_a33a98d6f57285ecc9ccbd6c2f2b4fd9d}{format\_size}}(largest\_size));}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00291}00291\ \ \ \ \ printf(\textcolor{stringliteral}{"{}🏺\ Oldest\ File\ \ \ :\ \%s\ [\%s]\(\backslash\)n"{}},\ oldest\_file,\ \mbox{\hyperlink{dir__analytics_8c_af2d4fbcabe2bb660a865a1a3beb3ee18}{format\_time}}(oldest\_time));}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00292}00292\ \ \ \ \ printf(\textcolor{stringliteral}{"{}🆕\ Newest\ File\ \ \ :\ \%s\ [\%s]\(\backslash\)n"{}},\ newest\_file,\ \mbox{\hyperlink{dir__analytics_8c_af2d4fbcabe2bb660a865a1a3beb3ee18}{format\_time}}(newest\_time));}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00293}00293\ \ \ \ \ printf(\textcolor{stringliteral}{"{}📭\ Empty\ Files\ \ \ :\ \%d\ ["{}},\ empty\_files);}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00294}00294\ }
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00295}00295\ \ \ \ \ \textcolor{comment}{//\ Print\ names\ of\ empty\ files}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00296}00296\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ empty\_files;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00297}00297\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s\%s"{}},\ empty\_file\_names[i],\ (i\ +\ 1\ <\ empty\_files)\ ?\ \textcolor{stringliteral}{"{}\ "{}}\ :\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00298}00298\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00299}00299\ \ \ \ \ printf(\textcolor{stringliteral}{"{}]\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{dir__analytics_8c_source_l00300}00300\ \}}
+
+\end{DoxyCode}

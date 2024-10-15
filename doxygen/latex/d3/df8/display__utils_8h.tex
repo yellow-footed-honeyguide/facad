@@ -1,0 +1,175 @@
+\doxysection{/home/honeyguide/\+Desktop/\+My\+Open\+Source/facad/src/display\+\_\+utils.h File Reference}
+\hypertarget{display__utils_8h}{}\label{display__utils_8h}\index{/home/honeyguide/Desktop/MyOpenSource/facad/src/display\_utils.h@{/home/honeyguide/Desktop/MyOpenSource/facad/src/display\_utils.h}}
+{\ttfamily \#include "{}file\+\_\+card.\+h"{}}\newline
+Include dependency graph for display\+\_\+utils.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{d1/d9c/display__utils_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{da/d21/display__utils_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{display__utils_8h_a8b38e99d9128bf4a4badc21df13d442b}{display\+\_\+entries}} (\mbox{\hyperlink{structFileCardInfo}{File\+Card\+Info}} \texorpdfstring{$\ast$}{*}entries, int num\+\_\+entries, int term\+\_\+width, const char \texorpdfstring{$\ast$}{*}current\+\_\+dir, int show\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Displays file entries in a formatted, multi-\/column layout. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{display__utils_8h_a8b38e99d9128bf4a4badc21df13d442b}\label{display__utils_8h_a8b38e99d9128bf4a4badc21df13d442b} 
+\index{display\_utils.h@{display\_utils.h}!display\_entries@{display\_entries}}
+\index{display\_entries@{display\_entries}!display\_utils.h@{display\_utils.h}}
+\doxysubsubsection{\texorpdfstring{display\_entries()}{display\_entries()}}
+{\footnotesize\ttfamily void display\+\_\+entries (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFileCardInfo}{File\+Card\+Info}} \texorpdfstring{$\ast$}{*}}]{entries,  }\item[{int}]{num\+\_\+entries,  }\item[{int}]{term\+\_\+width,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{current\+\_\+dir,  }\item[{int}]{show\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+Displays file entries in a formatted, multi-\/column layout. 
+
+This function sorts the entries, calculates the appropriate layout based on terminal width, and prints the entries in a grid format. It handles emojis, Git status, and ensures proper alignment.
+
+
+\begin{DoxyParams}{Parameters}
+{\em entries} & Array of \doxylink{structFileCardInfo}{File\+Card\+Info} structures to display. \\
+\hline
+{\em num\+\_\+entries} & Number of entries in the array. \\
+\hline
+{\em term\+\_\+width} & Width of the terminal in characters. \\
+\hline
+{\em current\+\_\+dir} & Current directory path. \\
+\hline
+{\em show\+\_\+path} & Flag to indicate whether to show the current path. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{display__utils_8c_source_l00108}{108}} of file \mbox{\hyperlink{display__utils_8c_source}{display\+\_\+utils.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ setlocale(LC\_ALL,\ \textcolor{stringliteral}{"{}"{}});\ \ \textcolor{comment}{//\ Set\ the\ locale\ for\ proper\ Unicode\ handling}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//\ Display\ the\ current\ directory\ and\ Git\ branch\ if\ requested}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{if}\ (show\_path)\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *branch\ =\ \mbox{\hyperlink{git__utils_8c_a2ef1d42e63a1b1ab2270c1d82157a384}{get\_current\_branch}}();}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (branch)\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//printf("{}\(\backslash\)033[1m\%s\(\backslash\)033[0m\ (\(\backslash\)033[32m\%s\(\backslash\)033[0m)\(\backslash\)n"{},\ current\_dir,\ branch);}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)033[1m\%s\(\backslash\)033[0m\ \ \(\backslash\)033[38;5;202m[\%s]\(\backslash\)033[0m\(\backslash\)n"{}},\ current\_dir,\ branch);}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ free(branch);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)033[1m\%s\(\backslash\)033[0m\(\backslash\)n"{}},\ current\_dir);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{//\ Allocate\ memory\ for\ storing\ entry\ widths}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ *entry\_widths\ =\ malloc(num\_entries\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{size\_t}));}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{if}\ (!entry\_widths)\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Memory\ allocation\ failed\(\backslash\)n"{}});}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ width\ of\ each\ entry\ and\ find\ the\ maximum\ width}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ max\_width\ =\ 0;}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_entries;\ i++)\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ width:\ emoji\ +\ spacing\ +\ name\ +\ potential\ Git\ status}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ entry\_widths[i]\ =\ \mbox{\hyperlink{display__utils_8c_aeaee7a9666b3d9f80bde71005d22d498}{EMOJI\_WIDTH}}\ +\ \mbox{\hyperlink{display__utils_8c_a59349b500cfa8c496dfeabb9cf1b192e}{EMOJI\_NAME\_SPACING}}\ +\ \mbox{\hyperlink{display__utils_8c_ad5d5547a34815dba09681cd9e69bf2a1}{get\_display\_width}}(entries[i].name);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entries[i].git\_status[0]\ !=\ \textcolor{charliteral}{'\(\backslash\)0'})\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ entry\_widths[i]\ +=\ 3;\ \textcolor{comment}{//\ Add\ 3\ for\ "{}(X)"{}\ Git\ status}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entry\_widths[i]\ >\ max\_width)\ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ max\_width\ =\ entry\_widths[i];}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ number\ of\ columns\ based\ on\ terminal\ width}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{int}\ num\_columns\ =\ (term\_width\ +\ \mbox{\hyperlink{display__utils_8c_ab2dc237e07e2b4c8a52a5203c216fd37}{SPACING}})\ /\ (max\_width\ +\ \mbox{\hyperlink{display__utils_8c_ab2dc237e07e2b4c8a52a5203c216fd37}{SPACING}});}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{int}\ max\_columns\ =\ \mbox{\hyperlink{dir__config_8c_a4ce38149e564150cef6b9f182913ac7a}{get\_max\_columns}}(current\_dir);}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{if}\ (num\_columns\ >\ max\_columns)\ num\_columns\ =\ max\_columns;}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{if}\ (num\_columns\ <\ 1)\ num\_columns\ =\ 1;}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//\ Allocate\ memory\ for\ column\ widths}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ *column\_widths\ =\ calloc(num\_columns,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{size\_t}));}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{if}\ (!column\_widths)\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Memory\ allocation\ failed\(\backslash\)n"{}});}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ free(entry\_widths);}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ number\ of\ rows}}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{int}\ rows\ =\ (num\_entries\ +\ num\_columns\ -\/\ 1)\ /\ num\_columns;}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ width\ of\ each\ column}}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_entries;\ i++)\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ col\ =\ i\ /\ rows;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entry\_widths[i]\ >\ column\_widths[col])\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ column\_widths[col]\ =\ entry\_widths[i];}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{comment}{//\ Display\ the\ entries\ in\ a\ grid\ format}}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ row\ =\ 0;\ row\ <\ rows;\ row++)\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ col\ =\ 0;\ col\ <\ num\_columns;\ col++)\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ col\ *\ rows\ +\ row;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ <\ num\_entries)\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Print\ emoji}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s\ "{}},\ entries[index].emoji);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Print\ file\ name}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s"{}},\ entries[index].name);}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Print\ Git\ status\ if\ available}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entries[index].git\_status[0]\ !=\ \textcolor{charliteral}{'\(\backslash\)0'})\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//printf("{}(\(\backslash\)033[32m\%c\(\backslash\)033[0m)"{},\ entries[index].git\_status[0]);}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)033[38;5;202m[\%c]\(\backslash\)033[0m"{}},\ entries[index].git\_status[0]);}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ and\ print\ padding}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ printed\_width\ =\ entry\_widths[index];}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ padding\ =\ (col\ <\ num\_columns\ -\/\ 1)\ ?\ column\_widths[col]\ -\/\ printed\_width\ +\ \mbox{\hyperlink{display__utils_8c_ab2dc237e07e2b4c8a52a5203c216fd37}{SPACING}}\ :\ 0;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ padding;\ i++)\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});\ \ \textcolor{comment}{//\ Move\ to\ the\ next\ row}}
+\DoxyCodeLine{00194\ \ \ \ \ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{comment}{//\ Free\ allocated\ memory}}
+\DoxyCodeLine{00197\ \ \ \ \ free(entry\_widths);}
+\DoxyCodeLine{00198\ \ \ \ \ free(column\_widths);}
+\DoxyCodeLine{00199\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{display__utils_8c_source_l00033}{EMOJI\+\_\+\+NAME\+\_\+\+SPACING}}, \mbox{\hyperlink{display__utils_8c_source_l00032}{EMOJI\+\_\+\+WIDTH}}, \mbox{\hyperlink{git__utils_8c_source_l00100}{get\+\_\+current\+\_\+branch()}}, \mbox{\hyperlink{display__utils_8c_source_l00061}{get\+\_\+display\+\_\+width()}}, \mbox{\hyperlink{dir__config_8c_source_l00042}{get\+\_\+max\+\_\+columns()}}, and \mbox{\hyperlink{display__utils_8c_source_l00031}{SPACING}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00275}{main()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/df8/display__utils_8h_a8b38e99d9128bf4a4badc21df13d442b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{d3/df8/display__utils_8h_a8b38e99d9128bf4a4badc21df13d442b_icgraph}
+\end{center}
+\end{figure}

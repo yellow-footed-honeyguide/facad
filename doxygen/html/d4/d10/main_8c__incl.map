@@ -1,0 +1,46 @@
+<map id="/home/honeyguide/Desktop/MyOpenSource/facad/src/main.c" name="/home/honeyguide/Desktop/MyOpenSource/facad/src/main.c">
+<area shape="rect" id="Node000001" title="Main entry point for the facad directory listing tool." alt="" coords="752,5,986,50"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,98,71,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="751,35,618,42,453,54,272,73,86,101,85,95,271,68,453,49,618,37,751,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="95,98,162,126"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="751,37,492,57,336,76,178,100,177,95,336,70,491,52,751,32"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="186,98,255,126"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="751,40,532,62,403,79,271,100,270,95,402,73,531,56,751,35"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="279,98,349,126"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="751,43,573,66,365,100,364,95,572,60,751,38"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="373,98,447,126"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="751,49,616,71,462,100,461,95,615,65,750,43"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="470,98,542,126"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="766,53,558,100,556,95,765,48"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="566,98,654,126"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="801,53,667,95,665,90,799,48"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="677,98,762,126"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="830,53,757,93,755,88,828,48"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="785,98,872,126"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="861,52,844,85,839,83,856,49"/>
+<area shape="rect" id="Node000011" href="$db/d45/git__utils_8h.html" title="Header file for Git utility functions used in facad." alt="" coords="989,174,1074,201"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="893,49,1009,161,1005,165,889,52"/>
+<area shape="rect" id="Node000013" href="$d5/d36/file__card_8h.html" title="Header file for file entry handling functions and structures." alt="" coords="1166,174,1254,201"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="987,40,1065,61,1103,76,1140,96,1173,126,1197,159,1193,162,1169,129,1136,100,1101,81,1063,66,986,45"/>
+<area shape="rect" id="Node000014" href="$d4/d6f/dir__config_8h.html" title="Header file for directory&#45;specific configurations." alt="" coords="1481,98,1577,126"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="987,37,1205,60,1466,95,1465,100,1205,65,986,42"/>
+<area shape="rect" id="Node000015" href="$da/d7e/args__parser_8h.html" title="Header file for command&#45;line argument parsing in facad." alt="" coords="856,174,964,201"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="877,50,905,158,900,159,872,51"/>
+<area shape="rect" id="Node000016" href="$d9/d9a/longlisting_8h.html" title=" " alt="" coords="1601,98,1702,126"/>
+<area shape="poly" id="edge16_Node000001_Node000016" title=" " alt="" coords="987,34,1256,56,1419,73,1585,95,1585,100,1419,79,1256,62,986,39"/>
+<area shape="rect" id="Node000017" href="$da/dca/dir__analytics_8h.html" title="Header file for directory analysis functionality." alt="" coords="1727,98,1843,126"/>
+<area shape="poly" id="edge17_Node000001_Node000017" title=" " alt="" coords="986,32,1309,55,1508,72,1711,95,1711,100,1507,78,1309,60,986,38"/>
+<area shape="rect" id="Node000018" href="$d3/df8/display__utils_8h.html" title=" " alt="" coords="1200,98,1316,126"/>
+<area shape="poly" id="edge18_Node000001_Node000018" title=" " alt="" coords="973,48,1186,93,1185,98,971,53"/>
+<area shape="rect" id="Node000019" href="$db/d03/dev__dir__utils_8h.html" title="Utility functions for handling the /dev directory." alt="" coords="1340,98,1456,126"/>
+<area shape="poly" id="edge20_Node000001_Node000019" title=" " alt="" coords="987,43,1325,95,1324,100,986,48"/>
+<area shape="rect" id="Node000020" href="$d1/dc4/git__integration_8h.html" title="Header file for Git integration functionality." alt="" coords="998,98,1126,126"/>
+<area shape="poly" id="edge22_Node000001_Node000020" title=" " alt="" coords="921,48,1018,89,1016,94,919,53"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="929,249,1011,277"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="1022,204,993,239,988,236,1018,200"/>
+<area shape="poly" id="edge15_Node000015_Node000012" title=" " alt="" coords="923,200,952,235,948,239,919,204"/>
+<area shape="poly" id="edge19_Node000018_Node000013" title=" " alt="" coords="1252,128,1229,162,1225,159,1247,125"/>
+<area shape="poly" id="edge21_Node000019_Node000013" title=" " alt="" coords="1365,129,1258,170,1256,165,1363,124"/>
+<area shape="poly" id="edge24_Node000020_Node000011" title=" " alt="" coords="1059,127,1045,160,1040,158,1054,125"/>
+<area shape="poly" id="edge23_Node000020_Node000013" title=" " alt="" coords="1090,124,1171,164,1169,169,1087,129"/>
+</map>

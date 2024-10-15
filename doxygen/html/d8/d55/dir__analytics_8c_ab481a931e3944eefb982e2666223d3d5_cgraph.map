@@ -1,0 +1,16 @@
+<map id="print_dir_analytics" name="print_dir_analytics">
+<area shape="rect" id="Node000001" title="Prints detailed analytics about a directory." alt="" coords="5,157,147,185"/>
+<area shape="rect" id="Node000002" href="$d8/d55/dir__analytics_8c.html#a247c94a71c4183e613d8a5329615c165" title="Calculates the total size of a directory and its contents." alt="" coords="195,29,345,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,155,133,113,193,68,205,61,208,66,196,72,136,117,92,159"/>
+<area shape="rect" id="Node000003" href="$d8/d55/dir__analytics_8c.html#a65261c711a51d2667c1726615395d524" title="Recursively finds the largest file in a directory and its subdirectories." alt="" coords="208,105,332,133"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="130,154,200,135,201,140,131,159"/>
+<area shape="rect" id="Node000004" href="$d8/d55/dir__analytics_8c.html#a33a98d6f57285ecc9ccbd6c2f2b4fd9d" title="Formats a file size into a human&#45;readable string." alt="" coords="221,157,319,185"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="147,169,205,169,205,174,147,174"/>
+<area shape="rect" id="Node000005" href="$d8/d55/dir__analytics_8c.html#af2d4fbcabe2bb660a865a1a3beb3ee18" title="Formats a time_t value into a human&#45;readable string." alt="" coords="219,209,321,237"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="131,183,204,203,203,208,130,188"/>
+<area shape="rect" id="Node000006" href="$d8/d55/dir__analytics_8c.html#a8ed5df60e8023eb58017d81b7642b2d4" title="Recursively scans a directory to find its maximum depth." alt="" coords="199,285,341,313"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="100,183,237,275,234,279,97,188"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="236,30,231,20,235,11,248,5,270,3,293,5,305,12,303,16,291,10,270,8,250,10,239,15,236,20,241,27"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="236,106,231,96,235,87,248,81,270,79,293,81,305,88,303,92,291,86,270,84,250,86,239,91,236,96,241,103"/>
+<area shape="poly" id="edge8_Node000006_Node000006" title=" " alt="" coords="236,286,231,276,235,267,248,261,270,259,293,261,305,268,303,272,291,266,270,264,250,266,239,271,236,276,241,283"/>
+</map>

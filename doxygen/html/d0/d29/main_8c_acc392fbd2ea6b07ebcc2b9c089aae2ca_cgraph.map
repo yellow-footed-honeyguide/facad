@@ -1,0 +1,26 @@
+<map id="process_directory" name="process_directory">
+<area shape="rect" id="Node000001" title="Processes directory entries and populates the entries array." alt="" coords="5,132,142,160"/>
+<area shape="rect" id="Node000002" href="$d0/d29/main_8c.html#a165f84d1d52e7a11077ff2b3ec8ba0c8" title="Dynamically allocates or reallocates memory for directory entries." alt="" coords="203,80,328,108"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,129,196,110,198,115,128,134"/>
+<area shape="rect" id="Node000003" href="$dd/d6c/file__card_8c.html#a8ac3f1a318ebad42a9d465b92e4aa598" title="Creates a new file card based on the given path." alt="" coords="200,132,331,160"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="142,143,184,143,184,149,142,149"/>
+<area shape="rect" id="Node000009" href="$df/d77/git__integration_8c.html#ac8420e6fdcd1a0373f840ecbe95a220a" title="Integrates Git status information into file entries." alt="" coords="190,197,341,225"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="118,158,209,189,207,194,116,163"/>
+<area shape="rect" id="Node000004" href="$d0/dc9/emoji__utils_8c.html#a853b78da7b6116949e96148e040669d5" title="Determines the appropriate emoji for a given file based on its characteristics." alt="" coords="411,107,497,134"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="331,134,395,126,396,131,331,140"/>
+<area shape="rect" id="Node000005" href="$d0/dc9/emoji__utils_8c.html#a5079b8c3657f088d68ae41fee9b299e3" title="Checks the file content for specific patterns to determine the file type." alt="" coords="566,5,709,33"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="475,104,565,49,588,37,590,42,568,53,478,108"/>
+<area shape="rect" id="Node000006" href="$d0/dc9/emoji__utils_8c.html#a515d3420e13a8688464ad3b3c89c2ffb" title="Safely duplicates a string, handling memory allocation errors." alt="" coords="757,31,854,58"/>
+<area shape="poly" id="edge8_Node000004_Node000006" title=" " alt="" coords="497,108,566,93,741,55,742,60,567,98,498,113"/>
+<area shape="rect" id="Node000007" href="$d0/dc9/emoji__utils_8c.html#adcfc0049feddf60eec27fe2572291a2e" title="Checks if a file is executable." alt="" coords="582,107,693,134"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="497,118,567,118,567,123,497,123"/>
+<area shape="rect" id="Node000008" href="$d0/dc9/emoji__utils_8c.html#a3bfec7595ef6d300266b38d3a17b039e" title="Checks if a file is a text file by examining its contents." alt="" coords="591,159,684,186"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="498,130,577,153,575,158,497,135"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="709,27,742,32,741,38,708,33"/>
+<area shape="rect" id="Node000010" href="$d1/db9/git__utils_8c.html#a1af8df0b83d4e26524cdb4371b7bd7a6" title="Retrieves the Git status for all files in the current repository." alt="" coords="397,197,510,225"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="342,209,382,209,382,214,342,214"/>
+<area shape="rect" id="Node000012" href="$d1/db9/git__utils_8c.html#a51ae0134feff92edfd5cf268cd0b1acf" title="Checks if the current directory is part of a Git repository." alt="" coords="389,249,518,277"/>
+<area shape="poly" id="edge12_Node000009_Node000012" title=" " alt="" coords="319,223,387,242,386,247,318,228"/>
+<area shape="rect" id="Node000011" href="$d1/db9/git__utils_8c.html#aa639b9b3bbea0da0a09fbad3ca69aa5d" title="Parses a Git status string and returns a single character status code." alt="" coords="585,211,690,238"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="511,213,570,217,570,222,511,218"/>
+</map>

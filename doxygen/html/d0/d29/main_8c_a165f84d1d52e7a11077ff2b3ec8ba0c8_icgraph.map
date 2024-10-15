@@ -1,0 +1,14 @@
+<map id="allocate_entries" name="allocate_entries">
+<area shape="rect" id="Node000001" title="Dynamically allocates or reallocates memory for directory entries." alt="" coords="507,56,633,84"/>
+<area shape="rect" id="Node000002" href="$d0/d29/main_8c.html#acc392fbd2ea6b07ebcc2b9c089aae2ca" title="Processes directory entries and populates the entries array." alt="" coords="298,5,434,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="496,54,424,36,425,31,497,49"/>
+<area shape="rect" id="Node000004" href="$d0/d29/main_8c.html#ae7d3bb334fabeeccc7dfb05e7f968d47" title="Processes a single target (directory, file, or pattern)." alt="" coords="108,56,225,84"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="492,73,226,73,226,67,492,67"/>
+<area shape="rect" id="Node000005" href="$d0/d29/main_8c.html#a00c65357e9fe949388102f3090ea09c5" title="Processes files or patterns and populates the entries array." alt="" coords="273,107,459,134"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="497,91,425,109,424,103,496,85"/>
+<area shape="rect" id="Node000003" href="$d0/d29/main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Main function of the facad program." alt="" coords="5,31,60,58"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="283,28,60,45,60,40,282,23"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="295,40,224,58,223,53,293,35"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="92,58,60,52,61,47,93,53"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="293,105,223,87,224,82,295,100"/>
+</map>

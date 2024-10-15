@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="d3/df8/display__utils_8h" kind="file" language="C++">
+    <compoundname>display_utils.h</compoundname>
+    <includes refid="d5/d36/file__card_8h" local="yes">file_card.h</includes>
+    <includedby refid="d2/dda/display__utils_8c" local="yes">/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c</includedby>
+    <includedby refid="d0/d29/main_8c" local="yes">/home/honeyguide/Desktop/MyOpenSource/facad/src/main.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.h</label>
+        <link refid="d3/df8/display__utils_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>file_card.h</label>
+        <link refid="d5/d36/file__card_8h"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c</label>
+        <link refid="d2/dda/display__utils_8c"/>
+      </node>
+      <node id="1">
+        <label>/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.h</label>
+        <link refid="d3/df8/display__utils_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>/home/honeyguide/Desktop/MyOpenSource/facad/src/main.c</label>
+        <link refid="d0/d29/main_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d3/df8/display__utils_8h_1a8b38e99d9128bf4a4badc21df13d442b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void display_entries</definition>
+        <argsstring>(FileCardInfo *entries, int num_entries, int term_width, const char *current_dir, int show_path)</argsstring>
+        <name>display_entries</name>
+        <param>
+          <type><ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref> *</type>
+          <declname>entries</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_entries</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>term_width</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>current_dir</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>show_path</declname>
+        </param>
+        <briefdescription>
+<para>Displays file entries in a formatted, multi-column layout. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function sorts the entries, calculates the appropriate layout based on terminal width, and prints the entries in a grid format. It handles emojis, Git status, and ensures proper alignment.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>entries</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of <ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref> structures to display. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>num_entries</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of entries in the array. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>term_width</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Width of the terminal in characters. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>current_dir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Current directory path. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>show_path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag to indicate whether to show the current path. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.h" line="6" column="6" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c" bodystart="108" bodyend="199" declfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.h" declline="6" declcolumn="6"/>
+        <references refid="d2/dda/display__utils_8c_1a59349b500cfa8c496dfeabb9cf1b192e" compoundref="d2/dda/display__utils_8c" startline="33">EMOJI_NAME_SPACING</references>
+        <references refid="d2/dda/display__utils_8c_1aeaee7a9666b3d9f80bde71005d22d498" compoundref="d2/dda/display__utils_8c" startline="32">EMOJI_WIDTH</references>
+        <references refid="d1/db9/git__utils_8c_1a2ef1d42e63a1b1ab2270c1d82157a384" compoundref="d1/db9/git__utils_8c" startline="100" endline="117">get_current_branch</references>
+        <references refid="d2/dda/display__utils_8c_1ad5d5547a34815dba09681cd9e69bf2a1" compoundref="d2/dda/display__utils_8c" startline="61" endline="75">get_display_width</references>
+        <references refid="dc/daf/dir__config_8c_1a4ce38149e564150cef6b9f182913ac7a" compoundref="dc/daf/dir__config_8c" startline="42" endline="54">get_max_columns</references>
+        <references refid="d2/dda/display__utils_8c_1ab2dc237e07e2b4c8a52a5203c216fd37" compoundref="d2/dda/display__utils_8c" startline="31">SPACING</references>
+        <referencedby refid="d0/d29/main_8c_1a0ddf1224851353fc92bfbff6f499fa97" compoundref="d0/d29/main_8c" startline="275" endline="423">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>DISPLAY_UTILS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_UTILS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d5/d36/file__card_8h" kindref="compound">file_card.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d3/df8/display__utils_8h_1a8b38e99d9128bf4a4badc21df13d442b" kindref="member">display_entries</ref>(<ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref><sp/>*entries,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_entries,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>term_width,</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*current_dir,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>show_path);</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>DISPLAY_UTILS_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.h"/>
+  </compounddef>
+</doxygen>

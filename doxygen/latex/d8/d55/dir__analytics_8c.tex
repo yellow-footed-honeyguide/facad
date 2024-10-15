@@ -1,0 +1,631 @@
+\doxysection{/home/honeyguide/\+Desktop/\+My\+Open\+Source/facad/src/dir\+\_\+analytics.c File Reference}
+\hypertarget{dir__analytics_8c}{}\label{dir__analytics_8c}\index{/home/honeyguide/Desktop/MyOpenSource/facad/src/dir\_analytics.c@{/home/honeyguide/Desktop/MyOpenSource/facad/src/dir\_analytics.c}}
+
+
+Implementation of directory analytics functionality.  
+
+
+{\ttfamily \#include $<$pwd.\+h$>$}\newline
+{\ttfamily \#include $<$grp.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include "{}emoji\+\_\+utils.\+h"{}}\newline
+{\ttfamily \#include "{}dir\+\_\+analytics.\+h"{}}\newline
+Include dependency graph for dir\+\_\+analytics.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/df7/dir__analytics_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\+\_\+\+PATH}}~4096
+\item 
+\#define \mbox{\hyperlink{dir__analytics_8c_a2c5eecb22513a88c24ae5831a3265e54}{MAX\+\_\+\+FILES}}~1024
+\item 
+\#define \mbox{\hyperlink{dir__analytics_8c_a46587b83544b8e9be045bb93f644ac82}{ANSI\+\_\+\+BOLD}}~"{}\textbackslash{}033\mbox{[}1m"{}
+\item 
+\#define \mbox{\hyperlink{dir__analytics_8c_af77a445894f2f750d43cf2182cd29e55}{ANSI\+\_\+\+RESET}}~"{}\textbackslash{}033\mbox{[}0m"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dir__analytics_8c_a33a98d6f57285ecc9ccbd6c2f2b4fd9d}{format\+\_\+size}} (off\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Formats a file size into a human-\/readable string. \end{DoxyCompactList}\item 
+static char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{dir__analytics_8c_af2d4fbcabe2bb660a865a1a3beb3ee18}{format\+\_\+time}} (time\+\_\+t t)
+\begin{DoxyCompactList}\small\item\em Formats a time\+\_\+t value into a human-\/readable string. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{dir__analytics_8c_a8ed5df60e8023eb58017d81b7642b2d4}{recursive\+\_\+dir\+\_\+scan}} (const char \texorpdfstring{$\ast$}{*}path, int \texorpdfstring{$\ast$}{*}max\+\_\+depth, int current\+\_\+depth, char \texorpdfstring{$\ast$}{*}deepest\+\_\+dir)
+\begin{DoxyCompactList}\small\item\em Recursively scans a directory to find its maximum depth. \end{DoxyCompactList}\item 
+static off\+\_\+t \mbox{\hyperlink{dir__analytics_8c_a247c94a71c4183e613d8a5329615c165}{calculate\+\_\+total\+\_\+size}} (const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Calculates the total size of a directory and its contents. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{dir__analytics_8c_a65261c711a51d2667c1726615395d524}{find\+\_\+largest\+\_\+file}} (const char \texorpdfstring{$\ast$}{*}path, off\+\_\+t \texorpdfstring{$\ast$}{*}largest\+\_\+size, char \texorpdfstring{$\ast$}{*}largest\+\_\+file, size\+\_\+t largest\+\_\+file\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Recursively finds the largest file in a directory and its subdirectories. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dir__analytics_8c_ab481a931e3944eefb982e2666223d3d5}{print\+\_\+dir\+\_\+analytics}} (const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Prints detailed analytics about a directory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of directory analytics functionality. 
+
+This file contains functions for analyzing directory contents, including calculation of total size, file counts, depth analysis, and identification of largest and newest files.
+
+\begin{DoxyAuthor}{Author}
+Sergey Veneckiy 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2024 
+\end{DoxyDate}
+
+
+Definition in file \mbox{\hyperlink{dir__analytics_8c_source}{dir\+\_\+analytics.\+c}}.
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{dir__analytics_8c_a46587b83544b8e9be045bb93f644ac82}\label{dir__analytics_8c_a46587b83544b8e9be045bb93f644ac82} 
+\index{dir\_analytics.c@{dir\_analytics.c}!ANSI\_BOLD@{ANSI\_BOLD}}
+\index{ANSI\_BOLD@{ANSI\_BOLD}!dir\_analytics.c@{dir\_analytics.c}}
+\doxysubsubsection{\texorpdfstring{ANSI\_BOLD}{ANSI\_BOLD}}
+{\footnotesize\ttfamily \#define ANSI\+\_\+\+BOLD~"{}\textbackslash{}033\mbox{[}1m"{}}
+
+
+
+Definition at line \mbox{\hyperlink{dir__analytics_8c_source_l00032}{32}} of file \mbox{\hyperlink{dir__analytics_8c_source}{dir\+\_\+analytics.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{dir__analytics_8c_source_l00211}{print\+\_\+dir\+\_\+analytics()}}.
+
+\Hypertarget{dir__analytics_8c_af77a445894f2f750d43cf2182cd29e55}\label{dir__analytics_8c_af77a445894f2f750d43cf2182cd29e55} 
+\index{dir\_analytics.c@{dir\_analytics.c}!ANSI\_RESET@{ANSI\_RESET}}
+\index{ANSI\_RESET@{ANSI\_RESET}!dir\_analytics.c@{dir\_analytics.c}}
+\doxysubsubsection{\texorpdfstring{ANSI\_RESET}{ANSI\_RESET}}
+{\footnotesize\ttfamily \#define ANSI\+\_\+\+RESET~"{}\textbackslash{}033\mbox{[}0m"{}}
+
+
+
+Definition at line \mbox{\hyperlink{dir__analytics_8c_source_l00033}{33}} of file \mbox{\hyperlink{dir__analytics_8c_source}{dir\+\_\+analytics.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{dir__analytics_8c_source_l00211}{print\+\_\+dir\+\_\+analytics()}}.
+
+\Hypertarget{dir__analytics_8c_a2c5eecb22513a88c24ae5831a3265e54}\label{dir__analytics_8c_a2c5eecb22513a88c24ae5831a3265e54} 
+\index{dir\_analytics.c@{dir\_analytics.c}!MAX\_FILES@{MAX\_FILES}}
+\index{MAX\_FILES@{MAX\_FILES}!dir\_analytics.c@{dir\_analytics.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_FILES}{MAX\_FILES}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+FILES~1024}
+
+
+
+Definition at line \mbox{\hyperlink{dir__analytics_8c_source_l00029}{29}} of file \mbox{\hyperlink{dir__analytics_8c_source}{dir\+\_\+analytics.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{git__utils_8c_source_l00065}{get\+\_\+git\+\_\+status()}}, and \mbox{\hyperlink{dir__analytics_8c_source_l00211}{print\+\_\+dir\+\_\+analytics()}}.
+
+\Hypertarget{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}\label{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5} 
+\index{dir\_analytics.c@{dir\_analytics.c}!MAX\_PATH@{MAX\_PATH}}
+\index{MAX\_PATH@{MAX\_PATH}!dir\_analytics.c@{dir\_analytics.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_PATH}{MAX\_PATH}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+PATH~4096}
+
+
+
+Definition at line \mbox{\hyperlink{dir__analytics_8c_source_l00028}{28}} of file \mbox{\hyperlink{dir__analytics_8c_source}{dir\+\_\+analytics.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{dir__analytics_8c_source_l00115}{calculate\+\_\+total\+\_\+size()}}, \mbox{\hyperlink{dir__analytics_8c_source_l00170}{find\+\_\+largest\+\_\+file()}}, \mbox{\hyperlink{dir__analytics_8c_source_l00211}{print\+\_\+dir\+\_\+analytics()}}, and \mbox{\hyperlink{dir__analytics_8c_source_l00079}{recursive\+\_\+dir\+\_\+scan()}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{dir__analytics_8c_a247c94a71c4183e613d8a5329615c165}\label{dir__analytics_8c_a247c94a71c4183e613d8a5329615c165} 
+\index{dir\_analytics.c@{dir\_analytics.c}!calculate\_total\_size@{calculate\_total\_size}}
+\index{calculate\_total\_size@{calculate\_total\_size}!dir\_analytics.c@{dir\_analytics.c}}
+\doxysubsubsection{\texorpdfstring{calculate\_total\_size()}{calculate\_total\_size()}}
+{\footnotesize\ttfamily static off\+\_\+t calculate\+\_\+total\+\_\+size (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Calculates the total size of a directory and its contents. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path of the directory to analyze. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The total size of the directory in bytes. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{dir__analytics_8c_source_l00115}{115}} of file \mbox{\hyperlink{dir__analytics_8c_source}{dir\+\_\+analytics.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ DIR*\ dir;}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{struct\ }dirent*\ entry;}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{struct\ }stat\ st;}
+\DoxyCodeLine{00119\ \ \ \ \ off\_t\ total\_size\ =\ 0;}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{char}\ full\_path[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}];}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{long}\ block\_size\ =\ 0;}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ filesystem\ block\ size}}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{if}\ (block\_size\ ==\ 0)\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ block\_size\ =\ 512;\ \textcolor{comment}{//\ Default\ value}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#ifdef\ ST\_BLKSIZE}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }statvfs\ buf;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (statvfs(path,\ \&buf)\ ==\ 0)\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ block\_size\ =\ buf.f\_frsize;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00132\ \ \ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ dir\ =\ opendir(path);}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{if}\ (!dir)\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Error\ opening\ directory\ \%s:\ \%s\(\backslash\)n"{}},\ path,\ strerror(errno));}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordflow}{while}\ ((entry\ =\ readdir(dir))\ !=\ NULL)\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(entry-\/>d\_name,\ \textcolor{stringliteral}{"{}."{}})\ ==\ 0\ ||\ strcmp(entry-\/>d\_name,\ \textcolor{stringliteral}{"{}.."{}})\ ==\ 0)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ snprintf(full\_path,\ \textcolor{keyword}{sizeof}(full\_path),\ \textcolor{stringliteral}{"{}\%s/\%s"{}},\ path,\ entry-\/>d\_name);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lstat(full\_path,\ \&st)\ ==\ 0)\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (S\_ISDIR(st.st\_mode))\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Recursively\ calculate\ size\ for\ subdirectories}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ total\_size\ +=\ \mbox{\hyperlink{dir__analytics_8c_a247c94a71c4183e613d8a5329615c165}{calculate\_total\_size}}(full\_path);}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (S\_ISREG(st.st\_mode))\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ file\ size,\ rounded\ up\ to\ the\ nearest\ block}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ total\_size\ +=\ (st.st\_blocks\ *\ 512\ +\ block\_size\ -\/\ 1)\ /\ block\_size\ *\ block\_size;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ignore\ symbolic\ links\ and\ other\ special\ files}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Error\ stating\ \%s:\ \%s\(\backslash\)n"{}},\ full\_path,\ strerror(errno));}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ closedir(dir);}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordflow}{return}\ total\_size;}
+\DoxyCodeLine{00160\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{dir__analytics_8c_source_l00115}{calculate\+\_\+total\+\_\+size()}}, and \mbox{\hyperlink{dir__analytics_8c_source_l00028}{MAX\+\_\+\+PATH}}.
+
+
+
+Referenced by \mbox{\hyperlink{dir__analytics_8c_source_l00115}{calculate\+\_\+total\+\_\+size()}}, and \mbox{\hyperlink{dir__analytics_8c_source_l00211}{print\+\_\+dir\+\_\+analytics()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=193pt]{d8/d55/dir__analytics_8c_a247c94a71c4183e613d8a5329615c165_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/d55/dir__analytics_8c_a247c94a71c4183e613d8a5329615c165_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{dir__analytics_8c_a65261c711a51d2667c1726615395d524}\label{dir__analytics_8c_a65261c711a51d2667c1726615395d524} 
+\index{dir\_analytics.c@{dir\_analytics.c}!find\_largest\_file@{find\_largest\_file}}
+\index{find\_largest\_file@{find\_largest\_file}!dir\_analytics.c@{dir\_analytics.c}}
+\doxysubsubsection{\texorpdfstring{find\_largest\_file()}{find\_largest\_file()}}
+{\footnotesize\ttfamily static void find\+\_\+largest\+\_\+file (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path,  }\item[{off\+\_\+t \texorpdfstring{$\ast$}{*}}]{largest\+\_\+size,  }\item[{char \texorpdfstring{$\ast$}{*}}]{largest\+\_\+file,  }\item[{size\+\_\+t}]{largest\+\_\+file\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Recursively finds the largest file in a directory and its subdirectories. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path of the directory to scan. \\
+\hline
+{\em largest\+\_\+size} & Pointer to store the size of the largest file found. \\
+\hline
+{\em largest\+\_\+file} & Buffer to store the path of the largest file. \\
+\hline
+{\em largest\+\_\+file\+\_\+size} & Size of the largest\+\_\+file buffer. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{dir__analytics_8c_source_l00170}{170}} of file \mbox{\hyperlink{dir__analytics_8c_source}{dir\+\_\+analytics.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ DIR*\ dir;}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{struct\ }dirent*\ entry;}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordtype}{char}\ full\_path[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}];}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ dir\ =\ opendir(path);}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordflow}{if}\ (!dir)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{while}\ ((entry\ =\ readdir(dir))\ !=\ NULL)\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(entry-\/>d\_name,\ \textcolor{stringliteral}{"{}."{}})\ ==\ 0\ ||\ strcmp(entry-\/>d\_name,\ \textcolor{stringliteral}{"{}.."{}})\ ==\ 0)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ snprintf(full\_path,\ \textcolor{keyword}{sizeof}(full\_path),\ \textcolor{stringliteral}{"{}\%s/\%s"{}},\ path,\ entry-\/>d\_name);}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }stat\ st;}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lstat(full\_path,\ \&st)\ ==\ 0)\ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (S\_ISDIR(st.st\_mode))\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Recursively\ scan\ subdirectories}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dir__analytics_8c_a65261c711a51d2667c1726615395d524}{find\_largest\_file}}(full\_path,\ largest\_size,\ largest\_file,\ largest\_file\_size);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (S\_ISREG(st.st\_mode))\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ this\ file\ is\ larger\ than\ the\ current\ largest}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (st.st\_size\ >\ *largest\_size)\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *largest\_size\ =\ st.st\_size;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(largest\_file,\ full\_path,\ largest\_file\_size\ -\/\ 1);}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ largest\_file[largest\_file\_size\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00197\ \ \ \ \ \}}
+\DoxyCodeLine{00198\ \ \ \ \ closedir(dir);}
+\DoxyCodeLine{00199\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{dir__analytics_8c_source_l00170}{find\+\_\+largest\+\_\+file()}}, and \mbox{\hyperlink{dir__analytics_8c_source_l00028}{MAX\+\_\+\+PATH}}.
+
+
+
+Referenced by \mbox{\hyperlink{dir__analytics_8c_source_l00170}{find\+\_\+largest\+\_\+file()}}, and \mbox{\hyperlink{dir__analytics_8c_source_l00211}{print\+\_\+dir\+\_\+analytics()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{d8/d55/dir__analytics_8c_a65261c711a51d2667c1726615395d524_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/d55/dir__analytics_8c_a65261c711a51d2667c1726615395d524_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{dir__analytics_8c_a33a98d6f57285ecc9ccbd6c2f2b4fd9d}\label{dir__analytics_8c_a33a98d6f57285ecc9ccbd6c2f2b4fd9d} 
+\index{dir\_analytics.c@{dir\_analytics.c}!format\_size@{format\_size}}
+\index{format\_size@{format\_size}!dir\_analytics.c@{dir\_analytics.c}}
+\doxysubsubsection{\texorpdfstring{format\_size()}{format\_size()}}
+{\footnotesize\ttfamily static char \texorpdfstring{$\ast$}{*} format\+\_\+size (\begin{DoxyParamCaption}\item[{off\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Formats a file size into a human-\/readable string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The size in bytes to format. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to a static buffer containing the formatted size string. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{dir__analytics_8c_source_l00041}{41}} of file \mbox{\hyperlink{dir__analytics_8c_source}{dir\+\_\+analytics.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ buf[64];}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ units[]\ =\ \{\textcolor{stringliteral}{"{}B"{}},\ \textcolor{stringliteral}{"{}K"{}},\ \textcolor{stringliteral}{"{}M"{}},\ \textcolor{stringliteral}{"{}G"{}},\ \textcolor{stringliteral}{"{}T"{}},\ \textcolor{stringliteral}{"{}P"{}},\ \textcolor{stringliteral}{"{}E"{}},\ \textcolor{stringliteral}{"{}Z"{}},\ \textcolor{stringliteral}{"{}Y"{}}\};}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ 0;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{double}\ dsize\ =\ size;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ Convert\ size\ to\ appropriate\ unit}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{while}\ (dsize\ >=\ 1024\ \&\&\ i\ <\ 8)\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ dsize\ /=\ 1024;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ i++;}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ Format\ the\ size\ with\ one\ decimal\ place}}
+\DoxyCodeLine{00054\ \ \ \ \ snprintf(buf,\ \textcolor{keyword}{sizeof}(buf),\ \textcolor{stringliteral}{"{}\%.1f\%s"{}},\ dsize,\ units[i]);}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{return}\ buf;}
+\DoxyCodeLine{00056\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{dir__analytics_8c_source_l00211}{print\+\_\+dir\+\_\+analytics()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/d55/dir__analytics_8c_a33a98d6f57285ecc9ccbd6c2f2b4fd9d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{dir__analytics_8c_af2d4fbcabe2bb660a865a1a3beb3ee18}\label{dir__analytics_8c_af2d4fbcabe2bb660a865a1a3beb3ee18} 
+\index{dir\_analytics.c@{dir\_analytics.c}!format\_time@{format\_time}}
+\index{format\_time@{format\_time}!dir\_analytics.c@{dir\_analytics.c}}
+\doxysubsubsection{\texorpdfstring{format\_time()}{format\_time()}}
+{\footnotesize\ttfamily static char \texorpdfstring{$\ast$}{*} format\+\_\+time (\begin{DoxyParamCaption}\item[{time\+\_\+t}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Formats a time\+\_\+t value into a human-\/readable string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The time\+\_\+t value to format. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to a static buffer containing the formatted time string. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{dir__analytics_8c_source_l00064}{64}} of file \mbox{\hyperlink{dir__analytics_8c_source}{dir\+\_\+analytics.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ buf[20];}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{struct\ }tm*\ tm\_info\ =\ localtime(\&t);}
+\DoxyCodeLine{00067\ \ \ \ \ strftime(buf,\ \textcolor{keyword}{sizeof}(buf),\ \textcolor{stringliteral}{"{}\%Y-\/\%m-\/\%d\ \%H:\%M:\%S"{}},\ tm\_info);}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{return}\ buf;}
+\DoxyCodeLine{00069\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{dir__analytics_8c_source_l00211}{print\+\_\+dir\+\_\+analytics()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/d55/dir__analytics_8c_af2d4fbcabe2bb660a865a1a3beb3ee18_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{dir__analytics_8c_ab481a931e3944eefb982e2666223d3d5}\label{dir__analytics_8c_ab481a931e3944eefb982e2666223d3d5} 
+\index{dir\_analytics.c@{dir\_analytics.c}!print\_dir\_analytics@{print\_dir\_analytics}}
+\index{print\_dir\_analytics@{print\_dir\_analytics}!dir\_analytics.c@{dir\_analytics.c}}
+\doxysubsubsection{\texorpdfstring{print\_dir\_analytics()}{print\_dir\_analytics()}}
+{\footnotesize\ttfamily void print\+\_\+dir\+\_\+analytics (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path }\end{DoxyParamCaption})}
+
+
+
+Prints detailed analytics about a directory. 
+
+This function analyzes the contents of the specified directory and prints various statistics including total size, file counts, directory depth, and information about largest and newest files.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path of the directory to analyze. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{dir__analytics_8c_source_l00211}{211}} of file \mbox{\hyperlink{dir__analytics_8c_source}{dir\+\_\+analytics.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00212\ \ \ \ \ DIR*\ dir;}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keyword}{struct\ }dirent*\ entry;}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keyword}{struct\ }stat\ st;}
+\DoxyCodeLine{00215\ \ \ \ \ off\_t\ largest\_size\ =\ 0;}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordtype}{int}\ total\_files\ =\ 0,\ total\_dirs\ =\ 0,\ empty\_files\ =\ 0,\ max\_depth\ =\ 0;}
+\DoxyCodeLine{00217\ \ \ \ \ time\_t\ newest\_time\ =\ 0,\ oldest\_time\ =\ time(NULL);}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordtype}{char}\ largest\_file[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}]\ =\ \textcolor{stringliteral}{"{}"{}},\ newest\_file[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}]\ =\ \textcolor{stringliteral}{"{}"{}},\ oldest\_file[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordtype}{char}\ empty\_file\_names[\mbox{\hyperlink{dir__analytics_8c_a2c5eecb22513a88c24ae5831a3265e54}{MAX\_FILES}}][256];}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordtype}{char}\ deepest\_dir[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ dir\ =\ opendir(path);}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordflow}{if}\ (!dir)\ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}Error\ opening\ directory"{}});}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00226\ \ \ \ \ \}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{comment}{//\ Find\ the\ largest\ file\ recursively}}
+\DoxyCodeLine{00229\ \ \ \ \ \mbox{\hyperlink{dir__analytics_8c_a65261c711a51d2667c1726615395d524}{find\_largest\_file}}(path,\ \&largest\_size,\ largest\_file,\ \textcolor{keyword}{sizeof}(largest\_file));}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{comment}{//\ Calculate\ total\ size\ recursively}}
+\DoxyCodeLine{00232\ \ \ \ \ off\_t\ total\_size\ =\ \mbox{\hyperlink{dir__analytics_8c_a247c94a71c4183e613d8a5329615c165}{calculate\_total\_size}}(path);}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordflow}{while}\ ((entry\ =\ readdir(dir))\ !=\ NULL)\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ full\_path[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}];}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ snprintf(full\_path,\ \textcolor{keyword}{sizeof}(full\_path),\ \textcolor{stringliteral}{"{}\%s/\%s"{}},\ path,\ entry-\/>d\_name);}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lstat(full\_path,\ \&st)\ !=\ 0)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(entry-\/>d\_name,\ \textcolor{stringliteral}{"{}."{}})\ ==\ 0\ ||\ strcmp(entry-\/>d\_name,\ \textcolor{stringliteral}{"{}.."{}})\ ==\ 0)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (S\_ISDIR(st.st\_mode))\ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ total\_dirs++;}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (S\_ISREG(st.st\_mode))\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ total\_files++;}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ for\ largest\ file}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (st.st\_size\ >\ largest\_size)\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ largest\_size\ =\ st.st\_size;}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(largest\_file,\ entry-\/>d\_name,\ \textcolor{keyword}{sizeof}(largest\_file)\ -\/\ 1);}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ for\ newest\ file}}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (st.st\_mtime\ >\ newest\_time)\ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ newest\_time\ =\ st.st\_mtime;}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(newest\_file,\ entry-\/>d\_name,\ \textcolor{keyword}{sizeof}(newest\_file)\ -\/\ 1);}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ for\ oldest\ file}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (st.st\_mtime\ <\ oldest\_time)\ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ oldest\_time\ =\ st.st\_mtime;}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(oldest\_file,\ entry-\/>d\_name,\ \textcolor{keyword}{sizeof}(oldest\_file)\ -\/\ 1);}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ for\ empty\ files}}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (st.st\_size\ ==\ 0)\ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(empty\_file\_names[empty\_files],\ entry-\/>d\_name,\ 255);}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ empty\_file\_names[empty\_files][255]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ empty\_files++;}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00271\ \ \ \ \ \}}
+\DoxyCodeLine{00272\ \ \ \ \ closedir(dir);}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{comment}{//\ Calculate\ max\ depth\ and\ find\ deepest\ directory}}
+\DoxyCodeLine{00275\ \ \ \ \ \mbox{\hyperlink{dir__analytics_8c_a8ed5df60e8023eb58017d81b7642b2d4}{recursive\_dir\_scan}}(path,\ \&max\_depth,\ 0,\ deepest\_dir);}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keywordtype}{char}\ cwd[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}];}
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{keywordflow}{if}\ (getcwd(cwd,\ \textcolor{keyword}{sizeof}(cwd))\ ==\ NULL)\ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}getcwd()\ error"{}});}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00281\ \ \ \ \ \}}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{comment}{//\ Print\ analytics}}
+\DoxyCodeLine{00284\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s\%s\%s\(\backslash\)n"{}},\ \mbox{\hyperlink{dir__analytics_8c_a46587b83544b8e9be045bb93f644ac82}{ANSI\_BOLD}},\ cwd,\ \mbox{\hyperlink{dir__analytics_8c_af77a445894f2f750d43cf2182cd29e55}{ANSI\_RESET}});}
+\DoxyCodeLine{00285\ \ \ \ \ printf(\textcolor{stringliteral}{"{}🧮\ Total\ Size\ \ \ \ :\ \%s\(\backslash\)n"{}},\ \mbox{\hyperlink{dir__analytics_8c_a33a98d6f57285ecc9ccbd6c2f2b4fd9d}{format\_size}}(total\_size));}
+\DoxyCodeLine{00286\ \ \ \ \ printf(\textcolor{stringliteral}{"{}🗂️\ Directories\ \ \ :\ \%d\(\backslash\)n"{}},\ total\_dirs);}
+\DoxyCodeLine{00287\ \ \ \ \ printf(\textcolor{stringliteral}{"{}🌳\ Max\ Depth\ \ \ \ \ :\ \%d\ levels\(\backslash\)n"{}},\ max\_depth);}
+\DoxyCodeLine{00288\ \ \ \ \ printf(\textcolor{stringliteral}{"{}📁\ Deepest\ Dir\ \ \ :\ \%s\(\backslash\)n"{}},\ deepest\_dir);}
+\DoxyCodeLine{00289\ \ \ \ \ printf(\textcolor{stringliteral}{"{}🗃️\ Files\ \ \ \ \ \ \ \ \ :\ \%d\(\backslash\)n"{}},\ total\_files);}
+\DoxyCodeLine{00290\ \ \ \ \ printf(\textcolor{stringliteral}{"{}🐘\ Largest\ File\ \ :\ \%s\ [\%s]\(\backslash\)n"{}},\ largest\_file,\ \mbox{\hyperlink{dir__analytics_8c_a33a98d6f57285ecc9ccbd6c2f2b4fd9d}{format\_size}}(largest\_size));}
+\DoxyCodeLine{00291\ \ \ \ \ printf(\textcolor{stringliteral}{"{}🏺\ Oldest\ File\ \ \ :\ \%s\ [\%s]\(\backslash\)n"{}},\ oldest\_file,\ \mbox{\hyperlink{dir__analytics_8c_af2d4fbcabe2bb660a865a1a3beb3ee18}{format\_time}}(oldest\_time));}
+\DoxyCodeLine{00292\ \ \ \ \ printf(\textcolor{stringliteral}{"{}🆕\ Newest\ File\ \ \ :\ \%s\ [\%s]\(\backslash\)n"{}},\ newest\_file,\ \mbox{\hyperlink{dir__analytics_8c_af2d4fbcabe2bb660a865a1a3beb3ee18}{format\_time}}(newest\_time));}
+\DoxyCodeLine{00293\ \ \ \ \ printf(\textcolor{stringliteral}{"{}📭\ Empty\ Files\ \ \ :\ \%d\ ["{}},\ empty\_files);}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{comment}{//\ Print\ names\ of\ empty\ files}}
+\DoxyCodeLine{00296\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ empty\_files;\ i++)\ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s\%s"{}},\ empty\_file\_names[i],\ (i\ +\ 1\ <\ empty\_files)\ ?\ \textcolor{stringliteral}{"{}\ "{}}\ :\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00298\ \ \ \ \ \}}
+\DoxyCodeLine{00299\ \ \ \ \ printf(\textcolor{stringliteral}{"{}]\(\backslash\)n"{}});}
+\DoxyCodeLine{00300\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{dir__analytics_8c_source_l00032}{ANSI\+\_\+\+BOLD}}, \mbox{\hyperlink{dir__analytics_8c_source_l00033}{ANSI\+\_\+\+RESET}}, \mbox{\hyperlink{dir__analytics_8c_source_l00115}{calculate\+\_\+total\+\_\+size()}}, \mbox{\hyperlink{dir__analytics_8c_source_l00170}{find\+\_\+largest\+\_\+file()}}, \mbox{\hyperlink{dir__analytics_8c_source_l00041}{format\+\_\+size()}}, \mbox{\hyperlink{dir__analytics_8c_source_l00064}{format\+\_\+time()}}, \mbox{\hyperlink{dir__analytics_8c_source_l00029}{MAX\+\_\+\+FILES}}, \mbox{\hyperlink{dir__analytics_8c_source_l00028}{MAX\+\_\+\+PATH}}, and \mbox{\hyperlink{dir__analytics_8c_source_l00079}{recursive\+\_\+dir\+\_\+scan()}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00275}{main()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=335pt]{d8/d55/dir__analytics_8c_ab481a931e3944eefb982e2666223d3d5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{d8/d55/dir__analytics_8c_ab481a931e3944eefb982e2666223d3d5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{dir__analytics_8c_a8ed5df60e8023eb58017d81b7642b2d4}\label{dir__analytics_8c_a8ed5df60e8023eb58017d81b7642b2d4} 
+\index{dir\_analytics.c@{dir\_analytics.c}!recursive\_dir\_scan@{recursive\_dir\_scan}}
+\index{recursive\_dir\_scan@{recursive\_dir\_scan}!dir\_analytics.c@{dir\_analytics.c}}
+\doxysubsubsection{\texorpdfstring{recursive\_dir\_scan()}{recursive\_dir\_scan()}}
+{\footnotesize\ttfamily static void recursive\+\_\+dir\+\_\+scan (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path,  }\item[{int \texorpdfstring{$\ast$}{*}}]{max\+\_\+depth,  }\item[{int}]{current\+\_\+depth,  }\item[{char \texorpdfstring{$\ast$}{*}}]{deepest\+\_\+dir }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Recursively scans a directory to find its maximum depth. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path of the directory to scan. \\
+\hline
+{\em max\+\_\+depth} & Pointer to the current maximum depth. \\
+\hline
+{\em current\+\_\+depth} & The current depth in the recursion. \\
+\hline
+{\em deepest\+\_\+dir} & Buffer to store the path of the deepest directory. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{dir__analytics_8c_source_l00079}{79}} of file \mbox{\hyperlink{dir__analytics_8c_source}{dir\+\_\+analytics.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ DIR*\ dir;}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{struct\ }dirent*\ entry;}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{char}\ full\_path[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}];}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ dir\ =\ opendir(path);}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{if}\ (!dir)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{while}\ ((entry\ =\ readdir(dir))\ !=\ NULL)\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Skip\ .\ and\ ..\ entries}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(entry-\/>d\_name,\ \textcolor{stringliteral}{"{}."{}})\ ==\ 0\ ||\ strcmp(entry-\/>d\_name,\ \textcolor{stringliteral}{"{}.."{}})\ ==\ 0)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ snprintf(full\_path,\ \textcolor{keyword}{sizeof}(full\_path),\ \textcolor{stringliteral}{"{}\%s/\%s"{}},\ path,\ entry-\/>d\_name);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }stat\ st;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lstat(full\_path,\ \&st)\ ==\ 0\ \&\&\ S\_ISDIR(st.st\_mode))\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ new\_depth\ =\ current\_depth\ +\ 1;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ max\_depth\ and\ deepest\_dir\ if\ a\ new\ maximum\ is\ found}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (new\_depth\ >\ *max\_depth)\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *max\_depth\ =\ new\_depth;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(deepest\_dir,\ full\_path,\ \mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}\ -\/\ 1);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deepest\_dir[\mbox{\hyperlink{dir__analytics_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\_PATH}}\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Recursively\ scan\ subdirectory}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{dir__analytics_8c_a8ed5df60e8023eb58017d81b7642b2d4}{recursive\_dir\_scan}}(full\_path,\ max\_depth,\ new\_depth,\ deepest\_dir);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ closedir(dir);}
+\DoxyCodeLine{00107\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{dir__analytics_8c_source_l00028}{MAX\+\_\+\+PATH}}, and \mbox{\hyperlink{dir__analytics_8c_source_l00079}{recursive\+\_\+dir\+\_\+scan()}}.
+
+
+
+Referenced by \mbox{\hyperlink{dir__analytics_8c_source_l00211}{print\+\_\+dir\+\_\+analytics()}}, and \mbox{\hyperlink{dir__analytics_8c_source_l00079}{recursive\+\_\+dir\+\_\+scan()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{d8/d55/dir__analytics_8c_a8ed5df60e8023eb58017d81b7642b2d4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/d55/dir__analytics_8c_a8ed5df60e8023eb58017d81b7642b2d4_icgraph}
+\end{center}
+\end{figure}

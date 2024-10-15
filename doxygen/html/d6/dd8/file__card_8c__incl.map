@@ -1,0 +1,15 @@
+<map id="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.c" name="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.c">
+<area shape="rect" id="Node000001" title="Implementation of file card handling functions." alt="" coords="185,5,386,67"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,115,75,143"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,70,90,112,88,107,202,65"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="98,115,169,143"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="236,70,169,109,167,105,233,65"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="193,115,277,143"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="271,69,252,103,247,100,266,66"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="301,115,371,143"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="305,66,324,100,319,103,300,69"/>
+<area shape="rect" id="Node000006" href="$d7/d97/emoji__utils_8h.html" title="Utility functions for assigning emojis to files and directories." alt="" coords="395,115,501,143"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="341,65,413,105,410,110,338,70"/>
+<area shape="rect" id="Node000007" href="$d5/d36/file__card_8h.html" title="Header file for file entry handling functions and structures." alt="" coords="525,115,614,143"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="381,65,514,107,513,112,379,70"/>
+</map>

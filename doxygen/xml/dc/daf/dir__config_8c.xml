@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dc/daf/dir__config_8c" kind="file" language="C++">
+    <compoundname>dir_config.c</compoundname>
+    <includes refid="d4/d6f/dir__config_8h" local="yes">dir_config.h</includes>
+    <includes local="no">string.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/home/honeyguide/Desktop/MyOpenSource/facad/src/dir_config.c</label>
+        <link refid="dc/daf/dir__config_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dir_config.h</label>
+        <link refid="d4/d6f/dir__config_8h"/>
+      </node>
+      <node id="3">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="dc/daf/dir__config_8c_1a5b61bc3f96349f2f163e77751eb7678c" prot="public" static="no" mutable="no">
+        <type>const <ref refid="db/d23/structDirectoryConfig" kindref="compound">DirectoryConfig</ref></type>
+        <definition>const DirectoryConfig directory_configs[]</definition>
+        <argsstring>[]</argsstring>
+        <name>directory_configs</name>
+        <initializer>= {
+    {&quot;/dev&quot;, 6},  
+    {&quot;/proc&quot;, 5}, 
+}</initializer>
+        <briefdescription>
+<para>Array of directory configurations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This array defines special configurations for specific directories, setting a custom maximum number of columns for their listings. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/dir_config.c" line="22" column="23" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/dir_config.c" bodystart="22" bodyend="25"/>
+        <referencedby refid="dc/daf/dir__config_8c_1a4ce38149e564150cef6b9f182913ac7a" compoundref="dc/daf/dir__config_8c" startline="42" endline="54">get_max_columns</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dc/daf/dir__config_8c_1a5f44c956161f8b853917f85edd24f28d" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int num_directory_configs</definition>
+        <argsstring></argsstring>
+        <name>num_directory_configs</name>
+        <initializer>= sizeof(<ref refid="dc/daf/dir__config_8c_1a5b61bc3f96349f2f163e77751eb7678c" kindref="member">directory_configs</ref>) / sizeof(<ref refid="dc/daf/dir__config_8c_1a5b61bc3f96349f2f163e77751eb7678c" kindref="member">directory_configs</ref>[0])</initializer>
+        <briefdescription>
+<para>Number of entries in the directory_configs array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This extern declaration makes the count of directory configurations available to other source files that include this header. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/dir_config.c" line="30" column="11" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/dir_config.c" bodystart="30" bodyend="-1"/>
+        <referencedby refid="dc/daf/dir__config_8c_1a4ce38149e564150cef6b9f182913ac7a" compoundref="dc/daf/dir__config_8c" startline="42" endline="54">get_max_columns</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="dc/daf/dir__config_8c_1a4ce38149e564150cef6b9f182913ac7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_max_columns</definition>
+        <argsstring>(const char *path)</argsstring>
+        <name>get_max_columns</name>
+        <param>
+          <type>const char *</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Get the maximum number of columns for a given directory path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function checks if the given path matches any of the specially configured directories and returns the corresponding maximum number of columns. If no match is found, it returns the default value.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The directory path to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The maximum number of columns for the directory listing. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/dir_config.c" line="42" column="5" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/dir_config.c" bodystart="42" bodyend="54"/>
+        <references refid="d4/d6f/dir__config_8h_1a725922f92e91f817030e1b22bf59ea0c" compoundref="d4/d6f/dir__config_8h" startline="21">DEFAULT_MAX_COLUMNS</references>
+        <references refid="dc/daf/dir__config_8c_1a5b61bc3f96349f2f163e77751eb7678c" compoundref="dc/daf/dir__config_8c" startline="22" endline="25">directory_configs</references>
+        <references refid="db/d23/structDirectoryConfig_1a7237bb65b27aa0db178a896685e829bf" compoundref="d4/d6f/dir__config_8h" startline="32">DirectoryConfig::max_columns</references>
+        <references refid="dc/daf/dir__config_8c_1a5f44c956161f8b853917f85edd24f28d" compoundref="dc/daf/dir__config_8c" startline="30">num_directory_configs</references>
+        <referencedby refid="d2/dda/display__utils_8c_1a8b38e99d9128bf4a4badc21df13d442b" compoundref="d2/dda/display__utils_8c" startline="108" endline="199">display_entries</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Implementation of directory configuration functions. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This file contains the implementation of functions related to directory-specific configurations, particularly for setting the maximum number of columns for directory listings.</para>
+<para><simplesect kind="author"><para>Sergey Veneckiy </para>
+</simplesect>
+<simplesect kind="date"><para>2024 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>dir_config.c</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Implementation<sp/>of<sp/>directory<sp/>configuration<sp/>functions.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>contains<sp/>the<sp/>implementation<sp/>of<sp/>functions<sp/>related<sp/>to</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>directory-specific<sp/>configurations,<sp/>particularly<sp/>for<sp/>setting</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>the<sp/>maximum<sp/>number<sp/>of<sp/>columns<sp/>for<sp/>directory<sp/>listings.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>@author<sp/>Sergey<sp/>Veneckiy</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>@date<sp/>2024</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d4/d6f/dir__config_8h" kindref="compound">dir_config.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="16"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Array<sp/>of<sp/>directory<sp/>configurations.</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>This<sp/>array<sp/>defines<sp/>special<sp/>configurations<sp/>for<sp/>specific<sp/>directories,</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/>setting<sp/>a<sp/>custom<sp/>maximum<sp/>number<sp/>of<sp/>columns<sp/>for<sp/>their<sp/>listings.</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="dc/daf/dir__config_8c_1a5b61bc3f96349f2f163e77751eb7678c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="db/d23/structDirectoryConfig" kindref="compound">DirectoryConfig</ref><sp/><ref refid="dc/daf/dir__config_8c_1a5b61bc3f96349f2f163e77751eb7678c" kindref="member">directory_configs</ref>[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;/dev&quot;</highlight><highlight class="normal">,<sp/>6},<sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>6<sp/>columns<sp/>for<sp/>/dev<sp/>directory</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;/proc&quot;</highlight><highlight class="normal">,<sp/>5},<sp/></highlight><highlight class="comment">//<sp/>Set<sp/>5<sp/>columns<sp/>for<sp/>/proc<sp/>directory</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="27"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Number<sp/>of<sp/>entries<sp/>in<sp/>the<sp/>directory_configs<sp/>array.</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="dc/daf/dir__config_8c_1a5f44c956161f8b853917f85edd24f28d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dc/daf/dir__config_8c_1a5f44c956161f8b853917f85edd24f28d" kindref="member">num_directory_configs</ref><sp/>=<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="dc/daf/dir__config_8c_1a5b61bc3f96349f2f163e77751eb7678c" kindref="member">directory_configs</ref>)<sp/>/<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="dc/daf/dir__config_8c_1a5b61bc3f96349f2f163e77751eb7678c" kindref="member">directory_configs</ref>[0]);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="32"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Get<sp/>the<sp/>maximum<sp/>number<sp/>of<sp/>columns<sp/>for<sp/>a<sp/>given<sp/>directory<sp/>path.</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/>This<sp/>function<sp/>checks<sp/>if<sp/>the<sp/>given<sp/>path<sp/>matches<sp/>any<sp/>of<sp/>the<sp/>specially</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/>configured<sp/>directories<sp/>and<sp/>returns<sp/>the<sp/>corresponding<sp/>maximum<sp/>number</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>of<sp/>columns.<sp/>If<sp/>no<sp/>match<sp/>is<sp/>found,<sp/>it<sp/>returns<sp/>the<sp/>default<sp/>value.</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*<sp/>@param<sp/>path<sp/>The<sp/>directory<sp/>path<sp/>to<sp/>check.</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/>@return<sp/>The<sp/>maximum<sp/>number<sp/>of<sp/>columns<sp/>for<sp/>the<sp/>directory<sp/>listing.</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="dc/daf/dir__config_8c_1a4ce38149e564150cef6b9f182913ac7a" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dc/daf/dir__config_8c_1a4ce38149e564150cef6b9f182913ac7a" kindref="member">get_max_columns</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*path)<sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Iterate<sp/>through<sp/>the<sp/>directory<sp/>configurations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="dc/daf/dir__config_8c_1a5f44c956161f8b853917f85edd24f28d" kindref="member">num_directory_configs</ref>;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>if<sp/>the<sp/>path<sp/>matches<sp/>a<sp/>configured<sp/>directory</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strcmp(path,<sp/><ref refid="dc/daf/dir__config_8c_1a5b61bc3f96349f2f163e77751eb7678c" kindref="member">directory_configs</ref>[i].path)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Return<sp/>the<sp/>custom<sp/>max<sp/>columns<sp/>for<sp/>the<sp/>matched<sp/>directory</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="dc/daf/dir__config_8c_1a5b61bc3f96349f2f163e77751eb7678c" kindref="member">directory_configs</ref>[i].<ref refid="db/d23/structDirectoryConfig_1a7237bb65b27aa0db178a896685e829bf" kindref="member">max_columns</ref>;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>no<sp/>match<sp/>found,<sp/>return<sp/>the<sp/>default<sp/>maximum<sp/>columns</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d4/d6f/dir__config_8h_1a725922f92e91f817030e1b22bf59ea0c" kindref="member">DEFAULT_MAX_COLUMNS</ref>;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/dir_config.c"/>
+  </compounddef>
+</doxygen>

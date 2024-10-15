@@ -1,0 +1,121 @@
+\doxysection{File\+Card\+Info Struct Reference}
+\hypertarget{structFileCardInfo}{}\label{structFileCardInfo}\index{FileCardInfo@{FileCardInfo}}
+
+
+Structure representing a file entry with its properties.  
+
+
+
+
+{\ttfamily \#include $<$file\+\_\+card.\+h$>$}
+
+
+
+Collaboration diagram for File\+Card\+Info\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=172pt]{dd/db2/structFileCardInfo__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}{name}}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structFileCardInfo_a7f0da0b8251b0c10f77a559d80eb567c}{emoji}}
+\item 
+int \mbox{\hyperlink{structFileCardInfo_aa328a53a5e7138dbeb6992f00d6b89ad}{is\+\_\+directory}}
+\item 
+int \mbox{\hyperlink{structFileCardInfo_a0976436903b23e6cdd4deb1052b8e6ab}{is\+\_\+hidden}}
+\item 
+char \mbox{\hyperlink{structFileCardInfo_a194c96b36719d8cfefd81e58c527668c}{git\+\_\+status}} \mbox{[}2\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure representing a file entry with its properties. 
+
+This structure holds all the necessary information about a file or directory entry, including its name, associated emoji, and various flags indicating its properties. 
+
+Definition at line \mbox{\hyperlink{file__card_8h_source_l00025}{25}} of file \mbox{\hyperlink{file__card_8h_source}{file\+\_\+card.\+h}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structFileCardInfo_a7f0da0b8251b0c10f77a559d80eb567c}\label{structFileCardInfo_a7f0da0b8251b0c10f77a559d80eb567c} 
+\index{FileCardInfo@{FileCardInfo}!emoji@{emoji}}
+\index{emoji@{emoji}!FileCardInfo@{FileCardInfo}}
+\doxysubsubsection{\texorpdfstring{emoji}{emoji}}
+{\footnotesize\ttfamily char\texorpdfstring{$\ast$}{*} File\+Card\+Info\+::emoji}
+
+Emoji representation of the file type 
+
+Definition at line \mbox{\hyperlink{file__card_8h_source_l00028}{28}} of file \mbox{\hyperlink{file__card_8h_source}{file\+\_\+card.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{file__card_8c_source_l00031}{create\+\_\+file\+\_\+entry()}}, \mbox{\hyperlink{file__card_8c_source_l00064}{free\+\_\+file\+\_\+entry()}}, and \mbox{\hyperlink{dev__dir__utils_8c_source_l00048}{handle\+\_\+dev\+\_\+directory()}}.
+
+\Hypertarget{structFileCardInfo_a194c96b36719d8cfefd81e58c527668c}\label{structFileCardInfo_a194c96b36719d8cfefd81e58c527668c} 
+\index{FileCardInfo@{FileCardInfo}!git\_status@{git\_status}}
+\index{git\_status@{git\_status}!FileCardInfo@{FileCardInfo}}
+\doxysubsubsection{\texorpdfstring{git\_status}{git\_status}}
+{\footnotesize\ttfamily char File\+Card\+Info\+::git\+\_\+status\mbox{[}2\mbox{]}}
+
+Git status of the file (if applicable) 
+
+Definition at line \mbox{\hyperlink{file__card_8h_source_l00031}{31}} of file \mbox{\hyperlink{file__card_8h_source}{file\+\_\+card.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{file__card_8c_source_l00031}{create\+\_\+file\+\_\+entry()}}, and \mbox{\hyperlink{main_8c_source_l00275}{main()}}.
+
+\Hypertarget{structFileCardInfo_aa328a53a5e7138dbeb6992f00d6b89ad}\label{structFileCardInfo_aa328a53a5e7138dbeb6992f00d6b89ad} 
+\index{FileCardInfo@{FileCardInfo}!is\_directory@{is\_directory}}
+\index{is\_directory@{is\_directory}!FileCardInfo@{FileCardInfo}}
+\doxysubsubsection{\texorpdfstring{is\_directory}{is\_directory}}
+{\footnotesize\ttfamily int File\+Card\+Info\+::is\+\_\+directory}
+
+Flag indicating whether the entry is a directory (1) or not (0) 
+
+Definition at line \mbox{\hyperlink{file__card_8h_source_l00029}{29}} of file \mbox{\hyperlink{file__card_8h_source}{file\+\_\+card.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{file__card_8c_source_l00134}{compare\+\_\+file\+\_\+entries()}}, \mbox{\hyperlink{file__card_8c_source_l00031}{create\+\_\+file\+\_\+entry()}}, and \mbox{\hyperlink{dev__dir__utils_8c_source_l00048}{handle\+\_\+dev\+\_\+directory()}}.
+
+\Hypertarget{structFileCardInfo_a0976436903b23e6cdd4deb1052b8e6ab}\label{structFileCardInfo_a0976436903b23e6cdd4deb1052b8e6ab} 
+\index{FileCardInfo@{FileCardInfo}!is\_hidden@{is\_hidden}}
+\index{is\_hidden@{is\_hidden}!FileCardInfo@{FileCardInfo}}
+\doxysubsubsection{\texorpdfstring{is\_hidden}{is\_hidden}}
+{\footnotesize\ttfamily int File\+Card\+Info\+::is\+\_\+hidden}
+
+Flag indicating whether the entry is hidden (1) or not (0) 
+
+Definition at line \mbox{\hyperlink{file__card_8h_source_l00030}{30}} of file \mbox{\hyperlink{file__card_8h_source}{file\+\_\+card.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{file__card_8c_source_l00031}{create\+\_\+file\+\_\+entry()}}, and \mbox{\hyperlink{dev__dir__utils_8c_source_l00048}{handle\+\_\+dev\+\_\+directory()}}.
+
+\Hypertarget{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}\label{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55} 
+\index{FileCardInfo@{FileCardInfo}!name@{name}}
+\index{name@{name}!FileCardInfo@{FileCardInfo}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily char\texorpdfstring{$\ast$}{*} File\+Card\+Info\+::name}
+
+Name of the file or directory 
+
+Definition at line \mbox{\hyperlink{file__card_8h_source_l00027}{27}} of file \mbox{\hyperlink{file__card_8h_source}{file\+\_\+card.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{file__card_8c_source_l00134}{compare\+\_\+file\+\_\+entries()}}, \mbox{\hyperlink{file__card_8c_source_l00031}{create\+\_\+file\+\_\+entry()}}, \mbox{\hyperlink{file__card_8c_source_l00064}{free\+\_\+file\+\_\+entry()}}, and \mbox{\hyperlink{dev__dir__utils_8c_source_l00048}{handle\+\_\+dev\+\_\+directory()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/honeyguide/\+Desktop/\+My\+Open\+Source/facad/src/\mbox{\hyperlink{file__card_8h}{file\+\_\+card.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,322 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="d7/d97/emoji__utils_8h" kind="file" language="C++">
+    <compoundname>emoji_utils.h</compoundname>
+    <includedby refid="de/db5/dev__dir__utils_8c" local="yes">/home/honeyguide/Desktop/MyOpenSource/facad/src/dev_dir_utils.c</includedby>
+    <includedby refid="d8/d55/dir__analytics_8c" local="yes">/home/honeyguide/Desktop/MyOpenSource/facad/src/dir_analytics.c</includedby>
+    <includedby refid="d0/dc9/emoji__utils_8c" local="yes">/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c</includedby>
+    <includedby refid="dd/d6c/file__card_8c" local="yes">/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.c</includedby>
+    <includedby refid="d6/d95/longlisting_8c" local="yes">/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>/home/honeyguide/Desktop/MyOpenSource/facad/src/dev_dir_utils.c</label>
+        <link refid="de/db5/dev__dir__utils_8c"/>
+      </node>
+      <node id="3">
+        <label>/home/honeyguide/Desktop/MyOpenSource/facad/src/dir_analytics.c</label>
+        <link refid="d8/d55/dir__analytics_8c"/>
+      </node>
+      <node id="4">
+        <label>/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c</label>
+        <link refid="d0/dc9/emoji__utils_8c"/>
+      </node>
+      <node id="1">
+        <label>/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.h</label>
+        <link refid="d7/d97/emoji__utils_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.c</label>
+        <link refid="dd/d6c/file__card_8c"/>
+      </node>
+      <node id="6">
+        <label>/home/honeyguide/Desktop/MyOpenSource/facad/src/longlisting.c</label>
+        <link refid="d6/d95/longlisting_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d7/d97/emoji__utils_8h_1a853b78da7b6116949e96148e040669d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char * get_emoji</definition>
+        <argsstring>(const char *path)</argsstring>
+        <name>get_emoji</name>
+        <param>
+          <type>const char *</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Determines the appropriate emoji for a given file path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function analyzes the file at the given path and returns an emoji representing its type (e.g., directory, text file, image, etc.).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The file path to analyze. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A dynamically allocated string containing the emoji. The caller is responsible for freeing this memory.</para>
+</simplesect>
+Determines the appropriate emoji for a given file path.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the file </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A dynamically allocated string containing the emoji </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.h" line="30" column="6" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c" bodystart="95" bodyend="158" declfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.h" declline="30" declcolumn="6"/>
+        <references refid="d0/dc9/emoji__utils_8c_1a5079b8c3657f088d68ae41fee9b299e3" compoundref="d0/dc9/emoji__utils_8c" startline="70" endline="87">check_file_content</references>
+        <references refid="dd/db6/emoji__mappings_8c_1a44bebb1a7db81f9fcbcdc471ade99dcb" compoundref="dd/db6/emoji__mappings_8c" startline="232" endline="350">emoji_exact_file_map</references>
+        <references refid="dd/db6/emoji__mappings_8c_1a4559ab02a3fe5bd47e2c060553709bd2" compoundref="dd/db6/emoji__mappings_8c" startline="352">emoji_exact_file_map_size</references>
+        <references refid="dd/db6/emoji__mappings_8c_1a717fe910a0d43495236d315dd41303f9" compoundref="dd/db6/emoji__mappings_8c" startline="22" endline="220">emoji_extension_map</references>
+        <references refid="dd/db6/emoji__mappings_8c_1a15086b0f52896bc1295506f18beefdae" compoundref="dd/db6/emoji__mappings_8c" startline="223">emoji_extension_map_size</references>
+        <references refid="d0/dc9/emoji__utils_8c_1adcfc0049feddf60eec27fe2572291a2e" compoundref="d0/dc9/emoji__utils_8c" startline="166" endline="172">is_executable</references>
+        <references refid="d0/dc9/emoji__utils_8c_1a3bfec7595ef6d300266b38d3a17b039e" compoundref="d0/dc9/emoji__utils_8c" startline="180" endline="201">is_text_file</references>
+        <references refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" compoundref="d0/dc9/emoji__utils_8c" startline="30" endline="37">safe_strdup</references>
+        <referencedby refid="dd/d6c/file__card_8c_1a8ac3f1a318ebad42a9d465b92e4aa598" compoundref="dd/d6c/file__card_8c" startline="31" endline="54">create_file_entry</referencedby>
+        <referencedby refid="d6/d95/longlisting_8c_1a33c3f39ac9dd42760160e6cf451aed2a" compoundref="d6/d95/longlisting_8c" startline="279" endline="299">print_sorted_entries</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d7/d97/emoji__utils_8h_1adcfc0049feddf60eec27fe2572291a2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int is_executable</definition>
+        <argsstring>(const char *path)</argsstring>
+        <name>is_executable</name>
+        <param>
+          <type>const char *</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a file is executable. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function determines whether the file at the given path has execute permissions.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The file path to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if the file is executable, 0 otherwise.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the file </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if the file is executable, 0 otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.h" line="41" column="5" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c" bodystart="166" bodyend="172" declfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.h" declline="41" declcolumn="5"/>
+        <referencedby refid="d0/dc9/emoji__utils_8c_1a853b78da7b6116949e96148e040669d5" compoundref="d0/dc9/emoji__utils_8c" startline="95" endline="158">get_emoji</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d7/d97/emoji__utils_8h_1a3bfec7595ef6d300266b38d3a17b039e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int is_text_file</definition>
+        <argsstring>(const char *path)</argsstring>
+        <name>is_text_file</name>
+        <param>
+          <type>const char *</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a file is a text file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function analyzes the content of the file to determine if it&apos;s likely to be a text file.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The file path to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if the file is likely a text file, 0 otherwise.</para>
+</simplesect>
+Checks if a file is a text file.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the file </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if the file is likely a text file, 0 otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.h" line="52" column="5" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c" bodystart="180" bodyend="201" declfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.h" declline="52" declcolumn="5"/>
+        <referencedby refid="d0/dc9/emoji__utils_8c_1a853b78da7b6116949e96148e040669d5" compoundref="d0/dc9/emoji__utils_8c" startline="95" endline="158">get_emoji</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d7/d97/emoji__utils_8h_1ad5d8cf69e853f8e2c380ce1e0b2da0da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char * get_dev_emoji</definition>
+        <argsstring>(const char *path)</argsstring>
+        <name>get_dev_emoji</name>
+        <param>
+          <type>const char *</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Determines the appropriate emoji for a device file in the /dev directory. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function analyzes the name of a file in the /dev directory and returns an emoji representing its device type.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The file name in the /dev directory to analyze. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A dynamically allocated string containing the emoji. The caller is responsible for freeing this memory.</para>
+</simplesect>
+Determines the appropriate emoji for a device file in the /dev directory.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the file in the /dev directory </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A dynamically allocated string containing the emoji </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.h" line="64" column="6" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c" bodystart="45" bodyend="62" declfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.h" declline="64" declcolumn="6"/>
+        <references refid="dd/db6/emoji__mappings_8c_1a538e1bc5eae64ecb93436ffc47560121" compoundref="dd/db6/emoji__mappings_8c" startline="430" endline="467">emoji_exact_dev_file_map</references>
+        <references refid="dd/db6/emoji__mappings_8c_1a11bba592cc1a04247a8823e523e40bd7" compoundref="dd/db6/emoji__mappings_8c" startline="469">emoji_exact_dev_file_map_size</references>
+        <references refid="dd/db6/emoji__mappings_8c_1ae615000bf15a8698d98421baa2a90bd1" compoundref="dd/db6/emoji__mappings_8c" startline="478" endline="493">emoji_prefix_dev_map</references>
+        <references refid="dd/db6/emoji__mappings_8c_1aaf5ea0aa3fbcd68766d42569f7f2c762" compoundref="dd/db6/emoji__mappings_8c" startline="496">emoji_prefix_dev_map_size</references>
+        <references refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" compoundref="d0/dc9/emoji__utils_8c" startline="30" endline="37">safe_strdup</references>
+        <referencedby refid="de/db5/dev__dir__utils_8c_1acf9fb4da0ced0c99e368f3cd1ef91547" compoundref="de/db5/dev__dir__utils_8c" startline="48" endline="138">handle_dev_directory</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Utility functions for assigning emojis to files and directories. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This header file declares functions for determining appropriate emojis based on file types, attributes, and locations. It supports both regular files and special files in the /dev directory.</para>
+<para><simplesect kind="author"><para>Sergey Veneckiy </para>
+</simplesect>
+<simplesect kind="date"><para>2024 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>emoji_utils.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Utility<sp/>functions<sp/>for<sp/>assigning<sp/>emojis<sp/>to<sp/>files<sp/>and<sp/>directories.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>This<sp/>header<sp/>file<sp/>declares<sp/>functions<sp/>for<sp/>determining<sp/>appropriate<sp/>emojis</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>based<sp/>on<sp/>file<sp/>types,<sp/>attributes,<sp/>and<sp/>locations.<sp/>It<sp/>supports<sp/>both<sp/>regular</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>files<sp/>and<sp/>special<sp/>files<sp/>in<sp/>the<sp/>/dev<sp/>directory.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>@author<sp/>Sergey<sp/>Veneckiy</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>@date<sp/>2024</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>EMOJI_UTILS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EMOJI_UTILS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="20"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Determines<sp/>the<sp/>appropriate<sp/>emoji<sp/>for<sp/>a<sp/>given<sp/>file<sp/>path.</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/>This<sp/>function<sp/>analyzes<sp/>the<sp/>file<sp/>at<sp/>the<sp/>given<sp/>path<sp/>and<sp/>returns<sp/>an<sp/>emoji</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/>representing<sp/>its<sp/>type<sp/>(e.g.,<sp/>directory,<sp/>text<sp/>file,<sp/>image,<sp/>etc.).</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/>@param<sp/>path<sp/>The<sp/>file<sp/>path<sp/>to<sp/>analyze.</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>@return<sp/>A<sp/>dynamically<sp/>allocated<sp/>string<sp/>containing<sp/>the<sp/>emoji.</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>The<sp/>caller<sp/>is<sp/>responsible<sp/>for<sp/>freeing<sp/>this<sp/>memory.</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="d7/d97/emoji__utils_8h_1a853b78da7b6116949e96148e040669d5" kindref="member">get_emoji</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*path);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="32"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Checks<sp/>if<sp/>a<sp/>file<sp/>is<sp/>executable.</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/>This<sp/>function<sp/>determines<sp/>whether<sp/>the<sp/>file<sp/>at<sp/>the<sp/>given<sp/>path<sp/>has</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/>execute<sp/>permissions.</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/>@param<sp/>path<sp/>The<sp/>file<sp/>path<sp/>to<sp/>check.</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*<sp/>@return<sp/>1<sp/>if<sp/>the<sp/>file<sp/>is<sp/>executable,<sp/>0<sp/>otherwise.</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d7/d97/emoji__utils_8h_1adcfc0049feddf60eec27fe2572291a2e" kindref="member">is_executable</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*path);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="43"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Checks<sp/>if<sp/>a<sp/>file<sp/>is<sp/>a<sp/>text<sp/>file.</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/>This<sp/>function<sp/>analyzes<sp/>the<sp/>content<sp/>of<sp/>the<sp/>file<sp/>to<sp/>determine<sp/>if<sp/>it&apos;s</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*<sp/>likely<sp/>to<sp/>be<sp/>a<sp/>text<sp/>file.</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/>*<sp/>@param<sp/>path<sp/>The<sp/>file<sp/>path<sp/>to<sp/>check.</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*<sp/>@return<sp/>1<sp/>if<sp/>the<sp/>file<sp/>is<sp/>likely<sp/>a<sp/>text<sp/>file,<sp/>0<sp/>otherwise.</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d7/d97/emoji__utils_8h_1a3bfec7595ef6d300266b38d3a17b039e" kindref="member">is_text_file</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*path);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="54"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Determines<sp/>the<sp/>appropriate<sp/>emoji<sp/>for<sp/>a<sp/>device<sp/>file<sp/>in<sp/>the<sp/>/dev<sp/>directory.</highlight></codeline>
+<codeline lineno="56"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*<sp/>This<sp/>function<sp/>analyzes<sp/>the<sp/>name<sp/>of<sp/>a<sp/>file<sp/>in<sp/>the<sp/>/dev<sp/>directory<sp/>and<sp/>returns</highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/>*<sp/>an<sp/>emoji<sp/>representing<sp/>its<sp/>device<sp/>type.</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*<sp/>@param<sp/>path<sp/>The<sp/>file<sp/>name<sp/>in<sp/>the<sp/>/dev<sp/>directory<sp/>to<sp/>analyze.</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/>*<sp/>@return<sp/>A<sp/>dynamically<sp/>allocated<sp/>string<sp/>containing<sp/>the<sp/>emoji.</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>The<sp/>caller<sp/>is<sp/>responsible<sp/>for<sp/>freeing<sp/>this<sp/>memory.</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="d7/d97/emoji__utils_8h_1ad5d8cf69e853f8e2c380ce1e0b2da0da" kindref="member">get_dev_emoji</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*path);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>EMOJI_UTILS_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.h"/>
+  </compounddef>
+</doxygen>

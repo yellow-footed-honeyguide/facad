@@ -1,0 +1,14 @@
+<map id="/home/honeyguide/Desktop/MyOpenSource/facad/src/git_utils.h" name="/home/honeyguide/Desktop/MyOpenSource/facad/src/git_utils.h">
+<area shape="rect" id="Node000001" title="Header file for Git utility functions used in facad." alt="" coords="297,5,498,67"/>
+<area shape="rect" id="Node000002" href="$d2/dda/display__utils_8c.html" title="Implementation of display utilities for file entries." alt="" coords="5,115,206,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="302,75,188,117,187,112,300,70"/>
+<area shape="rect" id="Node000003" href="$d1/dc4/git__integration_8h.html" title="Header file for Git integration functionality." alt="" coords="229,115,430,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="373,81,351,116,346,113,368,78"/>
+<area shape="rect" id="Node000005" href="$d0/d29/main_8c.html" title="Main entry point for the facad directory listing tool." alt="" coords="350,233,584,278"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="428,80,444,114,460,178,468,232,463,233,455,179,439,116,423,82"/>
+<area shape="rect" id="Node000006" href="$d1/db9/git__utils_8c.html" title="Implementation of Git utility functions for facad." alt="" coords="504,115,704,177"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="470,72,547,112,545,117,468,77"/>
+<area shape="rect" id="Node000004" href="$df/d77/git__integration_8c.html" title="Implementation of Git integration for file entries." alt="" coords="125,225,326,286"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="292,190,257,226,253,222,288,186"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="381,184,441,231,438,235,378,188"/>
+</map>

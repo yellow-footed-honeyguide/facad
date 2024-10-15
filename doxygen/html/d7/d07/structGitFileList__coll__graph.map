@@ -1,0 +1,5 @@
+<map id="GitFileList" name="GitFileList">
+<area shape="rect" id="Node000001" title="Structure to hold Git status information for multiple files." alt="" coords="21,161,104,230"/>
+<area shape="rect" id="Node000002" href="$d1/d46/structGitFile.html" title="Structure to hold information about a single file&#39;s Git status." alt="" coords="5,5,120,96"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,96,65,144,60,144,60,96"/>
+</map>

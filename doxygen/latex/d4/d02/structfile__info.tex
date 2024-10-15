@@ -1,0 +1,195 @@
+\doxysection{file\+\_\+info Struct Reference}
+\hypertarget{structfile__info}{}\label{structfile__info}\index{file\_info@{file\_info}}
+
+
+Structure to hold detailed information about a file or directory.  
+
+
+
+
+Collaboration diagram for file\+\_\+info\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{dc/d17/structfile__info__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{structfile__info_af4358e531f11044f1e5a041537676d33}{name}} \mbox{[}256\mbox{]}
+\item 
+char \mbox{\hyperlink{structfile__info_a605808d3db7b33b36b4cce172ca71eb0}{full\+\_\+path}} \mbox{[}\mbox{\hyperlink{longlisting_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\+\_\+\+PATH}}\mbox{]}
+\item 
+off\+\_\+t \mbox{\hyperlink{structfile__info_a6e48876c051acfc4d2c0af2840515cd9}{size}}
+\item 
+mode\+\_\+t \mbox{\hyperlink{structfile__info_a0df946c901068e5d66df47dc8d922f43}{mode}}
+\item 
+time\+\_\+t \mbox{\hyperlink{structfile__info_ae8d2e03538d68731843ce28ae6264882}{mtime}}
+\item 
+int \mbox{\hyperlink{structfile__info_a75dece3e86707e5f1b28430b78e98d08}{is\+\_\+dir}}
+\item 
+int \mbox{\hyperlink{structfile__info_a8a9009da21212dba3a7b8369471ed05e}{subdir\+\_\+count}}
+\item 
+char \mbox{\hyperlink{structfile__info_a8313d9a4b0297566dbf509513e6eda34}{owner}} \mbox{[}256\mbox{]}
+\item 
+char \mbox{\hyperlink{structfile__info_a0bba7f65248bd234563e548f19b9051b}{user\+\_\+rights}} \mbox{[}16\mbox{]}
+\item 
+char \mbox{\hyperlink{structfile__info_ad0bb2c46351f70095588257823a5ccfd}{time\+\_\+ago}} \mbox{[}\mbox{\hyperlink{longlisting_8c_a282c650b178a6634acd24dad309bcfdd}{MAX\+\_\+\+TIME\+\_\+\+AGO\+\_\+\+LEN}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure to hold detailed information about a file or directory. 
+
+Definition at line \mbox{\hyperlink{longlisting_8c_source_l00036}{36}} of file \mbox{\hyperlink{longlisting_8c_source}{longlisting.\+c}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structfile__info_a605808d3db7b33b36b4cce172ca71eb0}\label{structfile__info_a605808d3db7b33b36b4cce172ca71eb0} 
+\index{file\_info@{file\_info}!full\_path@{full\_path}}
+\index{full\_path@{full\_path}!file\_info@{file\_info}}
+\doxysubsubsection{\texorpdfstring{full\_path}{full\_path}}
+{\footnotesize\ttfamily char file\+\_\+info\+::full\+\_\+path\mbox{[}\mbox{\hyperlink{longlisting_8c_ab99ded389af74001a6298fc9e44e74e5}{MAX\+\_\+\+PATH}}\mbox{]}}
+
+Full path to the file or directory 
+
+Definition at line \mbox{\hyperlink{longlisting_8c_source_l00038}{38}} of file \mbox{\hyperlink{longlisting_8c_source}{longlisting.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{longlisting_8c_source_l00233}{get\+\_\+file\+\_\+info()}}, \mbox{\hyperlink{longlisting_8c_source_l00306}{print\+\_\+longlisting()}}, and \mbox{\hyperlink{longlisting_8c_source_l00279}{print\+\_\+sorted\+\_\+entries()}}.
+
+\Hypertarget{structfile__info_a75dece3e86707e5f1b28430b78e98d08}\label{structfile__info_a75dece3e86707e5f1b28430b78e98d08} 
+\index{file\_info@{file\_info}!is\_dir@{is\_dir}}
+\index{is\_dir@{is\_dir}!file\_info@{file\_info}}
+\doxysubsubsection{\texorpdfstring{is\_dir}{is\_dir}}
+{\footnotesize\ttfamily int file\+\_\+info\+::is\+\_\+dir}
+
+Flag indicating if it\textquotesingle{}s a directory 
+
+Definition at line \mbox{\hyperlink{longlisting_8c_source_l00042}{42}} of file \mbox{\hyperlink{longlisting_8c_source}{longlisting.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{longlisting_8c_source_l00199}{compare\+\_\+entries()}}, \mbox{\hyperlink{longlisting_8c_source_l00233}{get\+\_\+file\+\_\+info()}}, and \mbox{\hyperlink{longlisting_8c_source_l00279}{print\+\_\+sorted\+\_\+entries()}}.
+
+\Hypertarget{structfile__info_a0df946c901068e5d66df47dc8d922f43}\label{structfile__info_a0df946c901068e5d66df47dc8d922f43} 
+\index{file\_info@{file\_info}!mode@{mode}}
+\index{mode@{mode}!file\_info@{file\_info}}
+\doxysubsubsection{\texorpdfstring{mode}{mode}}
+{\footnotesize\ttfamily mode\+\_\+t file\+\_\+info\+::mode}
+
+File mode (permissions) 
+
+Definition at line \mbox{\hyperlink{longlisting_8c_source_l00040}{40}} of file \mbox{\hyperlink{longlisting_8c_source}{longlisting.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{longlisting_8c_source_l00233}{get\+\_\+file\+\_\+info()}}.
+
+\Hypertarget{structfile__info_ae8d2e03538d68731843ce28ae6264882}\label{structfile__info_ae8d2e03538d68731843ce28ae6264882} 
+\index{file\_info@{file\_info}!mtime@{mtime}}
+\index{mtime@{mtime}!file\_info@{file\_info}}
+\doxysubsubsection{\texorpdfstring{mtime}{mtime}}
+{\footnotesize\ttfamily time\+\_\+t file\+\_\+info\+::mtime}
+
+Last modification time 
+
+Definition at line \mbox{\hyperlink{longlisting_8c_source_l00041}{41}} of file \mbox{\hyperlink{longlisting_8c_source}{longlisting.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{longlisting_8c_source_l00233}{get\+\_\+file\+\_\+info()}}.
+
+\Hypertarget{structfile__info_af4358e531f11044f1e5a041537676d33}\label{structfile__info_af4358e531f11044f1e5a041537676d33} 
+\index{file\_info@{file\_info}!name@{name}}
+\index{name@{name}!file\_info@{file\_info}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily char file\+\_\+info\+::name\mbox{[}256\mbox{]}}
+
+Name of the file or directory 
+
+Definition at line \mbox{\hyperlink{longlisting_8c_source_l00037}{37}} of file \mbox{\hyperlink{longlisting_8c_source}{longlisting.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{longlisting_8c_source_l00199}{compare\+\_\+entries()}}, \mbox{\hyperlink{longlisting_8c_source_l00233}{get\+\_\+file\+\_\+info()}}, and \mbox{\hyperlink{longlisting_8c_source_l00279}{print\+\_\+sorted\+\_\+entries()}}.
+
+\Hypertarget{structfile__info_a8313d9a4b0297566dbf509513e6eda34}\label{structfile__info_a8313d9a4b0297566dbf509513e6eda34} 
+\index{file\_info@{file\_info}!owner@{owner}}
+\index{owner@{owner}!file\_info@{file\_info}}
+\doxysubsubsection{\texorpdfstring{owner}{owner}}
+{\footnotesize\ttfamily char file\+\_\+info\+::owner\mbox{[}256\mbox{]}}
+
+Owner of the file or directory 
+
+Definition at line \mbox{\hyperlink{longlisting_8c_source_l00044}{44}} of file \mbox{\hyperlink{longlisting_8c_source}{longlisting.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{longlisting_8c_source_l00233}{get\+\_\+file\+\_\+info()}}, and \mbox{\hyperlink{longlisting_8c_source_l00279}{print\+\_\+sorted\+\_\+entries()}}.
+
+\Hypertarget{structfile__info_a6e48876c051acfc4d2c0af2840515cd9}\label{structfile__info_a6e48876c051acfc4d2c0af2840515cd9} 
+\index{file\_info@{file\_info}!size@{size}}
+\index{size@{size}!file\_info@{file\_info}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily off\+\_\+t file\+\_\+info\+::size}
+
+Size of the file or directory 
+
+Definition at line \mbox{\hyperlink{longlisting_8c_source_l00039}{39}} of file \mbox{\hyperlink{longlisting_8c_source}{longlisting.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{longlisting_8c_source_l00199}{compare\+\_\+entries()}}, \mbox{\hyperlink{longlisting_8c_source_l00233}{get\+\_\+file\+\_\+info()}}, and \mbox{\hyperlink{longlisting_8c_source_l00279}{print\+\_\+sorted\+\_\+entries()}}.
+
+\Hypertarget{structfile__info_a8a9009da21212dba3a7b8369471ed05e}\label{structfile__info_a8a9009da21212dba3a7b8369471ed05e} 
+\index{file\_info@{file\_info}!subdir\_count@{subdir\_count}}
+\index{subdir\_count@{subdir\_count}!file\_info@{file\_info}}
+\doxysubsubsection{\texorpdfstring{subdir\_count}{subdir\_count}}
+{\footnotesize\ttfamily int file\+\_\+info\+::subdir\+\_\+count}
+
+Number of subdirectories (for directories) 
+
+Definition at line \mbox{\hyperlink{longlisting_8c_source_l00043}{43}} of file \mbox{\hyperlink{longlisting_8c_source}{longlisting.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{longlisting_8c_source_l00199}{compare\+\_\+entries()}}, \mbox{\hyperlink{longlisting_8c_source_l00233}{get\+\_\+file\+\_\+info()}}, and \mbox{\hyperlink{longlisting_8c_source_l00279}{print\+\_\+sorted\+\_\+entries()}}.
+
+\Hypertarget{structfile__info_ad0bb2c46351f70095588257823a5ccfd}\label{structfile__info_ad0bb2c46351f70095588257823a5ccfd} 
+\index{file\_info@{file\_info}!time\_ago@{time\_ago}}
+\index{time\_ago@{time\_ago}!file\_info@{file\_info}}
+\doxysubsubsection{\texorpdfstring{time\_ago}{time\_ago}}
+{\footnotesize\ttfamily char file\+\_\+info\+::time\+\_\+ago\mbox{[}\mbox{\hyperlink{longlisting_8c_a282c650b178a6634acd24dad309bcfdd}{MAX\+\_\+\+TIME\+\_\+\+AGO\+\_\+\+LEN}}\mbox{]}}
+
+Human-\/readable time since last modification 
+
+Definition at line \mbox{\hyperlink{longlisting_8c_source_l00046}{46}} of file \mbox{\hyperlink{longlisting_8c_source}{longlisting.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{longlisting_8c_source_l00233}{get\+\_\+file\+\_\+info()}}, and \mbox{\hyperlink{longlisting_8c_source_l00279}{print\+\_\+sorted\+\_\+entries()}}.
+
+\Hypertarget{structfile__info_a0bba7f65248bd234563e548f19b9051b}\label{structfile__info_a0bba7f65248bd234563e548f19b9051b} 
+\index{file\_info@{file\_info}!user\_rights@{user\_rights}}
+\index{user\_rights@{user\_rights}!file\_info@{file\_info}}
+\doxysubsubsection{\texorpdfstring{user\_rights}{user\_rights}}
+{\footnotesize\ttfamily char file\+\_\+info\+::user\+\_\+rights\mbox{[}16\mbox{]}}
+
+User rights represented as emojis 
+
+Definition at line \mbox{\hyperlink{longlisting_8c_source_l00045}{45}} of file \mbox{\hyperlink{longlisting_8c_source}{longlisting.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{longlisting_8c_source_l00233}{get\+\_\+file\+\_\+info()}}, and \mbox{\hyperlink{longlisting_8c_source_l00279}{print\+\_\+sorted\+\_\+entries()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/honeyguide/\+Desktop/\+My\+Open\+Source/facad/src/\mbox{\hyperlink{longlisting_8c}{longlisting.\+c}}\end{DoxyCompactItemize}

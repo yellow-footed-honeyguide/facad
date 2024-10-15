@@ -1,0 +1,11 @@
+<map id="display_entries" name="display_entries">
+<area shape="rect" id="Node000001" title="Displays file entries in a formatted, multi&#45;column layout." alt="" coords="5,57,126,85"/>
+<area shape="rect" id="Node000002" href="$d1/db9/git__utils_8c.html#a2ef1d42e63a1b1ab2270c1d82157a384" title="Retrieves the name of the current Git branch." alt="" coords="174,5,320,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,54,181,35,182,40,117,59"/>
+<area shape="rect" id="Node000003" href="$d2/dda/display__utils_8c.html#ad5d5547a34815dba09681cd9e69bf2a1" title="Calculates the display width of a string, accounting for multi&#45;byte characters." alt="" coords="177,57,317,85"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="126,69,162,69,162,74,126,74"/>
+<area shape="rect" id="Node000005" href="$dc/daf/dir__config_8c.html#a4ce38149e564150cef6b9f182913ac7a" title="Get the maximum number of columns for a given directory path." alt="" coords="177,109,317,137"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="117,83,182,102,181,107,116,88"/>
+<area shape="rect" id="Node000004" href="$d2/dda/display__utils_8c.html#aa5f36a89eac0853279ebdf9efb3f668b" title="Determines the byte width of a UTF&#45;8 character." alt="" coords="368,57,521,85"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="317,69,353,69,353,74,317,74"/>
+</map>

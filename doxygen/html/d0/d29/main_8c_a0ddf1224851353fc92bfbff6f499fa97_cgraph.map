@@ -1,0 +1,120 @@
+<map id="main" name="main">
+<area shape="rect" id="Node000001" title="Main function of the facad program." alt="" coords="5,564,60,592"/>
+<area shape="rect" id="Node000002" href="$dd/d6c/file__card_8c.html#aaa0d8cd7d720e6b260615df1be0fdc7f" title="Compare two file entries for sorting." alt="" coords="110,57,267,85"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="32,563,38,476,52,346,73,214,88,160,105,122,120,105,138,91,141,95,124,109,110,125,93,162,79,215,57,347,43,477,37,564"/>
+<area shape="rect" id="Node000005" href="$d2/dda/display__utils_8c.html#a8b38e99d9128bf4a4badc21df13d442b" title="Displays file entries in a formatted, multi&#45;column layout." alt="" coords="128,135,249,162"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="32,563,37,484,50,367,72,251,87,205,106,174,113,166,117,170,110,177,92,208,77,253,56,368,43,484,37,564"/>
+<area shape="rect" id="Node000010" href="$df/dad/args__parser_8c.html#a1e124c87a6ba6ffa680d9297fbc17d43" title="Frees memory allocated for command&#45;line arguments." alt="" coords="147,187,230,214"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="32,563,39,493,53,392,75,292,89,253,106,225,131,208,134,213,110,229,94,255,80,294,59,393,45,494,38,564"/>
+<area shape="rect" id="Node000011" href="$dd/d6c/file__card_8c.html#af25b4091089527258ab9a8cb5ebff9e7" title="Frees memory allocated for a file entry." alt="" coords="131,239,246,266"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="31,564,31,512,40,438,49,397,62,356,81,318,106,283,117,273,121,276,110,286,86,320,67,358,54,399,45,439,37,513,36,564"/>
+<area shape="rect" id="Node000012" href="$d1/db9/git__utils_8c.html#a1af8df0b83d4e26524cdb4371b7bd7a6" title="Retrieves the Git status for all files in the current repository." alt="" coords="761,301,874,329"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="31,563,34,523,45,467,67,409,84,383,106,361,143,335,183,313,224,295,268,281,357,264,448,258,536,261,619,269,750,295,749,300,618,275,536,266,448,263,358,269,269,287,226,300,185,318,146,339,109,365,88,387,72,412,50,469,40,523,37,564"/>
+<area shape="rect" id="Node000014" href="$de/db5/dev__dir__utils_8c.html#acf9fb4da0ced0c99e368f3cd1ef91547" title="Processes the contents of the /dev directory." alt="" coords="108,413,269,441"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="40,562,68,523,106,480,148,448,151,452,109,484,72,527,45,565"/>
+<area shape="rect" id="Node000017" href="$de/db5/dev__dir__utils_8c.html#ae2390692f6e5134692701461dca8cd84" title="Checks if the given path is the /dev directory." alt="" coords="124,816,253,844"/>
+<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="37,592,41,633,52,689,73,749,89,777,110,801,114,805,110,809,106,805,85,780,69,751,47,690,35,634,32,592"/>
+<area shape="rect" id="Node000018" href="$d1/db9/git__utils_8c.html#a51ae0134feff92edfd5cf268cd0b1acf" title="Checks if the current directory is part of a Git repository." alt="" coords="753,365,882,393"/>
+<area shape="poly" id="edge17_Node000001_Node000018" title=" " alt="" coords="32,563,37,529,49,484,71,437,87,417,106,400,128,387,156,377,225,363,307,355,399,352,584,357,737,369,737,374,584,363,399,357,308,360,225,368,157,382,130,392,109,404,91,420,76,440,54,485,43,530,38,564"/>
+<area shape="rect" id="Node000019" href="$d0/d29/main_8c.html#a116587b452eeb0a0e9f7d9602ba67ae0" title="Checks if the targets are glob patterns or specific files." alt="" coords="117,636,260,680"/>
+<area shape="poly" id="edge18_Node000001_Node000019" title=" " alt="" coords="61,589,131,626,129,630,59,594"/>
+<area shape="rect" id="Node000022" href="$df/dad/args__parser_8c.html#ae69db95445b885f269cab7f4dc062307" title="Parses command&#45;line arguments." alt="" coords="142,868,235,896"/>
+<area shape="poly" id="edge21_Node000001_Node000022" title=" " alt="" coords="36,592,37,641,45,711,54,749,68,787,86,822,110,853,129,867,126,872,106,857,81,825,63,789,49,751,40,712,32,642,31,592"/>
+<area shape="rect" id="Node000023" href="$d8/d55/dir__analytics_8c.html#ab481a931e3944eefb982e2666223d3d5" title="Prints detailed analytics about a directory." alt="" coords="118,965,259,993"/>
+<area shape="poly" id="edge22_Node000001_Node000023" title=" " alt="" coords="37,592,40,646,50,726,72,818,89,863,110,906,130,932,154,954,151,958,126,936,105,909,84,865,67,820,45,727,34,646,31,592"/>
+<area shape="rect" id="Node000029" href="$df/dad/args__parser_8c.html#ae5d62d86e562ee295d1566f9ad74b73c" title="Prints the help information for facad." alt="" coords="145,1017,232,1045"/>
+<area shape="poly" id="edge31_Node000001_Node000029" title=" " alt="" coords="37,592,42,676,54,799,64,863,76,922,91,970,110,1003,132,1019,129,1023,106,1006,86,972,71,923,58,864,49,800,37,676,32,592"/>
+<area shape="rect" id="Node000030" href="$d6/d95/longlisting_8c.html#a9aa67dc0ec987dacbfbc8dfe5745c5be" title="Prints a detailed listing of the contents of a directory." alt="" coords="125,712,252,740"/>
+<area shape="poly" id="edge32_Node000001_Node000030" title=" " alt="" coords="42,591,67,639,86,666,109,690,128,703,125,707,106,695,82,670,63,642,37,593"/>
+<area shape="rect" id="Node000043" href="$d6/d95/longlisting_8c.html#a1af2c63d6b774640dcf8f6b3127dfa47" title=" " alt="" coords="108,764,269,792"/>
+<area shape="poly" id="edge48_Node000001_Node000043" title=" " alt="" coords="39,592,45,624,58,666,79,711,110,749,115,753,111,758,106,753,75,714,53,668,40,625,33,593"/>
+<area shape="rect" id="Node000044" href="$df/dad/args__parser_8c.html#ac6230d495fc909bb61195c45f703d492" title="Prints the version information of facad." alt="" coords="135,1069,242,1097"/>
+<area shape="poly" id="edge52_Node000001_Node000044" title=" " alt="" coords="37,592,40,684,51,823,60,896,73,963,89,1017,110,1055,123,1066,120,1070,106,1058,84,1020,68,964,55,897,46,824,35,685,31,592"/>
+<area shape="rect" id="Node000045" href="$d0/d29/main_8c.html#acc392fbd2ea6b07ebcc2b9c089aae2ca" title="Processes directory entries and populates the entries array." alt="" coords="342,441,478,469"/>
+<area shape="poly" id="edge53_Node000001_Node000045" title=" " alt="" coords="59,566,107,550,348,472,350,477,109,555,61,571"/>
+<area shape="rect" id="Node000049" href="$d0/d29/main_8c.html#ae7d3bb334fabeeccc7dfb05e7f968d47" title="Processes a single target (directory, file, or pattern)." alt="" coords="130,564,247,592"/>
+<area shape="poly" id="edge60_Node000001_Node000049" title=" " alt="" coords="60,575,114,575,114,581,60,581"/>
+<area shape="rect" id="Node000003" href="$dd/d6c/file__card_8c.html#a6cc6fb631e1f28a066db43ca077cdd83" title="Extracts the file extension from a filename." alt="" coords="354,5,467,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="250,54,338,33,339,39,251,59"/>
+<area shape="rect" id="Node000004" href="$dd/d6c/file__card_8c.html#ab53dd5e9229168ae3ea9dd6718dc2eb8" title="Compare two strings case&#45;insensitively." alt="" coords="332,57,488,85"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="268,69,316,69,316,74,268,74"/>
+<area shape="rect" id="Node000006" href="$d1/db9/git__utils_8c.html#a2ef1d42e63a1b1ab2270c1d82157a384" title="Retrieves the name of the current Git branch." alt="" coords="337,109,483,137"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="249,139,321,131,322,136,249,144"/>
+<area shape="rect" id="Node000007" href="$d2/dda/display__utils_8c.html#ad5d5547a34815dba09681cd9e69bf2a1" title="Calculates the display width of a string, accounting for multi&#45;byte characters." alt="" coords="341,161,480,189"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="249,153,325,162,325,168,249,158"/>
+<area shape="rect" id="Node000009" href="$dc/daf/dir__config_8c.html#a4ce38149e564150cef6b9f182913ac7a" title="Get the maximum number of columns for a given directory path." alt="" coords="340,213,480,241"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="238,160,270,173,318,198,339,206,337,211,316,203,268,178,236,165"/>
+<area shape="rect" id="Node000008" href="$d2/dda/display__utils_8c.html#aa5f36a89eac0853279ebdf9efb3f668b" title="Determines the byte width of a UTF&#45;8 character." alt="" coords="551,161,705,189"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="480,173,536,173,536,178,480,178"/>
+<area shape="rect" id="Node000013" href="$d1/db9/git__utils_8c.html#aa639b9b3bbea0da0a09fbad3ca69aa5d" title="Parses a Git status string and returns a single character status code." alt="" coords="949,301,1053,329"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="875,313,934,313,934,318,875,318"/>
+<area shape="rect" id="Node000015" href="$d0/dc9/emoji__utils_8c.html#ad5d8cf69e853f8e2c380ce1e0b2da0da" title="Determines the appropriate emoji for files in the /dev directory." alt="" coords="759,441,876,469"/>
+<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="270,424,503,427,744,445,743,450,503,432,270,429"/>
+<area shape="rect" id="Node000016" href="$d0/dc9/emoji__utils_8c.html#a515d3420e13a8688464ad3b3c89c2ffb" title="Safely duplicates a string, handling memory allocation errors." alt="" coords="1120,595,1218,622"/>
+<area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="876,446,922,444,972,448,1025,458,1074,478,1102,499,1125,526,1158,579,1153,582,1121,529,1098,503,1071,483,1023,463,972,453,921,450,877,451"/>
+<area shape="rect" id="Node000020" href="$d0/d29/main_8c.html#afd7cf5224b764819fb3a9463774482c5" title="Checks if a given path is a directory." alt="" coords="362,696,459,724"/>
+<area shape="poly" id="edge19_Node000019_Node000020" title=" " alt="" coords="261,672,347,692,346,698,260,677"/>
+<area shape="rect" id="Node000021" href="$df/dad/args__parser_8c.html#ac7b851d3c3ad6d7a78c3e0aabb176d15" title="Checks if a string is a glob pattern." alt="" coords="350,644,471,672"/>
+<area shape="poly" id="edge20_Node000019_Node000021" title=" " alt="" coords="260,655,334,655,334,661,260,661"/>
+<area shape="rect" id="Node000024" href="$d8/d55/dir__analytics_8c.html#a247c94a71c4183e613d8a5329615c165" title="Calculates the total size of a directory and its contents." alt="" coords="335,1004,485,1032"/>
+<area shape="poly" id="edge23_Node000023_Node000024" title=" " alt="" coords="260,989,320,999,319,1005,259,994"/>
+<area shape="rect" id="Node000025" href="$d8/d55/dir__analytics_8c.html#a65261c711a51d2667c1726615395d524" title="Recursively finds the largest file in a directory and its subdirectories." alt="" coords="348,1080,472,1108"/>
+<area shape="poly" id="edge25_Node000023_Node000025" title=" " alt="" coords="242,991,270,1004,295,1022,319,1041,368,1070,365,1075,315,1045,292,1026,268,1008,240,996"/>
+<area shape="rect" id="Node000026" href="$d8/d55/dir__analytics_8c.html#a33a98d6f57285ecc9ccbd6c2f2b4fd9d" title="Formats a file size into a human&#45;readable string." alt="" coords="361,1132,459,1160"/>
+<area shape="poly" id="edge27_Node000023_Node000026" title=" " alt="" coords="252,991,271,1004,283,1018,290,1033,295,1062,300,1091,307,1104,319,1117,347,1133,345,1138,315,1121,303,1107,295,1092,290,1063,285,1035,279,1021,267,1008,249,996"/>
+<area shape="rect" id="Node000027" href="$d8/d55/dir__analytics_8c.html#af2d4fbcabe2bb660a865a1a3beb3ee18" title="Formats a time_t value into a human&#45;readable string." alt="" coords="359,1184,461,1212"/>
+<area shape="poly" id="edge28_Node000023_Node000027" title=" " alt="" coords="254,991,271,1004,286,1025,294,1047,295,1089,297,1130,304,1150,319,1169,346,1186,343,1190,315,1173,299,1152,292,1131,290,1089,289,1048,282,1028,267,1008,251,996"/>
+<area shape="rect" id="Node000028" href="$d8/d55/dir__analytics_8c.html#a8ed5df60e8023eb58017d81b7642b2d4" title="Recursively scans a directory to find its maximum depth." alt="" coords="339,928,481,956"/>
+<area shape="poly" id="edge29_Node000023_Node000028" title=" " alt="" coords="259,965,323,954,324,959,260,970"/>
+<area shape="poly" id="edge24_Node000024_Node000024" title=" " alt="" coords="373,1005,367,995,372,985,386,979,410,977,436,980,450,986,447,991,434,985,410,983,388,985,375,989,372,995,377,1002"/>
+<area shape="poly" id="edge26_Node000025_Node000025" title=" " alt="" coords="373,1081,367,1071,372,1061,386,1055,410,1053,436,1056,450,1062,447,1067,434,1061,410,1059,388,1061,375,1065,372,1071,377,1078"/>
+<area shape="poly" id="edge30_Node000028_Node000028" title=" " alt="" coords="373,929,367,919,372,909,386,903,410,901,436,904,450,910,447,915,434,909,410,907,388,909,375,913,372,919,377,926"/>
+<area shape="rect" id="Node000031" href="$d6/d95/longlisting_8c.html#a18cb88825df7452df9b5ce2309c887cf" title="Comparison function for sorting file_info structures." alt="" coords="345,852,475,880"/>
+<area shape="poly" id="edge33_Node000030_Node000031" title=" " alt="" coords="250,738,271,751,288,773,295,795,302,817,319,837,332,846,329,850,315,841,297,819,290,797,284,775,267,754,248,743"/>
+<area shape="rect" id="Node000032" href="$d6/d95/longlisting_8c.html#a58ed2be9f460ed564cbd43d32e1ce658" title="Gets detailed information about a file." alt="" coords="360,748,461,776"/>
+<area shape="poly" id="edge34_Node000030_Node000032" title=" " alt="" coords="252,733,344,749,343,754,251,739"/>
+<area shape="rect" id="Node000037" href="$d6/d95/longlisting_8c.html#a33c3f39ac9dd42760160e6cf451aed2a" title="Prints sorted entries in a detailed format." alt="" coords="335,800,486,828"/>
+<area shape="poly" id="edge40_Node000030_Node000037" title=" " alt="" coords="241,738,270,750,294,768,318,785,335,792,333,797,316,789,291,772,268,755,239,743"/>
+<area shape="rect" id="Node000033" href="$d6/d95/longlisting_8c.html#a066e44c22599f18b5e86355f71992743" title="Counts the number of subdirectories in a given directory." alt="" coords="572,776,684,804"/>
+<area shape="poly" id="edge35_Node000032_Node000033" title=" " alt="" coords="462,766,557,778,557,783,461,771"/>
+<area shape="rect" id="Node000034" href="$d6/d95/longlisting_8c.html#a99a2816fdc6aa63a386b8b8aef593274" title="Formats the time difference between now and a given time into a human&#45;readable string." alt="" coords="561,596,695,624"/>
+<area shape="poly" id="edge36_Node000032_Node000034" title=" " alt="" coords="461,753,482,745,502,733,512,722,519,710,525,686,531,660,538,647,550,635,556,630,559,634,553,638,543,650,536,662,530,687,524,712,517,725,505,737,485,750,462,758"/>
+<area shape="rect" id="Node000035" href="$d6/d95/longlisting_8c.html#ae8e2a8859c427dba11908d8e975d8bc7" title="Calculates the total size of a directory and its contents." alt="" coords="578,672,678,700"/>
+<area shape="poly" id="edge37_Node000032_Node000035" title=" " alt="" coords="460,746,502,733,550,710,568,703,570,708,552,715,504,738,462,752"/>
+<area shape="rect" id="Node000036" href="$d6/d95/longlisting_8c.html#a2d5dc342b560667bf07ec576e99ed3d9" title="Converts file permissions to a string of emojis representing user rights." alt="" coords="567,724,689,752"/>
+<area shape="poly" id="edge39_Node000032_Node000036" title=" " alt="" coords="461,754,551,744,552,749,462,759"/>
+<area shape="poly" id="edge38_Node000035_Node000035" title=" " alt="" coords="595,673,590,663,594,654,607,647,628,645,650,648,663,654,660,659,649,653,628,651,608,653,598,657,595,663,600,670"/>
+<area shape="rect" id="Node000038" href="$d6/d95/longlisting_8c.html#a33a98d6f57285ecc9ccbd6c2f2b4fd9d" title="Formats a file size into a human&#45;readable string." alt="" coords="579,828,677,856"/>
+<area shape="poly" id="edge41_Node000037_Node000038" title=" " alt="" coords="486,821,564,831,563,836,486,826"/>
+<area shape="rect" id="Node000039" href="$d0/dc9/emoji__utils_8c.html#a853b78da7b6116949e96148e040669d5" title="Determines the appropriate emoji for a given file based on its characteristics." alt="" coords="774,569,861,597"/>
+<area shape="poly" id="edge42_Node000037_Node000039" title=" " alt="" coords="469,826,504,838,528,853,552,865,596,877,632,885,666,883,703,865,732,840,755,810,774,776,788,740,805,669,812,612,817,613,810,670,793,741,779,778,760,813,736,844,706,869,667,888,631,891,595,882,550,870,526,857,502,843,468,831"/>
+<area shape="poly" id="edge47_Node000039_Node000016" title=" " alt="" coords="861,584,1105,601,1105,607,861,589"/>
+<area shape="rect" id="Node000040" href="$d0/dc9/emoji__utils_8c.html#a5079b8c3657f088d68ae41fee9b299e3" title="Checks the file content for specific patterns to determine the file type." alt="" coords="930,645,1072,673"/>
+<area shape="poly" id="edge43_Node000039_Node000040" title=" " alt="" coords="854,595,952,636,950,641,852,600"/>
+<area shape="rect" id="Node000041" href="$d0/dc9/emoji__utils_8c.html#adcfc0049feddf60eec27fe2572291a2e" title="Checks if a file is executable." alt="" coords="946,492,1056,520"/>
+<area shape="poly" id="edge45_Node000039_Node000041" title=" " alt="" coords="848,566,929,530,946,523,948,528,931,535,850,571"/>
+<area shape="rect" id="Node000042" href="$d0/dc9/emoji__utils_8c.html#a3bfec7595ef6d300266b38d3a17b039e" title="Checks if a file is a text file by examining its contents." alt="" coords="955,544,1047,572"/>
+<area shape="poly" id="edge46_Node000039_Node000042" title=" " alt="" coords="861,575,939,564,940,569,862,580"/>
+<area shape="poly" id="edge44_Node000040_Node000016" title=" " alt="" coords="1049,642,1105,625,1107,630,1050,647"/>
+<area shape="poly" id="edge49_Node000043_Node000031" title=" " alt="" coords="241,790,270,802,294,820,318,837,335,844,333,849,316,841,291,824,268,807,239,795"/>
+<area shape="poly" id="edge50_Node000043_Node000032" title=" " alt="" coords="269,769,344,764,344,769,269,775"/>
+<area shape="poly" id="edge51_Node000043_Node000037" title=" " alt="" coords="269,788,319,796,318,802,268,793"/>
+<area shape="rect" id="Node000046" href="$d0/d29/main_8c.html#a165f84d1d52e7a11077ff2b3ec8ba0c8" title="Dynamically allocates or reallocates memory for directory entries." alt="" coords="565,544,691,572"/>
+<area shape="poly" id="edge54_Node000045_Node000046" title=" " alt="" coords="436,467,489,497,552,529,569,536,567,541,550,534,486,502,434,472"/>
+<area shape="rect" id="Node000047" href="$dd/d6c/file__card_8c.html#a8ac3f1a318ebad42a9d465b92e4aa598" title="Creates a new file card based on the given path." alt="" coords="563,492,693,520"/>
+<area shape="poly" id="edge55_Node000045_Node000047" title=" " alt="" coords="473,467,551,485,550,491,472,472"/>
+<area shape="rect" id="Node000048" href="$df/d77/git__integration_8c.html#ac8420e6fdcd1a0373f840ecbe95a220a" title="Integrates Git status information into file entries." alt="" coords="552,391,704,418"/>
+<area shape="poly" id="edge57_Node000045_Node000048" title=" " alt="" coords="472,438,550,420,551,425,473,443"/>
+<area shape="poly" id="edge56_Node000047_Node000039" title=" " alt="" coords="673,518,706,530,774,560,772,565,704,535,671,523"/>
+<area shape="poly" id="edge58_Node000048_Node000012" title=" " alt="" coords="658,388,771,334,774,338,660,393"/>
+<area shape="poly" id="edge59_Node000048_Node000018" title=" " alt="" coords="704,392,737,387,738,392,705,397"/>
+<area shape="poly" id="edge63_Node000049_Node000020" title=" " alt="" coords="222,590,271,621,286,638,294,653,303,667,318,681,348,695,345,700,316,685,299,671,290,656,281,641,267,625,219,594"/>
+<area shape="poly" id="edge64_Node000049_Node000021" title=" " alt="" coords="228,590,318,623,353,636,351,641,316,628,226,595"/>
+<area shape="poly" id="edge65_Node000049_Node000045" title=" " alt="" coords="207,561,316,485,344,472,346,477,318,489,210,566"/>
+<area shape="poly" id="edge61_Node000049_Node000046" title=" " alt="" coords="248,580,366,584,435,583,503,579,549,573,550,578,504,584,435,589,366,589,248,585"/>
+<area shape="poly" id="edge62_Node000049_Node000047" title=" " alt="" coords="220,561,265,544,316,529,376,518,437,511,547,504,548,509,438,516,377,523,318,534,267,549,222,566"/>
+<area shape="rect" id="Node000050" href="$d0/d29/main_8c.html#a00c65357e9fe949388102f3090ea09c5" title="Processes files or patterns and populates the entries array." alt="" coords="317,543,503,570"/>
+<area shape="poly" id="edge66_Node000049_Node000050" title=" " alt="" coords="247,570,301,564,302,570,248,575"/>
+<area shape="poly" id="edge67_Node000050_Node000046" title=" " alt="" coords="504,554,550,555,550,560,504,560"/>
+<area shape="poly" id="edge68_Node000050_Node000047" title=" " alt="" coords="472,540,550,521,551,526,473,545"/>
+</map>

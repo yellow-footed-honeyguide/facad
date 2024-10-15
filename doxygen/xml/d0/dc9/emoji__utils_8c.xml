@@ -1,0 +1,499 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="d0/dc9/emoji__utils_8c" kind="file" language="C++">
+    <compoundname>emoji_utils.c</compoundname>
+    <includes local="no">ctype.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">sys/stat.h</includes>
+    <includes refid="d7/d97/emoji__utils_8h" local="yes">emoji_utils.h</includes>
+    <includes refid="de/d86/emoji__mappings_8h" local="yes">emoji_mappings.h</includes>
+    <incdepgraph>
+      <node id="8">
+        <label>emoji_mappings.h</label>
+        <link refid="de/d86/emoji__mappings_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c</label>
+        <link refid="d0/dc9/emoji__utils_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>emoji_utils.h</label>
+        <link refid="d7/d97/emoji__utils_8h"/>
+      </node>
+      <node id="2">
+        <label>ctype.h</label>
+      </node>
+      <node id="9">
+        <label>stddef.h</label>
+      </node>
+      <node id="3">
+        <label>stdio.h</label>
+      </node>
+      <node id="4">
+        <label>stdlib.h</label>
+      </node>
+      <node id="5">
+        <label>string.h</label>
+      </node>
+      <node id="6">
+        <label>sys/stat.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="d0/dc9/emoji__utils_8c_1ab99ded389af74001a6298fc9e44e74e5" prot="public" static="no">
+        <name>MAX_PATH</name>
+        <initializer>4096</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c" line="22" column="9" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c" bodystart="22" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>static char * safe_strdup</definition>
+        <argsstring>(const char *str)</argsstring>
+        <name>safe_strdup</name>
+        <param>
+          <type>const char *</type>
+          <declname>str</declname>
+        </param>
+        <briefdescription>
+<para>Safely duplicates a string, handling memory allocation errors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>str</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The string to duplicate </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A newly allocated copy of the input string </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c" line="30" column="13" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c" bodystart="30" bodyend="37"/>
+        <referencedby refid="d0/dc9/emoji__utils_8c_1a5079b8c3657f088d68ae41fee9b299e3" compoundref="d0/dc9/emoji__utils_8c" startline="70" endline="87">check_file_content</referencedby>
+        <referencedby refid="d0/dc9/emoji__utils_8c_1ad5d8cf69e853f8e2c380ce1e0b2da0da" compoundref="d0/dc9/emoji__utils_8c" startline="45" endline="62">get_dev_emoji</referencedby>
+        <referencedby refid="d0/dc9/emoji__utils_8c_1a853b78da7b6116949e96148e040669d5" compoundref="d0/dc9/emoji__utils_8c" startline="95" endline="158">get_emoji</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d0/dc9/emoji__utils_8c_1ad5d8cf69e853f8e2c380ce1e0b2da0da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char * get_dev_emoji</definition>
+        <argsstring>(const char *path)</argsstring>
+        <name>get_dev_emoji</name>
+        <param>
+          <type>const char *</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Determines the appropriate emoji for files in the /dev directory. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Determines the appropriate emoji for a device file in the /dev directory.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the file in the /dev directory </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A dynamically allocated string containing the emoji </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c" line="45" column="6" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c" bodystart="45" bodyend="62"/>
+        <references refid="dd/db6/emoji__mappings_8c_1a538e1bc5eae64ecb93436ffc47560121" compoundref="dd/db6/emoji__mappings_8c" startline="430" endline="467">emoji_exact_dev_file_map</references>
+        <references refid="dd/db6/emoji__mappings_8c_1a11bba592cc1a04247a8823e523e40bd7" compoundref="dd/db6/emoji__mappings_8c" startline="469">emoji_exact_dev_file_map_size</references>
+        <references refid="dd/db6/emoji__mappings_8c_1ae615000bf15a8698d98421baa2a90bd1" compoundref="dd/db6/emoji__mappings_8c" startline="478" endline="493">emoji_prefix_dev_map</references>
+        <references refid="dd/db6/emoji__mappings_8c_1aaf5ea0aa3fbcd68766d42569f7f2c762" compoundref="dd/db6/emoji__mappings_8c" startline="496">emoji_prefix_dev_map_size</references>
+        <references refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" compoundref="d0/dc9/emoji__utils_8c" startline="30" endline="37">safe_strdup</references>
+        <referencedby refid="de/db5/dev__dir__utils_8c_1acf9fb4da0ced0c99e368f3cd1ef91547" compoundref="de/db5/dev__dir__utils_8c" startline="48" endline="138">handle_dev_directory</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d0/dc9/emoji__utils_8c_1a5079b8c3657f088d68ae41fee9b299e3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>static char * check_file_content</definition>
+        <argsstring>(const char *path)</argsstring>
+        <name>check_file_content</name>
+        <param>
+          <type>const char *</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Checks the file content for specific patterns to determine the file type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the file </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A dynamically allocated string containing the emoji, or NULL if no match </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c" line="70" column="13" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c" bodystart="70" bodyend="87"/>
+        <references refid="dd/db6/emoji__mappings_8c_1a0ed3aca8befc8bbd9cc15e258a6ca701" compoundref="dd/db6/emoji__mappings_8c" startline="361" endline="418">emoji_file_content_map</references>
+        <references refid="dd/db6/emoji__mappings_8c_1ab0d0a7e5ba604e644a996107bb4965e7" compoundref="dd/db6/emoji__mappings_8c" startline="420">emoji_file_content_map_size</references>
+        <references refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" compoundref="d0/dc9/emoji__utils_8c" startline="30" endline="37">safe_strdup</references>
+        <referencedby refid="d0/dc9/emoji__utils_8c_1a853b78da7b6116949e96148e040669d5" compoundref="d0/dc9/emoji__utils_8c" startline="95" endline="158">get_emoji</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d0/dc9/emoji__utils_8c_1a853b78da7b6116949e96148e040669d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char * get_emoji</definition>
+        <argsstring>(const char *path)</argsstring>
+        <name>get_emoji</name>
+        <param>
+          <type>const char *</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Determines the appropriate emoji for a given file based on its characteristics. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Determines the appropriate emoji for a given file path.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the file </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A dynamically allocated string containing the emoji </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c" line="95" column="6" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c" bodystart="95" bodyend="158"/>
+        <references refid="d0/dc9/emoji__utils_8c_1a5079b8c3657f088d68ae41fee9b299e3" compoundref="d0/dc9/emoji__utils_8c" startline="70" endline="87">check_file_content</references>
+        <references refid="dd/db6/emoji__mappings_8c_1a44bebb1a7db81f9fcbcdc471ade99dcb" compoundref="dd/db6/emoji__mappings_8c" startline="232" endline="350">emoji_exact_file_map</references>
+        <references refid="dd/db6/emoji__mappings_8c_1a4559ab02a3fe5bd47e2c060553709bd2" compoundref="dd/db6/emoji__mappings_8c" startline="352">emoji_exact_file_map_size</references>
+        <references refid="dd/db6/emoji__mappings_8c_1a717fe910a0d43495236d315dd41303f9" compoundref="dd/db6/emoji__mappings_8c" startline="22" endline="220">emoji_extension_map</references>
+        <references refid="dd/db6/emoji__mappings_8c_1a15086b0f52896bc1295506f18beefdae" compoundref="dd/db6/emoji__mappings_8c" startline="223">emoji_extension_map_size</references>
+        <references refid="d0/dc9/emoji__utils_8c_1adcfc0049feddf60eec27fe2572291a2e" compoundref="d0/dc9/emoji__utils_8c" startline="166" endline="172">is_executable</references>
+        <references refid="d0/dc9/emoji__utils_8c_1a3bfec7595ef6d300266b38d3a17b039e" compoundref="d0/dc9/emoji__utils_8c" startline="180" endline="201">is_text_file</references>
+        <references refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" compoundref="d0/dc9/emoji__utils_8c" startline="30" endline="37">safe_strdup</references>
+        <referencedby refid="dd/d6c/file__card_8c_1a8ac3f1a318ebad42a9d465b92e4aa598" compoundref="dd/d6c/file__card_8c" startline="31" endline="54">create_file_entry</referencedby>
+        <referencedby refid="d6/d95/longlisting_8c_1a33c3f39ac9dd42760160e6cf451aed2a" compoundref="d6/d95/longlisting_8c" startline="279" endline="299">print_sorted_entries</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d0/dc9/emoji__utils_8c_1adcfc0049feddf60eec27fe2572291a2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int is_executable</definition>
+        <argsstring>(const char *path)</argsstring>
+        <name>is_executable</name>
+        <param>
+          <type>const char *</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a file is executable. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the file </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if the file is executable, 0 otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c" line="166" column="5" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c" bodystart="166" bodyend="172"/>
+        <referencedby refid="d0/dc9/emoji__utils_8c_1a853b78da7b6116949e96148e040669d5" compoundref="d0/dc9/emoji__utils_8c" startline="95" endline="158">get_emoji</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d0/dc9/emoji__utils_8c_1a3bfec7595ef6d300266b38d3a17b039e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int is_text_file</definition>
+        <argsstring>(const char *path)</argsstring>
+        <name>is_text_file</name>
+        <param>
+          <type>const char *</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a file is a text file by examining its contents. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Checks if a file is a text file.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the file </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if the file is likely a text file, 0 otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c" line="180" column="5" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c" bodystart="180" bodyend="201"/>
+        <referencedby refid="d0/dc9/emoji__utils_8c_1a853b78da7b6116949e96148e040669d5" compoundref="d0/dc9/emoji__utils_8c" startline="95" endline="158">get_emoji</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Implementation of emoji utility functions for file representation. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This file contains functions for determining appropriate emojis for files based on their types, attributes, and locations. It supports both regular files and special files in the /dev directory.</para>
+<para><simplesect kind="author"><para>Sergey Veneckiy </para>
+</simplesect>
+<simplesect kind="date"><para>2024 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>emoji_utils.c</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Implementation<sp/>of<sp/>emoji<sp/>utility<sp/>functions<sp/>for<sp/>file<sp/>representation</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>contains<sp/>functions<sp/>for<sp/>determining<sp/>appropriate<sp/>emojis</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>for<sp/>files<sp/>based<sp/>on<sp/>their<sp/>types,<sp/>attributes,<sp/>and<sp/>locations.<sp/>It<sp/>supports</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>both<sp/>regular<sp/>files<sp/>and<sp/>special<sp/>files<sp/>in<sp/>the<sp/>/dev<sp/>directory.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>@author<sp/>Sergey<sp/>Veneckiy</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>@date<sp/>2024</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ctype.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sys/stat.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d7/d97/emoji__utils_8h" kindref="compound">emoji_utils.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="de/d86/emoji__mappings_8h" kindref="compound">emoji_mappings.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="d0/dc9/emoji__utils_8c_1ab99ded389af74001a6298fc9e44e74e5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_PATH<sp/>4096</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="24"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Safely<sp/>duplicates<sp/>a<sp/>string,<sp/>handling<sp/>memory<sp/>allocation<sp/>errors</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>@param<sp/>str<sp/>The<sp/>string<sp/>to<sp/>duplicate</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/>@return<sp/>A<sp/>newly<sp/>allocated<sp/>copy<sp/>of<sp/>the<sp/>input<sp/>string</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" kindref="member">safe_strdup</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*str)<sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*dup<sp/>=<sp/>strdup(str);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!dup)<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perror(</highlight><highlight class="stringliteral">&quot;strdup&quot;</highlight><highlight class="normal">);<sp/></highlight><highlight class="comment">//<sp/>Print<sp/>error<sp/>message<sp/>if<sp/>strdup<sp/>fails</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit(EXIT_FAILURE);<sp/></highlight><highlight class="comment">//<sp/>Exit<sp/>the<sp/>program<sp/>on<sp/>allocation<sp/>failure</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>dup;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="39"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Determines<sp/>the<sp/>appropriate<sp/>emoji<sp/>for<sp/>files<sp/>in<sp/>the<sp/>/dev<sp/>directory</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*<sp/>@param<sp/>path<sp/>The<sp/>name<sp/>of<sp/>the<sp/>file<sp/>in<sp/>the<sp/>/dev<sp/>directory</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/>@return<sp/>A<sp/>dynamically<sp/>allocated<sp/>string<sp/>containing<sp/>the<sp/>emoji</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="d0/dc9/emoji__utils_8c_1ad5d8cf69e853f8e2c380ce1e0b2da0da" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="d0/dc9/emoji__utils_8c_1ad5d8cf69e853f8e2c380ce1e0b2da0da" kindref="member">get_dev_emoji</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*path)<sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>for<sp/>exact<sp/>matches<sp/>in<sp/>the<sp/>dev<sp/>file<sp/>map</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="dd/db6/emoji__mappings_8c_1a11bba592cc1a04247a8823e523e40bd7" kindref="member">emoji_exact_dev_file_map_size</ref>);<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strcmp(path,<sp/><ref refid="dd/db6/emoji__mappings_8c_1a538e1bc5eae64ecb93436ffc47560121" kindref="member">emoji_exact_dev_file_map</ref>[i].key)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" kindref="member">safe_strdup</ref>(<ref refid="dd/db6/emoji__mappings_8c_1a538e1bc5eae64ecb93436ffc47560121" kindref="member">emoji_exact_dev_file_map</ref>[i].emoji);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>for<sp/>prefix<sp/>matches<sp/>in<sp/>the<sp/>dev<sp/>prefix<sp/>map</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="dd/db6/emoji__mappings_8c_1aaf5ea0aa3fbcd68766d42569f7f2c762" kindref="member">emoji_prefix_dev_map_size</ref>;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strncmp(path,<sp/><ref refid="dd/db6/emoji__mappings_8c_1ae615000bf15a8698d98421baa2a90bd1" kindref="member">emoji_prefix_dev_map</ref>[i].key,<sp/>strlen(<ref refid="dd/db6/emoji__mappings_8c_1ae615000bf15a8698d98421baa2a90bd1" kindref="member">emoji_prefix_dev_map</ref>[i].key))<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" kindref="member">safe_strdup</ref>(<ref refid="dd/db6/emoji__mappings_8c_1ae615000bf15a8698d98421baa2a90bd1" kindref="member">emoji_prefix_dev_map</ref>[i].emoji);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Return<sp/>default<sp/>emoji<sp/>for<sp/>unmatched<sp/>/dev<sp/>files</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" kindref="member">safe_strdup</ref>(</highlight><highlight class="stringliteral">&quot;🔧&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="64"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Checks<sp/>the<sp/>file<sp/>content<sp/>for<sp/>specific<sp/>patterns<sp/>to<sp/>determine<sp/>the<sp/>file<sp/>type</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="67"><highlight class="comment"><sp/>*<sp/>@param<sp/>path<sp/>The<sp/>path<sp/>to<sp/>the<sp/>file</highlight></codeline>
+<codeline lineno="68"><highlight class="comment"><sp/>*<sp/>@return<sp/>A<sp/>dynamically<sp/>allocated<sp/>string<sp/>containing<sp/>the<sp/>emoji,<sp/>or<sp/>NULL<sp/>if<sp/>no<sp/>match</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="d0/dc9/emoji__utils_8c_1a5079b8c3657f088d68ae41fee9b299e3" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="d0/dc9/emoji__utils_8c_1a5079b8c3657f088d68ae41fee9b299e3" kindref="member">check_file_content</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*path)<sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE<sp/>*file<sp/>=<sp/>fopen(path,<sp/></highlight><highlight class="stringliteral">&quot;r&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!file)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NULL;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>buffer[256];</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fgets(buffer,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(buffer),<sp/>file)<sp/>!=<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>each<sp/>entry<sp/>in<sp/>the<sp/>file<sp/>content<sp/>map</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="dd/db6/emoji__mappings_8c_1ab0d0a7e5ba604e644a996107bb4965e7" kindref="member">emoji_file_content_map_size</ref>;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strstr(buffer,<sp/><ref refid="dd/db6/emoji__mappings_8c_1a0ed3aca8befc8bbd9cc15e258a6ca701" kindref="member">emoji_file_content_map</ref>[i].key)<sp/>!=<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fclose(file);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" kindref="member">safe_strdup</ref>(<ref refid="dd/db6/emoji__mappings_8c_1a0ed3aca8befc8bbd9cc15e258a6ca701" kindref="member">emoji_file_content_map</ref>[i].emoji);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>fclose(file);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NULL;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="89"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="90"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Determines<sp/>the<sp/>appropriate<sp/>emoji<sp/>for<sp/>a<sp/>given<sp/>file<sp/>based<sp/>on<sp/>its<sp/>characteristics</highlight></codeline>
+<codeline lineno="91"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="92"><highlight class="comment"><sp/>*<sp/>@param<sp/>path<sp/>The<sp/>path<sp/>to<sp/>the<sp/>file</highlight></codeline>
+<codeline lineno="93"><highlight class="comment"><sp/>*<sp/>@return<sp/>A<sp/>dynamically<sp/>allocated<sp/>string<sp/>containing<sp/>the<sp/>emoji</highlight></codeline>
+<codeline lineno="94"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95" refid="d0/dc9/emoji__utils_8c_1a853b78da7b6116949e96148e040669d5" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="d0/dc9/emoji__utils_8c_1a853b78da7b6116949e96148e040669d5" kindref="member">get_emoji</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*path)<sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">stat<sp/>path_stat;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>if<sp/>we<sp/>can<sp/>get<sp/>file<sp/>information</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(lstat(path,<sp/>&amp;path_stat)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" kindref="member">safe_strdup</ref>(</highlight><highlight class="stringliteral">&quot;❓&quot;</highlight><highlight class="normal">);<sp/><sp/></highlight><highlight class="comment">//<sp/>Unknown<sp/>file<sp/>type</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>for<sp/>symbolic<sp/>links</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(S_ISLNK(path_stat.st_mode))<sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" kindref="member">safe_strdup</ref>(S_ISDIR(path_stat.st_mode)<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;🔗📁&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;🔗&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>for<sp/>directories</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(S_ISDIR(path_stat.st_mode))<sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" kindref="member">safe_strdup</ref>(</highlight><highlight class="stringliteral">&quot;📁&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Extract<sp/>the<sp/>filename<sp/>from<sp/>the<sp/>path</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*filename<sp/>=<sp/>strrchr(path,<sp/></highlight><highlight class="charliteral">&apos;/&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>filename<sp/>=<sp/>filename<sp/>?<sp/>filename<sp/>+<sp/>1<sp/>:<sp/>path;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>for<sp/>exact<sp/>file<sp/>name<sp/>matches<sp/>first<sp/>(highest<sp/>priority)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="dd/db6/emoji__mappings_8c_1a4559ab02a3fe5bd47e2c060553709bd2" kindref="member">emoji_exact_file_map_size</ref>;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strcasecmp(filename,<sp/><ref refid="dd/db6/emoji__mappings_8c_1a44bebb1a7db81f9fcbcdc471ade99dcb" kindref="member">emoji_exact_file_map</ref>[i].key)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" kindref="member">safe_strdup</ref>(<ref refid="dd/db6/emoji__mappings_8c_1a44bebb1a7db81f9fcbcdc471ade99dcb" kindref="member">emoji_exact_file_map</ref>[i].emoji);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>file<sp/>content<sp/>for<sp/>specific<sp/>patterns<sp/>(second<sp/>priority)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*content_emoji<sp/>=<sp/><ref refid="d0/dc9/emoji__utils_8c_1a5079b8c3657f088d68ae41fee9b299e3" kindref="member">check_file_content</ref>(path);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(content_emoji)<sp/>{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>content_emoji;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>file<sp/>extensions<sp/>(third<sp/>priority)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*extension<sp/>=<sp/>strrchr(filename,<sp/></highlight><highlight class="charliteral">&apos;.&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(extension)<sp/>{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>extension++;<sp/><sp/></highlight><highlight class="comment">//<sp/>Skip<sp/>the<sp/>dot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="dd/db6/emoji__mappings_8c_1a15086b0f52896bc1295506f18beefdae" kindref="member">emoji_extension_map_size</ref>;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strcasecmp(extension,<sp/><ref refid="dd/db6/emoji__mappings_8c_1a717fe910a0d43495236d315dd41303f9" kindref="member">emoji_extension_map</ref>[i].key)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" kindref="member">safe_strdup</ref>(<ref refid="dd/db6/emoji__mappings_8c_1a717fe910a0d43495236d315dd41303f9" kindref="member">emoji_extension_map</ref>[i].emoji);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>for<sp/>hidden<sp/>files</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(filename[0]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;.&apos;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" kindref="member">safe_strdup</ref>(</highlight><highlight class="stringliteral">&quot;⚙️&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>for<sp/>executable<sp/>files</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="d0/dc9/emoji__utils_8c_1adcfc0049feddf60eec27fe2572291a2e" kindref="member">is_executable</ref>(path))<sp/>{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" kindref="member">safe_strdup</ref>(</highlight><highlight class="stringliteral">&quot;💾&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>for<sp/>text<sp/>files</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="d0/dc9/emoji__utils_8c_1a3bfec7595ef6d300266b38d3a17b039e" kindref="member">is_text_file</ref>(path))<sp/>{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" kindref="member">safe_strdup</ref>(</highlight><highlight class="stringliteral">&quot;📝&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Default<sp/>emoji<sp/>for<sp/>unclassified<sp/>files</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" kindref="member">safe_strdup</ref>(</highlight><highlight class="stringliteral">&quot;❓&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="160"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="161"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Checks<sp/>if<sp/>a<sp/>file<sp/>is<sp/>executable</highlight></codeline>
+<codeline lineno="162"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="163"><highlight class="comment"><sp/>*<sp/>@param<sp/>path<sp/>The<sp/>path<sp/>to<sp/>the<sp/>file</highlight></codeline>
+<codeline lineno="164"><highlight class="comment"><sp/>*<sp/>@return<sp/>1<sp/>if<sp/>the<sp/>file<sp/>is<sp/>executable,<sp/>0<sp/>otherwise</highlight></codeline>
+<codeline lineno="165"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166" refid="d0/dc9/emoji__utils_8c_1adcfc0049feddf60eec27fe2572291a2e" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d0/dc9/emoji__utils_8c_1adcfc0049feddf60eec27fe2572291a2e" kindref="member">is_executable</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*path)<sp/>{</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">stat<sp/>st;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(stat(path,<sp/>&amp;st)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(st.st_mode<sp/>&amp;<sp/>S_IXUSR)<sp/>!=<sp/>0;<sp/></highlight><highlight class="comment">//<sp/>Check<sp/>if<sp/>the<sp/>user<sp/>execute<sp/>bit<sp/>is<sp/>set</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="174"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="175"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Checks<sp/>if<sp/>a<sp/>file<sp/>is<sp/>a<sp/>text<sp/>file<sp/>by<sp/>examining<sp/>its<sp/>contents</highlight></codeline>
+<codeline lineno="176"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="177"><highlight class="comment"><sp/>*<sp/>@param<sp/>path<sp/>The<sp/>path<sp/>to<sp/>the<sp/>file</highlight></codeline>
+<codeline lineno="178"><highlight class="comment"><sp/>*<sp/>@return<sp/>1<sp/>if<sp/>the<sp/>file<sp/>is<sp/>likely<sp/>a<sp/>text<sp/>file,<sp/>0<sp/>otherwise</highlight></codeline>
+<codeline lineno="179"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180" refid="d0/dc9/emoji__utils_8c_1a3bfec7595ef6d300266b38d3a17b039e" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d0/dc9/emoji__utils_8c_1a3bfec7595ef6d300266b38d3a17b039e" kindref="member">is_text_file</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*path)<sp/>{</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE<sp/>*file<sp/>=<sp/>fopen(path,<sp/></highlight><highlight class="stringliteral">&quot;rb&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!file)<sp/>{</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;<sp/></highlight><highlight class="comment">//<sp/>Cannot<sp/>open<sp/>file,<sp/>assume<sp/>it&apos;s<sp/>not<sp/>text</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>buffer[1024];</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>bytesRead<sp/>=<sp/>fread(buffer,<sp/>1,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(buffer),<sp/>file);</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>fclose(file);</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(bytesRead<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;<sp/><sp/></highlight><highlight class="comment">//<sp/>Empty<sp/>file<sp/>is<sp/>considered<sp/>text</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>if<sp/>all<sp/>read<sp/>bytes<sp/>are<sp/>printable<sp/>or<sp/>whitespace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>bytesRead;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!isprint(buffer[i])<sp/>&amp;&amp;<sp/>!isspace(buffer[i]))<sp/>{</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;<sp/></highlight><highlight class="comment">//<sp/>Non-printable,<sp/>non-whitespace<sp/>character<sp/>found</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;<sp/></highlight><highlight class="comment">//<sp/>All<sp/>characters<sp/>are<sp/>printable<sp/>or<sp/>whitespace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_utils.c"/>
+  </compounddef>
+</doxygen>

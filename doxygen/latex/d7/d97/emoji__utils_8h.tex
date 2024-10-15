@@ -1,0 +1,379 @@
+\doxysection{/home/honeyguide/\+Desktop/\+My\+Open\+Source/facad/src/emoji\+\_\+utils.h File Reference}
+\hypertarget{emoji__utils_8h}{}\label{emoji__utils_8h}\index{/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji\_utils.h@{/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji\_utils.h}}
+
+
+Utility functions for assigning emojis to files and directories.  
+
+
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/dfd/emoji__utils_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{emoji__utils_8h_a853b78da7b6116949e96148e040669d5}{get\+\_\+emoji}} (const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Determines the appropriate emoji for a given file path. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{emoji__utils_8h_adcfc0049feddf60eec27fe2572291a2e}{is\+\_\+executable}} (const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Checks if a file is executable. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{emoji__utils_8h_a3bfec7595ef6d300266b38d3a17b039e}{is\+\_\+text\+\_\+file}} (const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Checks if a file is a text file. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{emoji__utils_8h_ad5d8cf69e853f8e2c380ce1e0b2da0da}{get\+\_\+dev\+\_\+emoji}} (const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Determines the appropriate emoji for a device file in the /dev directory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Utility functions for assigning emojis to files and directories. 
+
+This header file declares functions for determining appropriate emojis based on file types, attributes, and locations. It supports both regular files and special files in the /dev directory.
+
+\begin{DoxyAuthor}{Author}
+Sergey Veneckiy 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2024 
+\end{DoxyDate}
+
+
+Definition in file \mbox{\hyperlink{emoji__utils_8h_source}{emoji\+\_\+utils.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{emoji__utils_8h_ad5d8cf69e853f8e2c380ce1e0b2da0da}\label{emoji__utils_8h_ad5d8cf69e853f8e2c380ce1e0b2da0da} 
+\index{emoji\_utils.h@{emoji\_utils.h}!get\_dev\_emoji@{get\_dev\_emoji}}
+\index{get\_dev\_emoji@{get\_dev\_emoji}!emoji\_utils.h@{emoji\_utils.h}}
+\doxysubsubsection{\texorpdfstring{get\_dev\_emoji()}{get\_dev\_emoji()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} get\+\_\+dev\+\_\+emoji (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path }\end{DoxyParamCaption})}
+
+
+
+Determines the appropriate emoji for a device file in the /dev directory. 
+
+This function analyzes the name of a file in the /dev directory and returns an emoji representing its device type.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The file name in the /dev directory to analyze. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A dynamically allocated string containing the emoji. The caller is responsible for freeing this memory.
+\end{DoxyReturn}
+Determines the appropriate emoji for a device file in the /dev directory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The name of the file in the /dev directory \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A dynamically allocated string containing the emoji 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{emoji__utils_8c_source_l00045}{45}} of file \mbox{\hyperlink{emoji__utils_8c_source}{emoji\+\_\+utils.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ exact\ matches\ in\ the\ dev\ file\ map}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{emoji__mappings_8c_a11bba592cc1a04247a8823e523e40bd7}{emoji\_exact\_dev\_file\_map\_size}});\ i++)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(path,\ \mbox{\hyperlink{emoji__mappings_8c_a538e1bc5eae64ecb93436ffc47560121}{emoji\_exact\_dev\_file\_map}}[i].key)\ ==\ 0)\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\mbox{\hyperlink{emoji__mappings_8c_a538e1bc5eae64ecb93436ffc47560121}{emoji\_exact\_dev\_file\_map}}[i].emoji);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ prefix\ matches\ in\ the\ dev\ prefix\ map}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{emoji__mappings_8c_aaf5ea0aa3fbcd68766d42569f7f2c762}{emoji\_prefix\_dev\_map\_size}};\ i++)\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strncmp(path,\ \mbox{\hyperlink{emoji__mappings_8c_ae615000bf15a8698d98421baa2a90bd1}{emoji\_prefix\_dev\_map}}[i].key,\ strlen(\mbox{\hyperlink{emoji__mappings_8c_ae615000bf15a8698d98421baa2a90bd1}{emoji\_prefix\_dev\_map}}[i].key))\ ==\ 0)\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\mbox{\hyperlink{emoji__mappings_8c_ae615000bf15a8698d98421baa2a90bd1}{emoji\_prefix\_dev\_map}}[i].emoji);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ Return\ default\ emoji\ for\ unmatched\ /dev\ files}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\textcolor{stringliteral}{"{}🔧"{}});}
+\DoxyCodeLine{00062\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{emoji__mappings_8c_source_l00430}{emoji\+\_\+exact\+\_\+dev\+\_\+file\+\_\+map}}, \mbox{\hyperlink{emoji__mappings_8c_source_l00469}{emoji\+\_\+exact\+\_\+dev\+\_\+file\+\_\+map\+\_\+size}}, \mbox{\hyperlink{emoji__mappings_8c_source_l00478}{emoji\+\_\+prefix\+\_\+dev\+\_\+map}}, \mbox{\hyperlink{emoji__mappings_8c_source_l00496}{emoji\+\_\+prefix\+\_\+dev\+\_\+map\+\_\+size}}, and \mbox{\hyperlink{emoji__utils_8c_source_l00030}{safe\+\_\+strdup()}}.
+
+
+
+Referenced by \mbox{\hyperlink{dev__dir__utils_8c_source_l00048}{handle\+\_\+dev\+\_\+directory()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=277pt]{d7/d97/emoji__utils_8h_ad5d8cf69e853f8e2c380ce1e0b2da0da_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/d97/emoji__utils_8h_ad5d8cf69e853f8e2c380ce1e0b2da0da_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{emoji__utils_8h_a853b78da7b6116949e96148e040669d5}\label{emoji__utils_8h_a853b78da7b6116949e96148e040669d5} 
+\index{emoji\_utils.h@{emoji\_utils.h}!get\_emoji@{get\_emoji}}
+\index{get\_emoji@{get\_emoji}!emoji\_utils.h@{emoji\_utils.h}}
+\doxysubsubsection{\texorpdfstring{get\_emoji()}{get\_emoji()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} get\+\_\+emoji (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path }\end{DoxyParamCaption})}
+
+
+
+Determines the appropriate emoji for a given file path. 
+
+This function analyzes the file at the given path and returns an emoji representing its type (e.\+g., directory, text file, image, etc.).
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The file path to analyze. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A dynamically allocated string containing the emoji. The caller is responsible for freeing this memory.
+\end{DoxyReturn}
+Determines the appropriate emoji for a given file path.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A dynamically allocated string containing the emoji 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{emoji__utils_8c_source_l00095}{95}} of file \mbox{\hyperlink{emoji__utils_8c_source}{emoji\+\_\+utils.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \textcolor{keyword}{struct\ }stat\ path\_stat;}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we\ can\ get\ file\ information}}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{if}\ (lstat(path,\ \&path\_stat)\ !=\ 0)\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\textcolor{stringliteral}{"{}❓"{}});\ \ \textcolor{comment}{//\ Unknown\ file\ type}}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ symbolic\ links}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{if}\ (S\_ISLNK(path\_stat.st\_mode))\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(S\_ISDIR(path\_stat.st\_mode)\ ?\ \textcolor{stringliteral}{"{}🔗📁"{}}\ :\ \textcolor{stringliteral}{"{}🔗"{}});}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ directories}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{if}\ (S\_ISDIR(path\_stat.st\_mode))\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\textcolor{stringliteral}{"{}📁"{}});}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{//\ Extract\ the\ filename\ from\ the\ path}}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *filename\ =\ strrchr(path,\ \textcolor{charliteral}{'/'});}
+\DoxyCodeLine{00115\ \ \ \ \ filename\ =\ filename\ ?\ filename\ +\ 1\ :\ path;}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ exact\ file\ name\ matches\ first\ (highest\ priority)}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{emoji__mappings_8c_a4559ab02a3fe5bd47e2c060553709bd2}{emoji\_exact\_file\_map\_size}};\ i++)\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcasecmp(filename,\ \mbox{\hyperlink{emoji__mappings_8c_a44bebb1a7db81f9fcbcdc471ade99dcb}{emoji\_exact\_file\_map}}[i].key)\ ==\ 0)\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\mbox{\hyperlink{emoji__mappings_8c_a44bebb1a7db81f9fcbcdc471ade99dcb}{emoji\_exact\_file\_map}}[i].emoji);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{//\ Check\ file\ content\ for\ specific\ patterns\ (second\ priority)}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{char}\ *content\_emoji\ =\ \mbox{\hyperlink{emoji__utils_8c_a5079b8c3657f088d68ae41fee9b299e3}{check\_file\_content}}(path);}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{if}\ (content\_emoji)\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ content\_emoji;}
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{comment}{//\ Check\ file\ extensions\ (third\ priority)}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{char}\ *extension\ =\ strrchr(filename,\ \textcolor{charliteral}{'.'});}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{if}\ (extension)\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ extension++;\ \ \textcolor{comment}{//\ Skip\ the\ dot}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{emoji__mappings_8c_a15086b0f52896bc1295506f18beefdae}{emoji\_extension\_map\_size}};\ i++)\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcasecmp(extension,\ \mbox{\hyperlink{emoji__mappings_8c_a717fe910a0d43495236d315dd41303f9}{emoji\_extension\_map}}[i].key)\ ==\ 0)\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\mbox{\hyperlink{emoji__mappings_8c_a717fe910a0d43495236d315dd41303f9}{emoji\_extension\_map}}[i].emoji);}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ hidden\ files}}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{if}\ (filename[0]\ ==\ \textcolor{charliteral}{'.'})\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\textcolor{stringliteral}{"{}⚙️"{}});}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ executable\ files}}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{emoji__utils_8c_adcfc0049feddf60eec27fe2572291a2e}{is\_executable}}(path))\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\textcolor{stringliteral}{"{}💾"{}});}
+\DoxyCodeLine{00149\ \ \ \ \ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{comment}{//\ Check\ for\ text\ files}}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{emoji__utils_8c_a3bfec7595ef6d300266b38d3a17b039e}{is\_text\_file}}(path))\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\textcolor{stringliteral}{"{}📝"{}});}
+\DoxyCodeLine{00154\ \ \ \ \ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{comment}{//\ Default\ emoji\ for\ unclassified\ files}}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{emoji__utils_8c_a515d3420e13a8688464ad3b3c89c2ffb}{safe\_strdup}}(\textcolor{stringliteral}{"{}❓"{}});}
+\DoxyCodeLine{00158\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{emoji__utils_8c_source_l00070}{check\+\_\+file\+\_\+content()}}, \mbox{\hyperlink{emoji__mappings_8c_source_l00232}{emoji\+\_\+exact\+\_\+file\+\_\+map}}, \mbox{\hyperlink{emoji__mappings_8c_source_l00352}{emoji\+\_\+exact\+\_\+file\+\_\+map\+\_\+size}}, \mbox{\hyperlink{emoji__mappings_8c_source_l00022}{emoji\+\_\+extension\+\_\+map}}, \mbox{\hyperlink{emoji__mappings_8c_source_l00223}{emoji\+\_\+extension\+\_\+map\+\_\+size}}, \mbox{\hyperlink{emoji__utils_8c_source_l00166}{is\+\_\+executable()}}, \mbox{\hyperlink{emoji__utils_8c_source_l00180}{is\+\_\+text\+\_\+file()}}, and \mbox{\hyperlink{emoji__utils_8c_source_l00030}{safe\+\_\+strdup()}}.
+
+
+
+Referenced by \mbox{\hyperlink{file__card_8c_source_l00031}{create\+\_\+file\+\_\+entry()}}, and \mbox{\hyperlink{longlisting_8c_source_l00279}{print\+\_\+sorted\+\_\+entries()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/d97/emoji__utils_8h_a853b78da7b6116949e96148e040669d5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/d97/emoji__utils_8h_a853b78da7b6116949e96148e040669d5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{emoji__utils_8h_adcfc0049feddf60eec27fe2572291a2e}\label{emoji__utils_8h_adcfc0049feddf60eec27fe2572291a2e} 
+\index{emoji\_utils.h@{emoji\_utils.h}!is\_executable@{is\_executable}}
+\index{is\_executable@{is\_executable}!emoji\_utils.h@{emoji\_utils.h}}
+\doxysubsubsection{\texorpdfstring{is\_executable()}{is\_executable()}}
+{\footnotesize\ttfamily int is\+\_\+executable (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path }\end{DoxyParamCaption})}
+
+
+
+Checks if a file is executable. 
+
+This function determines whether the file at the given path has execute permissions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The file path to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the file is executable, 0 otherwise.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the file is executable, 0 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{emoji__utils_8c_source_l00166}{166}} of file \mbox{\hyperlink{emoji__utils_8c_source}{emoji\+\_\+utils.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{struct\ }stat\ st;}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordflow}{if}\ (stat(path,\ \&st)\ ==\ 0)\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (st.st\_mode\ \&\ S\_IXUSR)\ !=\ 0;\ \textcolor{comment}{//\ Check\ if\ the\ user\ execute\ bit\ is\ set}}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00172\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{emoji__utils_8c_source_l00095}{get\+\_\+emoji()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/d97/emoji__utils_8h_adcfc0049feddf60eec27fe2572291a2e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{emoji__utils_8h_a3bfec7595ef6d300266b38d3a17b039e}\label{emoji__utils_8h_a3bfec7595ef6d300266b38d3a17b039e} 
+\index{emoji\_utils.h@{emoji\_utils.h}!is\_text\_file@{is\_text\_file}}
+\index{is\_text\_file@{is\_text\_file}!emoji\_utils.h@{emoji\_utils.h}}
+\doxysubsubsection{\texorpdfstring{is\_text\_file()}{is\_text\_file()}}
+{\footnotesize\ttfamily int is\+\_\+text\+\_\+file (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path }\end{DoxyParamCaption})}
+
+
+
+Checks if a file is a text file. 
+
+This function analyzes the content of the file to determine if it\textquotesingle{}s likely to be a text file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The file path to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the file is likely a text file, 0 otherwise.
+\end{DoxyReturn}
+Checks if a file is a text file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the file is likely a text file, 0 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{emoji__utils_8c_source_l00180}{180}} of file \mbox{\hyperlink{emoji__utils_8c_source}{emoji\+\_\+utils.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ FILE\ *file\ =\ fopen(path,\ \textcolor{stringliteral}{"{}rb"{}});}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file)\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;\ \textcolor{comment}{//\ Cannot\ open\ file,\ assume\ it's\ not\ text}}
+\DoxyCodeLine{00184\ \ \ \ \ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ buffer[1024];}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ bytesRead\ =\ fread(buffer,\ 1,\ \textcolor{keyword}{sizeof}(buffer),\ file);}
+\DoxyCodeLine{00188\ \ \ \ \ fclose(file);}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{if}\ (bytesRead\ ==\ 0)\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;\ \ \textcolor{comment}{//\ Empty\ file\ is\ considered\ text}}
+\DoxyCodeLine{00192\ \ \ \ \ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ all\ read\ bytes\ are\ printable\ or\ whitespace}}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ bytesRead;\ i++)\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isprint(buffer[i])\ \&\&\ !isspace(buffer[i]))\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;\ \textcolor{comment}{//\ Non-\/printable,\ non-\/whitespace\ character\ found}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ \}}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;\ \textcolor{comment}{//\ All\ characters\ are\ printable\ or\ whitespace}}
+\DoxyCodeLine{00201\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{emoji__utils_8c_source_l00095}{get\+\_\+emoji()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/d97/emoji__utils_8h_a3bfec7595ef6d300266b38d3a17b039e_icgraph}
+\end{center}
+\end{figure}

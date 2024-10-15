@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['emoji_0',['emoji',['../df/d93/structEmojiMapEntry.html#aa1ac56c6bf8cc3b9676e2ca254114c0b',1,'EmojiMapEntry::emoji'],['../de/d0d/structFileCardInfo.html#a7f0da0b8251b0c10f77a559d80eb567c',1,'FileCardInfo::emoji']]],
+  ['emoji_5fexact_5fdev_5ffile_5fmap_1',['emoji_exact_dev_file_map',['../dd/db6/emoji__mappings_8c.html#a538e1bc5eae64ecb93436ffc47560121',1,'emoji_exact_dev_file_map:&#160;emoji_mappings.c'],['../de/d86/emoji__mappings_8h.html#a538e1bc5eae64ecb93436ffc47560121',1,'emoji_exact_dev_file_map:&#160;emoji_mappings.c']]],
+  ['emoji_5fexact_5fdev_5ffile_5fmap_5fsize_2',['emoji_exact_dev_file_map_size',['../dd/db6/emoji__mappings_8c.html#a11bba592cc1a04247a8823e523e40bd7',1,'emoji_exact_dev_file_map_size:&#160;emoji_mappings.c'],['../de/d86/emoji__mappings_8h.html#a11bba592cc1a04247a8823e523e40bd7',1,'emoji_exact_dev_file_map_size:&#160;emoji_mappings.c']]],
+  ['emoji_5fexact_5ffile_5fmap_3',['emoji_exact_file_map',['../dd/db6/emoji__mappings_8c.html#a44bebb1a7db81f9fcbcdc471ade99dcb',1,'emoji_exact_file_map:&#160;emoji_mappings.c'],['../de/d86/emoji__mappings_8h.html#a44bebb1a7db81f9fcbcdc471ade99dcb',1,'emoji_exact_file_map:&#160;emoji_mappings.c']]],
+  ['emoji_5fexact_5ffile_5fmap_5fsize_4',['emoji_exact_file_map_size',['../dd/db6/emoji__mappings_8c.html#a4559ab02a3fe5bd47e2c060553709bd2',1,'emoji_exact_file_map_size:&#160;emoji_mappings.c'],['../de/d86/emoji__mappings_8h.html#a4559ab02a3fe5bd47e2c060553709bd2',1,'emoji_exact_file_map_size:&#160;emoji_mappings.c']]],
+  ['emoji_5fextension_5fmap_5',['emoji_extension_map',['../dd/db6/emoji__mappings_8c.html#a717fe910a0d43495236d315dd41303f9',1,'emoji_extension_map:&#160;emoji_mappings.c'],['../de/d86/emoji__mappings_8h.html#a717fe910a0d43495236d315dd41303f9',1,'emoji_extension_map:&#160;emoji_mappings.c']]],
+  ['emoji_5fextension_5fmap_5fsize_6',['emoji_extension_map_size',['../dd/db6/emoji__mappings_8c.html#a15086b0f52896bc1295506f18beefdae',1,'emoji_extension_map_size:&#160;emoji_mappings.c'],['../de/d86/emoji__mappings_8h.html#a15086b0f52896bc1295506f18beefdae',1,'emoji_extension_map_size:&#160;emoji_mappings.c']]],
+  ['emoji_5ffile_5fcontent_5fmap_7',['emoji_file_content_map',['../dd/db6/emoji__mappings_8c.html#a0ed3aca8befc8bbd9cc15e258a6ca701',1,'emoji_file_content_map:&#160;emoji_mappings.c'],['../de/d86/emoji__mappings_8h.html#a0ed3aca8befc8bbd9cc15e258a6ca701',1,'emoji_file_content_map:&#160;emoji_mappings.c']]],
+  ['emoji_5ffile_5fcontent_5fmap_5fsize_8',['emoji_file_content_map_size',['../dd/db6/emoji__mappings_8c.html#ab0d0a7e5ba604e644a996107bb4965e7',1,'emoji_file_content_map_size:&#160;emoji_mappings.c'],['../de/d86/emoji__mappings_8h.html#ab0d0a7e5ba604e644a996107bb4965e7',1,'emoji_file_content_map_size:&#160;emoji_mappings.c']]],
+  ['emoji_5fmappings_2ec_9',['emoji_mappings.c',['../dd/db6/emoji__mappings_8c.html',1,'']]],
+  ['emoji_5fmappings_2eh_10',['emoji_mappings.h',['../de/d86/emoji__mappings_8h.html',1,'']]],
+  ['emoji_5fname_5fspacing_11',['EMOJI_NAME_SPACING',['../d2/dda/display__utils_8c.html#a59349b500cfa8c496dfeabb9cf1b192e',1,'display_utils.c']]],
+  ['emoji_5fprefix_5fdev_5fmap_12',['emoji_prefix_dev_map',['../dd/db6/emoji__mappings_8c.html#ae615000bf15a8698d98421baa2a90bd1',1,'emoji_prefix_dev_map:&#160;emoji_mappings.c'],['../de/d86/emoji__mappings_8h.html#ae615000bf15a8698d98421baa2a90bd1',1,'emoji_prefix_dev_map:&#160;emoji_mappings.c']]],
+  ['emoji_5fprefix_5fdev_5fmap_5fsize_13',['emoji_prefix_dev_map_size',['../dd/db6/emoji__mappings_8c.html#aaf5ea0aa3fbcd68766d42569f7f2c762',1,'emoji_prefix_dev_map_size:&#160;emoji_mappings.c'],['../de/d86/emoji__mappings_8h.html#aaf5ea0aa3fbcd68766d42569f7f2c762',1,'emoji_prefix_dev_map_size:&#160;emoji_mappings.c']]],
+  ['emoji_5futils_2ec_14',['emoji_utils.c',['../d0/dc9/emoji__utils_8c.html',1,'']]],
+  ['emoji_5futils_2eh_15',['emoji_utils.h',['../d7/d97/emoji__utils_8h.html',1,'']]],
+  ['emoji_5fwidth_16',['EMOJI_WIDTH',['../d2/dda/display__utils_8c.html#aeaee7a9666b3d9f80bde71005d22d498',1,'display_utils.c']]],
+  ['emojimapentry_17',['EmojiMapEntry',['../df/d93/structEmojiMapEntry.html',1,'']]]
+];

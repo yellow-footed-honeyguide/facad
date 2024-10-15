@@ -1,0 +1,41 @@
+\doxysection{git\+\_\+integration.\+h}
+\hypertarget{git__integration_8h_source}{}\label{git__integration_8h_source}\index{/home/honeyguide/Desktop/MyOpenSource/facad/src/git\_integration.h@{/home/honeyguide/Desktop/MyOpenSource/facad/src/git\_integration.h}}
+\mbox{\hyperlink{git__integration_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ git\_integration.h}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Header\ file\ for\ Git\ integration\ functionality.}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00005}00005\ \textcolor{comment}{\ *\ This\ file\ declares\ the\ interface\ for\ integrating\ Git\ status\ information}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00006}00006\ \textcolor{comment}{\ *\ into\ the\ file\ entries\ displayed\ by\ the\ facad\ tool.\ It\ provides\ the}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00007}00007\ \textcolor{comment}{\ *\ necessary\ function\ declarations\ and\ includes\ required\ dependencies.}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00008}00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00009}00009\ \textcolor{comment}{\ *\ @author\ Sergey\ Veneckiy}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00010}00010\ \textcolor{comment}{\ *\ @date\ 2024}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00011}00011\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00013}00013\ \textcolor{preprocessor}{\#ifndef\ GIT\_INTEGRATION\_H}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00014}00014\ \textcolor{preprocessor}{\#define\ GIT\_INTEGRATION\_H}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00016}00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{file__card_8h}{file\_card.h}}"{}}\ \ \textcolor{comment}{//\ Include\ for\ FileCardInfo\ structure}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{git__utils_8h}{git\_utils.h}}"{}}\ \ \textcolor{comment}{//\ Include\ for\ Git-\/related\ utility\ functions}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00018}00018\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00019}00019\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00020}00020\ \textcolor{comment}{\ *\ @brief\ Integrates\ Git\ status\ information\ into\ file\ entries.}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00021}00021\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00022}00022\ \textcolor{comment}{\ *\ This\ function\ retrieves\ the\ Git\ status\ for\ files\ in\ the\ current\ directory}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00023}00023\ \textcolor{comment}{\ *\ and\ updates\ the\ corresponding\ FileCardInfo\ structures\ with\ this\ information.}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00024}00024\ \textcolor{comment}{\ *\ It\ should\ be\ called\ after\ file\ entries\ are\ created\ but\ before\ they\ are\ displayed.}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00025}00025\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00026}00026\ \textcolor{comment}{\ *\ @param\ entries\ Pointer\ to\ an\ array\ of\ FileCardInfo\ pointers.\ Each\ entry\ represents\ a\ file\ or\ directory.}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00027}00027\ \textcolor{comment}{\ *\ @param\ num\_entries\ Pointer\ to\ the\ number\ of\ entries\ in\ the\ array.\ This\ allows\ for\ potential\ modification\ of\ the\ entry\ count.}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00028}00028\ \textcolor{comment}{\ *\ @param\ current\_dir\ The\ current\ directory\ path.\ This\ is\ used\ to\ construct\ relative\ paths\ for\ Git\ status\ comparison.}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00029}00029\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00030}00030\ \textcolor{comment}{\ *\ @note\ This\ function\ modifies\ the\ git\_status\ field\ of\ each\ FileCardInfo\ structure\ in\ the\ entries\ array.}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00031}00031\ \textcolor{comment}{\ *\ @note\ If\ the\ current\ directory\ is\ not\ a\ Git\ repository,\ this\ function\ will\ have\ no\ effect.}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00032}00032\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00033}00033\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{git__integration_8h_ac8420e6fdcd1a0373f840ecbe95a220a}{integrate\_git\_status}}(\mbox{\hyperlink{structFileCardInfo}{FileCardInfo}}**\ entries,\ \textcolor{keywordtype}{int}*\ num\_entries,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ current\_dir);}
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{git__integration_8h_source_l00035}00035\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GIT\_INTEGRATION\_H}}
+
+\end{DoxyCode}

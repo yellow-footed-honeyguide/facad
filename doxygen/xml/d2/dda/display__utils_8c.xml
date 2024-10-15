@@ -1,0 +1,550 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="d2/dda/display__utils_8c" kind="file" language="C++">
+    <compoundname>display_utils.c</compoundname>
+    <includes local="no">glob.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">wchar.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">locale.h</includes>
+    <includes refid="d5/d36/file__card_8h" local="yes">file_card.h</includes>
+    <includes refid="db/d45/git__utils_8h" local="yes">git_utils.h</includes>
+    <includes refid="d4/d6f/dir__config_8h" local="yes">dir_config.h</includes>
+    <includes refid="d3/df8/display__utils_8h" local="yes">display_utils.h</includes>
+    <incdepgraph>
+      <node id="11">
+        <label>dir_config.h</label>
+        <link refid="d4/d6f/dir__config_8h"/>
+      </node>
+      <node id="1">
+        <label>/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c</label>
+        <link refid="d2/dda/display__utils_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>display_utils.h</label>
+        <link refid="d3/df8/display__utils_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>file_card.h</label>
+        <link refid="d5/d36/file__card_8h"/>
+      </node>
+      <node id="9">
+        <label>git_utils.h</label>
+        <link refid="db/d45/git__utils_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>glob.h</label>
+      </node>
+      <node id="7">
+        <label>locale.h</label>
+      </node>
+      <node id="10">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stdio.h</label>
+      </node>
+      <node id="6">
+        <label>stdlib.h</label>
+      </node>
+      <node id="5">
+        <label>string.h</label>
+      </node>
+      <node id="4">
+        <label>wchar.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="d2/dda/display__utils_8c_1a78c99ffd76a7bb3c8c74db76207e9ab4" prot="public" static="no">
+        <name>_XOPEN_SOURCE</name>
+        <initializer>700</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c" line="15" column="9" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="d2/dda/display__utils_8c_1a2cc6f39fc4594f0e734b2588129fba03" prot="public" static="no">
+        <name>MAX_COLUMNS</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c" line="30" column="9" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="d2/dda/display__utils_8c_1ab2dc237e07e2b4c8a52a5203c216fd37" prot="public" static="no">
+        <name>SPACING</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c" line="31" column="9" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c" bodystart="31" bodyend="-1"/>
+        <referencedby refid="d2/dda/display__utils_8c_1a8b38e99d9128bf4a4badc21df13d442b" compoundref="d2/dda/display__utils_8c" startline="108" endline="199">display_entries</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="d2/dda/display__utils_8c_1aeaee7a9666b3d9f80bde71005d22d498" prot="public" static="no">
+        <name>EMOJI_WIDTH</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c" line="32" column="9" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c" bodystart="32" bodyend="-1"/>
+        <referencedby refid="d2/dda/display__utils_8c_1a8b38e99d9128bf4a4badc21df13d442b" compoundref="d2/dda/display__utils_8c" startline="108" endline="199">display_entries</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="d2/dda/display__utils_8c_1a59349b500cfa8c496dfeabb9cf1b192e" prot="public" static="no">
+        <name>EMOJI_NAME_SPACING</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c" line="33" column="9" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c" bodystart="33" bodyend="-1"/>
+        <referencedby refid="d2/dda/display__utils_8c_1a8b38e99d9128bf4a4badc21df13d442b" compoundref="d2/dda/display__utils_8c" startline="108" endline="199">display_entries</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d2/dda/display__utils_8c_1aa5f36a89eac0853279ebdf9efb3f668b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t get_utf8_char_width</definition>
+        <argsstring>(const char *str)</argsstring>
+        <name>get_utf8_char_width</name>
+        <param>
+          <type>const char *</type>
+          <declname>str</declname>
+        </param>
+        <briefdescription>
+<para>Determines the byte width of a UTF-8 character. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function analyzes the first byte of a UTF-8 character to determine its total byte width.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>str</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the start of a UTF-8 character. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The number of bytes used by the character (1-4). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c" line="44" column="8" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c" bodystart="44" bodyend="50"/>
+        <referencedby refid="d2/dda/display__utils_8c_1ad5d5547a34815dba09681cd9e69bf2a1" compoundref="d2/dda/display__utils_8c" startline="61" endline="75">get_display_width</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d2/dda/display__utils_8c_1ad5d5547a34815dba09681cd9e69bf2a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t get_display_width</definition>
+        <argsstring>(const char *str)</argsstring>
+        <name>get_display_width</name>
+        <param>
+          <type>const char *</type>
+          <declname>str</declname>
+        </param>
+        <briefdescription>
+<para>Calculates the display width of a string, accounting for multi-byte characters. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function iterates through the string, determining the width of each character and summing them to get the total display width.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>str</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The string to measure. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The display width of the string. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c" line="61" column="8" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c" bodystart="61" bodyend="75"/>
+        <references refid="d2/dda/display__utils_8c_1aa5f36a89eac0853279ebdf9efb3f668b" compoundref="d2/dda/display__utils_8c" startline="44" endline="50">get_utf8_char_width</references>
+        <referencedby refid="d2/dda/display__utils_8c_1a8b38e99d9128bf4a4badc21df13d442b" compoundref="d2/dda/display__utils_8c" startline="108" endline="199">display_entries</referencedby>
+        <referencedby refid="d2/dda/display__utils_8c_1a41df821a4866776f6f181ad9301e91ac" compoundref="d2/dda/display__utils_8c" startline="86" endline="93">print_padded</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d2/dda/display__utils_8c_1a41df821a4866776f6f181ad9301e91ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void print_padded</definition>
+        <argsstring>(const char *str, size_t width)</argsstring>
+        <name>print_padded</name>
+        <param>
+          <type>const char *</type>
+          <declname>str</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>width</declname>
+        </param>
+        <briefdescription>
+<para>Prints a string and pads it with spaces to reach the specified width. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function prints the given string and adds space padding to ensure consistent column widths in the display.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>str</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The string to print. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>width</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The total width to fill, including the string and padding. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c" line="86" column="6" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c" bodystart="86" bodyend="93"/>
+        <references refid="d2/dda/display__utils_8c_1ad5d5547a34815dba09681cd9e69bf2a1" compoundref="d2/dda/display__utils_8c" startline="61" endline="75">get_display_width</references>
+      </memberdef>
+      <memberdef kind="function" id="d2/dda/display__utils_8c_1a8b38e99d9128bf4a4badc21df13d442b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void display_entries</definition>
+        <argsstring>(FileCardInfo *entries, int num_entries, int term_width, const char *current_dir, int show_path)</argsstring>
+        <name>display_entries</name>
+        <param>
+          <type><ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref> *</type>
+          <declname>entries</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_entries</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>term_width</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>current_dir</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>show_path</declname>
+        </param>
+        <briefdescription>
+<para>Displays file entries in a formatted, multi-column layout. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function sorts the entries, calculates the appropriate layout based on terminal width, and prints the entries in a grid format. It handles emojis, Git status, and ensures proper alignment.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>entries</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of <ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref> structures to display. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>num_entries</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of entries in the array. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>term_width</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Width of the terminal in characters. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>current_dir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Current directory path. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>show_path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag to indicate whether to show the current path. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c" line="108" column="6" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c" bodystart="108" bodyend="199"/>
+        <references refid="d2/dda/display__utils_8c_1a59349b500cfa8c496dfeabb9cf1b192e" compoundref="d2/dda/display__utils_8c" startline="33">EMOJI_NAME_SPACING</references>
+        <references refid="d2/dda/display__utils_8c_1aeaee7a9666b3d9f80bde71005d22d498" compoundref="d2/dda/display__utils_8c" startline="32">EMOJI_WIDTH</references>
+        <references refid="d1/db9/git__utils_8c_1a2ef1d42e63a1b1ab2270c1d82157a384" compoundref="d1/db9/git__utils_8c" startline="100" endline="117">get_current_branch</references>
+        <references refid="d2/dda/display__utils_8c_1ad5d5547a34815dba09681cd9e69bf2a1" compoundref="d2/dda/display__utils_8c" startline="61" endline="75">get_display_width</references>
+        <references refid="dc/daf/dir__config_8c_1a4ce38149e564150cef6b9f182913ac7a" compoundref="dc/daf/dir__config_8c" startline="42" endline="54">get_max_columns</references>
+        <references refid="d2/dda/display__utils_8c_1ab2dc237e07e2b4c8a52a5203c216fd37" compoundref="d2/dda/display__utils_8c" startline="31">SPACING</references>
+        <referencedby refid="d0/d29/main_8c_1a0ddf1224851353fc92bfbff6f499fa97" compoundref="d0/d29/main_8c" startline="275" endline="423">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Implementation of display utilities for file entries. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This file contains functions for formatting and displaying file entries in a grid layout, taking into account terminal width and Unicode characters. It handles the visual representation of directory contents, including emojis, Git status, and proper spacing.</para>
+<para><simplesect kind="author"><para>Sergey Veneckiy </para>
+</simplesect>
+<simplesect kind="date"><para>2024 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>display_utils.c</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Implementation<sp/>of<sp/>display<sp/>utilities<sp/>for<sp/>file<sp/>entries.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>contains<sp/>functions<sp/>for<sp/>formatting<sp/>and<sp/>displaying<sp/>file<sp/>entries</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>in<sp/>a<sp/>grid<sp/>layout,<sp/>taking<sp/>into<sp/>account<sp/>terminal<sp/>width<sp/>and<sp/>Unicode<sp/>characters.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>It<sp/>handles<sp/>the<sp/>visual<sp/>representation<sp/>of<sp/>directory<sp/>contents,<sp/>including</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>emojis,<sp/>Git<sp/>status,<sp/>and<sp/>proper<sp/>spacing.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>@author<sp/>Sergey<sp/>Veneckiy</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>@date<sp/>2024</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Enable<sp/>POSIX.1-2008<sp/>+<sp/>XSI<sp/>(X/Open<sp/>System<sp/>Interfaces<sp/>Extension)<sp/>features</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="d2/dda/display__utils_8c_1a78c99ffd76a7bb3c8c74db76207e9ab4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_XOPEN_SOURCE<sp/>700</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;glob.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;wchar.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;locale.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d5/d36/file__card_8h" kindref="compound">file_card.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="db/d45/git__utils_8h" kindref="compound">git_utils.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d4/d6f/dir__config_8h" kindref="compound">dir_config.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d3/df8/display__utils_8h" kindref="compound">display_utils.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Constants<sp/>for<sp/>display<sp/>formatting</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="d2/dda/display__utils_8c_1a2cc6f39fc4594f0e734b2588129fba03" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_COLUMNS<sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="d2/dda/display__utils_8c_1ab2dc237e07e2b4c8a52a5203c216fd37" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SPACING<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="d2/dda/display__utils_8c_1aeaee7a9666b3d9f80bde71005d22d498" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EMOJI_WIDTH<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="d2/dda/display__utils_8c_1a59349b500cfa8c496dfeabb9cf1b192e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EMOJI_NAME_SPACING<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="35"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Determines<sp/>the<sp/>byte<sp/>width<sp/>of<sp/>a<sp/>UTF-8<sp/>character.</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/>This<sp/>function<sp/>analyzes<sp/>the<sp/>first<sp/>byte<sp/>of<sp/>a<sp/>UTF-8<sp/>character<sp/>to<sp/>determine</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*<sp/>its<sp/>total<sp/>byte<sp/>width.</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*<sp/>@param<sp/>str<sp/>Pointer<sp/>to<sp/>the<sp/>start<sp/>of<sp/>a<sp/>UTF-8<sp/>character.</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*<sp/>@return<sp/>The<sp/>number<sp/>of<sp/>bytes<sp/>used<sp/>by<sp/>the<sp/>character<sp/>(1-4).</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="d2/dda/display__utils_8c_1aa5f36a89eac0853279ebdf9efb3f668b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="d2/dda/display__utils_8c_1aa5f36a89eac0853279ebdf9efb3f668b" kindref="member">get_utf8_char_width</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*str)<sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>c<sp/>=<sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>char)*str;<sp/><sp/></highlight><highlight class="comment">//<sp/>Get<sp/>the<sp/>first<sp/>byte<sp/>of<sp/>the<sp/>character</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(c<sp/>&lt;<sp/>0x80)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ASCII<sp/>character<sp/>(0xxxxxxx)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(c<sp/>&lt;<sp/>0xE0)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>2;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>2-byte<sp/>UTF-8<sp/>character<sp/>(110xxxxx)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(c<sp/>&lt;<sp/>0xF0)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>3;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>3-byte<sp/>UTF-8<sp/>character<sp/>(1110xxxx)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>4;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>4-byte<sp/>UTF-8<sp/>character<sp/>(11110xxx)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="52"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Calculates<sp/>the<sp/>display<sp/>width<sp/>of<sp/>a<sp/>string,<sp/>accounting<sp/>for<sp/>multi-byte<sp/>characters.</highlight></codeline>
+<codeline lineno="54"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/>*<sp/>This<sp/>function<sp/>iterates<sp/>through<sp/>the<sp/>string,<sp/>determining<sp/>the<sp/>width<sp/>of<sp/>each<sp/>character</highlight></codeline>
+<codeline lineno="56"><highlight class="comment"><sp/>*<sp/>and<sp/>summing<sp/>them<sp/>to<sp/>get<sp/>the<sp/>total<sp/>display<sp/>width.</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/>*<sp/>@param<sp/>str<sp/>The<sp/>string<sp/>to<sp/>measure.</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/>*<sp/>@return<sp/>The<sp/>display<sp/>width<sp/>of<sp/>the<sp/>string.</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="d2/dda/display__utils_8c_1ad5d5547a34815dba09681cd9e69bf2a1" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="d2/dda/display__utils_8c_1ad5d5547a34815dba09681cd9e69bf2a1" kindref="member">get_display_width</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*str)<sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>width<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(*str)<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>Loop<sp/>through<sp/>each<sp/>character<sp/>in<sp/>the<sp/>string</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>char_width<sp/>=<sp/><ref refid="d2/dda/display__utils_8c_1aa5f36a89eac0853279ebdf9efb3f668b" kindref="member">get_utf8_char_width</ref>(str);<sp/><sp/></highlight><highlight class="comment">//<sp/>Get<sp/>the<sp/>byte<sp/>width<sp/>of<sp/>the<sp/>current<sp/>character</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(char_width<sp/>==<sp/>4)<sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>width<sp/>+=<sp/>2;<sp/><sp/></highlight><highlight class="comment">//<sp/>Emoji<sp/>and<sp/>other<sp/>wide<sp/>characters<sp/>count<sp/>as<sp/>2<sp/>display<sp/>units</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(char_width<sp/>&gt;<sp/>1)<sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>width<sp/>+=<sp/>1;<sp/><sp/></highlight><highlight class="comment">//<sp/>Other<sp/>multi-byte<sp/>characters<sp/>count<sp/>as<sp/>1<sp/>display<sp/>unit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>width<sp/>+=<sp/>1;<sp/><sp/></highlight><highlight class="comment">//<sp/>ASCII<sp/>characters<sp/>count<sp/>as<sp/>1<sp/>display<sp/>unit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>str<sp/>+=<sp/>char_width;<sp/><sp/></highlight><highlight class="comment">//<sp/>Move<sp/>to<sp/>the<sp/>next<sp/>character</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>width;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="77"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Prints<sp/>a<sp/>string<sp/>and<sp/>pads<sp/>it<sp/>with<sp/>spaces<sp/>to<sp/>reach<sp/>the<sp/>specified<sp/>width.</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="80"><highlight class="comment"><sp/>*<sp/>This<sp/>function<sp/>prints<sp/>the<sp/>given<sp/>string<sp/>and<sp/>adds<sp/>space<sp/>padding<sp/>to<sp/>ensure</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/>*<sp/>consistent<sp/>column<sp/>widths<sp/>in<sp/>the<sp/>display.</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="83"><highlight class="comment"><sp/>*<sp/>@param<sp/>str<sp/>The<sp/>string<sp/>to<sp/>print.</highlight></codeline>
+<codeline lineno="84"><highlight class="comment"><sp/>*<sp/>@param<sp/>width<sp/>The<sp/>total<sp/>width<sp/>to<sp/>fill,<sp/>including<sp/>the<sp/>string<sp/>and<sp/>padding.</highlight></codeline>
+<codeline lineno="85"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="d2/dda/display__utils_8c_1a41df821a4866776f6f181ad9301e91ac" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d2/dda/display__utils_8c_1a41df821a4866776f6f181ad9301e91ac" kindref="member">print_padded</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*str,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>width)<sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>str_width<sp/>=<sp/><ref refid="d2/dda/display__utils_8c_1ad5d5547a34815dba09681cd9e69bf2a1" kindref="member">get_display_width</ref>(str);<sp/><sp/></highlight><highlight class="comment">//<sp/>Get<sp/>the<sp/>display<sp/>width<sp/>of<sp/>the<sp/>string</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s&quot;</highlight><highlight class="normal">,<sp/>str);<sp/><sp/></highlight><highlight class="comment">//<sp/>Print<sp/>the<sp/>string</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Add<sp/>padding<sp/>spaces</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>str_width;<sp/>i<sp/>&lt;<sp/>width;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="95"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="96"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Displays<sp/>file<sp/>entries<sp/>in<sp/>a<sp/>formatted,<sp/>multi-column<sp/>layout.</highlight></codeline>
+<codeline lineno="97"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="98"><highlight class="comment"><sp/>*<sp/>This<sp/>function<sp/>sorts<sp/>the<sp/>entries,<sp/>calculates<sp/>the<sp/>appropriate<sp/>layout<sp/>based<sp/>on</highlight></codeline>
+<codeline lineno="99"><highlight class="comment"><sp/>*<sp/>terminal<sp/>width,<sp/>and<sp/>prints<sp/>the<sp/>entries<sp/>in<sp/>a<sp/>grid<sp/>format.<sp/>It<sp/>handles<sp/>emojis,</highlight></codeline>
+<codeline lineno="100"><highlight class="comment"><sp/>*<sp/>Git<sp/>status,<sp/>and<sp/>ensures<sp/>proper<sp/>alignment.</highlight></codeline>
+<codeline lineno="101"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="102"><highlight class="comment"><sp/>*<sp/>@param<sp/>entries<sp/>Array<sp/>of<sp/>FileCardInfo<sp/>structures<sp/>to<sp/>display.</highlight></codeline>
+<codeline lineno="103"><highlight class="comment"><sp/>*<sp/>@param<sp/>num_entries<sp/>Number<sp/>of<sp/>entries<sp/>in<sp/>the<sp/>array.</highlight></codeline>
+<codeline lineno="104"><highlight class="comment"><sp/>*<sp/>@param<sp/>term_width<sp/>Width<sp/>of<sp/>the<sp/>terminal<sp/>in<sp/>characters.</highlight></codeline>
+<codeline lineno="105"><highlight class="comment"><sp/>*<sp/>@param<sp/>current_dir<sp/>Current<sp/>directory<sp/>path.</highlight></codeline>
+<codeline lineno="106"><highlight class="comment"><sp/>*<sp/>@param<sp/>show_path<sp/>Flag<sp/>to<sp/>indicate<sp/>whether<sp/>to<sp/>show<sp/>the<sp/>current<sp/>path.</highlight></codeline>
+<codeline lineno="107"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="d2/dda/display__utils_8c_1a8b38e99d9128bf4a4badc21df13d442b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d2/dda/display__utils_8c_1a8b38e99d9128bf4a4badc21df13d442b" kindref="member">display_entries</ref>(<ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref><sp/>*entries,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_entries,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>term_width,</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*current_dir,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>show_path)<sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>setlocale(LC_ALL,<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">);<sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>the<sp/>locale<sp/>for<sp/>proper<sp/>Unicode<sp/>handling</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Display<sp/>the<sp/>current<sp/>directory<sp/>and<sp/>Git<sp/>branch<sp/>if<sp/>requested</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(show_path)<sp/>{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*branch<sp/>=<sp/><ref refid="d1/db9/git__utils_8c_1a2ef1d42e63a1b1ab2270c1d82157a384" kindref="member">get_current_branch</ref>();</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(branch)<sp/>{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//printf(&quot;\033[1m%s\033[0m<sp/>(\033[32m%s\033[0m)\n&quot;,<sp/>current_dir,<sp/>branch);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\033[1m%s\033[0m<sp/><sp/>\033[38;5;202m[%s]\033[0m\n&quot;</highlight><highlight class="normal">,<sp/>current_dir,<sp/>branch);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(branch);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\033[1m%s\033[0m\n&quot;</highlight><highlight class="normal">,<sp/>current_dir);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Allocate<sp/>memory<sp/>for<sp/>storing<sp/>entry<sp/>widths</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*entry_widths<sp/>=<sp/>malloc(num_entries<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!entry_widths)<sp/>{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Memory<sp/>allocation<sp/>failed\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>the<sp/>width<sp/>of<sp/>each<sp/>entry<sp/>and<sp/>find<sp/>the<sp/>maximum<sp/>width</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_width<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>num_entries;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>width:<sp/>emoji<sp/>+<sp/>spacing<sp/>+<sp/>name<sp/>+<sp/>potential<sp/>Git<sp/>status</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>entry_widths[i]<sp/>=<sp/><ref refid="d2/dda/display__utils_8c_1aeaee7a9666b3d9f80bde71005d22d498" kindref="member">EMOJI_WIDTH</ref><sp/>+<sp/><ref refid="d2/dda/display__utils_8c_1a59349b500cfa8c496dfeabb9cf1b192e" kindref="member">EMOJI_NAME_SPACING</ref><sp/>+<sp/><ref refid="d2/dda/display__utils_8c_1ad5d5547a34815dba09681cd9e69bf2a1" kindref="member">get_display_width</ref>(entries[i].name);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(entries[i].git_status[0]<sp/>!=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>entry_widths[i]<sp/>+=<sp/>3;<sp/></highlight><highlight class="comment">//<sp/>Add<sp/>3<sp/>for<sp/>&quot;(X)&quot;<sp/>Git<sp/>status</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(entry_widths[i]<sp/>&gt;<sp/>max_width)<sp/>{</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>max_width<sp/>=<sp/>entry_widths[i];</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>the<sp/>number<sp/>of<sp/>columns<sp/>based<sp/>on<sp/>terminal<sp/>width</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num_columns<sp/>=<sp/>(term_width<sp/>+<sp/><ref refid="d2/dda/display__utils_8c_1ab2dc237e07e2b4c8a52a5203c216fd37" kindref="member">SPACING</ref>)<sp/>/<sp/>(max_width<sp/>+<sp/><ref refid="d2/dda/display__utils_8c_1ab2dc237e07e2b4c8a52a5203c216fd37" kindref="member">SPACING</ref>);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>max_columns<sp/>=<sp/><ref refid="dc/daf/dir__config_8c_1a4ce38149e564150cef6b9f182913ac7a" kindref="member">get_max_columns</ref>(current_dir);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(num_columns<sp/>&gt;<sp/>max_columns)<sp/>num_columns<sp/>=<sp/>max_columns;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(num_columns<sp/>&lt;<sp/>1)<sp/>num_columns<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Allocate<sp/>memory<sp/>for<sp/>column<sp/>widths</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*column_widths<sp/>=<sp/>calloc(num_columns,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!column_widths)<sp/>{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Memory<sp/>allocation<sp/>failed\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(entry_widths);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>the<sp/>number<sp/>of<sp/>rows</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rows<sp/>=<sp/>(num_entries<sp/>+<sp/>num_columns<sp/>-<sp/>1)<sp/>/<sp/>num_columns;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>the<sp/>width<sp/>of<sp/>each<sp/>column</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>num_entries;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>col<sp/>=<sp/>i<sp/>/<sp/>rows;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(entry_widths[i]<sp/>&gt;<sp/>column_widths[col])<sp/>{</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>column_widths[col]<sp/>=<sp/>entry_widths[i];</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Display<sp/>the<sp/>entries<sp/>in<sp/>a<sp/>grid<sp/>format</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>row<sp/>=<sp/>0;<sp/>row<sp/>&lt;<sp/>rows;<sp/>row++)<sp/>{</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>col<sp/>=<sp/>0;<sp/>col<sp/>&lt;<sp/>num_columns;<sp/>col++)<sp/>{</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index<sp/>=<sp/>col<sp/>*<sp/>rows<sp/>+<sp/>row;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(index<sp/>&lt;<sp/>num_entries)<sp/>{</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Print<sp/>emoji</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s<sp/>&quot;</highlight><highlight class="normal">,<sp/>entries[index].emoji);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Print<sp/>file<sp/>name</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s&quot;</highlight><highlight class="normal">,<sp/>entries[index].name);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Print<sp/>Git<sp/>status<sp/>if<sp/>available</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(entries[index].git_status[0]<sp/>!=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//printf(&quot;(\033[32m%c\033[0m)&quot;,<sp/>entries[index].git_status[0]);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\033[38;5;202m[%c]\033[0m&quot;</highlight><highlight class="normal">,<sp/>entries[index].git_status[0]);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>and<sp/>print<sp/>padding</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>printed_width<sp/>=<sp/>entry_widths[index];</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>padding<sp/>=<sp/>(col<sp/>&lt;<sp/>num_columns<sp/>-<sp/>1)<sp/>?<sp/>column_widths[col]<sp/>-<sp/>printed_width<sp/>+<sp/><ref refid="d2/dda/display__utils_8c_1ab2dc237e07e2b4c8a52a5203c216fd37" kindref="member">SPACING</ref><sp/>:<sp/>0;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>padding;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">);<sp/><sp/></highlight><highlight class="comment">//<sp/>Move<sp/>to<sp/>the<sp/>next<sp/>row</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Free<sp/>allocated<sp/>memory</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>free(entry_widths);</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>free(column_widths);</highlight></codeline>
+<codeline lineno="199"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/display_utils.c"/>
+  </compounddef>
+</doxygen>

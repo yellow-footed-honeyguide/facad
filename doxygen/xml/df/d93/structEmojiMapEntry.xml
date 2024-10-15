@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="df/d93/structEmojiMapEntry" kind="struct" language="C++" prot="public">
+    <compoundname>EmojiMapEntry</compoundname>
+    <includes refid="de/d86/emoji__mappings_8h" local="no">emoji_mappings.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="df/d93/structEmojiMapEntry_1ac775896213ff79129e458babf3e2faea" prot="public" static="no" mutable="no">
+        <type>const char *</type>
+        <definition>const char* EmojiMapEntry::key</definition>
+        <argsstring></argsstring>
+        <name>key</name>
+        <qualifiedname>EmojiMapEntry::key</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The key (file name, extension, or content pattern) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" line="28" column="16" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="df/d93/structEmojiMapEntry_1aa1ac56c6bf8cc3b9676e2ca254114c0b" prot="public" static="no" mutable="no">
+        <type>const char *</type>
+        <definition>const char* EmojiMapEntry::emoji</definition>
+        <argsstring></argsstring>
+        <name>emoji</name>
+        <qualifiedname>EmojiMapEntry::emoji</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The corresponding emoji </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" line="29" column="16" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Structure to map keys (file names or extensions) to emojis. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>EmojiMapEntry</label>
+        <link refid="df/d93/structEmojiMapEntry"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" line="27" column="1" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/emoji_mappings.h" bodystart="27" bodyend="30"/>
+    <listofallmembers>
+      <member refid="df/d93/structEmojiMapEntry_1aa1ac56c6bf8cc3b9676e2ca254114c0b" prot="public" virt="non-virtual"><scope>EmojiMapEntry</scope><name>emoji</name></member>
+      <member refid="df/d93/structEmojiMapEntry_1ac775896213ff79129e458babf3e2faea" prot="public" virt="non-virtual"><scope>EmojiMapEntry</scope><name>key</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,177 @@
+\doxysection{file\+\_\+card.\+c}
+\hypertarget{file__card_8c_source}{}\label{file__card_8c_source}\index{/home/honeyguide/Desktop/MyOpenSource/facad/src/file\_card.c@{/home/honeyguide/Desktop/MyOpenSource/facad/src/file\_card.c}}
+\mbox{\hyperlink{file__card_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ file\_card.c}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Implementation\ of\ file\ card\ handling\ functions.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00005}00005\ \textcolor{comment}{\ *\ This\ file\ contains\ functions\ for\ creating,\ freeing,\ and\ comparing\ file\ entries,}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00006}00006\ \textcolor{comment}{\ *\ as\ well\ as\ utility\ functions\ for\ working\ with\ file\ names\ and\ extensions.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00007}00007\ \textcolor{comment}{\ *\ It\ provides\ the\ core\ functionality\ for\ managing\ file\ information\ in\ the\ facad\ tool.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00008}00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00009}00009\ \textcolor{comment}{\ *\ @author\ Sergey\ Veneckiy}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00010}00010\ \textcolor{comment}{\ *\ @date\ 2024}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00011}00011\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <sys/stat.h>}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <ctype.h>}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{emoji__utils_8h}{emoji\_utils.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00019}00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{file__card_8h}{file\_card.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00020}00020\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00021}00021\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00022}00022\ \textcolor{comment}{\ *\ @brief\ Creates\ a\ new\ file\ card\ based\ on\ the\ given\ path.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00023}00023\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00024}00024\ \textcolor{comment}{\ *\ This\ function\ initializes\ a\ FileCardInfo\ structure\ with\ information\ about\ the\ file,}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00025}00025\ \textcolor{comment}{\ *\ including\ its\ name,\ emoji\ representation,\ and\ flags\ for\ directory\ and\ hidden\ status.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00026}00026\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00027}00027\ \textcolor{comment}{\ *\ @param\ entry\ Pointer\ to\ a\ FileCardInfo\ structure\ to\ be\ filled.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00028}00028\ \textcolor{comment}{\ *\ @param\ path\ Path\ of\ the\ file\ to\ analyze.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00029}00029\ \textcolor{comment}{\ *\ @return\ 0\ on\ success,\ -\/1\ on\ error.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00030}00030\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00031}\mbox{\hyperlink{file__card_8c_a8ac3f1a318ebad42a9d465b92e4aa598}{00031}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__card_8c_a8ac3f1a318ebad42a9d465b92e4aa598}{create\_file\_entry}}(\mbox{\hyperlink{structFileCardInfo}{FileCardInfo}}\ *entry,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path)}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00032}00032\ \{}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00033}00033\ \ \ \ \ \textcolor{comment}{//\ Duplicate\ the\ file\ name\ and\ store\ it\ in\ the\ entry}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00034}00034\ \ \ \ \ entry-\/>\mbox{\hyperlink{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}{name}}\ =\ strdup(path);}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00035}00035\ \ \ \ \ \textcolor{comment}{//\ Get\ the\ appropriate\ emoji\ for\ the\ file}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00036}00036\ \ \ \ \ entry-\/>\mbox{\hyperlink{structFileCardInfo_a7f0da0b8251b0c10f77a559d80eb567c}{emoji}}\ =\ \mbox{\hyperlink{emoji__utils_8c_a853b78da7b6116949e96148e040669d5}{get\_emoji}}(path);}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00038}00038\ \ \ \ \ \textcolor{keyword}{struct\ }stat\ path\_stat;}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00039}00039\ \ \ \ \ \textcolor{comment}{//\ Get\ file\ status\ information}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00040}00040\ \ \ \ \ \textcolor{keywordflow}{if}\ (lstat(path,\ \&path\_stat)\ !=\ 0)}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00041}00041\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;\ \ \textcolor{comment}{//\ Return\ -\/1\ if\ unable\ to\ get\ file\ status}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00045}00045\ \ \ \ \ \textcolor{comment}{//\ Set\ directory\ flag\ based\ on\ file\ type}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00046}00046\ \ \ \ \ entry-\/>\mbox{\hyperlink{structFileCardInfo_aa328a53a5e7138dbeb6992f00d6b89ad}{is\_directory}}\ =\ S\_ISDIR(path\_stat.st\_mode);}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00047}00047\ \ \ \ \ \textcolor{comment}{//\ Set\ hidden\ flag\ if\ the\ file\ name\ starts\ with\ a\ dot}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00048}00048\ \ \ \ \ entry-\/>\mbox{\hyperlink{structFileCardInfo_a0976436903b23e6cdd4deb1052b8e6ab}{is\_hidden}}\ =\ (path[0]\ ==\ \textcolor{charliteral}{'.'});}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00049}00049\ \ \ \ \ \textcolor{comment}{//\ Initialize\ Git\ status\ as\ empty}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00050}00050\ \ \ \ \ entry-\/>\mbox{\hyperlink{structFileCardInfo_a194c96b36719d8cfefd81e58c527668c}{git\_status}}[0]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00051}00051\ \ \ \ \ entry-\/>\mbox{\hyperlink{structFileCardInfo_a194c96b36719d8cfefd81e58c527668c}{git\_status}}[1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00053}00053\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;\ \ \textcolor{comment}{//\ Return\ 0\ on\ success}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00054}00054\ \}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00055}00055\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00056}00056\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00057}00057\ \textcolor{comment}{\ *\ @brief\ Frees\ memory\ allocated\ for\ a\ file\ entry.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00058}00058\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00059}00059\ \textcolor{comment}{\ *\ This\ function\ releases\ the\ memory\ allocated\ for\ the\ name\ and\ emoji\ fields}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00060}00060\ \textcolor{comment}{\ *\ of\ a\ FileCardInfo\ structure.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00061}00061\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00062}00062\ \textcolor{comment}{\ *\ @param\ entry\ Pointer\ to\ the\ FileCardInfo\ structure\ to\ free.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00063}00063\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00064}\mbox{\hyperlink{file__card_8c_af25b4091089527258ab9a8cb5ebff9e7}{00064}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{file__card_8c_af25b4091089527258ab9a8cb5ebff9e7}{free\_file\_entry}}(\mbox{\hyperlink{structFileCardInfo}{FileCardInfo}}\ *entry)}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00065}00065\ \{}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00066}00066\ \ \ \ \ free(entry-\/>\mbox{\hyperlink{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}{name}});\ \ \textcolor{comment}{//\ Free\ the\ memory\ allocated\ for\ the\ name\ string}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00067}00067\ \ \ \ \ free(entry-\/>\mbox{\hyperlink{structFileCardInfo_a7f0da0b8251b0c10f77a559d80eb567c}{emoji}});\ \textcolor{comment}{//\ Free\ the\ memory\ allocated\ for\ the\ emoji\ string}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00068}00068\ \}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00069}00069\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00070}00070\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00071}00071\ \textcolor{comment}{\ *\ @brief\ Extracts\ the\ file\ extension\ from\ a\ filename.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00072}00072\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00073}00073\ \textcolor{comment}{\ *\ This\ function\ finds\ the\ last\ occurrence\ of\ a\ dot\ in\ the\ filename\ and}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00074}00074\ \textcolor{comment}{\ *\ returns\ the\ substring\ following\ it\ as\ the\ file\ extension.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00075}00075\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00076}00076\ \textcolor{comment}{\ *\ @param\ name\ The\ filename\ to\ analyze.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00077}00077\ \textcolor{comment}{\ *\ @return\ A\ pointer\ to\ the\ file\ extension,\ or\ an\ empty\ string\ if\ no\ extension\ is\ found.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00078}00078\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00079}\mbox{\hyperlink{file__card_8c_a6cc6fb631e1f28a066db43ca077cdd83}{00079}}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{file__card_8c_a6cc6fb631e1f28a066db43ca077cdd83}{get\_extension}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name)}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00080}00080\ \{}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00081}00081\ \ \ \ \ \textcolor{keywordtype}{char}\ *dot\ =\ strrchr(name,\ \textcolor{charliteral}{'.'});\ \textcolor{comment}{//\ Find\ the\ last\ occurrence\ of\ '.'}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00082}00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (!dot\ ||\ dot\ ==\ name)}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00083}00083\ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ no\ '.'\ found\ or\ it's\ the\ first\ character}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};\ \textcolor{comment}{//\ Return\ empty\ string\ (no\ extension)}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00085}00085\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00086}00086\ \ \ \ \ \textcolor{keywordflow}{return}\ dot\ +\ 1;\ \textcolor{comment}{//\ Return\ pointer\ to\ character\ after\ the\ last\ '.'}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00087}00087\ \}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00088}00088\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00089}00089\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00090}00090\ \textcolor{comment}{\ *\ @brief\ Compare\ two\ strings\ case-\/insensitively.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00091}00091\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00092}00092\ \textcolor{comment}{\ *\ This\ function\ provides\ a\ case-\/insensitive\ string\ comparison,}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00093}00093\ \textcolor{comment}{\ *\ similar\ to\ strcasecmp,\ but\ implemented\ for\ portability.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00094}00094\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00095}00095\ \textcolor{comment}{\ *\ @param\ a\ The\ first\ string\ to\ compare.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00096}00096\ \textcolor{comment}{\ *\ @param\ b\ The\ second\ string\ to\ compare.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00097}00097\ \textcolor{comment}{\ *\ @return\ An\ integer\ less\ than,\ equal\ to,\ or\ greater\ than\ zero\ if\ a\ is\ found,}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00098}00098\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ respectively,\ to\ be\ less\ than,\ to\ match,\ or\ be\ greater\ than\ b.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00099}00099\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00100}\mbox{\hyperlink{file__card_8c_ab53dd5e9229168ae3ea9dd6718dc2eb8}{00100}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__card_8c_ab53dd5e9229168ae3ea9dd6718dc2eb8}{strcasecmp\_wrapper}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *b)\ \{}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00101}00101\ \ \ \ \ \textcolor{comment}{//\ Loop\ continues\ as\ long\ as\ both\ strings\ have\ characters}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00102}00102\ \ \ \ \ \textcolor{keywordflow}{while}\ (*a\ \&\&\ *b)\ \{}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ current\ characters\ to\ lowercase\ for\ case-\/insensitive\ comparison}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00104}00104\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ca\ =\ tolower((\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char})*a);}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00105}00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cb\ =\ tolower((\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char})*b);}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00107}00107\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ characters\ differ,\ return\ their\ difference\ (determines\ sorting\ order)}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ca\ !=\ cb)\ \textcolor{keywordflow}{return}\ ca\ -\/\ cb;}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Move\ to\ the\ next\ character\ in\ both\ strings}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00111}00111\ \ \ \ \ \ \ \ \ a++;}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00112}00112\ \ \ \ \ \ \ \ \ b++;}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00113}00113\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00115}00115\ \ \ \ \ \textcolor{comment}{//\ If\ we've\ reached\ here,\ one\ string\ might\ be\ longer\ than\ the\ other}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00116}00116\ \ \ \ \ \textcolor{comment}{//\ Compare\ the\ last\ characters\ (one\ might\ be\ '\(\backslash\)0'\ if\ strings\ are\ different\ lengths)}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00117}00117\ \ \ \ \ \textcolor{keywordflow}{return}\ tolower((\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char})*a)\ -\/\ tolower((\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char})*b);}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00118}00118\ \}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00119}00119\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00120}00120\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00121}00121\ \textcolor{comment}{\ *\ @brief\ Compare\ two\ file\ entries\ for\ sorting.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00122}00122\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00123}00123\ \textcolor{comment}{\ *\ This\ function\ implements\ the\ sorting\ logic\ for\ file\ entries:}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00124}00124\ \textcolor{comment}{\ *\ 1.\ Directories\ before\ files}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00125}00125\ \textcolor{comment}{\ *\ 2.\ Within\ directories\ and\ files,\ dotfiles\ (hidden)\ before\ non-\/dotfiles}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00126}00126\ \textcolor{comment}{\ *\ 3.\ Files\ sorted\ by\ extension}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00127}00127\ \textcolor{comment}{\ *\ 4.\ Alphabetical\ sorting\ within\ the\ same\ type\ and\ extension}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00128}00128\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00129}00129\ \textcolor{comment}{\ *\ @param\ a\ Pointer\ to\ the\ first\ FileCardInfo\ structure.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00130}00130\ \textcolor{comment}{\ *\ @param\ b\ Pointer\ to\ the\ second\ FileCardInfo\ structure.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00131}00131\ \textcolor{comment}{\ *\ @return\ An\ integer\ less\ than,\ equal\ to,\ or\ greater\ than\ zero\ if\ a\ is\ found,}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00132}00132\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ respectively,\ to\ be\ less\ than,\ to\ match,\ or\ be\ greater\ than\ b.}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00133}00133\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00134}\mbox{\hyperlink{file__card_8c_aaa0d8cd7d720e6b260615df1be0fdc7f}{00134}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__card_8c_aaa0d8cd7d720e6b260615df1be0fdc7f}{compare\_file\_entries}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *b)}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00135}00135\ \{}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00136}00136\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structFileCardInfo}{FileCardInfo}}\ *entry\_a\ =\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{structFileCardInfo}{FileCardInfo}}\ *)a;}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00137}00137\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structFileCardInfo}{FileCardInfo}}\ *entry\_b\ =\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{structFileCardInfo}{FileCardInfo}}\ *)b;}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00139}00139\ \ \ \ \ \textcolor{comment}{//\ Sort\ directories\ before\ files}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00140}00140\ \ \ \ \ \textcolor{keywordflow}{if}\ (entry\_a-\/>\mbox{\hyperlink{structFileCardInfo_aa328a53a5e7138dbeb6992f00d6b89ad}{is\_directory}}\ !=\ entry\_b-\/>\mbox{\hyperlink{structFileCardInfo_aa328a53a5e7138dbeb6992f00d6b89ad}{is\_directory}})\ \{}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ entry\_b-\/>\mbox{\hyperlink{structFileCardInfo_aa328a53a5e7138dbeb6992f00d6b89ad}{is\_directory}}\ -\/\ entry\_a-\/>\mbox{\hyperlink{structFileCardInfo_aa328a53a5e7138dbeb6992f00d6b89ad}{is\_directory}};}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00142}00142\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00144}00144\ \ \ \ \ \textcolor{comment}{//\ For\ directories,\ sort\ dotfiles\ first}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00145}00145\ \ \ \ \ \textcolor{keywordflow}{if}\ (entry\_a-\/>\mbox{\hyperlink{structFileCardInfo_aa328a53a5e7138dbeb6992f00d6b89ad}{is\_directory}}\ \&\&\ entry\_b-\/>\mbox{\hyperlink{structFileCardInfo_aa328a53a5e7138dbeb6992f00d6b89ad}{is\_directory}})\ \{}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00146}00146\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ one\ is\ a\ dotfile\ and\ the\ other\ isn't}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((entry\_a-\/>\mbox{\hyperlink{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}{name}}[0]\ ==\ \textcolor{charliteral}{'.'})\ !=\ (entry\_b-\/>\mbox{\hyperlink{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}{name}}[0]\ ==\ \textcolor{charliteral}{'.'}))\ \{}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (entry\_b-\/>\mbox{\hyperlink{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}{name}}[0]\ ==\ \textcolor{charliteral}{'.'})\ -\/\ (entry\_a-\/>\mbox{\hyperlink{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}{name}}[0]\ ==\ \textcolor{charliteral}{'.'});}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00149}00149\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00150}00150\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Both\ are\ either\ dotfiles\ or\ non-\/dotfiles,\ sort\ alphabetically}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00151}00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{file__card_8c_ab53dd5e9229168ae3ea9dd6718dc2eb8}{strcasecmp\_wrapper}}(entry\_a-\/>\mbox{\hyperlink{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}{name}},\ entry\_b-\/>\mbox{\hyperlink{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}{name}});}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00152}00152\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00154}00154\ \ \ \ \ \textcolor{comment}{//\ For\ files,\ sort\ dotfiles\ first}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00155}00155\ \ \ \ \ \textcolor{keywordflow}{if}\ ((entry\_a-\/>\mbox{\hyperlink{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}{name}}[0]\ ==\ \textcolor{charliteral}{'.'})\ !=\ (entry\_b-\/>\mbox{\hyperlink{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}{name}}[0]\ ==\ \textcolor{charliteral}{'.'}))\ \{}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00156}00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (entry\_b-\/>\mbox{\hyperlink{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}{name}}[0]\ ==\ \textcolor{charliteral}{'.'})\ -\/\ (entry\_a-\/>\mbox{\hyperlink{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}{name}}[0]\ ==\ \textcolor{charliteral}{'.'});}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00157}00157\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00159}00159\ \ \ \ \ \textcolor{comment}{//\ Sort\ files\ by\ extension}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00160}00160\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *ext\_a\ =\ \mbox{\hyperlink{file__card_8c_a6cc6fb631e1f28a066db43ca077cdd83}{get\_extension}}(entry\_a-\/>\mbox{\hyperlink{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}{name}});}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00161}00161\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *ext\_b\ =\ \mbox{\hyperlink{file__card_8c_a6cc6fb631e1f28a066db43ca077cdd83}{get\_extension}}(entry\_b-\/>\mbox{\hyperlink{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}{name}});}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00162}00162\ \ \ \ \ \textcolor{keywordtype}{int}\ ext\_cmp\ =\ \mbox{\hyperlink{file__card_8c_ab53dd5e9229168ae3ea9dd6718dc2eb8}{strcasecmp\_wrapper}}(ext\_a,\ ext\_b);}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00164}00164\ \ \ \ \ \textcolor{comment}{//\ If\ extensions\ differ,\ return\ their\ comparison\ result}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00165}00165\ \ \ \ \ \textcolor{keywordflow}{if}\ (ext\_cmp\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ext\_cmp;}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00167}00167\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00169}00169\ \ \ \ \ \textcolor{comment}{//\ If\ extensions\ are\ the\ same,\ sort\ alphabetically\ by\ name}}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00170}00170\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{file__card_8c_ab53dd5e9229168ae3ea9dd6718dc2eb8}{strcasecmp\_wrapper}}(entry\_a-\/>\mbox{\hyperlink{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}{name}},\ entry\_b-\/>\mbox{\hyperlink{structFileCardInfo_a3c0477ce53183f2738943d953f7baa55}{name}});}
+\DoxyCodeLine{\Hypertarget{file__card_8c_source_l00171}00171\ \}}
+
+\end{DoxyCode}

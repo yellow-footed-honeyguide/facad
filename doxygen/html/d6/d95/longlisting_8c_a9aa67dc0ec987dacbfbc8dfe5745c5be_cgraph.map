@@ -1,0 +1,31 @@
+<map id="print_longlisting" name="print_longlisting">
+<area shape="rect" id="Node000001" title="Prints a detailed listing of the contents of a directory." alt="" coords="5,133,132,161"/>
+<area shape="rect" id="Node000002" href="$d6/d95/longlisting_8c.html#a18cb88825df7452df9b5ce2309c887cf" title="Comparison function for sorting file_info structures." alt="" coords="190,81,321,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,130,188,111,189,116,122,135"/>
+<area shape="rect" id="Node000003" href="$d6/d95/longlisting_8c.html#a58ed2be9f460ed564cbd43d32e1ce658" title="Gets detailed information about a file." alt="" coords="205,133,306,161"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="132,145,189,145,189,150,132,150"/>
+<area shape="rect" id="Node000008" href="$d6/d95/longlisting_8c.html#a33c3f39ac9dd42760160e6cf451aed2a" title="Prints sorted entries in a detailed format." alt="" coords="180,237,331,265"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="97,159,217,227,214,232,94,164"/>
+<area shape="rect" id="Node000004" href="$d6/d95/longlisting_8c.html#a066e44c22599f18b5e86355f71992743" title="Counts the number of subdirectories in a given directory." alt="" coords="390,5,501,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="305,132,329,118,345,101,353,82,361,63,377,44,384,39,388,43,381,48,365,66,358,84,350,103,333,123,308,137"/>
+<area shape="rect" id="Node000005" href="$d6/d95/longlisting_8c.html#a99a2816fdc6aa63a386b8b8aef593274" title="Formats the time difference between now and a given time into a human&#45;readable string." alt="" coords="379,57,512,85"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="298,130,330,118,378,95,393,89,395,94,380,100,332,123,300,135"/>
+<area shape="rect" id="Node000006" href="$d6/d95/longlisting_8c.html#ae8e2a8859c427dba11908d8e975d8bc7" title="Calculates the total size of a directory and its contents." alt="" coords="396,133,495,161"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="306,145,380,145,380,150,306,150"/>
+<area shape="rect" id="Node000007" href="$d6/d95/longlisting_8c.html#a2d5dc342b560667bf07ec576e99ed3d9" title="Converts file permissions to a string of emojis representing user rights." alt="" coords="385,185,506,213"/>
+<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="307,158,378,178,377,183,306,164"/>
+<area shape="poly" id="edge6_Node000006_Node000006" title=" " alt="" coords="413,134,408,124,412,115,425,109,446,107,468,109,480,116,477,120,466,114,446,112,427,114,416,119,414,124,418,131"/>
+<area shape="rect" id="Node000009" href="$d6/d95/longlisting_8c.html#a33a98d6f57285ecc9ccbd6c2f2b4fd9d" title="Formats a file size into a human&#45;readable string." alt="" coords="397,237,495,265"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="331,249,381,249,381,254,331,254"/>
+<area shape="rect" id="Node000010" href="$d0/dc9/emoji__utils_8c.html#a853b78da7b6116949e96148e040669d5" title="Determines the appropriate emoji for a given file based on its characteristics." alt="" coords="403,289,489,317"/>
+<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="310,263,389,285,387,290,308,268"/>
+<area shape="rect" id="Node000011" href="$d0/dc9/emoji__utils_8c.html#a5079b8c3657f088d68ae41fee9b299e3" title="Checks the file content for specific patterns to determine the file type." alt="" coords="560,213,703,241"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="482,286,511,274,581,245,583,250,513,279,484,291"/>
+<area shape="rect" id="Node000012" href="$d0/dc9/emoji__utils_8c.html#a515d3420e13a8688464ad3b3c89c2ffb" title="Safely duplicates a string, handling memory allocation errors." alt="" coords="751,239,848,266"/>
+<area shape="poly" id="edge15_Node000010_Node000012" title=" " alt="" coords="489,294,735,259,736,264,490,300"/>
+<area shape="rect" id="Node000013" href="$d0/dc9/emoji__utils_8c.html#adcfc0049feddf60eec27fe2572291a2e" title="Checks if a file is executable." alt="" coords="576,315,687,342"/>
+<area shape="poly" id="edge13_Node000010_Node000013" title=" " alt="" coords="490,306,561,316,560,322,489,312"/>
+<area shape="rect" id="Node000014" href="$d0/dc9/emoji__utils_8c.html#a3bfec7595ef6d300266b38d3a17b039e" title="Checks if a file is a text file by examining its contents." alt="" coords="585,367,678,394"/>
+<area shape="poly" id="edge14_Node000010_Node000014" title=" " alt="" coords="479,315,561,351,578,358,576,363,559,356,477,320"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="703,235,736,240,735,246,702,241"/>
+</map>

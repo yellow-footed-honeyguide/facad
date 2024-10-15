@@ -1,0 +1,158 @@
+\doxysection{/home/honeyguide/\+Desktop/\+My\+Open\+Source/facad/src/git\+\_\+integration.h File Reference}
+\hypertarget{git__integration_8h}{}\label{git__integration_8h}\index{/home/honeyguide/Desktop/MyOpenSource/facad/src/git\_integration.h@{/home/honeyguide/Desktop/MyOpenSource/facad/src/git\_integration.h}}
+
+
+Header file for Git integration functionality.  
+
+
+{\ttfamily \#include "{}file\+\_\+card.\+h"{}}\newline
+{\ttfamily \#include "{}git\+\_\+utils.\+h"{}}\newline
+Include dependency graph for git\+\_\+integration.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{d9/d5e/git__integration_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d3d/git__integration_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{git__integration_8h_ac8420e6fdcd1a0373f840ecbe95a220a}{integrate\+\_\+git\+\_\+status}} (\mbox{\hyperlink{structFileCardInfo}{File\+Card\+Info}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}entries, int \texorpdfstring{$\ast$}{*}num\+\_\+entries, const char \texorpdfstring{$\ast$}{*}current\+\_\+dir)
+\begin{DoxyCompactList}\small\item\em Integrates Git status information into file entries. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for Git integration functionality. 
+
+This file declares the interface for integrating Git status information into the file entries displayed by the facad tool. It provides the necessary function declarations and includes required dependencies.
+
+\begin{DoxyAuthor}{Author}
+Sergey Veneckiy 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2024 
+\end{DoxyDate}
+
+
+Definition in file \mbox{\hyperlink{git__integration_8h_source}{git\+\_\+integration.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{git__integration_8h_ac8420e6fdcd1a0373f840ecbe95a220a}\label{git__integration_8h_ac8420e6fdcd1a0373f840ecbe95a220a} 
+\index{git\_integration.h@{git\_integration.h}!integrate\_git\_status@{integrate\_git\_status}}
+\index{integrate\_git\_status@{integrate\_git\_status}!git\_integration.h@{git\_integration.h}}
+\doxysubsubsection{\texorpdfstring{integrate\_git\_status()}{integrate\_git\_status()}}
+{\footnotesize\ttfamily void integrate\+\_\+git\+\_\+status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFileCardInfo}{File\+Card\+Info}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{entries,  }\item[{int \texorpdfstring{$\ast$}{*}}]{num\+\_\+entries,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{current\+\_\+dir }\end{DoxyParamCaption})}
+
+
+
+Integrates Git status information into file entries. 
+
+This function retrieves the Git status for files in the current directory and updates the corresponding \doxylink{structFileCardInfo}{File\+Card\+Info} structures with this information. It should be called after file entries are created but before they are displayed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em entries} & Pointer to an array of \doxylink{structFileCardInfo}{File\+Card\+Info} pointers. Each entry represents a file or directory. \\
+\hline
+{\em num\+\_\+entries} & Pointer to the number of entries in the array. This allows for potential modification of the entry count. \\
+\hline
+{\em current\+\_\+dir} & The current directory path. This is used to construct relative paths for Git status comparison.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This function modifies the git\+\_\+status field of each \doxylink{structFileCardInfo}{File\+Card\+Info} structure in the entries array. 
+
+If the current directory is not a Git repository, this function will have no effect.
+\end{DoxyNote}
+This function retrieves the Git status for files in the current directory and updates the corresponding \doxylink{structFileCardInfo}{File\+Card\+Info} structures with this information.
+
+
+\begin{DoxyParams}{Parameters}
+{\em entries} & Pointer to an array of \doxylink{structFileCardInfo}{File\+Card\+Info} pointers. \\
+\hline
+{\em num\+\_\+entries} & Pointer to the number of entries in the array. \\
+\hline
+{\em current\+\_\+dir} & The current directory path. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{git__integration_8c_source_l00030}{30}} of file \mbox{\hyperlink{git__integration_8c_source}{git\+\_\+integration.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ current\ directory\ is\ a\ Git\ repository}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{git__utils_8c_a51ae0134feff92edfd5cf268cd0b1acf}{is\_git\_repository}}())\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};\ \ \textcolor{comment}{//\ If\ not,\ return\ without\ doing\ anything}}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ Get\ the\ Git\ status\ for\ all\ files\ in\ the\ repository}}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{structGitFileList}{GitFileList}}\ git\_status\ =\ \mbox{\hyperlink{git__utils_8c_a1af8df0b83d4e26524cdb4371b7bd7a6}{get\_git\_status}}();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ Create\ a\ copy\ of\ the\ current\ directory\ path}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{char}*\ base\_dir\ =\ strdup(current\_dir);}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ Extract\ the\ base\ name\ of\ the\ directory}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{char}*\ dir\_name\ =\ basename(base\_dir);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ Iterate\ through\ all\ file\ entries}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ *num\_entries;\ i++)\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ Git\ status\ as\ empty\ for\ each\ entry}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ (*entries)[i].git\_status[0]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ (*entries)[i].git\_status[1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ the\ relative\ path\ for\ the\ current\ file}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ relative\_path[\mbox{\hyperlink{git__utils_8h_abe0ec333b60117063f9b9fd9f849cb08}{MAX\_FILENAME}}];}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ snprintf(relative\_path,\ \textcolor{keyword}{sizeof}(relative\_path),\ \textcolor{stringliteral}{"{}\%s/\%s"{}},\ dir\_name,\ (*entries)[i].name);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compare\ the\ file's\ path\ with\ Git\ status\ entries}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ git\_status.\mbox{\hyperlink{structGitFileList_a8a2892f47d399a67ce95ecdf0ab4a79f}{count}};\ j++)\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ paths\ match,\ update\ the\ Git\ status\ in\ the\ file\ entry}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(relative\_path,\ git\_status.\mbox{\hyperlink{structGitFileList_a66fb028701c6d829b9a0720baa4adb76}{files}}[j].\mbox{\hyperlink{structGitFile_a822b94e2dcbcc4086c35387aef4f4a57}{filename}})\ ==\ 0\ ||}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strcmp((*entries)[i].name,\ git\_status.\mbox{\hyperlink{structGitFileList_a66fb028701c6d829b9a0720baa4adb76}{files}}[j].\mbox{\hyperlink{structGitFile_a822b94e2dcbcc4086c35387aef4f4a57}{filename}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (*entries)[i].git\_status[0]\ =\ git\_status.\mbox{\hyperlink{structGitFileList_a66fb028701c6d829b9a0720baa4adb76}{files}}[j].\mbox{\hyperlink{structGitFile_ac3e25bcf3aad47f8c13f3a98f250b874}{status}};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (*entries)[i].git\_status[1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};\ \ \textcolor{comment}{//\ Stop\ searching\ once\ a\ match\ is\ found}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ Free\ the\ memory\ allocated\ for\ the\ base\ directory\ string}}
+\DoxyCodeLine{00067\ \ \ \ \ free(base\_dir);}
+\DoxyCodeLine{00068\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{git__utils_8h_source_l00036}{Git\+File\+List\+::count}}, \mbox{\hyperlink{git__utils_8h_source_l00026}{Git\+File\+::filename}}, \mbox{\hyperlink{git__utils_8h_source_l00035}{Git\+File\+List\+::files}}, \mbox{\hyperlink{git__utils_8c_source_l00065}{get\+\_\+git\+\_\+status()}}, \mbox{\hyperlink{git__utils_8c_source_l00028}{is\+\_\+git\+\_\+repository()}}, \mbox{\hyperlink{git__utils_8h_source_l00018}{MAX\+\_\+\+FILENAME}}, and \mbox{\hyperlink{git__utils_8h_source_l00027}{Git\+File\+::status}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00078}{process\+\_\+directory()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/dc4/git__integration_8h_ac8420e6fdcd1a0373f840ecbe95a220a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/dc4/git__integration_8h_ac8420e6fdcd1a0373f840ecbe95a220a_icgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="d1/d46/structGitFile" kind="struct" language="C++" prot="public">
+    <compoundname>GitFile</compoundname>
+    <includes refid="db/d45/git__utils_8h" local="no">git_utils.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d1/d46/structGitFile_1a822b94e2dcbcc4086c35387aef4f4a57" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char GitFile::filename[MAX_FILENAME]</definition>
+        <argsstring>[MAX_FILENAME]</argsstring>
+        <name>filename</name>
+        <qualifiedname>GitFile::filename</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/git_utils.h" line="26" column="10" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/git_utils.h" bodystart="26" bodyend="-1"/>
+        <referencedby refid="d1/db9/git__utils_8c_1a1af8df0b83d4e26524cdb4371b7bd7a6" compoundref="d1/db9/git__utils_8c" startline="65" endline="89">get_git_status</referencedby>
+        <referencedby refid="df/d77/git__integration_8c_1ac8420e6fdcd1a0373f840ecbe95a220a" compoundref="df/d77/git__integration_8c" startline="30" endline="68">integrate_git_status</referencedby>
+        <referencedby refid="d0/d29/main_8c_1a0ddf1224851353fc92bfbff6f499fa97" compoundref="d0/d29/main_8c" startline="275" endline="423">main</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d1/d46/structGitFile_1ac3e25bcf3aad47f8c13f3a98f250b874" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char GitFile::status</definition>
+        <argsstring></argsstring>
+        <name>status</name>
+        <qualifiedname>GitFile::status</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/git_utils.h" line="27" column="10" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/git_utils.h" bodystart="27" bodyend="-1"/>
+        <referencedby refid="d1/db9/git__utils_8c_1a1af8df0b83d4e26524cdb4371b7bd7a6" compoundref="d1/db9/git__utils_8c" startline="65" endline="89">get_git_status</referencedby>
+        <referencedby refid="df/d77/git__integration_8c_1ac8420e6fdcd1a0373f840ecbe95a220a" compoundref="df/d77/git__integration_8c" startline="30" endline="68">integrate_git_status</referencedby>
+        <referencedby refid="d0/d29/main_8c_1a0ddf1224851353fc92bfbff6f499fa97" compoundref="d0/d29/main_8c" startline="275" endline="423">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Structure to hold information about a single file&apos;s Git status. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GitFile</label>
+        <link refid="d1/d46/structGitFile"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/git_utils.h" line="25" column="1" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/git_utils.h" bodystart="25" bodyend="28"/>
+    <listofallmembers>
+      <member refid="d1/d46/structGitFile_1a822b94e2dcbcc4086c35387aef4f4a57" prot="public" virt="non-virtual"><scope>GitFile</scope><name>filename</name></member>
+      <member refid="d1/d46/structGitFile_1ac3e25bcf3aad47f8c13f3a98f250b874" prot="public" virt="non-virtual"><scope>GitFile</scope><name>status</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

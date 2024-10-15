@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="de/d0d/structFileCardInfo" kind="struct" language="C++" prot="public">
+    <compoundname>FileCardInfo</compoundname>
+    <includes refid="d5/d36/file__card_8h" local="no">file_card.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* FileCardInfo::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <qualifiedname>FileCardInfo::name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Name of the file or directory </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.h" line="27" column="10" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.h" bodystart="27" bodyend="-1"/>
+        <referencedby refid="dd/d6c/file__card_8c_1aaa0d8cd7d720e6b260615df1be0fdc7f" compoundref="dd/d6c/file__card_8c" startline="134" endline="171">compare_file_entries</referencedby>
+        <referencedby refid="dd/d6c/file__card_8c_1a8ac3f1a318ebad42a9d465b92e4aa598" compoundref="dd/d6c/file__card_8c" startline="31" endline="54">create_file_entry</referencedby>
+        <referencedby refid="dd/d6c/file__card_8c_1af25b4091089527258ab9a8cb5ebff9e7" compoundref="dd/d6c/file__card_8c" startline="64" endline="68">free_file_entry</referencedby>
+        <referencedby refid="de/db5/dev__dir__utils_8c_1acf9fb4da0ced0c99e368f3cd1ef91547" compoundref="de/db5/dev__dir__utils_8c" startline="48" endline="138">handle_dev_directory</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/d0d/structFileCardInfo_1a7f0da0b8251b0c10f77a559d80eb567c" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* FileCardInfo::emoji</definition>
+        <argsstring></argsstring>
+        <name>emoji</name>
+        <qualifiedname>FileCardInfo::emoji</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Emoji representation of the file type </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.h" line="28" column="10" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.h" bodystart="28" bodyend="-1"/>
+        <referencedby refid="dd/d6c/file__card_8c_1a8ac3f1a318ebad42a9d465b92e4aa598" compoundref="dd/d6c/file__card_8c" startline="31" endline="54">create_file_entry</referencedby>
+        <referencedby refid="dd/d6c/file__card_8c_1af25b4091089527258ab9a8cb5ebff9e7" compoundref="dd/d6c/file__card_8c" startline="64" endline="68">free_file_entry</referencedby>
+        <referencedby refid="de/db5/dev__dir__utils_8c_1acf9fb4da0ced0c99e368f3cd1ef91547" compoundref="de/db5/dev__dir__utils_8c" startline="48" endline="138">handle_dev_directory</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/d0d/structFileCardInfo_1aa328a53a5e7138dbeb6992f00d6b89ad" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int FileCardInfo::is_directory</definition>
+        <argsstring></argsstring>
+        <name>is_directory</name>
+        <qualifiedname>FileCardInfo::is_directory</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Flag indicating whether the entry is a directory (1) or not (0) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.h" line="29" column="9" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.h" bodystart="29" bodyend="-1"/>
+        <referencedby refid="dd/d6c/file__card_8c_1aaa0d8cd7d720e6b260615df1be0fdc7f" compoundref="dd/d6c/file__card_8c" startline="134" endline="171">compare_file_entries</referencedby>
+        <referencedby refid="dd/d6c/file__card_8c_1a8ac3f1a318ebad42a9d465b92e4aa598" compoundref="dd/d6c/file__card_8c" startline="31" endline="54">create_file_entry</referencedby>
+        <referencedby refid="de/db5/dev__dir__utils_8c_1acf9fb4da0ced0c99e368f3cd1ef91547" compoundref="de/db5/dev__dir__utils_8c" startline="48" endline="138">handle_dev_directory</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/d0d/structFileCardInfo_1a0976436903b23e6cdd4deb1052b8e6ab" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int FileCardInfo::is_hidden</definition>
+        <argsstring></argsstring>
+        <name>is_hidden</name>
+        <qualifiedname>FileCardInfo::is_hidden</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Flag indicating whether the entry is hidden (1) or not (0) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.h" line="30" column="9" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.h" bodystart="30" bodyend="-1"/>
+        <referencedby refid="dd/d6c/file__card_8c_1a8ac3f1a318ebad42a9d465b92e4aa598" compoundref="dd/d6c/file__card_8c" startline="31" endline="54">create_file_entry</referencedby>
+        <referencedby refid="de/db5/dev__dir__utils_8c_1acf9fb4da0ced0c99e368f3cd1ef91547" compoundref="de/db5/dev__dir__utils_8c" startline="48" endline="138">handle_dev_directory</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/d0d/structFileCardInfo_1a194c96b36719d8cfefd81e58c527668c" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char FileCardInfo::git_status[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>git_status</name>
+        <qualifiedname>FileCardInfo::git_status</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Git status of the file (if applicable) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.h" line="31" column="10" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.h" bodystart="31" bodyend="-1"/>
+        <referencedby refid="dd/d6c/file__card_8c_1a8ac3f1a318ebad42a9d465b92e4aa598" compoundref="dd/d6c/file__card_8c" startline="31" endline="54">create_file_entry</referencedby>
+        <referencedby refid="d0/d29/main_8c_1a0ddf1224851353fc92bfbff6f499fa97" compoundref="d0/d29/main_8c" startline="275" endline="423">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Structure representing a file entry with its properties. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This structure holds all the necessary information about a file or directory entry, including its name, associated emoji, and various flags indicating its properties. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>FileCardInfo</label>
+        <link refid="de/d0d/structFileCardInfo"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.h" line="25" column="1" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.h" bodystart="26" bodyend="32"/>
+    <listofallmembers>
+      <member refid="de/d0d/structFileCardInfo_1a7f0da0b8251b0c10f77a559d80eb567c" prot="public" virt="non-virtual"><scope>FileCardInfo</scope><name>emoji</name></member>
+      <member refid="de/d0d/structFileCardInfo_1a194c96b36719d8cfefd81e58c527668c" prot="public" virt="non-virtual"><scope>FileCardInfo</scope><name>git_status</name></member>
+      <member refid="de/d0d/structFileCardInfo_1aa328a53a5e7138dbeb6992f00d6b89ad" prot="public" virt="non-virtual"><scope>FileCardInfo</scope><name>is_directory</name></member>
+      <member refid="de/d0d/structFileCardInfo_1a0976436903b23e6cdd4deb1052b8e6ab" prot="public" virt="non-virtual"><scope>FileCardInfo</scope><name>is_hidden</name></member>
+      <member refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" prot="public" virt="non-virtual"><scope>FileCardInfo</scope><name>name</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

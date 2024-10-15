@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.10.0" xml:lang="en-US">
+  <compound refid="de/d26/structCommandLineArgs" kind="struct"><name>CommandLineArgs</name>
+    <member refid="de/d26/structCommandLineArgs_1a518fe65eec71814dec37b3fb872fa8a0" kind="variable"><name>show_version</name></member>
+    <member refid="de/d26/structCommandLineArgs_1a210deb76b4bf3d30f0bb09e16ba7fbe4" kind="variable"><name>show_help</name></member>
+    <member refid="de/d26/structCommandLineArgs_1ab86308b944cadea1ed5fb0b48661a355" kind="variable"><name>show_longlisting</name></member>
+    <member refid="de/d26/structCommandLineArgs_1ab399696f534705c62ec3d5ba045eed09" kind="variable"><name>show_dir_analytics</name></member>
+    <member refid="de/d26/structCommandLineArgs_1a279e4f9d5bd585e348c74ab980bc6ad0" kind="variable"><name>invalid_opt</name></member>
+    <member refid="de/d26/structCommandLineArgs_1a24eadec0753883664957eb8322579c25" kind="variable"><name>targets</name></member>
+    <member refid="de/d26/structCommandLineArgs_1a5185c801bf6373761724b96d20f05aeb" kind="variable"><name>target_count</name></member>
+  </compound>
+  <compound refid="db/d23/structDirectoryConfig" kind="struct"><name>DirectoryConfig</name>
+    <member refid="db/d23/structDirectoryConfig_1afac6bf0179c8efa948910782c7541cc4" kind="variable"><name>path</name></member>
+    <member refid="db/d23/structDirectoryConfig_1a7237bb65b27aa0db178a896685e829bf" kind="variable"><name>max_columns</name></member>
+  </compound>
+  <compound refid="df/d93/structEmojiMapEntry" kind="struct"><name>EmojiMapEntry</name>
+    <member refid="df/d93/structEmojiMapEntry_1ac775896213ff79129e458babf3e2faea" kind="variable"><name>key</name></member>
+    <member refid="df/d93/structEmojiMapEntry_1aa1ac56c6bf8cc3b9676e2ca254114c0b" kind="variable"><name>emoji</name></member>
+  </compound>
+  <compound refid="d4/d02/structfile__info" kind="struct"><name>file_info</name>
+    <member refid="d4/d02/structfile__info_1af4358e531f11044f1e5a041537676d33" kind="variable"><name>name</name></member>
+    <member refid="d4/d02/structfile__info_1a605808d3db7b33b36b4cce172ca71eb0" kind="variable"><name>full_path</name></member>
+    <member refid="d4/d02/structfile__info_1a6e48876c051acfc4d2c0af2840515cd9" kind="variable"><name>size</name></member>
+    <member refid="d4/d02/structfile__info_1a0df946c901068e5d66df47dc8d922f43" kind="variable"><name>mode</name></member>
+    <member refid="d4/d02/structfile__info_1ae8d2e03538d68731843ce28ae6264882" kind="variable"><name>mtime</name></member>
+    <member refid="d4/d02/structfile__info_1a75dece3e86707e5f1b28430b78e98d08" kind="variable"><name>is_dir</name></member>
+    <member refid="d4/d02/structfile__info_1a8a9009da21212dba3a7b8369471ed05e" kind="variable"><name>subdir_count</name></member>
+    <member refid="d4/d02/structfile__info_1a8313d9a4b0297566dbf509513e6eda34" kind="variable"><name>owner</name></member>
+    <member refid="d4/d02/structfile__info_1a0bba7f65248bd234563e548f19b9051b" kind="variable"><name>user_rights</name></member>
+    <member refid="d4/d02/structfile__info_1ad0bb2c46351f70095588257823a5ccfd" kind="variable"><name>time_ago</name></member>
+  </compound>
+  <compound refid="de/d0d/structFileCardInfo" kind="struct"><name>FileCardInfo</name>
+    <member refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" kind="variable"><name>name</name></member>
+    <member refid="de/d0d/structFileCardInfo_1a7f0da0b8251b0c10f77a559d80eb567c" kind="variable"><name>emoji</name></member>
+    <member refid="de/d0d/structFileCardInfo_1aa328a53a5e7138dbeb6992f00d6b89ad" kind="variable"><name>is_directory</name></member>
+    <member refid="de/d0d/structFileCardInfo_1a0976436903b23e6cdd4deb1052b8e6ab" kind="variable"><name>is_hidden</name></member>
+    <member refid="de/d0d/structFileCardInfo_1a194c96b36719d8cfefd81e58c527668c" kind="variable"><name>git_status</name></member>
+  </compound>
+  <compound refid="d1/d46/structGitFile" kind="struct"><name>GitFile</name>
+    <member refid="d1/d46/structGitFile_1a822b94e2dcbcc4086c35387aef4f4a57" kind="variable"><name>filename</name></member>
+    <member refid="d1/d46/structGitFile_1ac3e25bcf3aad47f8c13f3a98f250b874" kind="variable"><name>status</name></member>
+  </compound>
+  <compound refid="da/ddb/structGitFileList" kind="struct"><name>GitFileList</name>
+    <member refid="da/ddb/structGitFileList_1a66fb028701c6d829b9a0720baa4adb76" kind="variable"><name>files</name></member>
+    <member refid="da/ddb/structGitFileList_1a8a2892f47d399a67ce95ecdf0ab4a79f" kind="variable"><name>count</name></member>
+  </compound>
+  <compound refid="df/dad/args__parser_8c" kind="file"><name>args_parser.c</name>
+    <member refid="df/dad/args__parser_8c_1ac7b851d3c3ad6d7a78c3e0aabb176d15" kind="function"><name>is_glob_pattern</name></member>
+    <member refid="df/dad/args__parser_8c_1ae69db95445b885f269cab7f4dc062307" kind="function"><name>parse_args</name></member>
+    <member refid="df/dad/args__parser_8c_1a1e124c87a6ba6ffa680d9297fbc17d43" kind="function"><name>free_args</name></member>
+    <member refid="df/dad/args__parser_8c_1ac6230d495fc909bb61195c45f703d492" kind="function"><name>print_version</name></member>
+    <member refid="df/dad/args__parser_8c_1ae5d62d86e562ee295d1566f9ad74b73c" kind="function"><name>print_help</name></member>
+  </compound>
+  <compound refid="da/d7e/args__parser_8h" kind="file"><name>args_parser.h</name>
+    <member refid="da/d7e/args__parser_8h_1ae69db95445b885f269cab7f4dc062307" kind="function"><name>parse_args</name></member>
+    <member refid="da/d7e/args__parser_8h_1a1e124c87a6ba6ffa680d9297fbc17d43" kind="function"><name>free_args</name></member>
+    <member refid="da/d7e/args__parser_8h_1ac6230d495fc909bb61195c45f703d492" kind="function"><name>print_version</name></member>
+    <member refid="da/d7e/args__parser_8h_1ae5d62d86e562ee295d1566f9ad74b73c" kind="function"><name>print_help</name></member>
+    <member refid="da/d7e/args__parser_8h_1ac7b851d3c3ad6d7a78c3e0aabb176d15" kind="function"><name>is_glob_pattern</name></member>
+  </compound>
+  <compound refid="de/db5/dev__dir__utils_8c" kind="file"><name>dev_dir_utils.c</name>
+    <member refid="de/db5/dev__dir__utils_8c_1ab99ded389af74001a6298fc9e44e74e5" kind="define"><name>MAX_PATH</name></member>
+    <member refid="de/db5/dev__dir__utils_8c_1adc1bba58529e2173c154c4857d243eb5" kind="define"><name>INITIAL_DEV_ENTRIES</name></member>
+    <member refid="de/db5/dev__dir__utils_8c_1ae2390692f6e5134692701461dca8cd84" kind="function"><name>is_dev_directory</name></member>
+    <member refid="de/db5/dev__dir__utils_8c_1acf9fb4da0ced0c99e368f3cd1ef91547" kind="function"><name>handle_dev_directory</name></member>
+  </compound>
+  <compound refid="db/d03/dev__dir__utils_8h" kind="file"><name>dev_dir_utils.h</name>
+    <member refid="db/d03/dev__dir__utils_8h_1ae2390692f6e5134692701461dca8cd84" kind="function"><name>is_dev_directory</name></member>
+    <member refid="db/d03/dev__dir__utils_8h_1acf9fb4da0ced0c99e368f3cd1ef91547" kind="function"><name>handle_dev_directory</name></member>
+  </compound>
+  <compound refid="d8/d55/dir__analytics_8c" kind="file"><name>dir_analytics.c</name>
+    <member refid="d8/d55/dir__analytics_8c_1ab99ded389af74001a6298fc9e44e74e5" kind="define"><name>MAX_PATH</name></member>
+    <member refid="d8/d55/dir__analytics_8c_1a2c5eecb22513a88c24ae5831a3265e54" kind="define"><name>MAX_FILES</name></member>
+    <member refid="d8/d55/dir__analytics_8c_1a46587b83544b8e9be045bb93f644ac82" kind="define"><name>ANSI_BOLD</name></member>
+    <member refid="d8/d55/dir__analytics_8c_1af77a445894f2f750d43cf2182cd29e55" kind="define"><name>ANSI_RESET</name></member>
+    <member refid="d8/d55/dir__analytics_8c_1a33a98d6f57285ecc9ccbd6c2f2b4fd9d" kind="function"><name>format_size</name></member>
+    <member refid="d8/d55/dir__analytics_8c_1af2d4fbcabe2bb660a865a1a3beb3ee18" kind="function"><name>format_time</name></member>
+    <member refid="d8/d55/dir__analytics_8c_1a8ed5df60e8023eb58017d81b7642b2d4" kind="function"><name>recursive_dir_scan</name></member>
+    <member refid="d8/d55/dir__analytics_8c_1a247c94a71c4183e613d8a5329615c165" kind="function"><name>calculate_total_size</name></member>
+    <member refid="d8/d55/dir__analytics_8c_1a65261c711a51d2667c1726615395d524" kind="function"><name>find_largest_file</name></member>
+    <member refid="d8/d55/dir__analytics_8c_1ab481a931e3944eefb982e2666223d3d5" kind="function"><name>print_dir_analytics</name></member>
+  </compound>
+  <compound refid="da/dca/dir__analytics_8h" kind="file"><name>dir_analytics.h</name>
+    <member refid="da/dca/dir__analytics_8h_1ab481a931e3944eefb982e2666223d3d5" kind="function"><name>print_dir_analytics</name></member>
+  </compound>
+  <compound refid="dc/daf/dir__config_8c" kind="file"><name>dir_config.c</name>
+    <member refid="dc/daf/dir__config_8c_1a5b61bc3f96349f2f163e77751eb7678c" kind="variable"><name>directory_configs</name></member>
+    <member refid="dc/daf/dir__config_8c_1a5f44c956161f8b853917f85edd24f28d" kind="variable"><name>num_directory_configs</name></member>
+    <member refid="dc/daf/dir__config_8c_1a4ce38149e564150cef6b9f182913ac7a" kind="function"><name>get_max_columns</name></member>
+  </compound>
+  <compound refid="d4/d6f/dir__config_8h" kind="file"><name>dir_config.h</name>
+    <member refid="d4/d6f/dir__config_8h_1a725922f92e91f817030e1b22bf59ea0c" kind="define"><name>DEFAULT_MAX_COLUMNS</name></member>
+    <member refid="d4/d6f/dir__config_8h_1a5b61bc3f96349f2f163e77751eb7678c" kind="variable"><name>directory_configs</name></member>
+    <member refid="d4/d6f/dir__config_8h_1a5f44c956161f8b853917f85edd24f28d" kind="variable"><name>num_directory_configs</name></member>
+    <member refid="d4/d6f/dir__config_8h_1a4ce38149e564150cef6b9f182913ac7a" kind="function"><name>get_max_columns</name></member>
+  </compound>
+  <compound refid="d2/dda/display__utils_8c" kind="file"><name>display_utils.c</name>
+    <member refid="d2/dda/display__utils_8c_1a78c99ffd76a7bb3c8c74db76207e9ab4" kind="define"><name>_XOPEN_SOURCE</name></member>
+    <member refid="d2/dda/display__utils_8c_1a2cc6f39fc4594f0e734b2588129fba03" kind="define"><name>MAX_COLUMNS</name></member>
+    <member refid="d2/dda/display__utils_8c_1ab2dc237e07e2b4c8a52a5203c216fd37" kind="define"><name>SPACING</name></member>
+    <member refid="d2/dda/display__utils_8c_1aeaee7a9666b3d9f80bde71005d22d498" kind="define"><name>EMOJI_WIDTH</name></member>
+    <member refid="d2/dda/display__utils_8c_1a59349b500cfa8c496dfeabb9cf1b192e" kind="define"><name>EMOJI_NAME_SPACING</name></member>
+    <member refid="d2/dda/display__utils_8c_1aa5f36a89eac0853279ebdf9efb3f668b" kind="function"><name>get_utf8_char_width</name></member>
+    <member refid="d2/dda/display__utils_8c_1ad5d5547a34815dba09681cd9e69bf2a1" kind="function"><name>get_display_width</name></member>
+    <member refid="d2/dda/display__utils_8c_1a41df821a4866776f6f181ad9301e91ac" kind="function"><name>print_padded</name></member>
+    <member refid="d2/dda/display__utils_8c_1a8b38e99d9128bf4a4badc21df13d442b" kind="function"><name>display_entries</name></member>
+  </compound>
+  <compound refid="d3/df8/display__utils_8h" kind="file"><name>display_utils.h</name>
+    <member refid="d3/df8/display__utils_8h_1a8b38e99d9128bf4a4badc21df13d442b" kind="function"><name>display_entries</name></member>
+  </compound>
+  <compound refid="dd/db6/emoji__mappings_8c" kind="file"><name>emoji_mappings.c</name>
+    <member refid="dd/db6/emoji__mappings_8c_1a717fe910a0d43495236d315dd41303f9" kind="variable"><name>emoji_extension_map</name></member>
+    <member refid="dd/db6/emoji__mappings_8c_1a15086b0f52896bc1295506f18beefdae" kind="variable"><name>emoji_extension_map_size</name></member>
+    <member refid="dd/db6/emoji__mappings_8c_1a44bebb1a7db81f9fcbcdc471ade99dcb" kind="variable"><name>emoji_exact_file_map</name></member>
+    <member refid="dd/db6/emoji__mappings_8c_1a4559ab02a3fe5bd47e2c060553709bd2" kind="variable"><name>emoji_exact_file_map_size</name></member>
+    <member refid="dd/db6/emoji__mappings_8c_1a0ed3aca8befc8bbd9cc15e258a6ca701" kind="variable"><name>emoji_file_content_map</name></member>
+    <member refid="dd/db6/emoji__mappings_8c_1ab0d0a7e5ba604e644a996107bb4965e7" kind="variable"><name>emoji_file_content_map_size</name></member>
+    <member refid="dd/db6/emoji__mappings_8c_1a538e1bc5eae64ecb93436ffc47560121" kind="variable"><name>emoji_exact_dev_file_map</name></member>
+    <member refid="dd/db6/emoji__mappings_8c_1a11bba592cc1a04247a8823e523e40bd7" kind="variable"><name>emoji_exact_dev_file_map_size</name></member>
+    <member refid="dd/db6/emoji__mappings_8c_1ae615000bf15a8698d98421baa2a90bd1" kind="variable"><name>emoji_prefix_dev_map</name></member>
+    <member refid="dd/db6/emoji__mappings_8c_1aaf5ea0aa3fbcd68766d42569f7f2c762" kind="variable"><name>emoji_prefix_dev_map_size</name></member>
+  </compound>
+  <compound refid="de/d86/emoji__mappings_8h" kind="file"><name>emoji_mappings.h</name>
+    <member refid="de/d86/emoji__mappings_8h_1a717fe910a0d43495236d315dd41303f9" kind="variable"><name>emoji_extension_map</name></member>
+    <member refid="de/d86/emoji__mappings_8h_1a15086b0f52896bc1295506f18beefdae" kind="variable"><name>emoji_extension_map_size</name></member>
+    <member refid="de/d86/emoji__mappings_8h_1a44bebb1a7db81f9fcbcdc471ade99dcb" kind="variable"><name>emoji_exact_file_map</name></member>
+    <member refid="de/d86/emoji__mappings_8h_1a4559ab02a3fe5bd47e2c060553709bd2" kind="variable"><name>emoji_exact_file_map_size</name></member>
+    <member refid="de/d86/emoji__mappings_8h_1a0ed3aca8befc8bbd9cc15e258a6ca701" kind="variable"><name>emoji_file_content_map</name></member>
+    <member refid="de/d86/emoji__mappings_8h_1ab0d0a7e5ba604e644a996107bb4965e7" kind="variable"><name>emoji_file_content_map_size</name></member>
+    <member refid="de/d86/emoji__mappings_8h_1a538e1bc5eae64ecb93436ffc47560121" kind="variable"><name>emoji_exact_dev_file_map</name></member>
+    <member refid="de/d86/emoji__mappings_8h_1a11bba592cc1a04247a8823e523e40bd7" kind="variable"><name>emoji_exact_dev_file_map_size</name></member>
+    <member refid="de/d86/emoji__mappings_8h_1ae615000bf15a8698d98421baa2a90bd1" kind="variable"><name>emoji_prefix_dev_map</name></member>
+    <member refid="de/d86/emoji__mappings_8h_1aaf5ea0aa3fbcd68766d42569f7f2c762" kind="variable"><name>emoji_prefix_dev_map_size</name></member>
+  </compound>
+  <compound refid="d0/dc9/emoji__utils_8c" kind="file"><name>emoji_utils.c</name>
+    <member refid="d0/dc9/emoji__utils_8c_1ab99ded389af74001a6298fc9e44e74e5" kind="define"><name>MAX_PATH</name></member>
+    <member refid="d0/dc9/emoji__utils_8c_1a515d3420e13a8688464ad3b3c89c2ffb" kind="function"><name>safe_strdup</name></member>
+    <member refid="d0/dc9/emoji__utils_8c_1ad5d8cf69e853f8e2c380ce1e0b2da0da" kind="function"><name>get_dev_emoji</name></member>
+    <member refid="d0/dc9/emoji__utils_8c_1a5079b8c3657f088d68ae41fee9b299e3" kind="function"><name>check_file_content</name></member>
+    <member refid="d0/dc9/emoji__utils_8c_1a853b78da7b6116949e96148e040669d5" kind="function"><name>get_emoji</name></member>
+    <member refid="d0/dc9/emoji__utils_8c_1adcfc0049feddf60eec27fe2572291a2e" kind="function"><name>is_executable</name></member>
+    <member refid="d0/dc9/emoji__utils_8c_1a3bfec7595ef6d300266b38d3a17b039e" kind="function"><name>is_text_file</name></member>
+  </compound>
+  <compound refid="d7/d97/emoji__utils_8h" kind="file"><name>emoji_utils.h</name>
+    <member refid="d7/d97/emoji__utils_8h_1a853b78da7b6116949e96148e040669d5" kind="function"><name>get_emoji</name></member>
+    <member refid="d7/d97/emoji__utils_8h_1adcfc0049feddf60eec27fe2572291a2e" kind="function"><name>is_executable</name></member>
+    <member refid="d7/d97/emoji__utils_8h_1a3bfec7595ef6d300266b38d3a17b039e" kind="function"><name>is_text_file</name></member>
+    <member refid="d7/d97/emoji__utils_8h_1ad5d8cf69e853f8e2c380ce1e0b2da0da" kind="function"><name>get_dev_emoji</name></member>
+  </compound>
+  <compound refid="dd/d6c/file__card_8c" kind="file"><name>file_card.c</name>
+    <member refid="dd/d6c/file__card_8c_1a8ac3f1a318ebad42a9d465b92e4aa598" kind="function"><name>create_file_entry</name></member>
+    <member refid="dd/d6c/file__card_8c_1af25b4091089527258ab9a8cb5ebff9e7" kind="function"><name>free_file_entry</name></member>
+    <member refid="dd/d6c/file__card_8c_1a6cc6fb631e1f28a066db43ca077cdd83" kind="function"><name>get_extension</name></member>
+    <member refid="dd/d6c/file__card_8c_1ab53dd5e9229168ae3ea9dd6718dc2eb8" kind="function"><name>strcasecmp_wrapper</name></member>
+    <member refid="dd/d6c/file__card_8c_1aaa0d8cd7d720e6b260615df1be0fdc7f" kind="function"><name>compare_file_entries</name></member>
+  </compound>
+  <compound refid="d5/d36/file__card_8h" kind="file"><name>file_card.h</name>
+    <member refid="d5/d36/file__card_8h_1a8ac3f1a318ebad42a9d465b92e4aa598" kind="function"><name>create_file_entry</name></member>
+    <member refid="d5/d36/file__card_8h_1af25b4091089527258ab9a8cb5ebff9e7" kind="function"><name>free_file_entry</name></member>
+    <member refid="d5/d36/file__card_8h_1aaa0d8cd7d720e6b260615df1be0fdc7f" kind="function"><name>compare_file_entries</name></member>
+  </compound>
+  <compound refid="df/d77/git__integration_8c" kind="file"><name>git_integration.c</name>
+    <member refid="df/d77/git__integration_8c_1ac8420e6fdcd1a0373f840ecbe95a220a" kind="function"><name>integrate_git_status</name></member>
+  </compound>
+  <compound refid="d1/dc4/git__integration_8h" kind="file"><name>git_integration.h</name>
+    <member refid="d1/dc4/git__integration_8h_1ac8420e6fdcd1a0373f840ecbe95a220a" kind="function"><name>integrate_git_status</name></member>
+  </compound>
+  <compound refid="d1/db9/git__utils_8c" kind="file"><name>git_utils.c</name>
+    <member refid="d1/db9/git__utils_8c_1a51ae0134feff92edfd5cf268cd0b1acf" kind="function"><name>is_git_repository</name></member>
+    <member refid="d1/db9/git__utils_8c_1aa639b9b3bbea0da0a09fbad3ca69aa5d" kind="function"><name>parse_status</name></member>
+    <member refid="d1/db9/git__utils_8c_1a1af8df0b83d4e26524cdb4371b7bd7a6" kind="function"><name>get_git_status</name></member>
+    <member refid="d1/db9/git__utils_8c_1a2ef1d42e63a1b1ab2270c1d82157a384" kind="function"><name>get_current_branch</name></member>
+  </compound>
+  <compound refid="db/d45/git__utils_8h" kind="file"><name>git_utils.h</name>
+    <member refid="db/d45/git__utils_8h_1abe0ec333b60117063f9b9fd9f849cb08" kind="define"><name>MAX_FILENAME</name></member>
+    <member refid="db/d45/git__utils_8h_1a2c5eecb22513a88c24ae5831a3265e54" kind="define"><name>MAX_FILES</name></member>
+    <member refid="db/d45/git__utils_8h_1ab59b5067f41c72180a081769679d524d" kind="function"><name>is_git_repository</name></member>
+    <member refid="db/d45/git__utils_8h_1a3d9263e3ac5e7c5af45a994cc1d7d559" kind="function"><name>get_git_status</name></member>
+    <member refid="db/d45/git__utils_8h_1ad929b0cd0d22aee7938780406e8e584b" kind="function"><name>get_current_branch</name></member>
+  </compound>
+  <compound refid="d6/d95/longlisting_8c" kind="file"><name>longlisting.c</name>
+    <member refid="d6/d95/longlisting_8c_1ab99ded389af74001a6298fc9e44e74e5" kind="define"><name>MAX_PATH</name></member>
+    <member refid="d6/d95/longlisting_8c_1ad30c77daca10f0c2b941969c01beedee" kind="define"><name>MAX_ENTRIES</name></member>
+    <member refid="d6/d95/longlisting_8c_1a282c650b178a6634acd24dad309bcfdd" kind="define"><name>MAX_TIME_AGO_LEN</name></member>
+    <member refid="d6/d95/longlisting_8c_1a33a98d6f57285ecc9ccbd6c2f2b4fd9d" kind="function"><name>format_size</name></member>
+    <member refid="d6/d95/longlisting_8c_1a99a2816fdc6aa63a386b8b8aef593274" kind="function"><name>format_time_ago</name></member>
+    <member refid="d6/d95/longlisting_8c_1a2d5dc342b560667bf07ec576e99ed3d9" kind="function"><name>get_user_rights</name></member>
+    <member refid="d6/d95/longlisting_8c_1ae8e2a8859c427dba11908d8e975d8bc7" kind="function"><name>get_dir_size</name></member>
+    <member refid="d6/d95/longlisting_8c_1a066e44c22599f18b5e86355f71992743" kind="function"><name>count_subdirs</name></member>
+    <member refid="d6/d95/longlisting_8c_1a18cb88825df7452df9b5ce2309c887cf" kind="function"><name>compare_entries</name></member>
+    <member refid="d6/d95/longlisting_8c_1a58ed2be9f460ed564cbd43d32e1ce658" kind="function"><name>get_file_info</name></member>
+    <member refid="d6/d95/longlisting_8c_1a33c3f39ac9dd42760160e6cf451aed2a" kind="function"><name>print_sorted_entries</name></member>
+    <member refid="d6/d95/longlisting_8c_1a9aa67dc0ec987dacbfbc8dfe5745c5be" kind="function"><name>print_longlisting</name></member>
+    <member refid="d6/d95/longlisting_8c_1a1af2c63d6b774640dcf8f6b3127dfa47" kind="function"><name>print_longlisting_files</name></member>
+  </compound>
+  <compound refid="d9/d9a/longlisting_8h" kind="file"><name>longlisting.h</name>
+    <member refid="d9/d9a/longlisting_8h_1a9aa67dc0ec987dacbfbc8dfe5745c5be" kind="function"><name>print_longlisting</name></member>
+    <member refid="d9/d9a/longlisting_8h_1a1af2c63d6b774640dcf8f6b3127dfa47" kind="function"><name>print_longlisting_files</name></member>
+  </compound>
+  <compound refid="d0/d29/main_8c" kind="file"><name>main.c</name>
+    <member refid="d0/d29/main_8c_1ab99ded389af74001a6298fc9e44e74e5" kind="define"><name>MAX_PATH</name></member>
+    <member refid="d0/d29/main_8c_1a52476dd1013f4b9201ab7a3dcb0dac9d" kind="define"><name>INITIAL_ENTRIES</name></member>
+    <member refid="d0/d29/main_8c_1a165f84d1d52e7a11077ff2b3ec8ba0c8" kind="function"><name>allocate_entries</name></member>
+    <member refid="d0/d29/main_8c_1acc392fbd2ea6b07ebcc2b9c089aae2ca" kind="function"><name>process_directory</name></member>
+    <member refid="d0/d29/main_8c_1a00c65357e9fe949388102f3090ea09c5" kind="function"><name>process_files_or_patterns</name></member>
+    <member refid="d0/d29/main_8c_1afd7cf5224b764819fb3a9463774482c5" kind="function"><name>is_directory</name></member>
+    <member refid="d0/d29/main_8c_1ae7d3bb334fabeeccc7dfb05e7f968d47" kind="function"><name>process_target</name></member>
+    <member refid="d0/d29/main_8c_1a116587b452eeb0a0e9f7d9602ba67ae0" kind="function"><name>is_glob_or_specific_files</name></member>
+    <member refid="d0/d29/main_8c_1a0ddf1224851353fc92bfbff6f499fa97" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>/home/honeyguide/Desktop/MyOpenSource/facad/src</name>
+  </compound>
+</doxygenindex>

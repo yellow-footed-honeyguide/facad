@@ -1,0 +1,7 @@
+<map id="format_time" name="format_time">
+<area shape="rect" id="Node000001" title="Formats a time_t value into a human&#45;readable string." alt="" coords="297,5,399,33"/>
+<area shape="rect" id="Node000002" href="$d8/d55/dir__analytics_8c.html#ab481a931e3944eefb982e2666223d3d5" title="Prints detailed analytics about a directory." alt="" coords="108,5,249,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="282,22,250,22,250,17,282,17"/>
+<area shape="rect" id="Node000003" href="$d0/d29/main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Main function of the facad program." alt="" coords="5,5,60,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="92,22,60,22,60,17,92,17"/>
+</map>

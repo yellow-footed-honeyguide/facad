@@ -1,0 +1,9 @@
+<map id="integrate_git_status" name="integrate_git_status">
+<area shape="rect" id="Node000001" title="Integrates Git status information into file entries." alt="" coords="5,32,157,60"/>
+<area shape="rect" id="Node000002" href="$d1/db9/git__utils_8c.html#a1af8df0b83d4e26524cdb4371b7bd7a6" title="Retrieves the Git status for all files in the current repository." alt="" coords="213,5,326,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,32,197,27,198,32,158,38"/>
+<area shape="rect" id="Node000004" href="$d1/db9/git__utils_8c.html#a51ae0134feff92edfd5cf268cd0b1acf" title="Checks if the current directory is part of a Git repository." alt="" coords="205,57,334,85"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="158,53,189,58,189,63,157,59"/>
+<area shape="rect" id="Node000003" href="$d1/db9/git__utils_8c.html#aa639b9b3bbea0da0a09fbad3ca69aa5d" title="Parses a Git status string and returns a single character status code." alt="" coords="382,5,486,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="326,17,367,17,367,22,326,22"/>
+</map>

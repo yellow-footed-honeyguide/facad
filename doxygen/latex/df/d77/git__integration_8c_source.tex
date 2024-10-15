@@ -1,0 +1,74 @@
+\doxysection{git\+\_\+integration.\+c}
+\hypertarget{git__integration_8c_source}{}\label{git__integration_8c_source}\index{/home/honeyguide/Desktop/MyOpenSource/facad/src/git\_integration.c@{/home/honeyguide/Desktop/MyOpenSource/facad/src/git\_integration.c}}
+\mbox{\hyperlink{git__integration_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ git\_integration.c}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Implementation\ of\ Git\ integration\ for\ file\ entries.}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00005}00005\ \textcolor{comment}{\ *\ This\ file\ contains\ functions\ for\ integrating\ Git\ status\ information}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00006}00006\ \textcolor{comment}{\ *\ into\ the\ file\ entries\ displayed\ by\ the\ facad\ tool.\ It\ provides\ functionality}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00007}00007\ \textcolor{comment}{\ *\ to\ retrieve\ and\ apply\ Git\ status\ to\ FileCardInfo\ structures.}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00008}00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00009}00009\ \textcolor{comment}{\ *\ @author\ Sergey\ Veneckiy}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00010}00010\ \textcolor{comment}{\ *\ @date\ 2024}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00011}00011\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <libgen.h>}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{git__integration_8h}{git\_integration.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00019}00019\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00020}00020\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00021}00021\ \textcolor{comment}{\ *\ @brief\ Integrates\ Git\ status\ information\ into\ file\ entries.}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00022}00022\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00023}00023\ \textcolor{comment}{\ *\ This\ function\ retrieves\ the\ Git\ status\ for\ files\ in\ the\ current\ directory}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00024}00024\ \textcolor{comment}{\ *\ and\ updates\ the\ corresponding\ FileCardInfo\ structures\ with\ this\ information.}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00025}00025\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00026}00026\ \textcolor{comment}{\ *\ @param\ entries\ Pointer\ to\ an\ array\ of\ FileCardInfo\ pointers.}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00027}00027\ \textcolor{comment}{\ *\ @param\ num\_entries\ Pointer\ to\ the\ number\ of\ entries\ in\ the\ array.}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00028}00028\ \textcolor{comment}{\ *\ @param\ current\_dir\ The\ current\ directory\ path.}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00029}00029\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00030}\mbox{\hyperlink{git__integration_8c_ac8420e6fdcd1a0373f840ecbe95a220a}{00030}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{git__integration_8c_ac8420e6fdcd1a0373f840ecbe95a220a}{integrate\_git\_status}}(\mbox{\hyperlink{structFileCardInfo}{FileCardInfo}}**\ entries,\ \textcolor{keywordtype}{int}*\ num\_entries,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ current\_dir)\ \{}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00031}00031\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ current\ directory\ is\ a\ Git\ repository}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00032}00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{git__utils_8c_a51ae0134feff92edfd5cf268cd0b1acf}{is\_git\_repository}}())\ \{}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};\ \ \textcolor{comment}{//\ If\ not,\ return\ without\ doing\ anything}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00034}00034\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00036}00036\ \ \ \ \ \textcolor{comment}{//\ Get\ the\ Git\ status\ for\ all\ files\ in\ the\ repository}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00037}00037\ \ \ \ \ \mbox{\hyperlink{structGitFileList}{GitFileList}}\ git\_status\ =\ \mbox{\hyperlink{git__utils_8c_a1af8df0b83d4e26524cdb4371b7bd7a6}{get\_git\_status}}();}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00039}00039\ \ \ \ \ \textcolor{comment}{//\ Create\ a\ copy\ of\ the\ current\ directory\ path}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00040}00040\ \ \ \ \ \textcolor{keywordtype}{char}*\ base\_dir\ =\ strdup(current\_dir);}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00041}00041\ \ \ \ \ \textcolor{comment}{//\ Extract\ the\ base\ name\ of\ the\ directory}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00042}00042\ \ \ \ \ \textcolor{keywordtype}{char}*\ dir\_name\ =\ basename(base\_dir);}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00044}00044\ \ \ \ \ \textcolor{comment}{//\ Iterate\ through\ all\ file\ entries}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00045}00045\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ *num\_entries;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ Git\ status\ as\ empty\ for\ each\ entry}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00047}00047\ \ \ \ \ \ \ \ \ (*entries)[i].git\_status[0]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00048}00048\ \ \ \ \ \ \ \ \ (*entries)[i].git\_status[1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ the\ relative\ path\ for\ the\ current\ file}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ relative\_path[\mbox{\hyperlink{git__utils_8h_abe0ec333b60117063f9b9fd9f849cb08}{MAX\_FILENAME}}];}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00052}00052\ \ \ \ \ \ \ \ \ snprintf(relative\_path,\ \textcolor{keyword}{sizeof}(relative\_path),\ \textcolor{stringliteral}{"{}\%s/\%s"{}},\ dir\_name,\ (*entries)[i].name);}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compare\ the\ file's\ path\ with\ Git\ status\ entries}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ git\_status.\mbox{\hyperlink{structGitFileList_a8a2892f47d399a67ce95ecdf0ab4a79f}{count}};\ j++)\ \{}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ paths\ match,\ update\ the\ Git\ status\ in\ the\ file\ entry}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(relative\_path,\ git\_status.\mbox{\hyperlink{structGitFileList_a66fb028701c6d829b9a0720baa4adb76}{files}}[j].\mbox{\hyperlink{structGitFile_a822b94e2dcbcc4086c35387aef4f4a57}{filename}})\ ==\ 0\ ||}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strcmp((*entries)[i].name,\ git\_status.\mbox{\hyperlink{structGitFileList_a66fb028701c6d829b9a0720baa4adb76}{files}}[j].\mbox{\hyperlink{structGitFile_a822b94e2dcbcc4086c35387aef4f4a57}{filename}})\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (*entries)[i].git\_status[0]\ =\ git\_status.\mbox{\hyperlink{structGitFileList_a66fb028701c6d829b9a0720baa4adb76}{files}}[j].\mbox{\hyperlink{structGitFile_ac3e25bcf3aad47f8c13f3a98f250b874}{status}};}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (*entries)[i].git\_status[1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};\ \ \textcolor{comment}{//\ Stop\ searching\ once\ a\ match\ is\ found}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00063}00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00064}00064\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00066}00066\ \ \ \ \ \textcolor{comment}{//\ Free\ the\ memory\ allocated\ for\ the\ base\ directory\ string}}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00067}00067\ \ \ \ \ free(base\_dir);}
+\DoxyCodeLine{\Hypertarget{git__integration_8c_source_l00068}00068\ \}}
+
+\end{DoxyCode}

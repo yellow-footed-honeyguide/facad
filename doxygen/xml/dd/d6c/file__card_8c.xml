@@ -1,0 +1,454 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dd/d6c/file__card_8c" kind="file" language="C++">
+    <compoundname>file_card.c</compoundname>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">sys/stat.h</includes>
+    <includes local="no">ctype.h</includes>
+    <includes refid="d7/d97/emoji__utils_8h" local="yes">emoji_utils.h</includes>
+    <includes refid="d5/d36/file__card_8h" local="yes">file_card.h</includes>
+    <incdepgraph>
+      <node id="6">
+        <label>emoji_utils.h</label>
+        <link refid="d7/d97/emoji__utils_8h"/>
+      </node>
+      <node id="1">
+        <label>/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.c</label>
+        <link refid="dd/d6c/file__card_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>file_card.h</label>
+        <link refid="d5/d36/file__card_8h"/>
+      </node>
+      <node id="5">
+        <label>ctype.h</label>
+      </node>
+      <node id="2">
+        <label>stdlib.h</label>
+      </node>
+      <node id="3">
+        <label>string.h</label>
+      </node>
+      <node id="4">
+        <label>sys/stat.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="dd/d6c/file__card_8c_1a8ac3f1a318ebad42a9d465b92e4aa598" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int create_file_entry</definition>
+        <argsstring>(FileCardInfo *entry, const char *path)</argsstring>
+        <name>create_file_entry</name>
+        <param>
+          <type><ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref> *</type>
+          <declname>entry</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new file card based on the given path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates a file entry based on the given path.</para>
+<para>This function initializes a <ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref> structure with information about the file, including its name, emoji representation, and flags for directory and hidden status.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>entry</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to a <ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref> structure to be filled. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path of the file to analyze. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 on success, -1 on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.c" line="31" column="5" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.c" bodystart="31" bodyend="54"/>
+        <references refid="de/d0d/structFileCardInfo_1a7f0da0b8251b0c10f77a559d80eb567c" compoundref="d5/d36/file__card_8h" startline="28">FileCardInfo::emoji</references>
+        <references refid="d0/dc9/emoji__utils_8c_1a853b78da7b6116949e96148e040669d5" compoundref="d0/dc9/emoji__utils_8c" startline="95" endline="158">get_emoji</references>
+        <references refid="de/d0d/structFileCardInfo_1a194c96b36719d8cfefd81e58c527668c" compoundref="d5/d36/file__card_8h" startline="31">FileCardInfo::git_status</references>
+        <references refid="de/d0d/structFileCardInfo_1aa328a53a5e7138dbeb6992f00d6b89ad" compoundref="d5/d36/file__card_8h" startline="29">FileCardInfo::is_directory</references>
+        <references refid="de/d0d/structFileCardInfo_1a0976436903b23e6cdd4deb1052b8e6ab" compoundref="d5/d36/file__card_8h" startline="30">FileCardInfo::is_hidden</references>
+        <references refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" compoundref="d5/d36/file__card_8h" startline="27">FileCardInfo::name</references>
+        <referencedby refid="d0/d29/main_8c_1acc392fbd2ea6b07ebcc2b9c089aae2ca" compoundref="d0/d29/main_8c" startline="78" endline="119">process_directory</referencedby>
+        <referencedby refid="d0/d29/main_8c_1a00c65357e9fe949388102f3090ea09c5" compoundref="d0/d29/main_8c" startline="134" endline="177">process_files_or_patterns</referencedby>
+        <referencedby refid="d0/d29/main_8c_1ae7d3bb334fabeeccc7dfb05e7f968d47" compoundref="d0/d29/main_8c" startline="204" endline="243">process_target</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dd/d6c/file__card_8c_1af25b4091089527258ab9a8cb5ebff9e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void free_file_entry</definition>
+        <argsstring>(FileCardInfo *entry)</argsstring>
+        <name>free_file_entry</name>
+        <param>
+          <type><ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref> *</type>
+          <declname>entry</declname>
+        </param>
+        <briefdescription>
+<para>Frees memory allocated for a file entry. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Frees the memory allocated for a file entry.</para>
+<para>This function releases the memory allocated for the name and emoji fields of a <ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref> structure.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>entry</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the <ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref> structure to free. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.c" line="64" column="6" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.c" bodystart="64" bodyend="68"/>
+        <references refid="de/d0d/structFileCardInfo_1a7f0da0b8251b0c10f77a559d80eb567c" compoundref="d5/d36/file__card_8h" startline="28">FileCardInfo::emoji</references>
+        <references refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" compoundref="d5/d36/file__card_8h" startline="27">FileCardInfo::name</references>
+        <referencedby refid="d0/d29/main_8c_1a0ddf1224851353fc92bfbff6f499fa97" compoundref="d0/d29/main_8c" startline="275" endline="423">main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dd/d6c/file__card_8c_1a6cc6fb631e1f28a066db43ca077cdd83" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char * get_extension</definition>
+        <argsstring>(const char *name)</argsstring>
+        <name>get_extension</name>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Extracts the file extension from a filename. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function finds the last occurrence of a dot in the filename and returns the substring following it as the file extension.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The filename to analyze. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A pointer to the file extension, or an empty string if no extension is found. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.c" line="79" column="6" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.c" bodystart="79" bodyend="87"/>
+        <referencedby refid="dd/d6c/file__card_8c_1aaa0d8cd7d720e6b260615df1be0fdc7f" compoundref="dd/d6c/file__card_8c" startline="134" endline="171">compare_file_entries</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dd/d6c/file__card_8c_1ab53dd5e9229168ae3ea9dd6718dc2eb8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int strcasecmp_wrapper</definition>
+        <argsstring>(const char *a, const char *b)</argsstring>
+        <name>strcasecmp_wrapper</name>
+        <param>
+          <type>const char *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>Compare two strings case-insensitively. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function provides a case-insensitive string comparison, similar to strcasecmp, but implemented for portability.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first string to compare. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second string to compare. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An integer less than, equal to, or greater than zero if a is found, respectively, to be less than, to match, or be greater than b. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.c" line="100" column="12" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.c" bodystart="100" bodyend="118"/>
+        <referencedby refid="dd/d6c/file__card_8c_1aaa0d8cd7d720e6b260615df1be0fdc7f" compoundref="dd/d6c/file__card_8c" startline="134" endline="171">compare_file_entries</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dd/d6c/file__card_8c_1aaa0d8cd7d720e6b260615df1be0fdc7f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int compare_file_entries</definition>
+        <argsstring>(const void *a, const void *b)</argsstring>
+        <name>compare_file_entries</name>
+        <param>
+          <type>const void *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>Compare two file entries for sorting. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Compares two file entries for sorting purposes.</para>
+<para>This function implements the sorting logic for file entries:<orderedlist>
+<listitem><para>Directories before files</para>
+</listitem><listitem><para>Within directories and files, dotfiles (hidden) before non-dotfiles</para>
+</listitem><listitem><para>Files sorted by extension</para>
+</listitem><listitem><para>Alphabetical sorting within the same type and extension</para>
+</listitem></orderedlist>
+</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the first <ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref> structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the second <ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref> structure. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An integer less than, equal to, or greater than zero if a is found, respectively, to be less than, to match, or be greater than b. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.c" line="134" column="5" bodyfile="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.c" bodystart="134" bodyend="171"/>
+        <references refid="dd/d6c/file__card_8c_1a6cc6fb631e1f28a066db43ca077cdd83" compoundref="dd/d6c/file__card_8c" startline="79" endline="87">get_extension</references>
+        <references refid="de/d0d/structFileCardInfo_1aa328a53a5e7138dbeb6992f00d6b89ad" compoundref="d5/d36/file__card_8h" startline="29">FileCardInfo::is_directory</references>
+        <references refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" compoundref="d5/d36/file__card_8h" startline="27">FileCardInfo::name</references>
+        <references refid="dd/d6c/file__card_8c_1ab53dd5e9229168ae3ea9dd6718dc2eb8" compoundref="dd/d6c/file__card_8c" startline="100" endline="118">strcasecmp_wrapper</references>
+        <referencedby refid="d0/d29/main_8c_1a0ddf1224851353fc92bfbff6f499fa97" compoundref="d0/d29/main_8c" startline="275" endline="423">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Implementation of file card handling functions. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This file contains functions for creating, freeing, and comparing file entries, as well as utility functions for working with file names and extensions. It provides the core functionality for managing file information in the facad tool.</para>
+<para><simplesect kind="author"><para>Sergey Veneckiy </para>
+</simplesect>
+<simplesect kind="date"><para>2024 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>file_card.c</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Implementation<sp/>of<sp/>file<sp/>card<sp/>handling<sp/>functions.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>contains<sp/>functions<sp/>for<sp/>creating,<sp/>freeing,<sp/>and<sp/>comparing<sp/>file<sp/>entries,</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>as<sp/>well<sp/>as<sp/>utility<sp/>functions<sp/>for<sp/>working<sp/>with<sp/>file<sp/>names<sp/>and<sp/>extensions.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>It<sp/>provides<sp/>the<sp/>core<sp/>functionality<sp/>for<sp/>managing<sp/>file<sp/>information<sp/>in<sp/>the<sp/>facad<sp/>tool.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>@author<sp/>Sergey<sp/>Veneckiy</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>@date<sp/>2024</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sys/stat.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ctype.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d7/d97/emoji__utils_8h" kindref="compound">emoji_utils.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d5/d36/file__card_8h" kindref="compound">file_card.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="21"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Creates<sp/>a<sp/>new<sp/>file<sp/>card<sp/>based<sp/>on<sp/>the<sp/>given<sp/>path.</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/>This<sp/>function<sp/>initializes<sp/>a<sp/>FileCardInfo<sp/>structure<sp/>with<sp/>information<sp/>about<sp/>the<sp/>file,</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>including<sp/>its<sp/>name,<sp/>emoji<sp/>representation,<sp/>and<sp/>flags<sp/>for<sp/>directory<sp/>and<sp/>hidden<sp/>status.</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>@param<sp/>entry<sp/>Pointer<sp/>to<sp/>a<sp/>FileCardInfo<sp/>structure<sp/>to<sp/>be<sp/>filled.</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/>@param<sp/>path<sp/>Path<sp/>of<sp/>the<sp/>file<sp/>to<sp/>analyze.</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>@return<sp/>0<sp/>on<sp/>success,<sp/>-1<sp/>on<sp/>error.</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="dd/d6c/file__card_8c_1a8ac3f1a318ebad42a9d465b92e4aa598" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dd/d6c/file__card_8c_1a8ac3f1a318ebad42a9d465b92e4aa598" kindref="member">create_file_entry</ref>(<ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref><sp/>*entry,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*path)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Duplicate<sp/>the<sp/>file<sp/>name<sp/>and<sp/>store<sp/>it<sp/>in<sp/>the<sp/>entry</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>entry-&gt;<ref refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" kindref="member">name</ref><sp/>=<sp/>strdup(path);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Get<sp/>the<sp/>appropriate<sp/>emoji<sp/>for<sp/>the<sp/>file</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>entry-&gt;<ref refid="de/d0d/structFileCardInfo_1a7f0da0b8251b0c10f77a559d80eb567c" kindref="member">emoji</ref><sp/>=<sp/><ref refid="d0/dc9/emoji__utils_8c_1a853b78da7b6116949e96148e040669d5" kindref="member">get_emoji</ref>(path);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">stat<sp/>path_stat;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Get<sp/>file<sp/>status<sp/>information</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(lstat(path,<sp/>&amp;path_stat)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;<sp/><sp/></highlight><highlight class="comment">//<sp/>Return<sp/>-1<sp/>if<sp/>unable<sp/>to<sp/>get<sp/>file<sp/>status</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>directory<sp/>flag<sp/>based<sp/>on<sp/>file<sp/>type</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>entry-&gt;<ref refid="de/d0d/structFileCardInfo_1aa328a53a5e7138dbeb6992f00d6b89ad" kindref="member">is_directory</ref><sp/>=<sp/>S_ISDIR(path_stat.st_mode);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>hidden<sp/>flag<sp/>if<sp/>the<sp/>file<sp/>name<sp/>starts<sp/>with<sp/>a<sp/>dot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>entry-&gt;<ref refid="de/d0d/structFileCardInfo_1a0976436903b23e6cdd4deb1052b8e6ab" kindref="member">is_hidden</ref><sp/>=<sp/>(path[0]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;.&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>Git<sp/>status<sp/>as<sp/>empty</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>entry-&gt;<ref refid="de/d0d/structFileCardInfo_1a194c96b36719d8cfefd81e58c527668c" kindref="member">git_status</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>entry-&gt;<ref refid="de/d0d/structFileCardInfo_1a194c96b36719d8cfefd81e58c527668c" kindref="member">git_status</ref>[1]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;<sp/><sp/></highlight><highlight class="comment">//<sp/>Return<sp/>0<sp/>on<sp/>success</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="56"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Frees<sp/>memory<sp/>allocated<sp/>for<sp/>a<sp/>file<sp/>entry.</highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/>*<sp/>This<sp/>function<sp/>releases<sp/>the<sp/>memory<sp/>allocated<sp/>for<sp/>the<sp/>name<sp/>and<sp/>emoji<sp/>fields</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*<sp/>of<sp/>a<sp/>FileCardInfo<sp/>structure.</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*<sp/>@param<sp/>entry<sp/>Pointer<sp/>to<sp/>the<sp/>FileCardInfo<sp/>structure<sp/>to<sp/>free.</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="dd/d6c/file__card_8c_1af25b4091089527258ab9a8cb5ebff9e7" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d6c/file__card_8c_1af25b4091089527258ab9a8cb5ebff9e7" kindref="member">free_file_entry</ref>(<ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref><sp/>*entry)</highlight></codeline>
+<codeline lineno="65"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>free(entry-&gt;<ref refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" kindref="member">name</ref>);<sp/><sp/></highlight><highlight class="comment">//<sp/>Free<sp/>the<sp/>memory<sp/>allocated<sp/>for<sp/>the<sp/>name<sp/>string</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>free(entry-&gt;<ref refid="de/d0d/structFileCardInfo_1a7f0da0b8251b0c10f77a559d80eb567c" kindref="member">emoji</ref>);<sp/></highlight><highlight class="comment">//<sp/>Free<sp/>the<sp/>memory<sp/>allocated<sp/>for<sp/>the<sp/>emoji<sp/>string</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="70"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Extracts<sp/>the<sp/>file<sp/>extension<sp/>from<sp/>a<sp/>filename.</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/>*<sp/>This<sp/>function<sp/>finds<sp/>the<sp/>last<sp/>occurrence<sp/>of<sp/>a<sp/>dot<sp/>in<sp/>the<sp/>filename<sp/>and</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/>*<sp/>returns<sp/>the<sp/>substring<sp/>following<sp/>it<sp/>as<sp/>the<sp/>file<sp/>extension.</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"><sp/>*<sp/>@param<sp/>name<sp/>The<sp/>filename<sp/>to<sp/>analyze.</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/>*<sp/>@return<sp/>A<sp/>pointer<sp/>to<sp/>the<sp/>file<sp/>extension,<sp/>or<sp/>an<sp/>empty<sp/>string<sp/>if<sp/>no<sp/>extension<sp/>is<sp/>found.</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="dd/d6c/file__card_8c_1a6cc6fb631e1f28a066db43ca077cdd83" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="dd/d6c/file__card_8c_1a6cc6fb631e1f28a066db43ca077cdd83" kindref="member">get_extension</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*dot<sp/>=<sp/>strrchr(name,<sp/></highlight><highlight class="charliteral">&apos;.&apos;</highlight><highlight class="normal">);<sp/></highlight><highlight class="comment">//<sp/>Find<sp/>the<sp/>last<sp/>occurrence<sp/>of<sp/>&apos;.&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!dot<sp/>||<sp/>dot<sp/>==<sp/>name)</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>no<sp/>&apos;.&apos;<sp/>found<sp/>or<sp/>it&apos;s<sp/>the<sp/>first<sp/>character</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">//<sp/>Return<sp/>empty<sp/>string<sp/>(no<sp/>extension)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>dot<sp/>+<sp/>1;<sp/></highlight><highlight class="comment">//<sp/>Return<sp/>pointer<sp/>to<sp/>character<sp/>after<sp/>the<sp/>last<sp/>&apos;.&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="89"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="90"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Compare<sp/>two<sp/>strings<sp/>case-insensitively.</highlight></codeline>
+<codeline lineno="91"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="92"><highlight class="comment"><sp/>*<sp/>This<sp/>function<sp/>provides<sp/>a<sp/>case-insensitive<sp/>string<sp/>comparison,</highlight></codeline>
+<codeline lineno="93"><highlight class="comment"><sp/>*<sp/>similar<sp/>to<sp/>strcasecmp,<sp/>but<sp/>implemented<sp/>for<sp/>portability.</highlight></codeline>
+<codeline lineno="94"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="95"><highlight class="comment"><sp/>*<sp/>@param<sp/>a<sp/>The<sp/>first<sp/>string<sp/>to<sp/>compare.</highlight></codeline>
+<codeline lineno="96"><highlight class="comment"><sp/>*<sp/>@param<sp/>b<sp/>The<sp/>second<sp/>string<sp/>to<sp/>compare.</highlight></codeline>
+<codeline lineno="97"><highlight class="comment"><sp/>*<sp/>@return<sp/>An<sp/>integer<sp/>less<sp/>than,<sp/>equal<sp/>to,<sp/>or<sp/>greater<sp/>than<sp/>zero<sp/>if<sp/>a<sp/>is<sp/>found,</highlight></codeline>
+<codeline lineno="98"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>respectively,<sp/>to<sp/>be<sp/>less<sp/>than,<sp/>to<sp/>match,<sp/>or<sp/>be<sp/>greater<sp/>than<sp/>b.</highlight></codeline>
+<codeline lineno="99"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="dd/d6c/file__card_8c_1ab53dd5e9229168ae3ea9dd6718dc2eb8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dd/d6c/file__card_8c_1ab53dd5e9229168ae3ea9dd6718dc2eb8" kindref="member">strcasecmp_wrapper</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*a,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*b)<sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Loop<sp/>continues<sp/>as<sp/>long<sp/>as<sp/>both<sp/>strings<sp/>have<sp/>characters</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(*a<sp/>&amp;&amp;<sp/>*b)<sp/>{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Convert<sp/>current<sp/>characters<sp/>to<sp/>lowercase<sp/>for<sp/>case-insensitive<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ca<sp/>=<sp/>tolower((</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">)*a);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>cb<sp/>=<sp/>tolower((</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">)*b);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>characters<sp/>differ,<sp/>return<sp/>their<sp/>difference<sp/>(determines<sp/>sorting<sp/>order)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ca<sp/>!=<sp/>cb)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ca<sp/>-<sp/>cb;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Move<sp/>to<sp/>the<sp/>next<sp/>character<sp/>in<sp/>both<sp/>strings</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>a++;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b++;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>we&apos;ve<sp/>reached<sp/>here,<sp/>one<sp/>string<sp/>might<sp/>be<sp/>longer<sp/>than<sp/>the<sp/>other</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Compare<sp/>the<sp/>last<sp/>characters<sp/>(one<sp/>might<sp/>be<sp/>&apos;\0&apos;<sp/>if<sp/>strings<sp/>are<sp/>different<sp/>lengths)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>tolower((</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">)*a)<sp/>-<sp/>tolower((</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">)*b);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="120"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="121"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Compare<sp/>two<sp/>file<sp/>entries<sp/>for<sp/>sorting.</highlight></codeline>
+<codeline lineno="122"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="123"><highlight class="comment"><sp/>*<sp/>This<sp/>function<sp/>implements<sp/>the<sp/>sorting<sp/>logic<sp/>for<sp/>file<sp/>entries:</highlight></codeline>
+<codeline lineno="124"><highlight class="comment"><sp/>*<sp/>1.<sp/>Directories<sp/>before<sp/>files</highlight></codeline>
+<codeline lineno="125"><highlight class="comment"><sp/>*<sp/>2.<sp/>Within<sp/>directories<sp/>and<sp/>files,<sp/>dotfiles<sp/>(hidden)<sp/>before<sp/>non-dotfiles</highlight></codeline>
+<codeline lineno="126"><highlight class="comment"><sp/>*<sp/>3.<sp/>Files<sp/>sorted<sp/>by<sp/>extension</highlight></codeline>
+<codeline lineno="127"><highlight class="comment"><sp/>*<sp/>4.<sp/>Alphabetical<sp/>sorting<sp/>within<sp/>the<sp/>same<sp/>type<sp/>and<sp/>extension</highlight></codeline>
+<codeline lineno="128"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="129"><highlight class="comment"><sp/>*<sp/>@param<sp/>a<sp/>Pointer<sp/>to<sp/>the<sp/>first<sp/>FileCardInfo<sp/>structure.</highlight></codeline>
+<codeline lineno="130"><highlight class="comment"><sp/>*<sp/>@param<sp/>b<sp/>Pointer<sp/>to<sp/>the<sp/>second<sp/>FileCardInfo<sp/>structure.</highlight></codeline>
+<codeline lineno="131"><highlight class="comment"><sp/>*<sp/>@return<sp/>An<sp/>integer<sp/>less<sp/>than,<sp/>equal<sp/>to,<sp/>or<sp/>greater<sp/>than<sp/>zero<sp/>if<sp/>a<sp/>is<sp/>found,</highlight></codeline>
+<codeline lineno="132"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>respectively,<sp/>to<sp/>be<sp/>less<sp/>than,<sp/>to<sp/>match,<sp/>or<sp/>be<sp/>greater<sp/>than<sp/>b.</highlight></codeline>
+<codeline lineno="133"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134" refid="dd/d6c/file__card_8c_1aaa0d8cd7d720e6b260615df1be0fdc7f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dd/d6c/file__card_8c_1aaa0d8cd7d720e6b260615df1be0fdc7f" kindref="member">compare_file_entries</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*a,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*b)</highlight></codeline>
+<codeline lineno="135"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref><sp/>*entry_a<sp/>=<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref><sp/>*)a;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref><sp/>*entry_b<sp/>=<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/d0d/structFileCardInfo" kindref="compound">FileCardInfo</ref><sp/>*)b;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Sort<sp/>directories<sp/>before<sp/>files</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(entry_a-&gt;<ref refid="de/d0d/structFileCardInfo_1aa328a53a5e7138dbeb6992f00d6b89ad" kindref="member">is_directory</ref><sp/>!=<sp/>entry_b-&gt;<ref refid="de/d0d/structFileCardInfo_1aa328a53a5e7138dbeb6992f00d6b89ad" kindref="member">is_directory</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>entry_b-&gt;<ref refid="de/d0d/structFileCardInfo_1aa328a53a5e7138dbeb6992f00d6b89ad" kindref="member">is_directory</ref><sp/>-<sp/>entry_a-&gt;<ref refid="de/d0d/structFileCardInfo_1aa328a53a5e7138dbeb6992f00d6b89ad" kindref="member">is_directory</ref>;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>For<sp/>directories,<sp/>sort<sp/>dotfiles<sp/>first</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(entry_a-&gt;<ref refid="de/d0d/structFileCardInfo_1aa328a53a5e7138dbeb6992f00d6b89ad" kindref="member">is_directory</ref><sp/>&amp;&amp;<sp/>entry_b-&gt;<ref refid="de/d0d/structFileCardInfo_1aa328a53a5e7138dbeb6992f00d6b89ad" kindref="member">is_directory</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>if<sp/>one<sp/>is<sp/>a<sp/>dotfile<sp/>and<sp/>the<sp/>other<sp/>isn&apos;t</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((entry_a-&gt;<ref refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" kindref="member">name</ref>[0]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;.&apos;</highlight><highlight class="normal">)<sp/>!=<sp/>(entry_b-&gt;<ref refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" kindref="member">name</ref>[0]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;.&apos;</highlight><highlight class="normal">))<sp/>{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(entry_b-&gt;<ref refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" kindref="member">name</ref>[0]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;.&apos;</highlight><highlight class="normal">)<sp/>-<sp/>(entry_a-&gt;<ref refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" kindref="member">name</ref>[0]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;.&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Both<sp/>are<sp/>either<sp/>dotfiles<sp/>or<sp/>non-dotfiles,<sp/>sort<sp/>alphabetically</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="dd/d6c/file__card_8c_1ab53dd5e9229168ae3ea9dd6718dc2eb8" kindref="member">strcasecmp_wrapper</ref>(entry_a-&gt;<ref refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" kindref="member">name</ref>,<sp/>entry_b-&gt;<ref refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" kindref="member">name</ref>);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>For<sp/>files,<sp/>sort<sp/>dotfiles<sp/>first</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((entry_a-&gt;<ref refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" kindref="member">name</ref>[0]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;.&apos;</highlight><highlight class="normal">)<sp/>!=<sp/>(entry_b-&gt;<ref refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" kindref="member">name</ref>[0]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;.&apos;</highlight><highlight class="normal">))<sp/>{</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(entry_b-&gt;<ref refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" kindref="member">name</ref>[0]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;.&apos;</highlight><highlight class="normal">)<sp/>-<sp/>(entry_a-&gt;<ref refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" kindref="member">name</ref>[0]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;.&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Sort<sp/>files<sp/>by<sp/>extension</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*ext_a<sp/>=<sp/><ref refid="dd/d6c/file__card_8c_1a6cc6fb631e1f28a066db43ca077cdd83" kindref="member">get_extension</ref>(entry_a-&gt;<ref refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" kindref="member">name</ref>);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*ext_b<sp/>=<sp/><ref refid="dd/d6c/file__card_8c_1a6cc6fb631e1f28a066db43ca077cdd83" kindref="member">get_extension</ref>(entry_b-&gt;<ref refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" kindref="member">name</ref>);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ext_cmp<sp/>=<sp/><ref refid="dd/d6c/file__card_8c_1ab53dd5e9229168ae3ea9dd6718dc2eb8" kindref="member">strcasecmp_wrapper</ref>(ext_a,<sp/>ext_b);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>extensions<sp/>differ,<sp/>return<sp/>their<sp/>comparison<sp/>result</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ext_cmp<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ext_cmp;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>extensions<sp/>are<sp/>the<sp/>same,<sp/>sort<sp/>alphabetically<sp/>by<sp/>name</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="dd/d6c/file__card_8c_1ab53dd5e9229168ae3ea9dd6718dc2eb8" kindref="member">strcasecmp_wrapper</ref>(entry_a-&gt;<ref refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" kindref="member">name</ref>,<sp/>entry_b-&gt;<ref refid="de/d0d/structFileCardInfo_1a3c0477ce53183f2738943d953f7baa55" kindref="member">name</ref>);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/honeyguide/Desktop/MyOpenSource/facad/src/file_card.c"/>
+  </compounddef>
+</doxygen>

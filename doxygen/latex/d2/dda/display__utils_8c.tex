@@ -1,0 +1,443 @@
+\doxysection{/home/honeyguide/\+Desktop/\+My\+Open\+Source/facad/src/display\+\_\+utils.c File Reference}
+\hypertarget{display__utils_8c}{}\label{display__utils_8c}\index{/home/honeyguide/Desktop/MyOpenSource/facad/src/display\_utils.c@{/home/honeyguide/Desktop/MyOpenSource/facad/src/display\_utils.c}}
+
+
+Implementation of display utilities for file entries.  
+
+
+{\ttfamily \#include $<$glob.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$wchar.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$locale.\+h$>$}\newline
+{\ttfamily \#include "{}file\+\_\+card.\+h"{}}\newline
+{\ttfamily \#include "{}git\+\_\+utils.\+h"{}}\newline
+{\ttfamily \#include "{}dir\+\_\+config.\+h"{}}\newline
+{\ttfamily \#include "{}display\+\_\+utils.\+h"{}}\newline
+Include dependency graph for display\+\_\+utils.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/dd7/display__utils_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{display__utils_8c_a78c99ffd76a7bb3c8c74db76207e9ab4}{\+\_\+\+XOPEN\+\_\+\+SOURCE}}~700
+\item 
+\#define \mbox{\hyperlink{display__utils_8c_a2cc6f39fc4594f0e734b2588129fba03}{MAX\+\_\+\+COLUMNS}}~4
+\item 
+\#define \mbox{\hyperlink{display__utils_8c_ab2dc237e07e2b4c8a52a5203c216fd37}{SPACING}}~2
+\item 
+\#define \mbox{\hyperlink{display__utils_8c_aeaee7a9666b3d9f80bde71005d22d498}{EMOJI\+\_\+\+WIDTH}}~2
+\item 
+\#define \mbox{\hyperlink{display__utils_8c_a59349b500cfa8c496dfeabb9cf1b192e}{EMOJI\+\_\+\+NAME\+\_\+\+SPACING}}~1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{display__utils_8c_aa5f36a89eac0853279ebdf9efb3f668b}{get\+\_\+utf8\+\_\+char\+\_\+width}} (const char \texorpdfstring{$\ast$}{*}str)
+\begin{DoxyCompactList}\small\item\em Determines the byte width of a UTF-\/8 character. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{display__utils_8c_ad5d5547a34815dba09681cd9e69bf2a1}{get\+\_\+display\+\_\+width}} (const char \texorpdfstring{$\ast$}{*}str)
+\begin{DoxyCompactList}\small\item\em Calculates the display width of a string, accounting for multi-\/byte characters. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{display__utils_8c_a41df821a4866776f6f181ad9301e91ac}{print\+\_\+padded}} (const char \texorpdfstring{$\ast$}{*}str, size\+\_\+t width)
+\begin{DoxyCompactList}\small\item\em Prints a string and pads it with spaces to reach the specified width. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{display__utils_8c_a8b38e99d9128bf4a4badc21df13d442b}{display\+\_\+entries}} (\mbox{\hyperlink{structFileCardInfo}{File\+Card\+Info}} \texorpdfstring{$\ast$}{*}entries, int num\+\_\+entries, int term\+\_\+width, const char \texorpdfstring{$\ast$}{*}current\+\_\+dir, int show\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Displays file entries in a formatted, multi-\/column layout. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of display utilities for file entries. 
+
+This file contains functions for formatting and displaying file entries in a grid layout, taking into account terminal width and Unicode characters. It handles the visual representation of directory contents, including emojis, Git status, and proper spacing.
+
+\begin{DoxyAuthor}{Author}
+Sergey Veneckiy 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2024 
+\end{DoxyDate}
+
+
+Definition in file \mbox{\hyperlink{display__utils_8c_source}{display\+\_\+utils.\+c}}.
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{display__utils_8c_a78c99ffd76a7bb3c8c74db76207e9ab4}\label{display__utils_8c_a78c99ffd76a7bb3c8c74db76207e9ab4} 
+\index{display\_utils.c@{display\_utils.c}!\_XOPEN\_SOURCE@{\_XOPEN\_SOURCE}}
+\index{\_XOPEN\_SOURCE@{\_XOPEN\_SOURCE}!display\_utils.c@{display\_utils.c}}
+\doxysubsubsection{\texorpdfstring{\_XOPEN\_SOURCE}{\_XOPEN\_SOURCE}}
+{\footnotesize\ttfamily \#define \+\_\+\+XOPEN\+\_\+\+SOURCE~700}
+
+
+
+Definition at line \mbox{\hyperlink{display__utils_8c_source_l00015}{15}} of file \mbox{\hyperlink{display__utils_8c_source}{display\+\_\+utils.\+c}}.
+
+\Hypertarget{display__utils_8c_a59349b500cfa8c496dfeabb9cf1b192e}\label{display__utils_8c_a59349b500cfa8c496dfeabb9cf1b192e} 
+\index{display\_utils.c@{display\_utils.c}!EMOJI\_NAME\_SPACING@{EMOJI\_NAME\_SPACING}}
+\index{EMOJI\_NAME\_SPACING@{EMOJI\_NAME\_SPACING}!display\_utils.c@{display\_utils.c}}
+\doxysubsubsection{\texorpdfstring{EMOJI\_NAME\_SPACING}{EMOJI\_NAME\_SPACING}}
+{\footnotesize\ttfamily \#define EMOJI\+\_\+\+NAME\+\_\+\+SPACING~1}
+
+
+
+Definition at line \mbox{\hyperlink{display__utils_8c_source_l00033}{33}} of file \mbox{\hyperlink{display__utils_8c_source}{display\+\_\+utils.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{display__utils_8c_source_l00108}{display\+\_\+entries()}}.
+
+\Hypertarget{display__utils_8c_aeaee7a9666b3d9f80bde71005d22d498}\label{display__utils_8c_aeaee7a9666b3d9f80bde71005d22d498} 
+\index{display\_utils.c@{display\_utils.c}!EMOJI\_WIDTH@{EMOJI\_WIDTH}}
+\index{EMOJI\_WIDTH@{EMOJI\_WIDTH}!display\_utils.c@{display\_utils.c}}
+\doxysubsubsection{\texorpdfstring{EMOJI\_WIDTH}{EMOJI\_WIDTH}}
+{\footnotesize\ttfamily \#define EMOJI\+\_\+\+WIDTH~2}
+
+
+
+Definition at line \mbox{\hyperlink{display__utils_8c_source_l00032}{32}} of file \mbox{\hyperlink{display__utils_8c_source}{display\+\_\+utils.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{display__utils_8c_source_l00108}{display\+\_\+entries()}}.
+
+\Hypertarget{display__utils_8c_a2cc6f39fc4594f0e734b2588129fba03}\label{display__utils_8c_a2cc6f39fc4594f0e734b2588129fba03} 
+\index{display\_utils.c@{display\_utils.c}!MAX\_COLUMNS@{MAX\_COLUMNS}}
+\index{MAX\_COLUMNS@{MAX\_COLUMNS}!display\_utils.c@{display\_utils.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_COLUMNS}{MAX\_COLUMNS}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+COLUMNS~4}
+
+
+
+Definition at line \mbox{\hyperlink{display__utils_8c_source_l00030}{30}} of file \mbox{\hyperlink{display__utils_8c_source}{display\+\_\+utils.\+c}}.
+
+\Hypertarget{display__utils_8c_ab2dc237e07e2b4c8a52a5203c216fd37}\label{display__utils_8c_ab2dc237e07e2b4c8a52a5203c216fd37} 
+\index{display\_utils.c@{display\_utils.c}!SPACING@{SPACING}}
+\index{SPACING@{SPACING}!display\_utils.c@{display\_utils.c}}
+\doxysubsubsection{\texorpdfstring{SPACING}{SPACING}}
+{\footnotesize\ttfamily \#define SPACING~2}
+
+
+
+Definition at line \mbox{\hyperlink{display__utils_8c_source_l00031}{31}} of file \mbox{\hyperlink{display__utils_8c_source}{display\+\_\+utils.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{display__utils_8c_source_l00108}{display\+\_\+entries()}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{display__utils_8c_a8b38e99d9128bf4a4badc21df13d442b}\label{display__utils_8c_a8b38e99d9128bf4a4badc21df13d442b} 
+\index{display\_utils.c@{display\_utils.c}!display\_entries@{display\_entries}}
+\index{display\_entries@{display\_entries}!display\_utils.c@{display\_utils.c}}
+\doxysubsubsection{\texorpdfstring{display\_entries()}{display\_entries()}}
+{\footnotesize\ttfamily void display\+\_\+entries (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFileCardInfo}{File\+Card\+Info}} \texorpdfstring{$\ast$}{*}}]{entries,  }\item[{int}]{num\+\_\+entries,  }\item[{int}]{term\+\_\+width,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{current\+\_\+dir,  }\item[{int}]{show\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+Displays file entries in a formatted, multi-\/column layout. 
+
+This function sorts the entries, calculates the appropriate layout based on terminal width, and prints the entries in a grid format. It handles emojis, Git status, and ensures proper alignment.
+
+
+\begin{DoxyParams}{Parameters}
+{\em entries} & Array of \doxylink{structFileCardInfo}{File\+Card\+Info} structures to display. \\
+\hline
+{\em num\+\_\+entries} & Number of entries in the array. \\
+\hline
+{\em term\+\_\+width} & Width of the terminal in characters. \\
+\hline
+{\em current\+\_\+dir} & Current directory path. \\
+\hline
+{\em show\+\_\+path} & Flag to indicate whether to show the current path. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{display__utils_8c_source_l00108}{108}} of file \mbox{\hyperlink{display__utils_8c_source}{display\+\_\+utils.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ setlocale(LC\_ALL,\ \textcolor{stringliteral}{"{}"{}});\ \ \textcolor{comment}{//\ Set\ the\ locale\ for\ proper\ Unicode\ handling}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//\ Display\ the\ current\ directory\ and\ Git\ branch\ if\ requested}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{if}\ (show\_path)\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *branch\ =\ \mbox{\hyperlink{git__utils_8c_a2ef1d42e63a1b1ab2270c1d82157a384}{get\_current\_branch}}();}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (branch)\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//printf("{}\(\backslash\)033[1m\%s\(\backslash\)033[0m\ (\(\backslash\)033[32m\%s\(\backslash\)033[0m)\(\backslash\)n"{},\ current\_dir,\ branch);}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)033[1m\%s\(\backslash\)033[0m\ \ \(\backslash\)033[38;5;202m[\%s]\(\backslash\)033[0m\(\backslash\)n"{}},\ current\_dir,\ branch);}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ free(branch);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)033[1m\%s\(\backslash\)033[0m\(\backslash\)n"{}},\ current\_dir);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{//\ Allocate\ memory\ for\ storing\ entry\ widths}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ *entry\_widths\ =\ malloc(num\_entries\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{size\_t}));}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{if}\ (!entry\_widths)\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Memory\ allocation\ failed\(\backslash\)n"{}});}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ width\ of\ each\ entry\ and\ find\ the\ maximum\ width}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ max\_width\ =\ 0;}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_entries;\ i++)\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ width:\ emoji\ +\ spacing\ +\ name\ +\ potential\ Git\ status}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ entry\_widths[i]\ =\ \mbox{\hyperlink{display__utils_8c_aeaee7a9666b3d9f80bde71005d22d498}{EMOJI\_WIDTH}}\ +\ \mbox{\hyperlink{display__utils_8c_a59349b500cfa8c496dfeabb9cf1b192e}{EMOJI\_NAME\_SPACING}}\ +\ \mbox{\hyperlink{display__utils_8c_ad5d5547a34815dba09681cd9e69bf2a1}{get\_display\_width}}(entries[i].name);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entries[i].git\_status[0]\ !=\ \textcolor{charliteral}{'\(\backslash\)0'})\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ entry\_widths[i]\ +=\ 3;\ \textcolor{comment}{//\ Add\ 3\ for\ "{}(X)"{}\ Git\ status}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entry\_widths[i]\ >\ max\_width)\ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ max\_width\ =\ entry\_widths[i];}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ number\ of\ columns\ based\ on\ terminal\ width}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{int}\ num\_columns\ =\ (term\_width\ +\ \mbox{\hyperlink{display__utils_8c_ab2dc237e07e2b4c8a52a5203c216fd37}{SPACING}})\ /\ (max\_width\ +\ \mbox{\hyperlink{display__utils_8c_ab2dc237e07e2b4c8a52a5203c216fd37}{SPACING}});}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{int}\ max\_columns\ =\ \mbox{\hyperlink{dir__config_8c_a4ce38149e564150cef6b9f182913ac7a}{get\_max\_columns}}(current\_dir);}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{if}\ (num\_columns\ >\ max\_columns)\ num\_columns\ =\ max\_columns;}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{if}\ (num\_columns\ <\ 1)\ num\_columns\ =\ 1;}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//\ Allocate\ memory\ for\ column\ widths}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ *column\_widths\ =\ calloc(num\_columns,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{size\_t}));}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{if}\ (!column\_widths)\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Memory\ allocation\ failed\(\backslash\)n"{}});}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ free(entry\_widths);}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ number\ of\ rows}}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{int}\ rows\ =\ (num\_entries\ +\ num\_columns\ -\/\ 1)\ /\ num\_columns;}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ width\ of\ each\ column}}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_entries;\ i++)\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ col\ =\ i\ /\ rows;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entry\_widths[i]\ >\ column\_widths[col])\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ column\_widths[col]\ =\ entry\_widths[i];}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{comment}{//\ Display\ the\ entries\ in\ a\ grid\ format}}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ row\ =\ 0;\ row\ <\ rows;\ row++)\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ col\ =\ 0;\ col\ <\ num\_columns;\ col++)\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ col\ *\ rows\ +\ row;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ <\ num\_entries)\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Print\ emoji}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s\ "{}},\ entries[index].emoji);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Print\ file\ name}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s"{}},\ entries[index].name);}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Print\ Git\ status\ if\ available}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entries[index].git\_status[0]\ !=\ \textcolor{charliteral}{'\(\backslash\)0'})\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//printf("{}(\(\backslash\)033[32m\%c\(\backslash\)033[0m)"{},\ entries[index].git\_status[0]);}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)033[38;5;202m[\%c]\(\backslash\)033[0m"{}},\ entries[index].git\_status[0]);}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ and\ print\ padding}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ printed\_width\ =\ entry\_widths[index];}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ padding\ =\ (col\ <\ num\_columns\ -\/\ 1)\ ?\ column\_widths[col]\ -\/\ printed\_width\ +\ \mbox{\hyperlink{display__utils_8c_ab2dc237e07e2b4c8a52a5203c216fd37}{SPACING}}\ :\ 0;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ padding;\ i++)\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});\ \ \textcolor{comment}{//\ Move\ to\ the\ next\ row}}
+\DoxyCodeLine{00194\ \ \ \ \ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{comment}{//\ Free\ allocated\ memory}}
+\DoxyCodeLine{00197\ \ \ \ \ free(entry\_widths);}
+\DoxyCodeLine{00198\ \ \ \ \ free(column\_widths);}
+\DoxyCodeLine{00199\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{display__utils_8c_source_l00033}{EMOJI\+\_\+\+NAME\+\_\+\+SPACING}}, \mbox{\hyperlink{display__utils_8c_source_l00032}{EMOJI\+\_\+\+WIDTH}}, \mbox{\hyperlink{git__utils_8c_source_l00100}{get\+\_\+current\+\_\+branch()}}, \mbox{\hyperlink{display__utils_8c_source_l00061}{get\+\_\+display\+\_\+width()}}, \mbox{\hyperlink{dir__config_8c_source_l00042}{get\+\_\+max\+\_\+columns()}}, and \mbox{\hyperlink{display__utils_8c_source_l00031}{SPACING}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00275}{main()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/dda/display__utils_8c_a8b38e99d9128bf4a4badc21df13d442b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{d2/dda/display__utils_8c_a8b38e99d9128bf4a4badc21df13d442b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{display__utils_8c_ad5d5547a34815dba09681cd9e69bf2a1}\label{display__utils_8c_ad5d5547a34815dba09681cd9e69bf2a1} 
+\index{display\_utils.c@{display\_utils.c}!get\_display\_width@{get\_display\_width}}
+\index{get\_display\_width@{get\_display\_width}!display\_utils.c@{display\_utils.c}}
+\doxysubsubsection{\texorpdfstring{get\_display\_width()}{get\_display\_width()}}
+{\footnotesize\ttfamily size\+\_\+t get\+\_\+display\+\_\+width (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str }\end{DoxyParamCaption})}
+
+
+
+Calculates the display width of a string, accounting for multi-\/byte characters. 
+
+This function iterates through the string, determining the width of each character and summing them to get the total display width.
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to measure. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The display width of the string. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{display__utils_8c_source_l00061}{61}} of file \mbox{\hyperlink{display__utils_8c_source}{display\+\_\+utils.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ width\ =\ 0;}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{while}\ (*str)\ \{\ \ \textcolor{comment}{//\ Loop\ through\ each\ character\ in\ the\ string}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ char\_width\ =\ \mbox{\hyperlink{display__utils_8c_aa5f36a89eac0853279ebdf9efb3f668b}{get\_utf8\_char\_width}}(str);\ \ \textcolor{comment}{//\ Get\ the\ byte\ width\ of\ the\ current\ character}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (char\_width\ ==\ 4)\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ width\ +=\ 2;\ \ \textcolor{comment}{//\ Emoji\ and\ other\ wide\ characters\ count\ as\ 2\ display\ units}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (char\_width\ >\ 1)\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ width\ +=\ 1;\ \ \textcolor{comment}{//\ Other\ multi-\/byte\ characters\ count\ as\ 1\ display\ unit}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ width\ +=\ 1;\ \ \textcolor{comment}{//\ ASCII\ characters\ count\ as\ 1\ display\ unit}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ str\ +=\ char\_width;\ \ \textcolor{comment}{//\ Move\ to\ the\ next\ character}}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ width;}
+\DoxyCodeLine{00075\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{display__utils_8c_source_l00044}{get\+\_\+utf8\+\_\+char\+\_\+width()}}.
+
+
+
+Referenced by \mbox{\hyperlink{display__utils_8c_source_l00108}{display\+\_\+entries()}}, and \mbox{\hyperlink{display__utils_8c_source_l00086}{print\+\_\+padded()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{d2/dda/display__utils_8c_ad5d5547a34815dba09681cd9e69bf2a1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/dda/display__utils_8c_ad5d5547a34815dba09681cd9e69bf2a1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{display__utils_8c_aa5f36a89eac0853279ebdf9efb3f668b}\label{display__utils_8c_aa5f36a89eac0853279ebdf9efb3f668b} 
+\index{display\_utils.c@{display\_utils.c}!get\_utf8\_char\_width@{get\_utf8\_char\_width}}
+\index{get\_utf8\_char\_width@{get\_utf8\_char\_width}!display\_utils.c@{display\_utils.c}}
+\doxysubsubsection{\texorpdfstring{get\_utf8\_char\_width()}{get\_utf8\_char\_width()}}
+{\footnotesize\ttfamily size\+\_\+t get\+\_\+utf8\+\_\+char\+\_\+width (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str }\end{DoxyParamCaption})}
+
+
+
+Determines the byte width of a UTF-\/8 character. 
+
+This function analyzes the first byte of a UTF-\/8 character to determine its total byte width.
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & Pointer to the start of a UTF-\/8 character. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of bytes used by the character (1-\/4). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{display__utils_8c_source_l00044}{44}} of file \mbox{\hyperlink{display__utils_8c_source}{display\+\_\+utils.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ c\ =\ (\textcolor{keywordtype}{unsigned}\ char)*str;\ \ \textcolor{comment}{//\ Get\ the\ first\ byte\ of\ the\ character}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ <\ 0x80)\ \textcolor{keywordflow}{return}\ 1;\ \ \ \ \ \ \textcolor{comment}{//\ ASCII\ character\ (0xxxxxxx)}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ <\ 0xE0)\ \textcolor{keywordflow}{return}\ 2;\ \ \ \ \ \ \textcolor{comment}{//\ 2-\/byte\ UTF-\/8\ character\ (110xxxxx)}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ <\ 0xF0)\ \textcolor{keywordflow}{return}\ 3;\ \ \ \ \ \ \textcolor{comment}{//\ 3-\/byte\ UTF-\/8\ character\ (1110xxxx)}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{return}\ 4;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4-\/byte\ UTF-\/8\ character\ (11110xxx)}}
+\DoxyCodeLine{00050\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{display__utils_8c_source_l00061}{get\+\_\+display\+\_\+width()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/dda/display__utils_8c_aa5f36a89eac0853279ebdf9efb3f668b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{display__utils_8c_a41df821a4866776f6f181ad9301e91ac}\label{display__utils_8c_a41df821a4866776f6f181ad9301e91ac} 
+\index{display\_utils.c@{display\_utils.c}!print\_padded@{print\_padded}}
+\index{print\_padded@{print\_padded}!display\_utils.c@{display\_utils.c}}
+\doxysubsubsection{\texorpdfstring{print\_padded()}{print\_padded()}}
+{\footnotesize\ttfamily void print\+\_\+padded (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str,  }\item[{size\+\_\+t}]{width }\end{DoxyParamCaption})}
+
+
+
+Prints a string and pads it with spaces to reach the specified width. 
+
+This function prints the given string and adds space padding to ensure consistent column widths in the display.
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to print. \\
+\hline
+{\em width} & The total width to fill, including the string and padding. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{display__utils_8c_source_l00086}{86}} of file \mbox{\hyperlink{display__utils_8c_source}{display\+\_\+utils.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ str\_width\ =\ \mbox{\hyperlink{display__utils_8c_ad5d5547a34815dba09681cd9e69bf2a1}{get\_display\_width}}(str);\ \ \textcolor{comment}{//\ Get\ the\ display\ width\ of\ the\ string}}
+\DoxyCodeLine{00088\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s"{}},\ str);\ \ \textcolor{comment}{//\ Print\ the\ string}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{//\ Add\ padding\ spaces}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ str\_width;\ i\ <\ width;\ i++)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{display__utils_8c_source_l00061}{get\+\_\+display\+\_\+width()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/dda/display__utils_8c_a41df821a4866776f6f181ad9301e91ac_cgraph}
+\end{center}
+\end{figure}

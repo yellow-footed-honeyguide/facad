@@ -1,0 +1,205 @@
+\doxysection{display\+\_\+utils.\+c}
+\hypertarget{display__utils_8c_source}{}\label{display__utils_8c_source}\index{/home/honeyguide/Desktop/MyOpenSource/facad/src/display\_utils.c@{/home/honeyguide/Desktop/MyOpenSource/facad/src/display\_utils.c}}
+\mbox{\hyperlink{display__utils_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ display\_utils.c}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Implementation\ of\ display\ utilities\ for\ file\ entries.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00005}00005\ \textcolor{comment}{\ *\ This\ file\ contains\ functions\ for\ formatting\ and\ displaying\ file\ entries}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00006}00006\ \textcolor{comment}{\ *\ in\ a\ grid\ layout,\ taking\ into\ account\ terminal\ width\ and\ Unicode\ characters.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00007}00007\ \textcolor{comment}{\ *\ It\ handles\ the\ visual\ representation\ of\ directory\ contents,\ including}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00008}00008\ \textcolor{comment}{\ *\ emojis,\ Git\ status,\ and\ proper\ spacing.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00009}00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00010}00010\ \textcolor{comment}{\ *\ @author\ Sergey\ Veneckiy}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00011}00011\ \textcolor{comment}{\ *\ @date\ 2024}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00012}00012\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00014}00014\ \textcolor{comment}{//\ Enable\ POSIX.1-\/2008\ +\ XSI\ (X/Open\ System\ Interfaces\ Extension)\ features}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00015}\mbox{\hyperlink{display__utils_8c_a78c99ffd76a7bb3c8c74db76207e9ab4}{00015}}\ \textcolor{preprocessor}{\#define\ \_XOPEN\_SOURCE\ 700}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <glob.h>}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <wchar.h>}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <locale.h>}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00024}00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{file__card_8h}{file\_card.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00025}00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{git__utils_8h}{git\_utils.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00026}00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dir__config_8h}{dir\_config.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00027}00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{display__utils_8h}{display\_utils.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00029}00029\ \textcolor{comment}{//\ Constants\ for\ display\ formatting}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00030}\mbox{\hyperlink{display__utils_8c_a2cc6f39fc4594f0e734b2588129fba03}{00030}}\ \textcolor{preprocessor}{\#define\ MAX\_COLUMNS\ 4}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00031}\mbox{\hyperlink{display__utils_8c_ab2dc237e07e2b4c8a52a5203c216fd37}{00031}}\ \textcolor{preprocessor}{\#define\ SPACING\ 2}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00032}\mbox{\hyperlink{display__utils_8c_aeaee7a9666b3d9f80bde71005d22d498}{00032}}\ \textcolor{preprocessor}{\#define\ EMOJI\_WIDTH\ 2}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00033}\mbox{\hyperlink{display__utils_8c_a59349b500cfa8c496dfeabb9cf1b192e}{00033}}\ \textcolor{preprocessor}{\#define\ EMOJI\_NAME\_SPACING\ 1}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00034}00034\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00035}00035\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00036}00036\ \textcolor{comment}{\ *\ @brief\ Determines\ the\ byte\ width\ of\ a\ UTF-\/8\ character.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00037}00037\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00038}00038\ \textcolor{comment}{\ *\ This\ function\ analyzes\ the\ first\ byte\ of\ a\ UTF-\/8\ character\ to\ determine}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00039}00039\ \textcolor{comment}{\ *\ its\ total\ byte\ width.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00040}00040\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00041}00041\ \textcolor{comment}{\ *\ @param\ str\ Pointer\ to\ the\ start\ of\ a\ UTF-\/8\ character.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00042}00042\ \textcolor{comment}{\ *\ @return\ The\ number\ of\ bytes\ used\ by\ the\ character\ (1-\/4).}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00043}00043\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00044}\mbox{\hyperlink{display__utils_8c_aa5f36a89eac0853279ebdf9efb3f668b}{00044}}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{display__utils_8c_aa5f36a89eac0853279ebdf9efb3f668b}{get\_utf8\_char\_width}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str)\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00045}00045\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ c\ =\ (\textcolor{keywordtype}{unsigned}\ char)*str;\ \ \textcolor{comment}{//\ Get\ the\ first\ byte\ of\ the\ character}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00046}00046\ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ <\ 0x80)\ \textcolor{keywordflow}{return}\ 1;\ \ \ \ \ \ \textcolor{comment}{//\ ASCII\ character\ (0xxxxxxx)}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ <\ 0xE0)\ \textcolor{keywordflow}{return}\ 2;\ \ \ \ \ \ \textcolor{comment}{//\ 2-\/byte\ UTF-\/8\ character\ (110xxxxx)}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00048}00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ <\ 0xF0)\ \textcolor{keywordflow}{return}\ 3;\ \ \ \ \ \ \textcolor{comment}{//\ 3-\/byte\ UTF-\/8\ character\ (1110xxxx)}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00049}00049\ \ \ \ \ \textcolor{keywordflow}{return}\ 4;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4-\/byte\ UTF-\/8\ character\ (11110xxx)}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00050}00050\ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00051}00051\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00052}00052\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00053}00053\ \textcolor{comment}{\ *\ @brief\ Calculates\ the\ display\ width\ of\ a\ string,\ accounting\ for\ multi-\/byte\ characters.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00054}00054\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00055}00055\ \textcolor{comment}{\ *\ This\ function\ iterates\ through\ the\ string,\ determining\ the\ width\ of\ each\ character}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00056}00056\ \textcolor{comment}{\ *\ and\ summing\ them\ to\ get\ the\ total\ display\ width.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00057}00057\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00058}00058\ \textcolor{comment}{\ *\ @param\ str\ The\ string\ to\ measure.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00059}00059\ \textcolor{comment}{\ *\ @return\ The\ display\ width\ of\ the\ string.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00060}00060\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00061}\mbox{\hyperlink{display__utils_8c_ad5d5547a34815dba09681cd9e69bf2a1}{00061}}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{display__utils_8c_ad5d5547a34815dba09681cd9e69bf2a1}{get\_display\_width}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str)\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00062}00062\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ width\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00063}00063\ \ \ \ \ \textcolor{keywordflow}{while}\ (*str)\ \{\ \ \textcolor{comment}{//\ Loop\ through\ each\ character\ in\ the\ string}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ char\_width\ =\ \mbox{\hyperlink{display__utils_8c_aa5f36a89eac0853279ebdf9efb3f668b}{get\_utf8\_char\_width}}(str);\ \ \textcolor{comment}{//\ Get\ the\ byte\ width\ of\ the\ current\ character}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (char\_width\ ==\ 4)\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ width\ +=\ 2;\ \ \textcolor{comment}{//\ Emoji\ and\ other\ wide\ characters\ count\ as\ 2\ display\ units}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00067}00067\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (char\_width\ >\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ width\ +=\ 1;\ \ \textcolor{comment}{//\ Other\ multi-\/byte\ characters\ count\ as\ 1\ display\ unit}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00069}00069\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ width\ +=\ 1;\ \ \textcolor{comment}{//\ ASCII\ characters\ count\ as\ 1\ display\ unit}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00071}00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00072}00072\ \ \ \ \ \ \ \ \ str\ +=\ char\_width;\ \ \textcolor{comment}{//\ Move\ to\ the\ next\ character}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00073}00073\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00074}00074\ \ \ \ \ \textcolor{keywordflow}{return}\ width;}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00075}00075\ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00076}00076\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00077}00077\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00078}00078\ \textcolor{comment}{\ *\ @brief\ Prints\ a\ string\ and\ pads\ it\ with\ spaces\ to\ reach\ the\ specified\ width.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00079}00079\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00080}00080\ \textcolor{comment}{\ *\ This\ function\ prints\ the\ given\ string\ and\ adds\ space\ padding\ to\ ensure}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00081}00081\ \textcolor{comment}{\ *\ consistent\ column\ widths\ in\ the\ display.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00082}00082\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00083}00083\ \textcolor{comment}{\ *\ @param\ str\ The\ string\ to\ print.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00084}00084\ \textcolor{comment}{\ *\ @param\ width\ The\ total\ width\ to\ fill,\ including\ the\ string\ and\ padding.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00085}00085\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00086}\mbox{\hyperlink{display__utils_8c_a41df821a4866776f6f181ad9301e91ac}{00086}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{display__utils_8c_a41df821a4866776f6f181ad9301e91ac}{print\_padded}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str,\ \textcolor{keywordtype}{size\_t}\ width)\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00087}00087\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ str\_width\ =\ \mbox{\hyperlink{display__utils_8c_ad5d5547a34815dba09681cd9e69bf2a1}{get\_display\_width}}(str);\ \ \textcolor{comment}{//\ Get\ the\ display\ width\ of\ the\ string}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00088}00088\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s"{}},\ str);\ \ \textcolor{comment}{//\ Print\ the\ string}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00089}00089\ \ \ \ \ \textcolor{comment}{//\ Add\ padding\ spaces}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00090}00090\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ str\_width;\ i\ <\ width;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00091}00091\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00092}00092\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00093}00093\ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00094}00094\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00095}00095\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00096}00096\ \textcolor{comment}{\ *\ @brief\ Displays\ file\ entries\ in\ a\ formatted,\ multi-\/column\ layout.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00097}00097\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00098}00098\ \textcolor{comment}{\ *\ This\ function\ sorts\ the\ entries,\ calculates\ the\ appropriate\ layout\ based\ on}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00099}00099\ \textcolor{comment}{\ *\ terminal\ width,\ and\ prints\ the\ entries\ in\ a\ grid\ format.\ It\ handles\ emojis,}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00100}00100\ \textcolor{comment}{\ *\ Git\ status,\ and\ ensures\ proper\ alignment.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00101}00101\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00102}00102\ \textcolor{comment}{\ *\ @param\ entries\ Array\ of\ FileCardInfo\ structures\ to\ display.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00103}00103\ \textcolor{comment}{\ *\ @param\ num\_entries\ Number\ of\ entries\ in\ the\ array.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00104}00104\ \textcolor{comment}{\ *\ @param\ term\_width\ Width\ of\ the\ terminal\ in\ characters.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00105}00105\ \textcolor{comment}{\ *\ @param\ current\_dir\ Current\ directory\ path.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00106}00106\ \textcolor{comment}{\ *\ @param\ show\_path\ Flag\ to\ indicate\ whether\ to\ show\ the\ current\ path.}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00107}00107\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00108}\mbox{\hyperlink{display__utils_8c_a8b38e99d9128bf4a4badc21df13d442b}{00108}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{display__utils_8c_a8b38e99d9128bf4a4badc21df13d442b}{display\_entries}}(\mbox{\hyperlink{structFileCardInfo}{FileCardInfo}}\ *entries,\ \textcolor{keywordtype}{int}\ num\_entries,\ \textcolor{keywordtype}{int}\ term\_width,}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *current\_dir,\ \textcolor{keywordtype}{int}\ show\_path)\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00110}00110\ \ \ \ \ setlocale(LC\_ALL,\ \textcolor{stringliteral}{"{}"{}});\ \ \textcolor{comment}{//\ Set\ the\ locale\ for\ proper\ Unicode\ handling}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00112}00112\ \ \ \ \ \textcolor{comment}{//\ Display\ the\ current\ directory\ and\ Git\ branch\ if\ requested}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00113}00113\ \ \ \ \ \textcolor{keywordflow}{if}\ (show\_path)\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *branch\ =\ \mbox{\hyperlink{git__utils_8c_a2ef1d42e63a1b1ab2270c1d82157a384}{get\_current\_branch}}();}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (branch)\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//printf("{}\(\backslash\)033[1m\%s\(\backslash\)033[0m\ (\(\backslash\)033[32m\%s\(\backslash\)033[0m)\(\backslash\)n"{},\ current\_dir,\ branch);}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)033[1m\%s\(\backslash\)033[0m\ \ \(\backslash\)033[38;5;202m[\%s]\(\backslash\)033[0m\(\backslash\)n"{}},\ current\_dir,\ branch);}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ free(branch);}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00119}00119\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)033[1m\%s\(\backslash\)033[0m\(\backslash\)n"{}},\ current\_dir);}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00121}00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00122}00122\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00124}00124\ \ \ \ \ \textcolor{comment}{//\ Allocate\ memory\ for\ storing\ entry\ widths}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00125}00125\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ *entry\_widths\ =\ malloc(num\_entries\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{size\_t}));}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00126}00126\ \ \ \ \ \textcolor{keywordflow}{if}\ (!entry\_widths)\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00127}00127\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Memory\ allocation\ failed\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00129}00129\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00131}00131\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ width\ of\ each\ entry\ and\ find\ the\ maximum\ width}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00132}00132\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ max\_width\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00133}00133\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_entries;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ width:\ emoji\ +\ spacing\ +\ name\ +\ potential\ Git\ status}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00135}00135\ \ \ \ \ \ \ \ \ entry\_widths[i]\ =\ \mbox{\hyperlink{display__utils_8c_aeaee7a9666b3d9f80bde71005d22d498}{EMOJI\_WIDTH}}\ +\ \mbox{\hyperlink{display__utils_8c_a59349b500cfa8c496dfeabb9cf1b192e}{EMOJI\_NAME\_SPACING}}\ +\ \mbox{\hyperlink{display__utils_8c_ad5d5547a34815dba09681cd9e69bf2a1}{get\_display\_width}}(entries[i].name);}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entries[i].git\_status[0]\ !=\ \textcolor{charliteral}{'\(\backslash\)0'})\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ entry\_widths[i]\ +=\ 3;\ \textcolor{comment}{//\ Add\ 3\ for\ "{}(X)"{}\ Git\ status}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00138}00138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00139}00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entry\_widths[i]\ >\ max\_width)\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ max\_width\ =\ entry\_widths[i];}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00141}00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00142}00142\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00144}00144\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ number\ of\ columns\ based\ on\ terminal\ width}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00145}00145\ \ \ \ \ \textcolor{keywordtype}{int}\ num\_columns\ =\ (term\_width\ +\ \mbox{\hyperlink{display__utils_8c_ab2dc237e07e2b4c8a52a5203c216fd37}{SPACING}})\ /\ (max\_width\ +\ \mbox{\hyperlink{display__utils_8c_ab2dc237e07e2b4c8a52a5203c216fd37}{SPACING}});}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00146}00146\ \ \ \ \ \textcolor{keywordtype}{int}\ max\_columns\ =\ \mbox{\hyperlink{dir__config_8c_a4ce38149e564150cef6b9f182913ac7a}{get\_max\_columns}}(current\_dir);}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00147}00147\ \ \ \ \ \textcolor{keywordflow}{if}\ (num\_columns\ >\ max\_columns)\ num\_columns\ =\ max\_columns;}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00148}00148\ \ \ \ \ \textcolor{keywordflow}{if}\ (num\_columns\ <\ 1)\ num\_columns\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00150}00150\ \ \ \ \ \textcolor{comment}{//\ Allocate\ memory\ for\ column\ widths}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00151}00151\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ *column\_widths\ =\ calloc(num\_columns,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{size\_t}));}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00152}00152\ \ \ \ \ \textcolor{keywordflow}{if}\ (!column\_widths)\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00153}00153\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Memory\ allocation\ failed\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00154}00154\ \ \ \ \ \ \ \ \ free(entry\_widths);}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00156}00156\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00158}00158\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ number\ of\ rows}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00159}00159\ \ \ \ \ \textcolor{keywordtype}{int}\ rows\ =\ (num\_entries\ +\ num\_columns\ -\/\ 1)\ /\ num\_columns;}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00161}00161\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ width\ of\ each\ column}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00162}00162\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_entries;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00163}00163\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ col\ =\ i\ /\ rows;}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00164}00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entry\_widths[i]\ >\ column\_widths[col])\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ column\_widths[col]\ =\ entry\_widths[i];}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00166}00166\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00167}00167\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00169}00169\ \ \ \ \ \textcolor{comment}{//\ Display\ the\ entries\ in\ a\ grid\ format}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00170}00170\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ row\ =\ 0;\ row\ <\ rows;\ row++)\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00171}00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ col\ =\ 0;\ col\ <\ num\_columns;\ col++)\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ col\ *\ rows\ +\ row;}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ <\ num\_entries)\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Print\ emoji}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s\ "{}},\ entries[index].emoji);}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Print\ file\ name}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s"{}},\ entries[index].name);}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Print\ Git\ status\ if\ available}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entries[index].git\_status[0]\ !=\ \textcolor{charliteral}{'\(\backslash\)0'})\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//printf("{}(\(\backslash\)033[32m\%c\(\backslash\)033[0m)"{},\ entries[index].git\_status[0]);}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)033[38;5;202m[\%c]\(\backslash\)033[0m"{}},\ entries[index].git\_status[0]);}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ and\ print\ padding}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ printed\_width\ =\ entry\_widths[index];}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ padding\ =\ (col\ <\ num\_columns\ -\/\ 1)\ ?\ column\_widths[col]\ -\/\ printed\_width\ +\ \mbox{\hyperlink{display__utils_8c_ab2dc237e07e2b4c8a52a5203c216fd37}{SPACING}}\ :\ 0;}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ padding;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00192}00192\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00193}00193\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});\ \ \textcolor{comment}{//\ Move\ to\ the\ next\ row}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00194}00194\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00196}00196\ \ \ \ \ \textcolor{comment}{//\ Free\ allocated\ memory}}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00197}00197\ \ \ \ \ free(entry\_widths);}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00198}00198\ \ \ \ \ free(column\_widths);}
+\DoxyCodeLine{\Hypertarget{display__utils_8c_source_l00199}00199\ \}}
+
+\end{DoxyCode}

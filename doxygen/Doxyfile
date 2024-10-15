@@ -1,0 +1,131 @@
+# Comprehensive Doxyfile for Facad project
+
+#---------------------------------------------------------------------------
+# Project related configuration options
+#---------------------------------------------------------------------------
+
+PROJECT_NAME           = "Facad"      # Name of the project
+PROJECT_NUMBER         = "2.19.0"     # Project version or release number
+PROJECT_BRIEF          = "A modern, colorful ls alternative for bringing clarity to the filesystem"
+OUTPUT_DIRECTORY       = ./      # Output directory for documentation
+CREATE_SUBDIRS         = YES          # Create subdirectories in output
+ALLOW_UNICODE_NAMES    = YES          # Allow Unicode characters in names
+OUTPUT_LANGUAGE        = English      # Language for the documentation
+
+#---------------------------------------------------------------------------
+# Build related configuration options
+#---------------------------------------------------------------------------
+
+EXTRACT_ALL            = YES          # Extract all entities
+EXTRACT_PRIVATE        = YES          # Include private members
+EXTRACT_STATIC         = YES          # Include static members
+EXTRACT_LOCAL_CLASSES  = YES          # Include local classes
+EXTRACT_LOCAL_METHODS  = YES          # Include local methods
+EXTRACT_ANON_NSPACES   = YES          # Extract anonymous namespaces
+
+#---------------------------------------------------------------------------
+# Configuration options related to warning and progress messages
+#---------------------------------------------------------------------------
+
+QUIET                  = NO           # Show all warnings
+WARNINGS               = YES          # Enable warnings
+WARN_IF_UNDOCUMENTED   = YES          # Warn about undocumented entities
+WARN_IF_DOC_ERROR      = YES          # Warn about documentation errors
+
+#---------------------------------------------------------------------------
+# Configuration options related to the input files
+#---------------------------------------------------------------------------
+
+INPUT                  = ../src
+FILE_PATTERNS          = *.c *.h
+RECURSIVE              = YES
+EXCLUDE                =
+EXCLUDE_SYMLINKS       = NO
+EXCLUDE_PATTERNS       =
+EXCLUDE_SYMBOLS        =
+
+#---------------------------------------------------------------------------
+# Configuration options related to source browsing
+#---------------------------------------------------------------------------
+
+SOURCE_BROWSER         = YES          # Generate source code browser
+INLINE_SOURCES         = YES          # Include source code in the documentation
+STRIP_CODE_COMMENTS    = NO           # Keep comments in the source code
+REFERENCED_BY_RELATION = YES          # Show referenced-by relation
+REFERENCES_RELATION    = YES          # Show references relation
+REFERENCES_LINK_SOURCE = YES          # Link references to source code
+
+#---------------------------------------------------------------------------
+# Configuration options related to the alphabetical class index
+#---------------------------------------------------------------------------
+
+ALPHABETICAL_INDEX     = YES          # Generate alphabetical index
+
+#---------------------------------------------------------------------------
+# Configuration options related to the HTML output
+#---------------------------------------------------------------------------
+
+GENERATE_HTML          = YES          # Generate HTML output
+HTML_OUTPUT            = html         # HTML output directory
+HTML_FILE_EXTENSION    = .html        # HTML file extension
+HTML_DYNAMIC_SECTIONS  = YES          # Dynamic content sections
+GENERATE_TREEVIEW      = YES          # Generate a tree-like navigation
+TREEVIEW_WIDTH         = 250          # Width of the tree view
+
+#---------------------------------------------------------------------------
+# Configuration options related to the LaTeX output
+#---------------------------------------------------------------------------
+
+GENERATE_LATEX         = YES          # Generate LaTeX output
+LATEX_OUTPUT           = latex        # LaTeX output directory
+
+#---------------------------------------------------------------------------
+# Configuration options related to the dot tool
+#---------------------------------------------------------------------------
+
+HAVE_DOT               = YES          # Use dot tool for diagrams
+DOT_NUM_THREADS        = 0            # Number of dot tool instances (0 = auto)
+DOT_FONTNAME           = Helvetica    # Font for dot graphs
+DOT_FONTSIZE           = 10           # Font size for dot graphs
+CLASS_GRAPH            = YES          # Generate class graphs
+COLLABORATION_GRAPH    = YES          # Generate collaboration graphs
+GROUP_GRAPHS           = YES          # Generate graphs for groups
+UML_LOOK               = YES          # Use UML notation
+UML_LIMIT_NUM_FIELDS   = 50           # Limit fields in UML diagrams
+DOT_UML_DETAILS        = YES          # Include details in UML diagrams
+DOT_WRAP_THRESHOLD     = 17           # Wrap labels in the dot graphs
+TEMPLATE_RELATIONS     = YES          # Show template relations
+INCLUDE_GRAPH          = YES          # Include dependency graphs
+INCLUDED_BY_GRAPH      = YES          # Include reverse dependency graphs
+CALL_GRAPH             = YES          # Generate caller graphs
+CALLER_GRAPH           = YES          # Generate called graphs
+GRAPHICAL_HIERARCHY    = YES          # Generate graphical class hierarchy
+DIRECTORY_GRAPH        = YES          # Generate directory dependency graphs
+DOT_IMAGE_FORMAT       = svg          # Output format for graphs
+INTERACTIVE_SVG        = YES          # Make SVG output interactive
+DOT_GRAPH_MAX_NODES    = 100          # Max number of nodes in graph
+MAX_DOT_GRAPH_DEPTH    = 0            # Max depth of the dot graphs (0 = no limit)
+DOT_TRANSPARENT        = YES          # Make dot graphs transparent
+DOT_MULTI_TARGETS      = YES          # Generate multiple targets in dot
+GENERATE_LEGEND        = YES          # Generate legend for graphs
+DOT_CLEANUP            = YES          # Clean intermediate dot files
+
+#---------------------------------------------------------------------------
+# Configuration options related to the search engine
+#---------------------------------------------------------------------------
+
+SEARCHENGINE           = YES          # Enable search engine
+SERVER_BASED_SEARCH    = NO           # Use server-based search
+
+#---------------------------------------------------------------------------
+# Configuration options related to diagram generation
+#---------------------------------------------------------------------------
+
+GENERATE_DOCSET        = NO           # Generate docset
+DOCSET_FEEDNAME        = "Doxygen generated docs"
+DOCSET_BUNDLE_ID       = org.doxygen.Project
+DOCSET_PUBLISHER_ID    = org.doxygen.Publisher
+DOCSET_PUBLISHER_NAME  = Publisher
+
+
+GENERATE_XML           = YES

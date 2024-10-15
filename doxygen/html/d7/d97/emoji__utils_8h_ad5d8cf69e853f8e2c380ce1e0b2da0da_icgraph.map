@@ -1,0 +1,7 @@
+<map id="get_dev_emoji" name="get_dev_emoji">
+<area shape="rect" id="Node000001" title="Determines the appropriate emoji for a device file in the /dev directory." alt="" coords="317,5,434,33"/>
+<area shape="rect" id="Node000002" href="$de/db5/dev__dir__utils_8c.html#acf9fb4da0ced0c99e368f3cd1ef91547" title="Processes the contents of the /dev directory." alt="" coords="108,5,269,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="301,22,269,22,269,17,301,17"/>
+<area shape="rect" id="Node000003" href="$d0/d29/main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Main function of the facad program." alt="" coords="5,5,60,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="92,22,60,22,60,17,92,17"/>
+</map>
