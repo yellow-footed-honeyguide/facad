@@ -3,8 +3,7 @@ tags
 build/
 builddir/
 
-doxygen/
-docs/
+docs/man/facad-man-page.md
 
 .cache
 .vscode

@@ -38,3 +38,6 @@ executable('facad',
            include_directories : inc,
            dependencies : [math_dep],
            install : true)
+
+# Install man page
+install_man('docs/man/facad.1')
