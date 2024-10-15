@@ -1,8 +1,13 @@
 # facad
 
+[![Documentation](https://img.shields.io/badge/documentation-view-f5b836.svg?style=flat-square)](https://yellow-footed-honeyguide.github.io/facad/)
+[![versions](https://img.shields.io/repology/repositories/facad?style=flat-square&color=f5b836)](https://repology.org/project/facad/versions)
+[![Homebrew](https://img.shields.io/homebrew/installs/dy/facad?style=flat-square&color=f5b836&label=homebrew%20installs)](https://formulae.brew.sh/formula/facad)
+
 A modern, colorful directory listing tool for the command line.
 
 ![facad in action](assets/facad_2_18.jpg)
+
 
 ## Features
 > Designed for both novice users and power users,<br>
@@ -21,37 +26,36 @@ A modern, colorful directory listing tool for the command line.
 ### Dependencies
 - Pure C implementation without any dependency
 
+### macOS
+facad is available through Homebrew. To install, run:
+```bash
+brew install facad
+```
+
 ### I use Arch btw?
 Just use the script from AUR:
 ```bash
 yay -S facad
 ```
 
-### Build 
+### Build & Install from source
 ```bash
 git clone https://github.com/yellow-footed-honeyguide/facad.git
 cd facad
 mkdir build && cd build
 meson setup .. && ninja
-```
-
-### Install
-For system-wide installation (may require elevated privileges like `sudo`):
-```bash
+# for system-wide installation (may require elevated privileges like `sudo`):
 sudo ninja install
 ```
 
 ## Usage
 
-Run `facad` command for default grid file listing
+Run `facad` command for default grid file listing<br>
+Run `facad -h/--help` command for help<br>
+Run `facad -v--version` command for version<br>
+Run `facad -l/--long` command for long listing output<br>
+Run `facad -a/--analytics` command for dir analytics output
 
-Run `facad -l` command for long listing output
-
-Run `facad -a` command for dir analytics output
-
-Run `facad -h` command for help
-
-Run `facad -v` command for version
 
 
 ## Contributing
