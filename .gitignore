@@ -1,7 +1,10 @@
-.cache
-.vscode
+tags
+
 build/
 builddir/
-tags
-test/
 
+doxygen/
+docs/
+
+.cache
+.vscode
