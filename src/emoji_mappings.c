@@ -55,6 +55,7 @@ const EmojiMapEntry emoji_extension_map[] = {
     {"js", "🟡"},
     {"css", "🎨"},
     {"cpp", "🔬"},
+    {"cppm", "🔬"},
     {"c", "🔬"},
     {"java", "☕"},
     {"go", "🐹"},
@@ -222,6 +223,8 @@ const EmojiMapEntry emoji_extension_map[] = {
     {"bzl", "🏭"},
     {"zig", "⚡️"},
     {"mk", "🧰"},
+    {"xcf", "🖌️"},
+    {"pcm", "💾"},
     //{"", ""},
 };
 
@@ -377,6 +380,10 @@ const EmojiMapEntry emoji_exact_file_map[] = {
     {"build.gradle.kts", "🐘"},
     {".flowconfig", "🧹"},
     {"Doxyfile", "🕮 "},
+    {"AUTHORS", "📝"},
+    {"index", "📌"},
+    {"perf.data", "⏱️"},
+    {"perf.data.old", "⏱️"},
     //{"", ""},
 };
 /** @brief Size of the emoji_exact_file_map array. */
