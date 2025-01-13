@@ -225,6 +225,13 @@ const EmojiMapEntry emoji_extension_map[] = {
     {"mk", "🧰"},
     {"xcf", "🖌️"},
     {"pcm", "💾"},
+    {"in", "🚪"},
+    {"dsp", "🪟"},
+    {"vcxproj", "🪟"},
+    {"ico", "🪟"},
+    {"ctags", "🏷️"},
+    {"awk", "✂️"},
+    {"sed", "✂️"},
     //{"", ""},
 };
 
@@ -281,6 +288,8 @@ const EmojiMapEntry emoji_exact_file_map[] = {
     {"COPYING", "⚖️"},
     {"COPYING.LIB", "⚖️"},
     {"LICENSE-docs", "⚖️"},
+    {"APACHE2", "⚖️"},
+    {"LICENSE-APACHE2", "⚖️"},
     {".ninja_deps", "🥷"},
     {".ninja_log", "🥷"},
     {".gitattributes", "🐙"},
