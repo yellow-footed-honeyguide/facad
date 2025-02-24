@@ -1,9 +1,9 @@
-tags
-
 build/
 builddir/
 
 docs/man/facad-man-page.md
 
 .cache
+tags
 .vscode
+.idea
