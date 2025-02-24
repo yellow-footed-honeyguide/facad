@@ -114,6 +114,13 @@ char *get_emoji(const char *path) {
     const char *filename = strrchr(path, '/');
     filename = filename ? filename + 1 : path;
 
+    // Check for not-exact file name matches first (top highest priority)
+    for (size_t i = 0; i < emoji_not_exact_file_map_size; i++) {
+        if (strstr(filename, emoji_not_exact_file_map[i].key) != NULL) {
+            return safe_strdup(emoji_not_exact_file_map[i].emoji);
+        }
+    }
+
     // Check for exact file name matches first (highest priority)
     for (size_t i = 0; i < emoji_exact_file_map_size; i++) {
         if (strcasecmp(filename, emoji_exact_file_map[i].key) == 0) {

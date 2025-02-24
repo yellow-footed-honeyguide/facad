@@ -54,6 +54,18 @@ extern const EmojiMapEntry emoji_exact_file_map[];
 extern const size_t emoji_exact_file_map_size;
 
 /**
+* @brief Array of emoji mappings for not-exact file names.
+*
+* This array contains mappings of specific file names to their corresponding emojis.
+*/
+extern const EmojiMapEntry emoji_not_exact_file_map[];
+
+/**
+* @brief Size of the emoji_not_exact_file_map array.
+*/
+extern const size_t emoji_not_exact_file_map_size;
+
+/**
  * @brief Array of emoji mappings for file content patterns.
  *
  * This array contains mappings of file content patterns (e.g., shebangs) to their corresponding emojis.

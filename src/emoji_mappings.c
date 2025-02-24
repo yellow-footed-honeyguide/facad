@@ -103,7 +103,7 @@ const EmojiMapEntry emoji_extension_map[] = {
     {"lhs", "💻"},
     {"cob", "💻"},
     {"o", "🧩"},
-    {"db", "🗄️"},
+    {"db", "🗄️ "},
     {"mod", "🐹"},
     {"gem", "💎"},
     {"txt", "📝"},
@@ -236,6 +236,8 @@ const EmojiMapEntry emoji_extension_map[] = {
     {"ctags", "🏷️"},
     {"awk", "✂️"},
     {"sed", "✂️"},
+    {"zst", "🗜️ "},
+    {"initramfs", "🛫"},
     //{"", ""},
 };
 
@@ -250,7 +252,6 @@ const size_t emoji_extension_map_size = sizeof(emoji_extension_map) /
  * assign emojis based on exact matches of file names, typically for special files.
  */
 const EmojiMapEntry emoji_exact_file_map[] = {
-    {"vmlinuz", "🐧"},
     {"grub", "🥾"},
     {"shadow", "🕶️"},
     {"shadow-", "🔙"},
@@ -404,6 +405,22 @@ const size_t emoji_exact_file_map_size = sizeof(emoji_exact_file_map) /
                                          sizeof(emoji_exact_file_map[0]);
 
 /**
+ * @brief Emoji mappings for not-exact file names.
+ *
+ * This array maps substring in file names to corresponding emojis. It is used to
+ * assign emojis based on not-exact matches of file names, typically for special files.
+ */
+const EmojiMapEntry emoji_not_exact_file_map[] = {
+    {"vmlinuz", "🐧"},
+    {"initrd", "🌀"},
+    {"System.map", "🗺️ "},
+};
+
+/** @brief Size of the emoji_not_exact_file_map array. */
+const size_t emoji_not_exact_file_map_size = sizeof(emoji_not_exact_file_map) /
+                                         sizeof(emoji_not_exact_file_map[0]);
+
+/**
  * @brief Emoji mappings for file content patterns.
  *
  * This array maps file content patterns (typically shebang lines) to corresponding emojis.
@@ -480,13 +497,13 @@ const size_t emoji_file_content_map_size = sizeof(emoji_file_content_map) /
  */
 const EmojiMapEntry emoji_exact_dev_file_map[] = {
     {"loop", "🔁"},
-    {"null", "🕳️"},
-    {"zero", "🕳️"},
+    {"null", "🕳️ "},
+    {"zero", "🕳️ "},
     {"random", "🎲"},
     {"urandom", "🎲"},
-    {"tty", "🖥️"},
+    {"tty", "🖥️ "},
     {"usb", "🔌"},
-    {"vga_arbiter", "🖼️"},
+    {"vga_arbiter", "🖼️ "},
     {"vhci", "🔌"},
     {"vhost-net", "🌐"},
     {"vhost-vsock", "💬"},
@@ -529,7 +546,7 @@ const size_t emoji_exact_dev_file_map_size = sizeof(emoji_exact_dev_file_map) /
 const EmojiMapEntry emoji_prefix_dev_map[] = {
     {"loop", "🔁"},
     {"sd", "💽"},
-    {"tty", "🖥️"},
+    {"tty", "🖥️ "},
     {"usb", "🔌"},
     {"video", "🎥"},
     {"nvme", "💽"},
@@ -537,8 +554,8 @@ const EmojiMapEntry emoji_prefix_dev_map[] = {
     {"hidraw", "🔠"},
     {"vcs", "📟"},
     {"vcsa", "📟"},
-    {"ptp", "🕰️"},
-    {"rtc", "🕰️"},
+    {"ptp", "🕰️ "},
+    {"rtc", "🕰️ "},
     {"watchdog", "🐕"},
     {"mtd", "⚡"}
 };

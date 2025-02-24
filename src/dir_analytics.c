@@ -283,10 +283,10 @@ void print_dir_analytics(const char* path) {
     // Print analytics
     printf("%s%s%s\n", ANSI_BOLD, cwd, ANSI_RESET);
     printf("🧮 Total Size    : %s\n", format_size(total_size));
-    printf("🗂️ Directories   : %d\n", total_dirs);
+    printf("🗂️  Directories   : %d\n", total_dirs);
     printf("🌳 Max Depth     : %d levels\n", max_depth);
     printf("📁 Deepest Dir   : %s\n", deepest_dir);
-    printf("🗃️ Files         : %d\n", total_files);
+    printf("🗃️  Files         : %d\n", total_files);
     printf("🐘 Largest File  : %s [%s]\n", largest_file, format_size(largest_size));
     printf("🏺 Oldest File   : %s [%s]\n", oldest_file, format_time(oldest_time));
     printf("🆕 Newest File   : %s [%s]\n", newest_file, format_time(newest_time));
