@@ -42,10 +42,11 @@ yay -S facad
 ```bash
 git clone https://github.com/yellow-footed-honeyguide/facad.git
 cd facad
-mkdir build && cd build
-meson setup .. && ninja
+meson setup build && meson compile -C build
+# now facad binary in build dir
+
 # for system-wide installation (may require elevated privileges like `sudo`):
-sudo ninja install
+cd build && sudo ninja install
 ```
 
 ## Usage
