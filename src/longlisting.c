@@ -115,10 +115,10 @@ static void format_time_ago(time_t file_time, char *buf, size_t buf_size) {
  * @param rights Buffer to store the emoji string.
  */
 static void get_user_rights(mode_t mode, char *rights) {
-    const char *read = "\xF0\x9F\x91\x80";   // 👀
-    const char *write = "\xE2\x9C\x8F\xEF\xB8\x8F"; // ✏️
-    const char *exec = "\xF0\x9F\x9A\x80";   // 🚀
-    const char *no = "\xE2\x9D\x8C";         // ❌
+    const char *read = "\xF0\x9F\x91\x80";           // 👀
+    const char *write = "\xE2\x9C\x8F\xEF\xB8\x8F "; // ✏️
+    const char *exec = "\xF0\x9F\x9A\x80";           // 🚀
+    const char *no = "\xE2\x9D\x8C";                 // ❌
 
     strcpy(rights, "");
     strcat(rights, (mode & S_IRUSR) ? read : no);

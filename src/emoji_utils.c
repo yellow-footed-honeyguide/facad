@@ -43,17 +43,22 @@ static char *safe_strdup(const char *str) {
  * @return A dynamically allocated string containing the emoji
  */
 char *get_dev_emoji(const char *path) {
+    // Check for prefix matches in the dev prefix map
+    for (size_t i = 0; i < emoji_prefix_dev_map_size; i++) {
+
+        if (strstr(path, "ttyACM") != NULL) {
+            return safe_strdup("♾️ ");
+        }
+
+        if (strncmp(path, emoji_prefix_dev_map[i].key, strlen(emoji_prefix_dev_map[i].key)) == 0) {
+            return safe_strdup(emoji_prefix_dev_map[i].emoji);
+        }
+    }
+
     // Check for exact matches in the dev file map
     for (size_t i = 0; i < sizeof(emoji_exact_dev_file_map_size); i++) {
         if (strcmp(path, emoji_exact_dev_file_map[i].key) == 0) {
             return safe_strdup(emoji_exact_dev_file_map[i].emoji);
-        }
-    }
-
-    // Check for prefix matches in the dev prefix map
-    for (size_t i = 0; i < emoji_prefix_dev_map_size; i++) {
-        if (strncmp(path, emoji_prefix_dev_map[i].key, strlen(emoji_prefix_dev_map[i].key)) == 0) {
-            return safe_strdup(emoji_prefix_dev_map[i].emoji);
         }
     }
 
@@ -147,7 +152,7 @@ char *get_emoji(const char *path) {
 
     // Check for hidden files
     if (filename[0] == '.') {
-        return safe_strdup("⚙️");
+        return safe_strdup("⚙️ ");
     }
 
     // Check for executable files
