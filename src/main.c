@@ -20,6 +20,9 @@
 #include <fnmatch.h>
 #include <sys/stat.h>
 #include <sys/ioctl.h>
+#ifdef __APPLE__
+#include <sys/syslimits.h> // `PATH_MAX` on macOS exists in this header
+#endif
 
 #include "git_utils.h"
 #include "file_card.h"
@@ -31,7 +34,7 @@
 #include "dev_dir_utils.h"
 #include "git_integration.h"
 
-#define MAX_PATH 4096        // Maximum length for file paths
+#define MAX_PATH PATH_MAX    // Maximum length for file paths
 #define INITIAL_ENTRIES 512  // Initial number of directory entries to allocate
 
 /**
