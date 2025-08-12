@@ -31,6 +31,7 @@
 #include "dev_dir_utils.h"
 #include "git_integration.h"
 
+#define MAX_PATH 4096        // Maximum path length
 #define INITIAL_ENTRIES 512  // Initial number of directory entries to allocate
 
 /**
@@ -376,7 +377,7 @@ int main(int argc, char *argv[]) {
 
     // Handle case when no entries are found
     if (num_entries == 0) {
-        char current_dir[PATH_MAX];
+        char current_dir[MAX_PATH];
         if (getcwd(current_dir, sizeof(current_dir)) != NULL) {
             // Display current directory if it matches the display path
             if (strcmp(current_dir, display_path) == 0) {
