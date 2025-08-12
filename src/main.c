@@ -394,20 +394,7 @@ int main(int argc, char *argv[]) {
         // Sort the entries alphabetically
         qsort(entries, num_entries, sizeof(FileCardInfo), compare_file_entries);
 
-        // If in a Git repository, integrate Git status information
-        if (is_git_repository()) {
-            GitFileList git_status = get_git_status();
-            for (int i = 0; i < num_entries; i++) {
-                for (int j = 0; j < git_status.count; j++) {
-                    // Match file names and set Git status
-                    if (strcmp(entries[i].name, git_status.files[j].filename) == 0) {
-                        entries[i].git_status[0] = git_status.files[j].status;
-                        entries[i].git_status[1] = '\0';
-                        break;
-                    }
-                }
-            }
-        }
+
 
         // Display the entries using the appropriate format
         display_entries(entries, num_entries, term_width, display_path, show_path);

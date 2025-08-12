@@ -10,30 +10,23 @@
  * @date 2024
  */
 
+
 #ifndef GIT_UTILS_H
 #define GIT_UTILS_H
 
-#include <stdbool.h>  // Include for boolean type
+#include <stdbool.h>
 
-#define MAX_FILENAME 1024  // Maximum length for filenames
-#define MAX_FILES 1000     // Maximum number of files to track
+#define MAX_FILENAME 1024
+#define MAX_FILES 1000
 
-/**
- * @struct GitFile
- * @brief Structure to hold information about a single file's Git status.
- */
 typedef struct {
-    char filename[MAX_FILENAME];  // Name of the file
-    char status;                  // Single character representing Git status
+    char filename[MAX_FILENAME];
+    char status;
 } GitFile;
 
-/**
- * @struct GitFileList
- * @brief Structure to hold Git status information for multiple files.
- */
 typedef struct {
-    GitFile files[MAX_FILES];  // Array of GitFile structures
-    int count;                 // Number of files in the list
+    GitFile files[MAX_FILES];
+    int count;
 } GitFileList;
 
 /**
@@ -44,7 +37,7 @@ typedef struct {
  *
  * @return true if the current directory is in a Git repository, false otherwise.
  */
-bool is_git_repository(void);
+bool is_git_repository(const char* path);
 
 /**
  * @brief Retrieves the Git status for all files in the current repository.
@@ -54,7 +47,7 @@ bool is_git_repository(void);
  *
  * @return GitFileList structure containing the status of all files in the repository.
  */
-GitFileList get_git_status(void);
+GitFileList get_git_status(const char* path);
 
 /**
  * @brief Retrieves the name of the current Git branch.
@@ -64,6 +57,6 @@ GitFileList get_git_status(void);
  * @return Dynamically allocated string containing the branch name, or NULL if an error occurred.
  * @note The caller is responsible for freeing the returned string.
  */
-char* get_current_branch(void);
+char* get_current_branch(const char* path);
 
 #endif // GIT_UTILS_H

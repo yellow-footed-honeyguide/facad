@@ -22,6 +22,7 @@
 #include "dir_config.h"
 #include "display_utils.h"
 
+
 #define MAX_COLUMNS 4
 #define SPACING 2
 #define EMOJI_WIDTH 2
@@ -88,10 +89,10 @@ void print_padded(const char *str, size_t width) {
  */
 void display_entries(FileCardInfo *entries, int num_entries, int term_width,
                      const char *current_dir, int show_path) {
-    setlocale(LC_ALL, "");  // Set the locale for proper UTF-8 handling
+    setlocale(LC_ALL, "");
 
     if (show_path) {
-        char *branch = get_current_branch();  // Get the current Git branch
+        char *branch = get_current_branch(current_dir);
         if (branch) {
             printf("\033[1m%s\033[0m  \033[38;5;202m[%s]\033[0m\n", current_dir, branch);  // Print directory and branch
             free(branch);  // Free the allocated branch name
