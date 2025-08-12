@@ -288,7 +288,9 @@ const EmojiMapEntry emoji_extension_map[] = {
     {"psd", "🖌️"},
     {"fossil", "🦎"},
     {"svn", "🆂"},
-    {"hg", "☿"}
+    {"hg", "☿"},
+    {"prmt", "📢"},
+    {"prompt", "📢"},
 };
 
 /** @brief Size of the emoji_extension_map array. */
